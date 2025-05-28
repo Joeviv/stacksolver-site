@@ -2,7 +2,7 @@
 // src/components/Navigation.astro
 const navLinks = [
   { href: "/", text: "Inicio" },
-  { href: "/productos", text: "Productos" },
+  // { href: "/productos", text: "Productos" }, // ENLACE ELIMINADO
   { href: "/industrias", text: "Industrias" },
   { href: "/estrategia-digital", text: "Estrategia Digital" },
   { href: "/nosotros", text: "Nosotros" }
@@ -41,14 +41,13 @@ const navLinks = [
 </nav>
 
 <style>
+  /* ... (Todos tus estilos CSS permanecen exactamente iguales) ... */
   .main-navigation {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    /* No necesitamos position:relative aquí si el menú móvil es fixed */
   }
 
-  /* --- ESTILOS PARA ESCRITORIO (BASE) --- */
   .navigation-menu-desktop {
     display: flex; 
     list-style: none; padding: 0; margin: 0;
@@ -58,9 +57,8 @@ const navLinks = [
   .nav-link-desktop { color: #e0e0e0; text-decoration: none; font-size: 1rem; padding: 0.5rem 0; transition: color 0.2s ease; }
   .nav-link-desktop:hover, .nav-link-desktop:focus { color: #ffffff; }
 
-  .menu-toggle { display: none; background: none; border: none; color: white; cursor: pointer; padding: 0.5rem; z-index: 10001; /* MUY ALTO */ position: relative;}
+  .menu-toggle { display: none; background: none; border: none; color: white; cursor: pointer; padding: 0.5rem; z-index: 10001; position: relative;}
 
-  /* --- ESTILOS PARA MÓVIL --- */
   .navigation-menu-mobile {
     display: flex; 
     flex-direction: column;
@@ -68,38 +66,31 @@ const navLinks = [
     list-style: none;
     padding: 0; 
     margin: 0;
-    
-    /* ****** CAMBIO PRINCIPAL AQUÍ ****** */
-    position: fixed; /* Posicionado relativo a la ventana */
-    top: 0;          /* Desde la parte superior de la ventana */
+    position: fixed; 
+    top: 0;         
     left: 0;
-    width: 100vw;    /* Ancho completo de la ventana */
-    height: 100vh;   /* Alto completo de la ventana */
-    /* ****** FIN CAMBIO PRINCIPAL ****** */
-    
-    background-color: rgba(44, 62, 80, 0.98); /* Fondo oscuro, ligeramente transparente */
-    z-index: 10000; /* MUY ALTO, para estar encima de todo */
-    
-    /* Control de visibilidad con transform y opacity para una transición suave */
+    width: 100vw;   
+    height: 100vh;  
+    background-color: rgba(44, 62, 80, 0.98); 
+    z-index: 10000; 
     opacity: 0;
     visibility: hidden;
-    transform: translateX(100%); /* Inicia fuera de la pantalla a la derecha */
+    transform: translateX(100%); 
     transition: opacity 0.3s ease, visibility 0s linear 0.3s, transform 0.3s ease-in-out; 
   }
 
   .navigation-menu-mobile.is-open {
     opacity: 1;
     visibility: visible;
-    transform: translateX(0%); /* Se desliza a la vista desde la derecha */
-    padding-top: 70px; /* Espacio para no superponerse con el header si el header es fijo también */
-                       /* Ajusta 70px a la altura de tu header */
-    overflow-y: auto; /* Scroll si el contenido es más largo */
+    transform: translateX(0%); 
+    padding-top: 70px; 
+    overflow-y: auto; 
   }
 
   .navigation-menu-mobile li {
     margin: 0;
-    width: 90%; /* Un poco menos del ancho para que no pegue a los bordes */
-    max-width: 400px; /* Ancho máximo para los items */
+    width: 90%; 
+    max-width: 400px; 
     text-align: center;
   }
   .nav-link-mobile { 
@@ -107,10 +98,10 @@ const navLinks = [
     padding: 1rem 1rem; 
     color: #ecf0f1; 
     text-decoration: none;
-    font-size: 1.2rem; /* Un poco más grande para overlay */
+    font-size: 1.2rem; 
     font-weight: 500;
     border-bottom: 1px solid rgba(255,255,255,0.1); 
-    margin-bottom: 0.5rem; /* Espacio entre items */
+    margin-bottom: 0.5rem; 
     border-radius: 4px;
   }
   .navigation-menu-mobile li:last-child .nav-link-mobile { border-bottom: none; }
@@ -124,7 +115,6 @@ const navLinks = [
     .menu-toggle { display: block; } 
   }
 
-  /* Icono Hamburguesa */
   .hamburger-icon { width: 24px; height: 18px; position: relative; display: inline-block; }
   .hamburger-icon .line { display: block; position: absolute; height: 3px; width: 100%; background: #fff; border-radius: 3px; opacity: 1; left: 0; transform: rotate(0deg); transition: .25s ease-in-out; }
   .line1 { top: 0px; } .line2 { top: 7px; } .line3 { top: 14px; }
@@ -135,6 +125,7 @@ const navLinks = [
 </style>
 
 <script>
+  // ... (Tu script para el menú móvil permanece exactamente igual) ...
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenuMobile = document.querySelector('#navigation-menu-mobile'); 
 

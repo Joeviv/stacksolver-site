@@ -87,7 +87,7 @@ const services = [
 
   .section-padding { padding-top: 4.5rem; padding-bottom: 4.5rem; }
   .section-padding-top-reduced { padding-top: 2.5rem; padding-bottom: 4.5rem; }
-  .container { width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+  .container { width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 0.75rem; padding-right: 0.75rem; box-sizing: border-box; }
   .text-center { text-align: center; }
   .services-title-section { padding-bottom: 1.5rem; }
   .section-title { font-size: clamp(2rem, 5vw, 3rem); color: #1a202c; font-weight: 600; margin-bottom: 0.75rem; }
@@ -95,15 +95,45 @@ const services = [
   
   .services-grid-detailed { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 1rem;
   }
-  @media (min-width: 640px) { 
-    .services-grid-detailed { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  @media (min-width: 600px) { 
+  .services-grid-detailed {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; 
   }
-  @media (min-width: 1024px) { 
-    .services-grid-detailed { gap: 2.8rem; }
+  .container { /* Restaurar padding un poco más grande para tablets y desktop */
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint (desktops) */
+  .services-grid-detailed { 
+    gap: 2.8rem; 
+  }
+}
+
+  @media (max-width: 370px) { /* Para móviles realmente estrechos como iPhone SE de 1ra gen (320px) */
+  .container {
+    padding-left: 0.5rem; /* 8px */
+    padding-right: 0.5rem; /* 8px */
+  }
+  .service-content-detailed { /* Reducir padding interno de la tarjeta en móviles muy pequeños */
+    padding: 1rem 0.75rem; 
+  }
+  .service-content-detailed h3 {
+    font-size: 1.1rem; 
+  }
+  .service-content-detailed .excerpt {
+    font-size: 0.85rem; 
+  }
+  .cta-button-service {
+    padding: 0.5rem 1rem; 
+    font-size: 0.8rem;
+  }
+}
   
   .service-item-card { 
     background-color: #ffffff; border-radius: 14px; box-shadow: 0 8px 28px rgba(0,0,0,0.06);

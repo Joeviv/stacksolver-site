@@ -1,0 +1,129 @@
+---
+// src/layouts/ClientLayout.astro
+export interface Props {
+    title: string;
+    clientCode?: string;
+}
+
+const { title, clientCode } = Astro.props;
+const logoPath = "/general/logo_stacksolver_main.svg";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - Área de Cliente - Stack Solver</title>
+    
+    <style>
+        :root {
+            --accionar-color: #0071e3; 
+            --color-texto: #333;
+            --color-fondo: #f4f4f4;
+            --color-borde: #ccc;
+            --logout-button-bg: #d9534f; /* Rojo para logout */
+            --logout-button-hover-bg: #c9302c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .client-area-header {
+            background-color: #ffffff;
+            padding: 0.75rem 2rem; /* Ajustado padding */
+            border-bottom: 1px solid var(--color-borde);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; /* Para que se quede fijo arriba si la página hace scroll */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .client-area-header .logo-link img {
+            height: 35px; /* Ajustado tamaño del logo */
+            display: block; /* Para evitar espacio extra debajo si es inline */
+        }
+        
+        .header-right-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Espacio entre "Portal: XXX" y "Cerrar Sesión" */
+        }
+
+        .client-identifier {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        /* Estilos para el botón de logout que se inyectará aquí */
+        .btn-logout-header {
+            background-color: var(--logout-button-bg);
+            color: white;
+            padding: 0.5rem 1rem; /* Padding ajustado para header */
+            border: none;
+            border-radius: 5px;
+            font-size: 0.875rem; /* Tamaño de fuente ajustado */
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            text-decoration: none; /* Si se usa como <a> */
+            display: inline-block; /* Para correcto padding y alineación */
+        }
+
+        .btn-logout-header:hover {
+            background-color: var(--logout-button-hover-bg);
+        }
+
+
+        main {
+            flex-grow: 1;
+            padding: 2rem;
+            max-width: 900px; /* O el ancho que prefieras para el contenido principal */
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .client-area-footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #333;
+            color: #f4f4f4;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="client-area-header">
+        <a href="https://stacksolver.tech" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <img src={logoPath} alt="Stack Solver Logo" />
+        </a>
+        <div class="header-right-content">
+            {clientCode && <span class="client-identifier">Portal: {clientCode.toUpperCase()}</span>}
+            <!-- El botón de logout se insertará aquí dinámicamente por el script de la página si el usuario está logueado -->
+            <div id={`header-logout-container-${clientCode}`}></div>
+        </div>
+    </header>
+
+    <main>
+        <slot /> <!-- Aquí va el contenido de la página (bienvenida o login) -->
+    </main>
+
+    <footer class="client-area-footer">
+        <p>© {new Date().getFullYear()} Stack Solver Tech. Todos los derechos reservados.</p>
+        <p>Soporte técnico: <a href="mailto:soporte@stacksolver.tech" style="color: var(--accionar-color);">soporte@stacksolver.tech</a></p>
+    </footer>
+</body>
+</html>

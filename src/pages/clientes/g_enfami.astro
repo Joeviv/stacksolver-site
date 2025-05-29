@@ -1,0 +1,122 @@
+---
+// src/pages/clientes/g_enfami.astro
+import ClientLayout from '../../layouts/ClientLayout.astro';
+import ClientLogin from '../../components/ClientLogin.astro';
+
+const clientCode = "g_enfami";
+const pageTitle = "Portal Cliente G-Enfami";
+const apiLoginUrl = "https://ebqgdj36x4.execute-api.us-east-1.amazonaws.com/client-login";
+
+const initialClientData = {
+    clientName: "Genfami Fundación",
+    clientAddress: "Mosquera - Cundinamarca",
+    filemakerId: "1BC14F0C-D3E6-47F4-8656-2968A171323A"
+};
+---
+
+<ClientLayout title={pageTitle} clientCode={clientCode}>
+    
+    <div id={`welcome-area-${clientCode}`} style="display: none;">
+        {/* El script llenará esto si el usuario está logueado */}
+    </div>
+
+    <div id={`login-area-${clientCode}`} style="display: none;">
+        <ClientLogin clientCode={clientCode} apiLoginUrl={apiLoginUrl} />
+    </div>
+
+    <script define:vars={{ clientCode, apiLoginUrl, initialClientData }}>
+        const welcomeArea = document.getElementById(`welcome-area-${clientCode}`);
+        const loginArea = document.getElementById(`login-area-${clientCode}`);
+        // NUEVO: Contenedor para el botón de logout en el header
+        const headerLogoutContainer = document.getElementById(`header-logout-container-${clientCode}`); 
+        const sessionKey = `session_${clientCode}`;
+        let sessionData = null;
+
+        try {
+            const storedSession = localStorage.getItem(sessionKey);
+            if (storedSession) {
+                sessionData = JSON.parse(storedSession);
+            }
+        } catch (e) {
+            console.error("Error al leer la sesión de localStorage:", e);
+            localStorage.removeItem(sessionKey);
+        }
+
+        if (sessionData && sessionData.loggedIn) {
+            const name = sessionData.clientName || initialClientData.clientName;
+
+            // HTML para el área de bienvenida (SIN el botón de logout aquí)
+            welcomeArea.innerHTML = `
+                <div class="welcome-container">
+                    <h1 class="welcome-title">Bienvenido, ${name}</h1>
+                    <p class="welcome-subtitle">Selecciona una opción para continuar:</p>
+                    <div class="dashboard-actions">
+                        <button class="action-button" id="btn-info-${clientCode}" data-target-page="/clientes/${clientCode}/info-general">
+                            <span class="action-title">Info General</span>
+                            <span class="action-subtitle"></span>
+                        </button>
+                        <button class="action-button" id="btn-proyectos-${clientCode}" data-target-page="/clientes/${clientCode}/proyectos">
+                            <span class="action-title">Proyectos</span>
+                            <span class="action-subtitle">Gestión proyectos</span>
+                        </button>
+                        <button class="action-button" id="btn-ticket-${clientCode}" data-target-page="/clientes/${clientCode}/tickets">
+                            <span class="action-title">Ticket</span>
+                            <span class="action-subtitle">Inicia un nuevo ticket</span>
+                        </button>
+                        <button class="action-button" id="btn-faq-${clientCode}" data-target-page="/clientes/${clientCode}/faq">
+                            <span class="action-title">F.A.Q</span>
+                            <span class="action-subtitle">Preguntas frecuentes y tutoriales.</span>
+                        </button>
+                    </div>
+                    <!-- Botón de logout ELIMINADO de aquí -->
+                </div>
+            `;
+            welcomeArea.style.display = 'block';
+            loginArea.style.display = 'none';
+
+            // NUEVO: Crear e insertar el botón de logout en el header
+            if (headerLogoutContainer) {
+                const logoutButtonHeader = document.createElement('button');
+                logoutButtonHeader.id = `logout-button-header-${clientCode}`;
+                logoutButtonHeader.className = 'btn-logout-header'; // Usar la nueva clase del layout
+                logoutButtonHeader.textContent = 'Cerrar Sesión';
+                logoutButtonHeader.addEventListener('click', () => {
+                    localStorage.removeItem(sessionKey);
+                    window.location.reload();
+                });
+                headerLogoutContainer.innerHTML = ''; // Limpiar por si acaso
+                headerLogoutContainer.appendChild(logoutButtonHeader);
+            }
+
+        } else {
+            welcomeArea.style.display = 'none';
+            loginArea.style.display = 'block';
+            // NUEVO: Asegurarse de que el contenedor del botón de logout en el header esté vacío si no hay sesión
+            if (headerLogoutContainer) {
+                headerLogoutContainer.innerHTML = '';
+            }
+        }
+
+        // Los estilos de la página de bienvenida permanecen igual
+        const pageScopedStyles = `
+            .welcome-container { background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+            .welcome-title { font-size: 1.8rem; color: var(--accionar-color, #0071e3); margin-top: 0; margin-bottom: 0.5rem; text-align: left; }
+            .welcome-subtitle { font-size: 1rem; color: #555; margin-bottom: 2rem; text-align: left; }
+            .dashboard-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+            .action-button { background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.25rem 1.5rem; text-align: left; cursor: pointer; transition: all 0.2s ease-in-out; display: flex; flex-direction: column; }
+            .action-button:hover { border-color: var(--accionar-color, #0071e3); box-shadow: 0 4px 10px rgba(0, 113, 227, 0.15); transform: translateY(-3px); }
+            .action-button .action-title { font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.35rem; }
+            .action-button .action-subtitle { font-size: 0.875rem; color: #666; line-height: 1.4; flex-grow: 1; }
+            /* .btn-logout ya no es necesario aquí, se define en ClientLayout.astro como .btn-logout-header */
+        `;
+        
+        const styleElementId = 'client-page-dynamic-styles';
+        let styleElement = document.getElementById(styleElementId);
+        if (!styleElement) {
+            styleElement = document.createElement('style');
+            styleElement.id = styleElementId;
+            document.head.appendChild(styleElement);
+        }
+        styleElement.textContent = pageScopedStyles; // Los estilos del .btn-logout original ya no son necesarios aquí
+    </script>
+</ClientLayout>

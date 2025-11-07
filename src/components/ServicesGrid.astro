@@ -3,7 +3,12 @@ const { services } = Astro.props;
 ---
 <div class="services-grid-container">
     {services.map((service, index) => (
-        <a href={service.link} class="service-card" style={`--animation-order: ${index};`}>
+        <a 
+          href={service.link} 
+          class="service-card" 
+          style={`--animation-order: ${index};`}
+          data-service-id={service.id}  
+        >
             <div class="card-preview-wrapper">
                 <img src={service.previewImageUrl} alt={`Vista previa de ${service.displayTitle}`} class="preview-image" loading="lazy" width="400" height="225"/>
             </div>
@@ -14,7 +19,6 @@ const { services } = Astro.props;
         </a>
     ))}
 </div>
-
 <style>
     .services-grid-container {
         display: grid;
@@ -31,6 +35,7 @@ const { services } = Astro.props;
     @media (min-width: 2100px) { .services-grid-container { grid-template-columns: repeat(6, 1fr); } }
 
     .service-card {
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         gap: 1.25rem;

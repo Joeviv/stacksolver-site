@@ -1,35 +1,113 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ServicesGrid from '../components/ServicesGrid.astro';
 import HeroSection from '../components/HeroSection.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ServiceDetail from '../components/ServiceDetail.astro';
+import { servicesData } from '../data/services';
 
 const pageTitle = "Stacksolver.tech: Soluciones a tu Medida.";
+const pageDescription = "Creamos soluciones tecnológicas modernas: IA local y segura, desarrollo a medida, diseño web de alto rendimiento y plataformas de aprendizaje.";
 
-const services = [
-  { displayTitle: "Inteligencia Artificial Segura y LOCAL para empresas.", subtitle: "Usando Agentes, LLMs, y Ollama", previewImageUrl: "/images/services/preview-ai.jpg", link: "/productos/inteligencia-artificial" },
-  { displayTitle: "Soluciones empresariales a la medida.", subtitle: "Usando Claris FileMaker", previewImageUrl: "/images/services/preview-filemaker.jpg", link: "/productos/desarrollo-aplicaciones" },
-  { displayTitle: "Diseño Web Moderno y Funcional", subtitle: "Usando AWS & Astro Frameworks", previewImageUrl: "/images/services/preview-web.jpg", link: "/productos/diseno-web" },
-  { displayTitle: "LMS Plataformas de Aprendizaje", subtitle: "Usando Moodle", previewImageUrl: "/images/services/preview-moodle.jpg", link: "/productos/plataformas-aprendizaje" },
-  { displayTitle: "Plataformas para GRC", subtitle: "Gobernanza, Riesgo y Cumplimiento", previewImageUrl: "/images/services/preview-grc.jpg", link: "/productos/integracion-sistemas" },
-  { displayTitle: "Visualización Avanzada de Datos", subtitle: "Usando Looker Studio", previewImageUrl: "/images/services/preview-looker.jpg", link: "/productos/visualizacion-datos" },
-];
+const servicesForGrid = servicesData.map(s => ({
+  id: s.id,
+  displayTitle: s.displayTitle,
+  subtitle: s.subtitle,
+  previewImageUrl: s.previewImageUrl,
+  link: "#"
+}));
 ---
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={pageDescription}>
 
-  <!-- 1. La sección Hero con el título y la animación -->
   <HeroSection />
 
-  <!-- 2. La sección de servicios que sigue inmediatamente debajo -->
-  <section class="services-section-wrapper">
-    <ServicesGrid services={services} />
+  <section class="services-section-wrapper" id="services-grid-section">
+    <ServicesGrid services={servicesForGrid} />
   </section>
+
+  <div id="service-detail-outlet">
+    {servicesData.map(service => (
+      <ServiceDetail service={service} />
+    ))}
+  </div>
 
 </BaseLayout>
 
+<script is:inline>
+  function initializeIndexInteraction() {
+    // MENSAJE DE PRUEBA 1
+    console.log("✅ Script de interacción INICIADO"); 
+
+    const servicesGridSection = document.getElementById('services-grid-section');
+    if (!servicesGridSection) return;
+
+    const serviceCards = servicesGridSection.querySelectorAll('.service-card'); 
+    
+    // MENSAJE DE PRUEBA 2
+    console.log(`🔎 Encontradas ${serviceCards.length} tarjetas de servicio.`);
+
+    const detailOutlet = document.getElementById('service-detail-outlet');
+    let currentlyOpenDetail = null;
+
+    serviceCards.forEach(card => {
+      if (card.dataset.listenerAttached) return;
+
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const serviceId = card.getAttribute('data-service-id');
+        console.log(`🖱️ Clic en tarjeta: ${serviceId}`); // MENSAJE DE PRUEBA 3
+        if (!serviceId) return;
+
+        if (currentlyOpenDetail) {
+          currentlyOpenDetail.style.display = 'none';
+          currentlyOpenDetail.classList.remove('is-visible');
+        }
+
+        const newDetailToShow = detailOutlet.querySelector(`#service-${serviceId}`);
+        if (newDetailToShow) {
+          newDetailToShow.style.display = 'block';
+          setTimeout(() => {
+            newDetailToShow.classList.add('is-visible');
+          }, 10);
+          
+          currentlyOpenDetail = newDetailToShow;
+
+          servicesGridSection.classList.add('is-active');
+          newDetailToShow.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+      card.dataset.listenerAttached = 'true';
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', initializeIndexInteraction);
+  document.addEventListener('astro:page-load', initializeIndexInteraction);
+</script>
+
 <style>
   .services-section-wrapper {
-    /* Espaciado para separar visualmente las dos secciones */
     padding-top: 6rem;
     padding-bottom: 6rem;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
   }
-</style>
+  .services-section-wrapper.is-active {
+    transform: translateY(-20px) scale(0.98);
+    opacity: 0.8;
+  }
+  #service-detail-outlet {
+    position: relative;
+    z-index: 10;
+  }
+  .service-detail-container.is-visible {
+    opacity: 1;
+  }
+</style>```
+
+**Después de actualizar el archivo:**
+
+1.  Guarda el archivo.
+2.  Ve a tu navegador, abre la **Consola de Desarrollador** (como en el paso 7).
+3.  Refresca la página (`Cmd + R`).
+4.  Por favor, envíame una nueva **captura de pantalla** de la consola.
+
+Esta vez, deberíamos ver nuestros mensajes de prueba. Esto nos dirá exactamente en qué punto se está deteniendo el proceso.

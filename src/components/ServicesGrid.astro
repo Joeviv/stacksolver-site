@@ -1,0 +1,49 @@
+---
+const { services } = Astro.props;
+---
+<div class="services-grid-container">
+    {services.map((service, index) => (
+        <a href={service.link} class="service-card" style={`--animation-order: ${index};`}>
+            <div class="card-preview-wrapper">
+                <img src={service.previewImageUrl} alt={`Vista previa de ${service.displayTitle}`} class="preview-image" loading="lazy" width="400" height="225"/>
+            </div>
+            <div class="card-content">
+                <h2 class="service-display-title">{service.displayTitle}</h2>
+                <p class="service-subtitle">{service.subtitle}</p>
+            </div>
+        </a>
+    ))}
+</div>
+
+<style>
+    .services-grid-container {
+        display: grid;
+        gap: 3rem;
+        width: 100%;
+        max-width: 1800px;
+        margin: 0 auto; 
+        padding: 0 3rem;
+        box-sizing: border-box;
+        grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .services-grid-container { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .services-grid-container { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 2100px) { .services-grid-container { grid-template-columns: repeat(6, 1fr); } }
+
+    .service-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInSlideUp 0.6s ease-out forwards;
+        animation-delay: calc(var(--animation-order) * 100ms);
+    }
+    @keyframes fadeInSlideUp { to { opacity: 1; transform: translateY(0); } }
+    .card-preview-wrapper { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
+    .preview-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .service-card:hover .preview-image { transform: scale(1.05); }
+    .card-content { text-align: left; }
+    .service-display-title { font-size: 1.5rem; color: var(--text-color-primary); margin-bottom: 0.5rem; line-height: 1.3; font-weight: 600; }
+    .service-subtitle { font-size: 1rem; color: var(--text-color-secondary); margin: 0; }
+</style>

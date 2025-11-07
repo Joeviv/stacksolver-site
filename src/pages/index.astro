@@ -1,215 +1,35 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
 import HeroSection from '../components/HeroSection.astro';
 
-const pageTitle = "Stacksolver.tech: Soluciones Tecnológicas Inteligentes para Impulsar tu Negocio.";
+const pageTitle = "Stacksolver.tech: Soluciones a tu Medida.";
 
 const services = [
-  { name: "Diseño Web Moderno y Funcional", videoUrl: "/videos/industrias/educacion/educacion.mp4", pageExcerpt: "Descubre cómo transformamos tu presencia online con sitios web ultrarrápidos y centrados en el usuario, utilizando tecnologías como Astro.", link: "/productos/diseno-web" },
-  { name: "Desarrollo de Aplicaciones a Medida usando Claris FileMaker", videoUrl: "/videos/claris/filemaker/fmProyMgt24.mp4", pageExcerpt: "Como Partners Oficiales de Claris, creamos soluciones robustas que se adaptan perfectamente a tus procesos, desde gestión integral hasta módulos específicos.", link: "/productos/desarrollo-aplicaciones" },
-  { name: "Integración de Sistemas y Datos", videoUrl: "/videos/claris/filemaker/library.mp4", pageExcerpt: "Hacemos que tus CRM, ERP y otras aplicaciones compartan información automáticamente, eliminando silos y mejorando la toma de decisiones.", link: "/productos/integracion-sistemas" },
-  { name: "Plataformas de Aprendizaje (LMS con Moodle)", videoUrl: "/videos/industrias/salud/genfamiPiloto640x480.mp4", pageExcerpt: "Impulsa el conocimiento en tu organización con Moodle: desde onboarding hasta desarrollo de habilidades complejas.", link: "/productos/plataformas-aprendizaje" },
-  { name: "Visualización Avanzada de Datos (Looker Studio)", videoUrl: "/videos/claris/filemaker/fmProyMgt24.mp4", pageExcerpt: "Convierte tus datos en insights accionables con Google Looker Studio, conectando múltiples fuentes para una visión 360º.", link: "/productos/visualizacion-datos" },
-  { name: "Inteligencia Artificial para Empresas", videoUrl: "/videos/claris/filemaker/fmProyMgt24.mp4", pageExcerpt: "Implementamos soluciones de IA y Machine Learning con herramientas como Ollama, entrenadas con tu información para resolver tus desafíos.", link: "/productos/inteligencia-artificial" },
+  { displayTitle: "Inteligencia Artificial Segura y LOCAL para empresas.", subtitle: "Usando Agentes, LLMs, y Ollama", previewImageUrl: "/images/services/preview-ai.jpg", link: "/productos/inteligencia-artificial" },
+  { displayTitle: "Soluciones empresariales a la medida.", subtitle: "Usando Claris FileMaker", previewImageUrl: "/images/services/preview-filemaker.jpg", link: "/productos/desarrollo-aplicaciones" },
+  { displayTitle: "Diseño Web Moderno y Funcional", subtitle: "Usando AWS & Astro Frameworks", previewImageUrl: "/images/services/preview-web.jpg", link: "/productos/diseno-web" },
+  { displayTitle: "LMS Plataformas de Aprendizaje", subtitle: "Usando Moodle", previewImageUrl: "/images/services/preview-moodle.jpg", link: "/productos/plataformas-aprendizaje" },
+  { displayTitle: "Plataformas para GRC", subtitle: "Gobernanza, Riesgo y Cumplimiento", previewImageUrl: "/images/services/preview-grc.jpg", link: "/productos/integracion-sistemas" },
+  { displayTitle: "Visualización Avanzada de Datos", subtitle: "Usando Looker Studio", previewImageUrl: "/images/services/preview-looker.jpg", link: "/productos/visualizacion-datos" },
 ];
 ---
-
 <BaseLayout title={pageTitle}>
-  <main class="index-page-main-content">
-    <HeroSection />
 
-    {/* TÍTULO DE SECCIÓN CON ID PARA EL OBSERVER */}
-    <section class="section-padding services-title-section needs-reveal-too" id="services-title">
-      <div class="container text-center">
-        <h2 class="section-title">Nuestros Servicios Tecnológicos</h2>
-        <p class="section-subtitle">Soluciones innovadoras y a medida para potenciar cada área de tu negocio.</p>
-      </div>
-    </section>
+  <!-- 1. La sección Hero con el título y la animación -->
+  <HeroSection />
 
-    <section class="services-list-section section-padding-top-reduced">
-      <div class="container">
-        <div class="services-grid-detailed">
-          {services.map((service, index) => (
-            // AÑADIDA CLASE 'service-card-reveal' PARA EL OBSERVER
-            <div class:list={["service-item-card", "service-card-reveal"]} style={`--animation-order: ${index};`}>
-              <a href={service.link} class="service-video-link-wrapper">
-                <div class="service-video-area-detailed">
-                  {service.videoUrl ? (
-                    <video 
-                      autoplay 
-                      loop 
-                      muted 
-                      playsinline 
-                      preload="metadata" 
-                      loading="lazy"
-                    >
-                      <source src={service.videoUrl} type="video/mp4" />
-                      Tu navegador no soporta la etiqueta de video.
-                    </video>
-                  ) : (
-                    <div class="video-placeholder-detailed">Video no disponible</div>
-                  )}
-                </div>
-              </a>
-              <div class="service-content-detailed">
-                <a href={service.link}><h3>{service.name}</h3></a>
-                <p class="excerpt">{service.pageExcerpt}</p>
-                <a href={service.link} class="cta-button-service">
-                  Conocer más detalles →
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  </main>
+  <!-- 2. La sección de servicios que sigue inmediatamente debajo -->
+  <section class="services-section-wrapper">
+    <ServicesGrid services={services} />
+  </section>
+
 </BaseLayout>
 
-<style is:global>
-  /* Clase base para elementos que necesitan animación de entrada */
-  .needs-reveal-too, .service-card-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+<style>
+  .services-section-wrapper {
+    /* Espaciado para separar visualmente las dos secciones */
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
-  /* Clase que se añade cuando el elemento es visible */
-  .needs-reveal-too.is-visible, .service-card-reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  /* Delay escalonado para las tarjetas de servicio */
-  .service-card-reveal.is-visible {
-    transition-delay: calc(var(--animation-order, 0) * 100ms);
-  }
-
-
-  .section-padding { padding-top: 4.5rem; padding-bottom: 4.5rem; }
-  .section-padding-top-reduced { padding-top: 2.5rem; padding-bottom: 4.5rem; }
-  .container { width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 0.75rem; padding-right: 0.75rem; box-sizing: border-box; }
-  .text-center { text-align: center; }
-  .services-title-section { padding-bottom: 1.5rem; }
-  .section-title { font-size: clamp(2rem, 5vw, 3rem); color: #1a202c; font-weight: 600; margin-bottom: 0.75rem; }
-  .section-subtitle { font-size: clamp(1rem, 2.5vw, 1.15rem); color: #4a5568; max-width: 750px; margin: 0 auto 1.5rem auto; line-height: 1.65; }
-  
-  .services-grid-detailed { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 1rem;
-  }
-  @media (min-width: 600px) { 
-  .services-grid-detailed {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem; 
-  }
-  .container { /* Restaurar padding un poco más grande para tablets y desktop */
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-@media (min-width: 1024px) { /* lg breakpoint (desktops) */
-  .services-grid-detailed { 
-    gap: 2.8rem; 
-  }
-}
-
-  @media (max-width: 370px) { /* Para móviles realmente estrechos como iPhone SE de 1ra gen (320px) */
-  .container {
-    padding-left: 0.5rem; /* 8px */
-    padding-right: 0.5rem; /* 8px */
-  }
-  .service-content-detailed { /* Reducir padding interno de la tarjeta en móviles muy pequeños */
-    padding: 1rem 0.75rem; 
-  }
-  .service-content-detailed h3 {
-    font-size: 1.1rem; 
-  }
-  .service-content-detailed .excerpt {
-    font-size: 0.85rem; 
-  }
-  .cta-button-service {
-    padding: 0.5rem 1rem; 
-    font-size: 0.8rem;
-  }
-}
-  
-  .service-item-card { 
-    background-color: #ffffff; border-radius: 14px; box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-    display: flex; flex-direction: column; overflow: hidden; 
-    /* Los estilos de opacidad/transform ahora están en .service-card-reveal */
-  }
-  .service-item-card:hover { 
-    box-shadow: 0 12px 35px rgba(0,0,0,0.08); 
-    /* El transform del hover puede mantenerse, pero el de la animación inicial lo maneja la clase .is-visible */
-    transform: translateY(-7px) scale(1.015);  
-  }
-
-  .service-video-link-wrapper { display: block; text-decoration: none; }
-  .service-video-area-detailed {
-    width: 100%; position: relative; background-color: #e8edf2; 
-    padding-bottom: 56.25%; height: 0; overflow: hidden; border-bottom: 1px solid #dfe6ee;
-  }
-  .service-video-area-detailed video, .service-video-area-detailed .video-placeholder-detailed {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; 
-  }
-  .video-placeholder-detailed { display: flex; align-items: center; justify-content: center; color: #718096; font-size: 0.9rem; }
-  .service-content-detailed { padding: 1.6rem 1.8rem; display: flex; flex-direction: column; flex-grow: 1; }
-  .service-content-detailed h3 { font-size: 1.3rem; color: #2d3748; margin-top: 0; margin-bottom: 0.65rem; font-weight: 600; }
-  .service-content-detailed a { text-decoration: none; color: inherit; }
-  .service-content-detailed a:hover h3 { color: #0056b3; }
-  .service-content-detailed .excerpt { font-size: 0.92rem; color: #4a5568; line-height: 1.7; margin-bottom: 1.4rem; flex-grow: 1; }
-  .cta-button-service {
-    display: inline-block; background-color: #2d3748; color: #ffffff !important; padding: 0.75rem 1.5rem;
-    text-decoration: none; border-radius: 5px; font-size: 0.9rem; font-weight: 500;
-    transition: background-color 0.2s ease-out, transform 0.2s ease-out; align-self: flex-start; 
-  }
-  .cta-button-service:hover { background-color: #1a202c; transform: scale(1.03) translateY(-2px); }
 </style>
-
-<script is:inline>
-  function observeElementsForAnimation() {
-    const observerOptions = {
-      root: null, // relative to the viewport
-      rootMargin: '0px',
-      threshold: 0.1 // trigger when 10% of the element is visible
-    };
-
-    const intersectionCallback = (entries, observerInstance) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observerInstance.unobserve(entry.target); // Unobserve after animation
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(intersectionCallback, observerOptions);
-
-    // Observe el título de la sección de servicios
-    const servicesTitle = document.getElementById('services-title');
-    if (servicesTitle) {
-      observer.observe(servicesTitle);
-    } else {
-      console.warn('[IndexScript] Services title section with ID "services-title" not found.');
-    }
-
-    // Observe todas las tarjetas de servicio
-    const serviceCards = document.querySelectorAll('.service-card-reveal');
-    if (serviceCards.length > 0) {
-      serviceCards.forEach(card => {
-        observer.observe(card);
-      });
-    } else {
-      console.warn('[IndexScript] No service cards with class "service-card-reveal" found.');
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observeElementsForAnimation);
-  } else {
-    observeElementsForAnimation();
-  }
-  document.addEventListener('astro:page-load', observeElementsForAnimation);
-</script>

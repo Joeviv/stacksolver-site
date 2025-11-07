@@ -1,0 +1,86 @@
+---
+---
+<canvas id="background-canvas"></canvas>
+
+<style>
+  canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+</style>
+
+<script is:inline>
+  function initializeFinalDynamicAnimation() {
+    if (document.body.classList.contains('animation-running')) return;
+    document.body.classList.add('animation-running');
+    
+    console.log("✅ Final Dynamic & Fast Animation Loaded!");
+
+    const canvas = document.getElementById('background-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    let time = 0;
+
+    function resizeCanvas() {
+      const parent = canvas.parentElement;
+      if (parent) {
+        canvas.width = parent.offsetWidth;
+        canvas.height = parent.offsetHeight;
+      }
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // --- PARÁMETROS FINALES CON MOVIMIENTO POTENCIADO ---
+    const dotSpacing = 30;
+    const baseDotSize = 0.7;
+    const minOpacity = 0.2;
+    const maxOpacity = 0.7;
+
+    // Parámetros para la ONDA 1
+    const wave1Speed = 0.015; // <-- AUMENTADO: Movimiento más rápido
+    const wave1FreqX = 0.02;
+    const wave1FreqY = 0.01;
+    const wave1Amp = 1.5;
+
+    // Parámetros para la ONDA 2
+    const wave2Speed = 0.020; // <-- AUMENTADO: Movimiento más rápido
+    const wave2FreqX = 0.015;
+    const wave2FreqY = 0.025;
+    const wave2Amp = 1.2;
+    
+    // Parámetros de DESPLAZAMIENTO
+    const displacementStrengthX = 6; // <-- AUMENTADO SIGNIFICATIVAMENTE: Puntos se mueven mucho más lejos
+    const displacementStrengthY = 4; // <-- AUMENTADO SIGNIFICATIVAMENTE: Puntos se mueven mucho más lejos
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      time++;
+
+      for (let x = dotSpacing / 2; x < canvas.width; x += dotSpacing) {
+        for (let y = dotSpacing / 2; y < canvas.height; y += dotSpacing) {
+          
+          const wave1 = (Math.sin(x * wave1FreqX + time * wave1Speed) + Math.cos(y * wave1FreqY + time * wave1Speed));
+          const wave2 = (Math.sin(x * wave2FreqX - time * wave2Speed) + Math.cos(y * wave2FreqY - time * wave2Speed));
+          const combinedWave = wave1 + wave2;
+          const remappedValue = (combinedWave + 4) / 8;
+
+          const size = baseDotSize + remappedValue * (wave1Amp + wave2Amp);
+          const opacity = minOpacity + remappedValue * (maxOpacity - minOpacity);
+
+          const offsetX = wave1 * displacementStrengthX;
+          const offsetY = wave2 * displacementStrengthY;
+
+          ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+          ctx.beginPath();
+          ctx.arc(x + offsetX, y + offsetY, Math.max(0, size), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+
+  document.addEventListener('DOMContentLoaded', initializeFinalDynamicAnimation);
+  document.addEventListener('astro:page-load', initializeFinalDynamicAnimation);
+</script>

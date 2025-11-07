@@ -1,150 +1,42 @@
 ---
-// src/components/HeroSection.astro (CON ANIMACIÓN CSS Y SCRIPT SIMPLIFICADO)
-
-const videoClips = [
-  { src: "/videos/hero/custom studio.mp4", alt: "Mini clip sobre custom studio", isCircle: true, type: "video/mp4" },
-  { src: "/videos/hero/kanban studio.mp4", alt: "Mini clip sobre kanban studio", isCircle: false, type: "video/mp4" },
-  { src: "/videos/hero/project management studio.mp4", alt: "Mini clip sobre project management studio", isCircle: true, type: "video/mp4" },
-  { src: "/videos/hero/timeline studio.mp4", alt: "Mini clip sobre timeline studio", isCircle: false, type: "video/mp4" },
-];
-
-export interface Props {
-  expandedText?: boolean;
-}
-const { expandedText = false } = Astro.props;
+import AnimatedGrid from './AnimatedGrid.astro';
 ---
-
-<section class:list={["hero-layout-section", "needs-reveal", { "hero-layout-expanded-padding": expandedText }]} id="hero-section">
-  <div class="hero-title-container">
-    <h1>Transformamos Desafíos en Oportunidades con Tecnología a tu Medida.</h1>
-  </div>
-
-  <div class="hero-visuals-grid">
-    {videoClips.map((video) => (
-      <div class:list={["visual-item-wrapper", { "is-circle-shape": video.isCircle }]}>
-        <video
-          src={video.src}
-          autoplay
-          loop
-          muted
-          playsinline
-          preload="metadata"
-          aria-label={video.alt}
-        >
-          <source src={video.src} type={video.type} />
-          Tu navegador no soporta la etiqueta de video.
-        </video>
-      </div>
-    ))}
-  </div>
-
-  <div class="hero-action-button-container">
-    <a href="/nosotros" class="hero-cta-button">Descubre cómo podemos ayudarte</a>
+<section class="hero-container">
+  <AnimatedGrid />
+  <div class="hero-content">
+    <h1 class="hero-title">Stacksolver.tech</h1>
+    <p class="hero-subtitle">Solucionamos y gestionamos todo tu stack tecnológico.</p>
   </div>
 </section>
 
 <style>
-  .hero-layout-section.needs-reveal { /* Clase para elementos que necesitan ser revelados */
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-  }
-  .hero-layout-section.is-visible { /* Clase añadida por JS para revelar */
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* El resto de los estilos del Hero (layout, tipografía, etc.) permanecen igual */
-  .hero-layout-section { /* Estilos base SIN los de animación inicial */
-    background-color: #ffffff;
-    padding: 3rem 1rem; 
+  .hero-container {
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 10rem 2rem;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    gap: 2.5rem; 
   }
-  .hero-layout-expanded-padding {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--text-color-primary);
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
   }
-  .hero-title-container {
-    width: 100%;
-    max-width: 800px; 
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    line-height: 1.6;
     margin: 0 auto;
+    max-width: 550px;
+    /* ¡CAMBIO CLAVE! Usamos el color blanco para máxima legibilidad. */
+    color: var(--text-color-primary); 
   }
-  .hero-title-container h1 {
-    font-size: clamp(1.9rem, 4.2vw, 3rem); 
-    font-weight: 700; 
-    color: #1a202c; 
-    line-height: 1.35; 
-    margin-bottom: 0; 
-  }
-  .hero-visuals-grid {
-    width: 100%;
-    max-width: 1000px; 
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 2rem; 
-  }
-  @media (max-width: 992px) { 
-    .hero-visuals-grid { max-width: 750px; gap: 1.5rem; }
-    .hero-title-container h1 { font-size: clamp(1.8rem, 5.5vw, 2.8rem); }
-  }
-  @media (max-width: 768px) { 
-    .hero-visuals-grid { grid-template-columns: repeat(2, 1fr); max-width: 550px; gap: 1.5rem; }
-    .hero-title-container h1 { font-size: clamp(1.7rem, 6vw, 2.6rem); line-height: 1.4; }
-  }
-  @media (max-width: 480px) { 
-    .hero-visuals-grid { grid-template-columns: repeat(2, 1fr); max-width: 380px; gap: 1rem; }
-     .hero-title-container h1 { font-size: clamp(1.6rem, 7vw, 2.4rem); }
-  }
-  .visual-item-wrapper {
-    width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 20px; 
-    background-color: #f0f0f0; box-shadow: 0 6px 18px rgba(0,0,0,0.09); 
-    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-  }
-  .visual-item-wrapper:hover { transform: scale(1.07) translateY(-4px); }
-  .visual-item-wrapper.is-circle-shape { border-radius: 50%; }
-  .visual-item-wrapper video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero-action-button-container { margin-top: 0; }
-  .hero-cta-button {
-    display: inline-block; background-color: #1a1a1a; color: white; padding: 0.9rem 2.2rem; 
-    text-decoration: none; border-radius: 6px; font-size: 1.05rem; font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  .hero-cta-button:hover { background-color: #000; transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
 </style>
-
-  {/* SCRIPT CON is:inline PARA FORZAR EJECUCIÓN EN EL CLIENTE */}
-    <script is:inline>
-      function revealHeroOnLoad() {
-        console.log('[HeroScript-Inline] Script ejecutándose.');
-        const heroSection = document.getElementById('hero-section');
-        
-        if (heroSection) {
-          console.log('[HeroScript-Inline] Hero section element found:', heroSection);
-          // Forzar la adición de la clase
-          heroSection.classList.add('is-visible');
-          console.log('[HeroScript-Inline] .is-visible class added to Hero section.');
-        } else {
-          console.error('[HeroScript-Inline] Hero section element with ID "hero-section" NOT found.');
-        }
-      }
-
-      // Ejecutar directamente si el DOM ya está listo, o esperar al evento DOMContentLoaded
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', revealHeroOnLoad);
-      } else {
-        // El DOM ya está completamente cargado y parseado
-        revealHeroOnLoad();
-      }
-
-      // También escuchar el evento de Astro por si acaso, aunque DOMContentLoaded debería ser suficiente
-      document.addEventListener('astro:page-load', () => {
-        console.log('[HeroScript-Inline] astro:page-load event fired.');
-        revealHeroOnLoad(); // Volver a intentar por si acaso
-      });
-    </script>

@@ -1,128 +1,87 @@
 ---
-// src/pages/industrias.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductPageLayout from '../layouts/ProductPageLayout.astro';
 
 const pageTitle = "Soluciones por Industria | Adaptabilidad Tecnológica - Stacksolver.tech";
-const heroTitle = "Tecnología que se Adapta a tu Sector";
-const heroLead = "Entendemos que cada industria tiene desafíos y oportunidades únicas. En Stacksolver.tech, aplicamos nuestra experiencia para crear soluciones tecnológicas que realmente impulsan tu negocio, sin importar el campo en el que te desenvuelvas.";
+const serviceName = "Tecnología que se Adapta a tu Mundo";
+const leadParagraph = "Entendemos que cada industria tiene desafíos únicos. No aplicamos soluciones genéricas. Analizamos tu sector y tus procesos para construir tecnología que genera una ventaja competitiva real.";
 
-// Ejemplos de industrias - puedes expandir esto con más detalle o casos específicos más adelante
-const industries = [
-  { name: "Salud", description: "Optimizamos la gestión de pacientes, historias clínicas electrónicas, procesos administrativos y cumplimiento normativo con soluciones seguras y eficientes.", icon: "⚕️" },
-  { name: "Educación", description: "Desde plataformas LMS personalizadas con Moodle hasta sistemas de gestión académica y administrativa, mejoramos la experiencia de aprendizaje y la eficiencia operativa.", icon: "🎓" },
-  { name: "Manufactura", description: "Implementamos sistemas ERP para el control de producción, gestión de inventarios, optimización de la cadena de suministro y análisis de costos, mejorando la productividad.", icon: "🏭" },
-  { name: "Servicios Profesionales", description: "Desarrollamos CRM a medida, herramientas de gestión de proyectos y sistemas de facturación que agilizan tus operaciones y mejoran la relación con tus clientes.", icon: "💼" },
-  { name: "Retail y Comercio", description: "Soluciones para gestión de inventario, puntos de venta (POS), programas de lealtad y análisis de ventas para optimizar la experiencia del cliente y la rentabilidad.", icon: "🛒" },
-  { name: "Sector Público", description: "Modernizamos procesos gubernamentales con sistemas de gestión documental, portales ciudadanos y herramientas para mejorar la transparencia y la eficiencia de los servicios públicos.", icon: "🏛️" }
+const approachFeatures = [
+  {
+    id: "approach-analysis",
+    name: "Análisis Profundo de tus Desafíos",
+    description: "Nos sumergimos en tus flujos de trabajo, puntos débiles y objetivos para entender el 'porqué' antes del 'qué'.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/industry-analysis.jpg' },
+    descriptiveText: "Nuestra primera fase es siempre escuchar. A través de talleres y análisis, mapeamos tus procesos para identificar las verdaderas oportunidades de optimización, asegurando que la solución final ataque la raíz del problema, no solo los síntomas."
+  },
+  {
+    id: "approach-stack",
+    name: "Diseño de 'Stacks' Tecnológicos a Medida",
+    description: "Combinamos las herramientas adecuadas (FileMaker, Astro, Moodle, IA) para crear una solución cohesiva y potente.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0l5.571 3-5.571 3m0 0l-5.571-3 5.571-3" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/industry-stack.jpg' },
+    descriptiveText: "No creemos en 'soluciones únicas para todos'. Seleccionamos y combinamos las mejores tecnologías de nuestro arsenal para construir la arquitectura perfecta para tu necesidad específica, garantizando que no pagues por lo que no usas y que tengas el poder que necesitas."
+  },
+  {
+    id: "approach-roi",
+    name: "Enfoque en el Retorno de la Inversión (ROI)",
+    description: "Cada implementación está diseñada para generar un impacto positivo y medible en tu eficiencia, ingresos o reducción de costos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/industry-roi.jpg' },
+    descriptiveText: "La tecnología es una inversión, no un gasto. Trabajamos contigo para definir los indicadores clave de rendimiento (KPIs) desde el inicio, asegurando que el éxito del proyecto se pueda medir en términos de impacto real en tu negocio."
+  }
+];
+
+const industryFeatures = [
+  {
+    id: "industry-health",
+    name: "Salud",
+    description: "Soluciones seguras para la gestión de pacientes, historias clínicas y cumplimiento normativo (HIPAA).",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/industry-health.jpg' },
+    descriptiveText: "Optimizamos desde la admisión de pacientes y la gestión de citas hasta la facturación y el manejo seguro de historias clínicas electrónicas, todo mientras aseguramos el estricto cumplimiento de las normativas de privacidad."
+  },
+  {
+    id: "industry-education",
+    name: "Educación",
+    description: "Plataformas LMS personalizadas (Moodle) y sistemas de gestión académica para mejorar la experiencia de aprendizaje.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/industry-education.jpg' },
+    descriptiveText: "Creamos campus virtuales robustos, sistemas de seguimiento de estudiantes y portales administrativos que simplifican la gestión y potencian la entrega de contenido educativo de alta calidad, tanto para instituciones académicas como para empresas."
+  },
+  {
+    id: "industry-manufacturing",
+    name: "Manufactura",
+    description: "Sistemas ERP a medida para control de producción, gestión de inventarios y optimización de la cadena de suministro.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/industry-manufacturing.jpg' },
+    descriptiveText: "Implementamos soluciones que te dan visibilidad total de tu planta, desde la recepción de materia prima hasta el despacho del producto final. Controla costos, optimiza el stock y mejora la eficiencia productiva con datos en tiempo real."
+  },
+  {
+    id: "industry-services",
+    name: "Servicios Profesionales",
+    description: "CRM personalizados, herramientas de gestión de proyectos y sistemas de facturación para agilizar tus operaciones.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6h1.5m-1.5 3h1.5m-1.5 3h1.5M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/industry-services.jpg' },
+    descriptiveText: "Para empresas de consultoría, legales o creativas, el tiempo es oro. Creamos sistemas que automatizan el seguimiento de clientes (CRM), la gestión de proyectos y la facturación por horas, liberando a tu equipo para que se enfoque en el trabajo que genera valor."
+  }
+];
+
+const featureSections = [
+    {
+        title: "Nuestro Enfoque Estratégico",
+        features: approachFeatures
+    },
+    {
+        title: "Experiencia en Sectores Clave",
+        features: industryFeatures
+    }
 ];
 ---
 
-<BaseLayout title={pageTitle}>
-  <main class="industrias-page">
-    
-    <header class="page-hero-general section-padding text-center light-bg">
-      <div class="container narrow-container">
-        <h1>{heroTitle}</h1>
-        <p class="lead">{heroLead}</p>
-      </div>
-    </header>
-
-    <section class="approach-section section-padding">
-      <div class="container narrow-container">
-        <h2 class="text-center">Nuestro Enfoque: Soluciones Transversales, Aplicación Específica</h2>
-        <p>
-          Si bien contamos con experiencia directa en diversos sectores, nuestra fortaleza radica en la capacidad de 
-          comprender los procesos fundamentales de cualquier negocio y aplicar principios tecnológicos sólidos. 
-          No ofrecemos soluciones genéricas; en su lugar, trabajamos contigo para:
-        </p>
-        <ul class="approach-list">
-          <li><strong>Analizar tus Desafíos Específicos:</strong> Entendemos a fondo tus flujos de trabajo, puntos débiles y objetivos.</li>
-          <li><strong>Diseñar 'Stacks' Tecnológicos a Medida:</strong> Combinamos las herramientas y plataformas adecuadas (Claris FileMaker, Astro, Moodle, herramientas de integración, IA) para abordar tus necesidades.</li>
-          <li><strong>Desarrollar con Flexibilidad y Escalabilidad:</strong> Creamos soluciones que pueden crecer y adaptarse junto con tu empresa.</li>
-          <li><strong>Enfocarnos en el Retorno de la Inversión:</strong> Buscamos que cada implementación tecnológica genere un impacto positivo y medible.</li>
-        </ul>
-        <p>
-          Ya sea que pertenezcas a una de las industrias listadas o a un nicho completamente diferente, estamos preparados 
-          para explorar cómo la tecnología puede transformar tu operación.
-        </p>
-      </div>
-    </section>
-
-    <section class="industries-showcase-section section-padding mid-tone-bg">
-      <div class="container">
-        <h2 class="text-center section-title-dark">Experiencia en Diversos Sectores</h2>
-        <div class="industries-grid">
-          {industries.map(industry => (
-            <div class="industry-card">
-              <span class="industry-icon">{industry.icon}</span>
-              <h3>{industry.name}</h3>
-              <p>{industry.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-    
-    <section class="service-cta-section section-padding text-center">
-      <div class="container narrow-container">
-        <h2>¿Tu Industria no está en la Lista? ¡Hablemos!</h2>
-        <p>Nuestra metodología adaptable nos permite abordar los retos de cualquier sector. Cuéntanos sobre tu proyecto.</p>
-        <a href="/nosotros#contacto-section" class="cta-button large-cta">
-          Contactar para una Solución
-        </a>
-      </div>
-    </section>
-
-  </main>
-</BaseLayout>
-
-<style is:global>
-  /* Estilos generales de la página */
-  .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
-  .narrow-container { max-width: 800px; }
-  .text-center { text-align: center; }
-  .light-bg { background-color: #f8f9fa; }
-  .mid-tone-bg { background-color: #e9ecef; }
-
-  .page-hero-general { border-bottom: 1px solid #dee2e6; }
-  .page-hero-general h1 { font-size: 2.8rem; color: #1a1a1a; margin-bottom: 0.75rem; }
-  .page-hero-general .lead { font-size: 1.3rem; color: #495057; line-height: 1.6; }
-
-  .approach-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1.5rem; }
-  .approach-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-  .approach-list { list-style: none; padding-left: 0; margin-top: 1.5rem; }
-  .approach-list li { font-size: 1.1rem; color: #343a40; margin-bottom: 1rem; padding-left: 2rem; position: relative; }
-  .approach-list li::before { content: '✓'; color: #007bff; position: absolute; left: 0.25rem; font-size: 1.2em; font-weight: bold; }
-  .approach-list li strong { color: #1a1a1a; }
-  
-  .section-title-dark { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 2.5rem; }
-
-  .industries-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  .industry-card {
-    background-color: #fff;
-    padding: 1.75rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    text-align: center; /* Centrar contenido de la tarjeta */
-  }
-  .industry-icon { font-size: 2.5rem; color: #007bff; margin-bottom: 0.75rem; display: block; }
-  .industry-card h3 { font-size: 1.4rem; color: #333; margin-top: 0; margin-bottom: 0.5rem; }
-  .industry-card p { font-size: 0.95rem; color: #555; line-height: 1.6; }
-
-  .service-cta-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1rem; }
-  .service-cta-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-  .cta-button.large-cta { padding: 0.9rem 2.2rem; font-size: 1.15rem; background-color: #1a1a1a; color: #fff; border: 1px solid #1a1a1a; }
-  .cta-button.large-cta:hover { background-color: #000; }
-
-  @media (max-width: 767px) {
-    .page-hero-general h1 { font-size: 2.3rem; }
-    .page-hero-general .lead { font-size: 1.15rem; }
-    .approach-section h2, .section-title-dark { font-size: 1.9rem; }
-    .industries-grid { grid-template-columns: 1fr; }
-  }
-</style>
+<ProductPageLayout
+  pageTitle={pageTitle}
+  serviceName={serviceName}
+  leadParagraph={leadParagraph}
+  featureSections={featureSections}
+/>

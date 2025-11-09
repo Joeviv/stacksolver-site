@@ -1,275 +1,64 @@
 ---
-// src/pages/productos/diseno-web.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductPageLayout from '../../layouts/ProductPageLayout.astro';
 
-const pageTitle = "Diseño Web Moderno y Funcional | Stacksolver.tech";
-const serviceName = "Diseño Web Moderno y Funcional";
+const pageTitle = "Diseño Web de Alto Rendimiento con Astro | Stacksolver.tech";
+const serviceName = "Tu Web, Reimaginada para la Era Digital";
+const leadParagraph = "En un mundo saturado de sitios lentos y anticuados, te damos la ventaja competitiva. Creamos experiencias web ultrarrápidas, seguras y visualmente impactantes que no solo atraen visitantes, sino que los convierten en clientes. Tu sitio web debe ser tu mejor vendedor, no un simple folleto digital.";
 
-const heroImages = [
-  { src: "/images/products/WebHero1.png", alt: "Ejemplo de Diseño Web Moderno 1" },
-  { src: "/images/products/WebHero2.png", alt: "Ejemplo de Diseño Web Moderno 2" },
+const webFeatures = [
+  {
+    id: "web-astro",
+    name: "Fundamentos del Futuro: Creado con Astro",
+    description: "Utilizamos Astro, un framework de última generación, para construir sitios que son increíblemente rápidos por diseño.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.18a14.98 14.98 0 00-2.58 5.84m2.58 0A6 6 0 0114.37 15.59m0 0v4.8m0-4.8a6 6 0 01-7.38-5.84m7.38 0a14.98 14.98 0 00-12.12-6.16A14.98 14.98 0 002.18 9.63a14.98 14.98 0 005.84 2.58m0 0A6 6 0 012.18 15.59m0 0a14.98 14.98 0 006.16 12.12A14.98 14.98 0 0015.59 21.82a14.98 14.98 0 002.58-5.84m-2.58 0a6 6 0 015.84-7.38" /></svg>`,
+    media: { type: 'localVideo', src: '/videos/features/web-astro.mp4' },
+    descriptiveText: "La velocidad de tu web impacta directamente en tu ranking en Google y en la paciencia de tus usuarios. Astro revoluciona esto al enviar solo HTML y CSS al navegador por defecto, cargando JavaScript únicamente cuando es estrictamente necesario. El resultado es un sitio que se siente instantáneo, una experiencia de usuario fluida y una base técnica sólida que Google adora. Dejamos atrás los pesados sistemas del pasado para ofrecerte el rendimiento del mañana."
+  },
+  {
+    id: "web-seo-ai",
+    name: "Visibilidad Estratégica: SEO para Humanos y para IA",
+    description: "Construimos con una estructura impecable, optimizada para los motores de búsqueda de hoy y las consultas de IA del futuro.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/web-seo.jpg' },
+    descriptiveText: "El SEO ya no es solo sobre palabras clave. Es sobre rendimiento, accesibilidad y datos estructurados. Nuestras webs están meticulosamente construidas para ser fácilmente rastreables por Google, mejorando tu posicionamiento. Además, las preparamos para la era de la IA, asegurando que el contenido sea claro y contextual, listo para ser interpretado y recomendado por los nuevos sistemas de búsqueda inteligente. Te posicionamos para ganar hoy y dominar mañana."
+  },
+  {
+    id: "web-design",
+    name: "Diseño que Convierte: Estética y Usabilidad de la Mano",
+    description: "Creamos interfaces modernas, intuitivas y centradas en el usuario que guían a la acción y reflejan la calidad de tu marca.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.998 15.998 0 011.622-3.385m5.043.025a15.998 15.998 0 001.622-3.385m3.388 1.62a15.998 15.998 0 00-1.622-3.385m-5.043.025a15.998 15.998 0 01-3.388-1.621m7.722 7.722a15.998 15.998 0 00-3.388-1.622m-5.043-.025a15.998 15.998 0 01-1.622-3.385m-3.388 1.621a15.998 15.998 0 011.622-3.385m3.388 1.622a15.998 15.998 0 013.388-1.622m5.043.025a15.998 15.998 0 003.388-1.622m-7.722 7.722a15.998 15.998 0 01-3.388-1.621" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/web-ux.jpg' },
+    descriptiveText: "Un diseño hermoso que no es fácil de usar, es un diseño fallido. Nuestro proceso se centra en la experiencia del usuario (UX). Mapeamos los recorridos de tus clientes ideales para crear una navegación lógica, llamadas a la acción claras y una jerarquía visual que comunica tu mensaje de forma efectiva. El resultado es un sitio que no solo se ve increíble, sino que también funciona como una herramienta de negocio eficiente, convirtiendo la curiosidad en acción."
+  },
+  {
+    id: "web-integrations",
+    name: "Más Allá de lo Estático: Integraciones y Contenido Dinámico",
+    description: "Tu web no tiene por qué ser una isla. La conectamos con las herramientas que ya usas para automatizar y potenciar tu negocio.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.25a.75.75 0 01-.75-.75v-7.5c0-.414.336-.75.75-.75h3.75m9 8.25v-7.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21m-4.5 0H9M15 21v-7.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21m0 0h1.5m1.5 0H18m-3-7.5V3m0 10.5V3m0 10.5H9.75m4.5 0H12m2.25 0V3m0 10.5a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75M3.75 12H3m0 0V3m0 9.75H5.25m-1.5 0V3m0 9.75a.75.75 0 00.75.75h1.5a.75.75 0 00.75-.75M21 12h-1.5m0 0V3m0 9.75h-1.5m1.5 0V3m0 9.75a.75.75 0 01-.75.75h-1.5a.75.75 0 01-.75-.75" /></svg>`,
+    media: { type: 'localVideo', src: '/videos/features/web-integrations.mp4' },
+    descriptiveText: "¿Necesitas un blog que puedas actualizar fácilmente? Lo conectamos a un CMS moderno. ¿Quieres que los formularios de contacto lleguen a tu CRM? Hecho. ¿Vendes productos y necesitas sincronizar tu inventario? Podemos integrarlo. Construimos tu web como una plataforma central, conectada a servicios de terceros (APIs), bases de datos o aplicaciones internas para crear un ecosistema digital cohesivo y automatizado que te ahorra tiempo y dinero."
+  },
+  {
+    id: "web-security",
+    name: "Fortaleza Digital: Seguridad y Mantenimiento Proactivo",
+    description: "La arquitectura moderna de Astro reduce drásticamente las vulnerabilidades, y nosotros nos encargamos del resto.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.752A11.953 11.953 0 0012 2.75z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/web-security.jpg' },
+    descriptiveText: "Los sitios web tradicionales basados en WordPress y plugins son el objetivo número uno de los hackers. La arquitectura de Astro, al generar principalmente archivos estáticos, elimina gran parte de la superficie de ataque. No hay una base de datos expuesta en el front-end ni un panel de admin vulnerable. Nosotros complementamos esta ventaja con prácticas de desarrollo seguras, monitoreo constante y planes de mantenimiento para que puedas dormir tranquilo sabiendo que tu inversión digital está protegida."
+  }
+];
+
+const featureSections = [
+    {
+        title: "Nuestra Filosofía de Desarrollo Web",
+        features: webFeatures
+    }
 ];
 ---
 
-<BaseLayout title={pageTitle}>
-  <main class="service-detail-page">
-    
-    <header class="service-hero section-padding text-center light-bg">
-      <div class="container narrow-container">
-        {/* ****** TEXTO DEL HERO AHORA ANTES DE LAS IMÁGENES ****** */}
-        <h1>{serviceName}</h1>
-        <p class="lead">
-          Tu Primera Impresión Digital: Páginas Web que Cautivan y Funcionan.
-        </p>
-        {/* ****** FIN DEL CAMBIO DE POSICIÓN DEL TEXTO ****** */}
-
-        {heroImages && heroImages.length > 0 && (
-          <div class="service-hero-image-gallery">
-            {heroImages.map(image => (
-              <div class="gallery-image-wrapper">
-                <img 
-                  src={image.src} 
-                  alt={image.alt} 
-                  class="service-hero-gallery-image"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </header>
-
-    <section class="introduction-benefits-section section-padding">
-      <div class="container narrow-container">
-        <h2>Hoy, tu página web es mucho más que una tarjeta de presentación; es un motor para tu negocio.</h2>
-        <p>En Stacksolver.tech, creamos experiencias web modernas y dinámicas con tecnología de punta como Astro, asegurando velocidad, innovación y resultados.</p>
-        
-        <h3 class="benefits-title">Beneficios de una Web Moderna con Nosotros:</h3>
-        <ul class="benefits-list">
-          <li>
-            {/* ICONO DE BENEFICIO ACTUALIZADO */}
-            <strong>Diseño Atractivo y Centrado en el Usuario:</strong> Creamos sitios web que no solo se ven bien, sino que son fáciles de navegar y guían a tus visitantes hacia tus objetivos.
-          </li>
-          <li>
-            {/* ICONO DE BENEFICIO ACTUALIZADO */}
-            <strong>Rendimiento Superior con Astro:</strong> Utilizamos Astro para construir sitios web ultrarrápidos. ¿Qué significa esto para ti? Mejor posicionamiento en Google (SEO), usuarios más felices y mayores tasas de conversión.
-          </li>
-          <li>
-            {/* ICONO DE BENEFICIO ACTUALIZADO */}
-            <strong>Adaptable a Cualquier Dispositivo (Responsive):</strong> Tu web se verá y funcionará perfectamente en móviles, tablets y computadores de escritorio, garantizando una experiencia óptima para todos tus usuarios.
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="innovative-features-section section-padding mid-tone-bg">
-      <div class="container narrow-container">
-        <h2>Funcionalidades Innovadoras para tus Clientes</h2>
-        <div class="feature-highlight">
-          {/* ICONO DE CARACTERÍSTICA ACTUALIZADO */}
-          <span class="feature-icon">💡</span> {/* Podría ser también 🚀 o ✨ */}
-          <h3>Portales Exclusivos para Clientes</h3>
-          <p>
-            Imagina ofrecer a tus clientes un espacio privado y seguro donde pueden ver el avance de sus proyectos en tiempo real: 
-            cronogramas detallados, costos actualizados (con posibilidad de conexión a tus sistemas ERP/GRC), fases completadas, 
-            documentación relevante y mucho más. Esta transparencia no solo genera confianza, sino que también optimiza la comunicación 
-            y la satisfacción del cliente.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-cta-section section-padding text-center">
-      <div class="container narrow-container">
-        <h2>¿Listo para una Web de Alto Impacto?</h2>
-        <p>Hablemos sobre cómo podemos llevar tu presencia online al siguiente nivel.</p>
-        <a href="/nosotros#contacto-section" class="cta-button large-cta">
-          Solicitar Consulta Gratuita
-        </a>
-      </div>
-    </section>
-  </main>
-</BaseLayout>
-
-<style is:global>
-  .section-padding {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-  }
-  .container {
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  .narrow-container { 
-    max-width: 800px;
-  }
-  .text-center {
-    text-align: center;
-  }
-
-  .service-detail-page .light-bg {
-    background-color: #f8f9fa;
-  }
-  .service-detail-page .mid-tone-bg {
-    background-color: #e9ecef; 
-  }
-
-  .service-hero {
-    border-bottom: 1px solid #dee2e6;
-  }
-  
-  .service-hero-image-gallery {
-    display: grid;
-    grid-template-columns: 1fr; 
-    gap: 1.5rem; 
-    margin-top: 2rem; /* Espacio DESPUÉS del título y lead */
-    margin-bottom: 0; /* Ajustado ya que el padding del hero maneja el espacio inferior */
-  }
-
-  .gallery-image-wrapper { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .service-hero-gallery-image {
-    display: block;
-    width: auto;    
-    max-width: 100%;
-    max-height: 300px; 
-    object-fit: contain; 
-    border-radius: 6px;
-  }
-
-  .service-hero h1 {
-    font-size: 2.8rem;
-    color: #1a1a1a; 
-    margin-bottom: 0.75rem;
-    /* margin-top ya no es necesario aquí si el texto va primero */
-  }
-  .service-hero .lead {
-    font-size: 1.3rem;
-    color: #495057;
-    line-height: 1.6;
-    margin-bottom: 0; /* El espacio lo dará el margin-top de la galería de imágenes */
-  }
-
-  .introduction-benefits-section h2,
-  .innovative-features-section h2,
-  .service-cta-section h2 {
-    font-size: 2.2rem;
-    color: #1a1a1a; 
-    margin-bottom: 1.5rem;
-  }
-  .introduction-benefits-section p,
-  .innovative-features-section p,
-  .service-cta-section p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #343a40;
-    margin-bottom: 1.5rem;
-  }
-
-  .benefits-title {
-    font-size: 1.5rem;
-    color: #0056b3; 
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 1.5rem;
-  }
-  .benefits-list {
-    list-style: none; 
-    padding-left: 0;
-  }
-  .benefits-list li {
-    font-size: 1.1rem;
-    color: #343a40;
-    margin-bottom: 1rem;
-    padding-left: 2rem; /* Aumentado para dar más espacio al nuevo icono */
-    position: relative;
-  }
-  .benefits-list li::before { 
-    /* ICONO DE CHECK ACTUALIZADO */
-    content: '❯'; /* O '›', '•', '‣' o un SVG */
-    color: #007bff; /* Azul principal, más moderno que el verde */
-    position: absolute;
-    left: 0.25rem; /* Ajustado para el nuevo icono */
-    font-size: 1.3em; /* Hacerlo un poco más grande y visible */
-    line-height: 1; /* Para alinear mejor verticalmente */
-    font-weight: bold;
-  }
-  .benefits-list li strong {
-    color: #1a1a1a; 
-    display: block; 
-    margin-bottom: 0.25rem;
-  }
-
-  .feature-highlight {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-    margin-bottom: 2rem; 
-  }
-  .feature-icon {
-    display: block;
-    font-size: 3rem; /* Un poco más grande para el nuevo icono */
-    color: #007bff; 
-    margin-bottom: 1rem; /* Más espacio */
-    text-align: center; 
-  }
-  .feature-highlight h3 {
-    font-size: 1.6rem;
-    color: #0056b3; 
-    margin-bottom: 0.75rem;
-    text-align: center;
-  }
-  .feature-highlight p {
-      text-align: justify; 
-  }
-
-  .cta-button.large-cta {
-    padding: 0.9rem 2.2rem;
-    font-size: 1.15rem;
-    background-color: #1a1a1a; 
-    color: #fff;
-    border: 1px solid #1a1a1a;
-  }
-  .cta-button.large-cta:hover {
-    background-color: #000;
-  }
-  .cta-button-outline.large-cta { 
-    padding: 0.9rem 2.2rem;
-    font-size: 1.15rem;
-    background-color: transparent;
-    color: #1a1a1a;
-    border: 2px solid #1a1a1a;
-  }
-  .cta-button-outline.large-cta:hover {
-    background-color: #1a1a1a;
-    color: #fff;
-  }
-
-  @media (max-width: 767px) {
-    .service-hero h1 { font-size: 2.3rem; }
-    .service-hero .lead { font-size: 1.15rem; }
-    .introduction-benefits-section h2,
-    .innovative-features-section h2,
-    .service-cta-section h2 { font-size: 1.9rem; }
-    .service-hero-gallery-image {
-        max-height: 220px; 
-    }
-     .benefits-list li {
-        padding-left: 1.8rem; /* Ajuste para móvil del padding del ícono */
-    }
-    .benefits-list li::before {
-        left: 0; /* Ícono más pegado en móvil */
-    }
-  }
-</style>
+<ProductPageLayout
+  pageTitle={pageTitle}
+  serviceName={serviceName}
+  leadParagraph={leadParagraph}
+  featureSections={featureSections}
+/>

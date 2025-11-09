@@ -1,187 +1,64 @@
 ---
-// src/pages/productos/integracion-sistemas.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductPageLayout from '../../layouts/ProductPageLayout.astro';
 
-const pageTitle = "Integración de Sistemas y Datos | Conectamos tus Herramientas - Stacksolver.tech";
-const serviceName = "Integración de Sistemas y Datos";
-const heroLead = "Conectamos tus Herramientas: Datos que Fluyen, Decisiones que Impactan.";
+const pageTitle = "Integración de Sistemas ERP y GRC con Claris FileMaker | Stacksolver.tech";
+const serviceName = "Inteligencia Operativa: Uniendo ERP y GRC";
+const leadParagraph = "Tus sistemas de operación (ERP) y de cumplimiento (GRC) no deberían ser islas separadas. Los integramos en un ecosistema cohesivo y vivo, donde cada transacción es validada, cada riesgo es medido y cada decisión está respaldada por una visión completa de tu negocio.";
 
-const integrationTools = ["Claris Connect", "Make (antes Integromat)", "Zapier"];
+const integrationFeatures = [
+  {
+    id: "is-core",
+    name: "El Núcleo Unificado: ERP y GRC como un Solo Cerebro",
+    description: "Conectamos los procesos, recursos y reglas de tu negocio para que operen en perfecta sincronía.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/erp-grc-core.jpg' },
+    descriptiveText: "Tu ERP (Planificación de Recursos Empresariales) sabe 'qué' sucede: ventas, compras, inventario. Tu GRC (Gobernanza, Riesgo y Cumplimiento) sabe 'cómo' deben suceder las cosas. Nosotros los fusionamos. Cada transacción del ERP es automáticamente evaluada por las reglas del GRC, creando un sistema que no solo opera, sino que se auto-regula y protege en tiempo real."
+  },
+  {
+    id: "is-filemaker",
+    name: "Claris FileMaker: El Puente Robusto y Flexible",
+    description: "Utilizamos la potencia de Claris FileMaker para construir la lógica de negocio que conecta tus sistemas de forma inteligente.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.044A5.25 5.25 0 017.5 15h9a5.25 5.25 0 01-.788.044m-8.424 0a5.25 5.25 0 00-.788-.044m8.424 0a5.25 5.25 0 01.788-.044m0 0A5.234 5.234 0 0015 13.5V12a3 3 0 00-3-3H9a3 3 0 00-3 3v1.5c0 .54.102 1.05.288 1.544m0 0a2.253 2.253 0 01-.288-1.544V12a4.5 4.5 0 014.5-4.5h3a4.5 4.5 0 014.5 4.5v1.5a2.253 2.253 0 01-.288 1.544" /></svg>`,
+    media: { type: 'localVideo', src: '/videos/features/erp-grc-filemaker.mp4' },
+    descriptiveText: "Claris FileMaker es nuestra herramienta de elección para este tipo de integraciones complejas. Su capacidad para desarrollos rápidos (Low-Code) nos permite modelar tus procesos de negocio más específicos y crear un 'middleware' a medida que actúa como el sistema nervioso central, orquestando la comunicación entre tu ERP y las políticas de tu GRC. No usamos conectores genéricos; construimos una lógica que entiende tu negocio."
+  },
+  {
+    id: "is-traceability",
+    name: "Trazabilidad Total: Del Clic a la Auditoría",
+    description: "Obtén una visibilidad sin precedentes de tus operaciones, sabiendo quién hizo qué, cuándo y si estaba dentro de la norma.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/erp-grc-audit.jpg' },
+    descriptiveText: "Cuando un usuario aprueba una orden de compra que excede su límite, el sistema no solo lo registra. Lo bloquea, notifica al supervisor, y crea un registro de auditoría con la política de GRC incumplida. Esta trazabilidad completa simplifica las auditorías internas y externas, y fomenta una cultura de responsabilidad y cumplimiento en toda la organización."
+  },
+  {
+    id: "is-predictive",
+    name: "De Reactivo a Predictivo: Anticipa Riesgos Futuros",
+    description: "Usa la data combinada para identificar patrones, estimar riesgos en transacciones futuras y tomar decisiones proactivas.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+    media: { type: 'localVideo', src: '/videos/features/erp-grc-predict.mp4' },
+    descriptiveText: "La verdadera magia ocurre cuando tu sistema aprende. Al analizar el historial de transacciones del ERP junto con los eventos de riesgo del GRC, podemos empezar a identificar patrones. ¿Cierto tipo de compra tiende a generar devoluciones? ¿Las transacciones aprobadas fuera de horario tienen mayor riesgo de fraude? El sistema puede alertarte sobre operaciones futuras que encajen en perfiles de alto riesgo, permitiéndote actuar antes de que el problema ocurra."
+  },
+  {
+    id: "is-decision",
+    name: "Decisiones Inteligentes con Contexto Completo",
+    description: "Proporciona a tus gerentes y directivos dashboards que muestran no solo datos operativos, sino también su contexto de riesgo.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/erp-grc-dashboard.jpg' },
+    descriptiveText: "Un gerente no solo verá 'se vendieron 100 unidades'. Verá 'se vendieron 100 unidades, con un margen 5% por debajo del objetivo y a un cliente con historial de pagos tardíos'. Esta capa de inteligencia GRC sobre los datos operativos del ERP transforma simples métricas en conocimiento accionable, empoderando a tus líderes para tomar decisiones más rápidas, seguras e informadas."
+  }
+];
+
+const featureSections = [
+    {
+        title: "Pilares de Nuestra Solución de Integración",
+        features: integrationFeatures
+    }
+];
 ---
 
-<BaseLayout title={pageTitle}>
-  <main class="service-detail-page integration-services-page">
-    
-    <header class="service-hero section-padding text-center light-bg">
-      <div class="container narrow-container">
-        {/* <img src="/images/products/integration-hero.png" alt="Integración de Sistemas y Datos" class="service-hero-image"/> */}
-        <h1>{serviceName}</h1>
-        <p class="lead">{heroLead}</p>
-      </div>
-    </header>
-
-    <section class="introduction-benefits-section section-padding">
-      <div class="container narrow-container">
-        <h2>¿Tus aplicaciones de trabajo no se hablan entre sí?</h2>
-        <p>
-          Hacemos que tus diferentes sistemas (CRM, ERP, aplicaciones de marketing, etc.) compartan información automáticamente. 
-          Esto se traduce en menos trabajo manual, una drástica reducción de errores y una visión completa de tu negocio 
-          para tomar decisiones más inteligentes y ágiles.
-        </p>
-        
-        <div class="what-is-integration">
-          <h3>¿Qué es la Integración de Sistemas?</h3>
-          <p>
-            Es como construir puentes robustos y eficientes entre tus diferentes programas de software. 
-            Estos puentes permiten que puedan intercambiar datos de forma segura y en tiempo real (o programado), 
-            convirtiendo información aislada y dispersa en conocimiento unificado y útil para la acción.
-          </p>
-        </div>
-
-        <h3 class="benefits-title">Beneficios de Integrar tus Sistemas con Nosotros:</h3>
-        <ul class="benefits-list">
-          <li>
-            <strong>Ahorra Tiempo y Reduce Errores Drásticamente:</strong> Elimina la necesidad de ingresar datos manualmente en múltiples lugares, minimizando la duplicidad y el riesgo de errores humanos.
-          </li>
-          <li>
-            <strong>Información Unificada y Consistente:</strong> Ten una única fuente de verdad para todos tus datos críticos, permitiéndote entender mejor lo que sucede en cada área de tu empresa.
-          </li>
-          <li>
-            <strong>Procesos Más Ágiles y Eficientes:</strong> Mejora la colaboración entre tus equipos y optimiza tus flujos de trabajo al automatizar la transferencia de información.
-          </li>
-          <li>
-            <strong>Mejora en la Toma de Decisiones:</strong> Accede a datos actualizados y consolidados para fundamentar tus estrategias y tomar decisiones más rápidas e informadas.
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="tools-iot-section section-padding mid-tone-bg">
-      <div class="container narrow-container">
-        <h2>Nuestras Herramientas y un Paso Más Allá</h2>
-        
-        <div class="tools-highlight">
-          <span class="feature-icon">🛠️</span> {/* Icono herramientas */}
-          <h3>Plataformas de Integración Líderes</h3>
-          <p>
-            Utilizamos plataformas de integración como servicio (iPaaS) reconocidas y potentes como 
-            <strong>{integrationTools.join(", ")}</strong>, y otras soluciones personalizadas, 
-            para crear conexiones fiables y escalables entre tus aplicaciones.
-          </p>
-        </div>
-
-        <div class="iot-highlight">
-          <span class="feature-icon">🔗</span> {/* Icono IoT / conexión */}
-          <h3>Integración con el Mundo Físico (IoT)</h3>
-          <p>
-            <strong>¿Qué es IoT (Internet de las Cosas)?</strong> Es la tecnología que permite que máquinas, equipos industriales, 
-            sensores y otros dispositivos físicos se conecten a internet y envíen datos valiosos sobre su funcionamiento y entorno.
-          </p>
-          <p>
-            Si tus equipos lo permiten, podemos capturar esta información y llevarla directamente a tus bases de datos 
-            o sistemas de análisis, abriendo un nuevo mundo de posibilidades para el monitoreo, mantenimiento predictivo 
-            y optimización de operaciones.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-cta-section section-padding text-center">
-      <div class="container narrow-container">
-        <h2>Optimiza tus Flujos de Trabajo con Integraciones Inteligentes</h2>
-        <p>Permite que tus sistemas trabajen en conjunto y libera el verdadero potencial de tus datos.</p>
-        <a href="/nosotros#contacto-section" class="cta-button large-cta">
-          Consulta sobre Integración de Datos
-        </a>
-      </div>
-    </section>
-
-  </main>
-</BaseLayout>
-
-<style is:global>
-  /* Estilos heredados/globales */
-  .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
-  .narrow-container { max-width: 800px; }
-  .text-center { text-align: center; }
-
-  .service-detail-page .light-bg { background-color: #f8f9fa; }
-  .service-detail-page .mid-tone-bg { background-color: #e9ecef; }
-
-  .service-hero { border-bottom: 1px solid #dee2e6; }
-  .service-hero h1 { font-size: 2.8rem; color: #1a1a1a; margin-bottom: 0.75rem; }
-  .service-hero .lead { font-size: 1.3rem; color: #495057; line-height: 1.6; }
-
-  .introduction-benefits-section h2,
-  .tools-iot-section h2,
-  .service-cta-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1.5rem; text-align: center; }
-  
-  .introduction-benefits-section p,
-  .tools-iot-section p,
-  .service-cta-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-
-  .what-is-integration {
-    background-color: #e0e5e9; /* Un poco diferente al mid-tone-bg */
-    padding: 1.5rem 2rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-    margin-bottom: 2.5rem; /* Espacio antes de los beneficios */
-  }
-  .what-is-integration h3 {
-    font-size: 1.6rem;
-    color: #1a1a1a;
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-  }
-
-  .benefits-title {
-    font-size: 1.5rem;
-    color: #0056b3; 
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 1.5rem;
-  }
-  .benefits-list { list-style: none; padding-left: 0; }
-  .benefits-list li { font-size: 1.1rem; color: #343a40; margin-bottom: 1rem; padding-left: 2rem; position: relative; }
-  .benefits-list li::before { content: '❯'; color: #007bff; position: absolute; left: 0.25rem; font-size: 1.3em; line-height: 1; font-weight: bold; }
-  .benefits-list li strong { color: #1a1a1a; display: block; margin-bottom: 0.25rem; }
-
-  .tools-iot-section .tools-highlight,
-  .tools-iot-section .iot-highlight {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-    margin-bottom: 2rem; 
-  }
-  .tools-iot-section .feature-icon {
-    display: block;
-    font-size: 2.8rem; 
-    color: #007bff; 
-    margin-bottom: 1rem;
-    text-align: center; 
-  }
-  .tools-iot-section h3 { /* Para los títulos dentro de tools-highlight e iot-highlight */
-    font-size: 1.6rem;
-    color: #0056b3; 
-    margin-bottom: 0.75rem;
-    text-align: center;
-  }
-   .tools-iot-section p strong { /* Para resaltar los nombres de las herramientas */
-      font-weight: 600;
-      color: #1a1a1a;
-   }
-
-  .cta-button.large-cta { padding: 0.9rem 2.2rem; font-size: 1.15rem; background-color: #1a1a1a; color: #fff; border: 1px solid #1a1a1a; }
-  .cta-button.large-cta:hover { background-color: #000; }
-
-  @media (max-width: 767px) {
-    .service-hero h1 { font-size: 2.3rem; }
-    .service-hero .lead { font-size: 1.15rem; }
-    .introduction-benefits-section h2,
-    .tools-iot-section h2,
-    .service-cta-section h2 { font-size: 1.9rem; }
-  }
-</style>
+<ProductPageLayout
+  pageTitle={pageTitle}
+  serviceName={serviceName}
+  leadParagraph={leadParagraph}
+  featureSections={featureSections}
+/>

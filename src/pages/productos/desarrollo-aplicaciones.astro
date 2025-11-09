@@ -1,187 +1,143 @@
 ---
-// src/pages/productos/desarrollo-aplicaciones.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductPageLayout from '../../layouts/ProductPageLayout.astro';
 
 const pageTitle = "Desarrollo de Aplicaciones a Medida con Claris FileMaker | Stacksolver.tech";
 const serviceName = "Desarrollo de Aplicaciones a Medida";
-const subServiceName = "Expertos en Claris FileMaker";
+const leadParagraph = "Creamos aplicaciones personalizadas que se amoldan perfectamente a tus procesos, desde ERPs y CRMs hasta soluciones específicas para tu industria.";
 
-// Podrías tener un array de módulos/soluciones si quieres listarlos de forma más dinámica
-const clarisSolutions = [
-  { name: "Sistemas GRC (Gobernanza, Riesgo y Cumplimiento)", description: "Ten tus reglas claras, identifica y controla problemas, y asegura el cumplimiento normativo, todo en un solo lugar." },
-  { name: "Sistemas ERP (Planificación de Recursos Empresariales) a tu Medida", description: "Conecta y gestiona todas las áreas importantes de tu empresa para que funcionen en armonía y tengas control total." },
-  { name: "Gestión de Procesos", description: "Haz que tu trabajo fluya sin obstáculos y de manera más eficiente." },
-  { name: "Finanzas Inteligentes", description: "Controla tus presupuestos, ingresos y gastos con lógica y visión integral." },
-  { name: "Inventarios sin Sorpresas", description: "Optimiza tu stock, tus compras y evita pérdidas." },
-  { name: "Producción Eficiente", description: "Sigue de cerca los costos, materiales y tiempos para producir mejor y más rápido." },
-  { name: "Gestión de Talento Humano Completa", description: "Desde el onboarding y capacitación hasta el desarrollo, pagos y gestión documental. Todo organizado." },
-  { name: "Ventas y Distribución Optimizadas", description: "Agiliza tus ventas y cómo llegas a tus clientes." },
-  { name: "CRM (Relación con Clientes y Proveedores)", description: "Conoce a fondo tus contactos, gestiona oportunidades de venta y ofrece un soporte que enamore." },
-  { name: "Biblioteca de Conocimiento", description: "Un lugar central para todos tus documentos y recursos importantes." },
-  { name: "Gestión de Tareas y Proyectos (Internos y Externos)", description: "Mantén todo bajo control y alcanza tus metas." },
-  { name: "Soluciones Especializadas por Industria", description: "Experiencia creando apps para Salud, Educación, Manufactura y más. Entendemos tus desafíos únicos." }
+const introFeatures = [
+  { 
+    id: "intro-partner", 
+    name: "Partners Oficiales de Claris en Colombia", 
+    description: "Nos especializamos en la creación de aplicaciones empresariales que optimizan cada rincón de tu operación.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>`, 
+    media: { type: 'localImage', src: "/images/features/filemaker-partner.jpg" },
+    descriptiveText: "Como Claris Partner oficial, tenemos acceso directo a las últimas tecnologías, soporte prioritario y un profundo conocimiento de la plataforma. Esto se traduce en soluciones más robustas, seguras y alineadas con las mejores prácticas de la industria para tu negocio."
+  },
+  { 
+    id: "intro-que-es", 
+    name: "¿Qué es Claris FileMaker?", 
+    description: "Es una potente plataforma que nos permite diseñar, construir e implementar rápidamente aplicaciones robustas, seguras y escalables.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>`, 
+    media: { type: 'vimeo', src: "https://player.vimeo.com/video/1134880571" },
+    descriptiveText: ""
+  }
 ];
 
-const clarisPartnerProfileUrl = "https://www.claris.com/partners/profile/company.20000006479/"; // Desde nosotros.astro
+const clarisSolutions = [
+  { 
+    id: "grc", 
+    name: "Sistemas GRC (Gobernanza, Riesgo y Cumplimiento)", 
+    description: "Ten tus reglas claras, identifica y controla problemas, y asegura el cumplimiento normativo.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`, 
+    media: { type: 'vimeo', src: "https://player.vimeo.com/video/1134880540" },
+    descriptiveText: "Centraliza políticas, automatiza la evaluación de riesgos y genera reportes de cumplimiento en tiempo real. Una solución GRC a medida te da una visión de 360 grados sobre la salud y la integridad de tu organización, previniendo sanciones y mejorando la toma de decisiones."
+  },
+  { 
+    id: "erp", 
+    name: "Sistemas ERP a tu Medida", 
+    description: "Conecta y gestiona todas las áreas importantes de tu empresa.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>`, 
+    media: { type: 'vimeo', src: "https://player.vimeo.com/video/1134880582" },
+    descriptiveText: "A diferencia de los ERPs genéricos y costosos, creamos un sistema que se adapta a tus flujos de trabajo únicos. Integra finanzas, inventarios, producción, ventas y más en una sola plataforma intuitiva, eliminando la duplicidad de datos y proporcionando una fuente única de verdad para toda la empresa."
+  },
+  { 
+    id: "procesos", 
+    name: "Gestión de Procesos", 
+    description: "Haz que tu trabajo fluya sin obstáculos y de manera más eficiente.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l-4-4 4-4"></path><path d="M10.08 10.08c.34-.6.94-1 1.62-1h0a2 2 0 1 1 0 4h-2a2 2 0 1 0 0-4h.38z"></path></svg>`, 
+    media: { type: 'localVideo', src: "/videos/features/filemaker-procesos.mp4" },
+    descriptiveText: ""
+  },
+  { 
+    id: "finanzas", 
+    name: "Finanzas Inteligentes", 
+    description: "Controla tus presupuestos, ingresos y gastos con lógica y visión.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`, 
+    media: { type: 'localImage', src: "/images/features/filemaker-finanzas.jpg" },
+    descriptiveText: "Visualiza la salud financiera de tu empresa con dashboards personalizados, automatiza la conciliación bancaria y gestiona los flujos de caja de manera proactiva. Transforma tus datos financieros en inteligencia de negocio."
+  },
+  { 
+    id: "inventarios", 
+    name: "Inventarios sin Sorpresas", 
+    description: "Optimiza tu stock, tus compras y evita pérdidas.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`, 
+    media: { type: 'localVideo', src: "/videos/features/filemaker-inventarios.mp4" },
+    descriptiveText: ""
+  },
+  { 
+    id: "produccion", 
+    name: "Producción Eficiente", 
+    description: "Sigue de cerca los costos, materiales y tiempos para producir mejor.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.9.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>`, 
+    media: { type: 'localImage', src: "/images/features/filemaker-produccion.jpg" },
+    descriptiveText: ""
+  },
+  { 
+    id: "rh", 
+    name: "Gestión de Talento Humano Completa", 
+    description: "Desde el onboarding y capacitación hasta el desarrollo y pagos.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`, 
+    media: { type: 'localVideo', src: "/videos/features/filemaker-rh.mp4" },
+    descriptiveText: "Maneja todo el ciclo de vida del empleado en un solo lugar. Desde el reclutamiento y la contratación, pasando por la gestión de vacaciones y evaluaciones de desempeño, hasta la nómina y el off-boarding. Simplifica la administración y potencia a tu equipo."
+  },
+  { 
+    id: "ventas", 
+    name: "Ventas y Distribución Optimizadas", 
+    description: "Agiliza tus ventas y cómo llegas a tus clientes.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`, 
+    media: { type: 'localImage', src: "/images/features/filemaker-ventas.jpg" },
+    descriptiveText: ""
+  },
+  { 
+    id: "crm", 
+    name: "CRM (Relación con Clientes y Proveedores)", 
+    description: "Gestiona oportunidades de venta y ofrece un soporte que enamore.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"></path><line x1="12" y1="9" x2="12" y2="2"></line><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line><line x1="1" y1="18" x2="3" y2="18"></line><line x1="21" y1="18" x2="23" y2="18"></line><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line><line x1="23" y1="22" x2="1" y2="22"></line><polyline points="8 6 12 2 16 6"></polyline></svg>`, 
+    media: { type: 'localVideo', src: "/videos/features/filemaker-crm.mp4" },
+    descriptiveText: "Sigue cada interacción con tus clientes, desde el primer contacto hasta el soporte post-venta. Automatiza seguimientos, gestiona tu embudo de ventas y obtén una visión completa del cliente para mejorar la retención y la satisfacción."
+  },
+  { 
+    id: "biblioteca", 
+    name: "Biblioteca de Conocimiento", 
+    description: "Un lugar central para todos tus documentos y recursos importantes.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`, 
+    media: { type: 'localImage', src: "/images/features/filemaker-biblioteca.jpg" },
+    descriptiveText: ""
+  },
+  { 
+    id: "proyectos", 
+    name: "Gestión de Tareas y Proyectos", 
+    description: "Mantén todo bajo control y alcanza tus metas.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>`, 
+    media: { type: 'localVideo', src: "/videos/features/filemaker-proyectos.mp4" },
+    descriptiveText: ""
+  },
+  { 
+    id: "industria", 
+    name: "Soluciones Especializadas por Industria", 
+    description: "Experiencia creando apps para Salud, Educación, Manufactura y más.", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="18" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="8" y2="6"></line><line x1="16" y1="6" x2="16" y2="6"></line><line x1="8" y1="10" x2="8" y2="10"></line><line x1="16" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="8" y2="14"></line><line x1="12" y1="14" x2="12" y2="14"></line><line x1="16" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="8" y2="18"></line><line x1="12" y1="18" x2="12" y2="18"></line><line x1="16" y1="18" x2="16" y2="18"></line></svg>`, 
+    media: { type: 'localImage', src: "/images/features/filemaker-industria.jpg" },
+    descriptiveText: "Hemos desarrollado soluciones para una amplia gama de sectores. Entendemos los desafíos y regulaciones específicas de tu industria, lo que nos permite construir aplicaciones que no solo son técnicamente sólidas, sino también contextualmente inteligentes y relevantes."
+  },
+];
 
+const featureSections = [
+    {
+        title: null,
+        features: introFeatures
+    },
+    {
+        title: "Nuestras Soluciones Estrella",
+        features: clarisSolutions
+    }
+];
 ---
 
-<BaseLayout title={pageTitle}>
-  <main class="service-detail-page claris-filemaker-page">
-    
-    <header class="service-hero section-padding text-center light-bg">
-      <div class="container narrow-container">
-        {/* Aquí podría ir un logo de Claris FileMaker o una imagen relacionada */}
-        {/* <img src="/images/products/claris-hero.png" alt="Claris FileMaker Development" class="service-hero-image"/> */}
-        <h1>{serviceName}</h1>
-        <p class="sub-service-name">{subServiceName}</p>
-        <p class="lead">
-          ¿Cansado de adaptar tu empresa a software genérico? Creamos aplicaciones personalizadas que se amoldan perfectamente a tus procesos.
-        </p>
-      </div>
-    </header>
-
-    <section class="introduction-claris section-padding">
-      <div class="container narrow-container">
-        <p>En Stacksolver.tech, como <a href={clarisPartnerProfileUrl} target="_blank" rel="noopener noreferrer" class="claris-partner-link-inline">Partners Oficiales de Claris en Colombia</a>, nos especializamos en la creación de aplicaciones empresariales que optimizan cada rincón de tu operación. Desde complejos sistemas ERP y GRC hasta soluciones específicas para tu industria, diseñamos software que trabaja como tú quieres.</p>
-        
-        <div class="what-is-claris">
-          <h3>¿Qué es Claris FileMaker?</h3>
-          <p>Es una potente plataforma de desarrollo rápido de aplicaciones (RAD) que nos permite diseñar, construir e implementar rápidamente aplicaciones robustas, seguras, escalables y fáciles de usar, totalmente personalizadas a tus necesidades. Y sí, también podemos ayudarte con la adquisición y licenciamiento del software.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="solutions-showcase-section section-padding mid-tone-bg">
-      <div class="container"> {/* Contenedor más ancho para la cuadrícula de soluciones */}
-        <h2 class="text-center section-title-dark">Nuestras Soluciones Estrella con Claris FileMaker</h2>
-        <p class="text-center section-subtitle-dark">Creamos una amplia gama de aplicaciones para transformar tu gestión:</p>
-        <div class="solutions-grid">
-          {clarisSolutions.map(solution => (
-            <div class="solution-card">
-              <span class="solution-icon">🧩</span> {/* Placeholder icon, can be customized */}
-              <h4>{solution.name}</h4>
-              <p>{solution.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-    
-    <section class="service-cta-section section-padding text-center">
-      <div class="container narrow-container">
-        <h2>Transforma tu Gestión con una App a Medida</h2>
-        <p>Como Partner Oficial de Claris, estamos listos para construir la solución que tu empresa necesita. ¡Hablemos!</p>
-        <a href="/nosotros#contacto-section" class="cta-button large-cta">
-          Soy Partner Claris, ¡Hablemos!
-        </a>
-      </div>
-    </section>
-
-  </main>
-</BaseLayout>
-
-<style is:global>
-  /* Estilos globales (section-padding, container, etc.) son heredados o definidos en BaseLayout/otros CSS */
-  .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
-  .narrow-container { max-width: 800px; }
-  .text-center { text-align: center; }
-
-  .service-detail-page .light-bg { background-color: #f8f9fa; }
-  .service-detail-page .mid-tone-bg { background-color: #e9ecef; }
-
-  .service-hero { border-bottom: 1px solid #dee2e6; }
-  .service-hero h1 { font-size: 2.8rem; color: #1a1a1a; margin-bottom: 0.25rem; }
-  .service-hero .sub-service-name {
-    font-size: 1.5rem;
-    color: #007bff; /* Claris Blue or similar */
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-  }
-  .service-hero .lead { font-size: 1.3rem; color: #495057; line-height: 1.6; }
-  /* .service-hero-image { max-width: 100%; max-height: 200px; border-radius: 8px; margin-bottom: 1.5rem; object-fit: contain; } */
-
-  .introduction-claris p {
-    font-size: 1.1rem;
-    line-height: 1.8; /* Mayor interlineado para legibilidad */
-    color: #343a40;
-    margin-bottom: 1.5rem;
-  }
-  .claris-partner-link-inline {
-    color: #007bff;
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .claris-partner-link-inline:hover {
-    text-decoration: underline;
-  }
-  .what-is-claris {
-    background-color: #e9ecef; /* Fondo sutil */
-    padding: 1.5rem 2rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-  }
-  .what-is-claris h3 {
-    font-size: 1.6rem;
-    color: #1a1a1a;
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title-dark { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 0.75rem; }
-  .section-subtitle-dark { font-size: 1.1rem; color: #495057; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;}
-
-  .solutions-showcase-section {
-    /* Considerar un fondo ligeramente diferente si es necesario */
-  }
-  .solutions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem; /* Espacio entre tarjetas de solución */
-  }
-  .solution-card {
-    background-color: #fff;
-    padding: 1.75rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  }
-  .solution-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.09);
-  }
-  .solution-icon {
-    font-size: 2rem; /* Ajusta según el icono */
-    color: #007bff; /* Azul principal */
-    margin-bottom: 0.75rem;
-    /* Si usas SVGs, querrás estilizarlos diferente */
-  }
-  .solution-card h4 {
-    font-size: 1.25rem;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
-  .solution-card p {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.6;
-    flex-grow: 1; /* Para alinear botones si los tuvieras */
-  }
-
-  .service-cta-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1rem; }
-  .service-cta-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-  .cta-button.large-cta { padding: 0.9rem 2.2rem; font-size: 1.15rem; background-color: #1a1a1a; color: #fff; border: 1px solid #1a1a1a; }
-  .cta-button.large-cta:hover { background-color: #000; }
-
-  @media (max-width: 767px) {
-    .service-hero h1 { font-size: 2.3rem; }
-    .service-hero .sub-service-name { font-size: 1.3rem; }
-    .service-hero .lead { font-size: 1.15rem; }
-    .section-title-dark { font-size: 1.9rem; }
-    .solutions-grid { grid-template-columns: 1fr; /* Una columna en móvil */ }
-  }
-</style>
+<ProductPageLayout
+  pageTitle={pageTitle}
+  serviceName={serviceName}
+  leadParagraph={leadParagraph}
+  featureSections={featureSections}
+/>

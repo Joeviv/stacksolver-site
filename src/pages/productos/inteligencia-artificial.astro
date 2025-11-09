@@ -1,175 +1,64 @@
 ---
-// src/pages/productos/inteligencia-artificial.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductPageLayout from '../../layouts/ProductPageLayout.astro';
 
-const pageTitle = "Inteligencia Artificial y Machine Learning para Empresas | Stacksolver.tech";
-const serviceName = "Inteligencia Artificial y Machine Learning";
-const subServiceName = "IA Local, Segura y Enfocada en tus Resultados";
-const heroLead = "Llevamos la IA a tu empresa de forma práctica, segura y personalizada.";
+const pageTitle = "Inteligencia Artificial Privada y Soberana | Stacksolver.tech";
+const serviceName = "Transforma tu Empresa con una IA que Trabaja para Ti";
+const leadParagraph = "Construimos un ecosistema de Inteligencia Artificial que vive y respira dentro de tu propia infraestructura. Es tu IA, entrenada con tus datos, trabajando para tus objetivos y protegida por tus murallas. Una inversión en eficiencia, seguridad y soberanía de datos sin precedentes.";
 
-const aiBenefits = [
-  { title: "Decisiones Más Rápidas e Informadas", description: "Aprovecha el poder predictivo y analítico de la IA para tomar decisiones estratégicas con mayor confianza y velocidad." },
-  { title: "Automatización Inteligente de Procesos", description: "Libera a tu equipo de tareas repetitivas y complejas, permitiéndoles enfocarse en actividades de mayor valor añadido." },
-  { title: "Descubrimiento de Nuevas Oportunidades", description: "Identifica patrones, tendencias y insights ocultos en tus datos que pueden revelar nuevas líneas de negocio o mejoras operativas." },
-  { title: "Personalización Avanzada", description: "Desde la segmentación de clientes hasta la recomendación de productos, ofrece experiencias hiper-personalizadas que incrementan la lealtad." }
+const aiFeatures = [
+  {
+    id: "ia-privada",
+    name: "Plataforma de IA 100% Privada y Soberana",
+    description: "Elimina el riesgo de fugas de datos y espionaje corporativo. Reduce a cero los costos mensuales de APIs externas, creando un activo tecnológico perpetuo.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/ia-dashboard.jpg' },
+    descriptiveText: "¿Por qué enviarías tus planes estratégicos, datos de clientes o secretos comerciales a servidores de OpenAI, Google o Microsoft? Nuestra solución se instala directamente en tu infraestructura local o en tu nube privada. Cada consulta, cada análisis y cada documento procesado permanece bajo tu control absoluto. Esto no solo es una garantía de seguridad; es una ventaja estratégica. Mientras tus competidores alimentan los modelos de las grandes tecnológicas, tú estás construyendo un activo de conocimiento exclusivo y propietario, un 'cerebro' digital que acumula valor con cada interacción y que nadie más puede replicar."
+  },
+  {
+    id: "ia-agentes",
+    name: "Equipo de Agentes de IA Especialistas y Autónomos",
+    description: "Reduce drásticamente los costos de consultoría externa y las horas-hombre en tareas de alta especialización. Automatiza análisis que antes tomaban días.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.928A9.09 9.09 0 005.25 18.72m-8.384-2.88a3 3 0 014.682-2.72m-12.122.992A9.09 9.09 0 013.75 18.72m12.54-1.665a9.094 9.094 0 01-3.742-.479m-8.383-2.928a9.09 9.09 0 013.742-.479M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/ia-agents.jpg' },
+    descriptiveText: "Esto es mucho más que un chatbot. Te entregamos la capacidad de crear y desplegar un equipo de agentes de IA especializados. Cada agente es un experto en su dominio, entrenado con los documentos y directrices que tú le proporcionas. Agente Legal: Dale un contrato de 50 páginas y pídele que identifique cláusulas de riesgo en segundos. Agente Financiero: Aliméntalo con tus reportes de ventas y pídele que 'analice las tendencias de ingresos para el producto X'. Puedes asignar estos agentes a proyectos específicos para que realicen tareas de forma autónoma, entregando análisis y resúmenes que aceleran tus ciclos de decisión de manera exponencial."
+  },
+  {
+    id: "ia-memoria",
+    name: "Memoria Corporativa Interactiva y Auto-actualizable",
+    description: "Reduce el tiempo de onboarding hasta en un 70%. Elimina los silos de información y el tiempo perdido buscando documentos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/ia-search.jpg' },
+    descriptiveText: "El conocimiento más valioso de tu empresa está disperso en cientos de documentos y correos. Nosotros lo unificamos. La plataforma ingiere y comprende toda tu base de conocimiento para crear una 'Memoria Corporativa' viva. Un nuevo empleado ya no necesita interrumpir a un gerente para saber cómo proceder; simplemente le pregunta a la IA. Un equipo de ventas puede pedir 'dame los 3 mejores casos de estudio para un cliente en la industria manufacturera' y obtenerlos al instante. Esta memoria no es estática; aprende con cada nuevo documento añadido."
+  },
+  {
+    id: "ia-proyectos",
+    name: "Gestión de Proyectos Aumentada por IA",
+    description: "Mejora la precisión de las estimaciones de tiempo y costos. Reduce sobrecostos al identificar riesgos y cuellos de botella de forma proactiva.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.4-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.4-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.4 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.4.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/ia-kanban.jpg' },
+    descriptiveText: "Integramos la IA en el núcleo de la gestión de proyectos para que sea un asistente estratégico. Nuestra plataforma analiza el contexto completo de un proyecto para ofrecer inteligencia accionable. Planificación Inteligente: Al iniciar un nuevo proyecto, la IA puede sugerir una estructura de fases y tareas iniciales basándose en proyectos similares del pasado. Detección de Dependencias Ocultas: Puede leer los documentos de requerimientos y alertarte si una tarea depende de información que aún no ha sido creada. Resúmenes Ejecutivos Automáticos: Genera informes de progreso claros y concisos con un solo clic."
+  },
+  {
+    id: "ia-rust",
+    name: "Seguridad y Rendimiento Inquebrantables (Core en Rust)",
+    description: "Minimiza el riesgo de ciberataques y fallos del sistema. Garantiza una operación fluida y de alta velocidad que no frustra a los usuarios.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.752A11.953 11.953 0 0012 2.75z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/ia-rust-shield.jpg' },
+    descriptiveText: "La confianza es la base de todo. El motor de nuestra aplicación está forjado en Rust, un lenguaje de programación obsesionado con la seguridad y la velocidad. A diferencia de otras tecnologías, Rust previene categorías enteras de errores de memoria que son la causa principal de las vulnerabilidades de seguridad. Esto, combinado con una arquitectura de aplicación nativa (Tauri), resulta en una experiencia de usuario increíblemente rápida y un sistema fundamentalmente más seguro. Tus datos no solo están protegidos por tu red, sino por la mejor tecnología de software disponible."
+  }
+];
+
+const featureSections = [
+    {
+        title: null,
+        features: aiFeatures
+    }
 ];
 ---
 
-<BaseLayout title={pageTitle}>
-  <main class="service-detail-page ai-ml-page">
-    
-    <header class="service-hero section-padding text-center light-bg">
-      <div class="container narrow-container">
-        {/* <img src="/images/products/ai-hero.png" alt="Inteligencia Artificial para Empresas" class="service-hero-image"/> */}
-        <h1>{serviceName}</h1>
-        <p class="sub-service-name">{subServiceName}</p>
-        <p class="lead">{heroLead}</p>
-      </div>
-    </header>
-
-    <section class="introduction-ai section-padding">
-      <div class="container narrow-container">
-        <h2>Integramos IA locales usando herramientas como Ollama, manteniendo tus datos bajo tu control.</h2>
-        <p>
-          Entrenamos estos modelos con tu propia información para que te ofrezcan respuestas y soluciones 
-          verdaderamente útiles y relevantes para tus desafíos específicos, garantizando la privacidad y seguridad de tus activos de datos.
-        </p>
-        
-        <div class="what-is-ai-ml">
-          <h3>¿Qué es la IA y el Machine Learning?</h3>
-          <p>
-            <strong>Inteligencia Artificial (IA):</strong> Es la capacidad de las computadoras y sistemas para 'pensar' y realizar tareas 
-            que tradicionalmente requieren inteligencia humana, como el aprendizaje, la resolución de problemas, 
-            el reconocimiento de patrones y la toma de decisiones.
-          </p>
-          <p>
-            <strong>Machine Learning (Aprendizaje Automático):</strong> Es una rama fundamental de la IA donde las máquinas aprenden 
-            de los datos por sí mismas, mejorando su rendimiento y precisión con el tiempo sin necesidad de ser 
-            explícitamente reprogramadas para cada nuevo escenario o detalle.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="value-prop-benefits-section section-padding mid-tone-bg">
-      <div class="container">
-        <h2 class="text-center section-title-dark">Nuestra Propuesta de Valor en IA</h2>
-        <div class="value-prop-grid">
-            <div class="value-card">
-                <span class="value-icon">🛡️</span> {/* Icono Seguridad */}
-                <h4>IA Local y Segura con Ollama</h4>
-                <p>Tus datos son valiosos y privados. Al utilizar IA local, mantenemos tu información sensible dentro de tu propio entorno, ofreciéndote control total y una capa adicional de seguridad y cumplimiento.</p>
-            </div>
-            <div class="value-card">
-                <span class="value-icon">🎯</span> {/* Icono Personalización */}
-                <h4>Entrenamiento Personalizado de Modelos</h4>
-                <p>Alimentamos y ajustamos los modelos de IA con los datos específicos de tu empresa. Esto asegura que la IA entienda profundamente tu contexto operativo y te proporcione respuestas precisas y relevantes.</p>
-            </div>
-            <div class="value-card">
-                <span class="value-icon">📈</span> {/* Icono Aplicaciones/Resultados */}
-                <h4>Aplicaciones Prácticas de Machine Learning</h4>
-                <p>Te ayudamos a implementar soluciones de aprendizaje automático para predecir tendencias, automatizar tareas complejas, realizar segmentación avanzada de clientes, optimizar inventarios y mucho más.</p>
-            </div>
-        </div>
-
-        <h3 class="text-center benefits-subheader">Beneficios Concretos de la IA para tu Negocio:</h3>
-        <div class="benefits-grid-ai">
-          {aiBenefits.map(benefit => (
-            <div class="benefit-card-ai">
-              {/* No añadimos icono aquí para diferenciarlo de la sección superior */}
-              <h5>{benefit.title}</h5>
-              <p>{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-    
-    <section class="service-cta-section section-padding text-center">
-      <div class="container narrow-container">
-        <h2>Explora el Potencial de la IA para tu Negocio</h2>
-        <p>Descubre cómo la inteligencia artificial puede convertirse en un motor de innovación y eficiencia para tu empresa.</p>
-        <a href="/nosotros#contacto-section" class="cta-button large-cta">
-          Hablemos sobre tu Proyecto de IA
-        </a>
-      </div>
-    </section>
-
-  </main>
-</BaseLayout>
-
-<style is:global>
-  /* Estilos heredados/globales */
-  .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
-  .narrow-container { max-width: 800px; }
-  .text-center { text-align: center; }
-
-  .service-detail-page .light-bg { background-color: #f8f9fa; }
-  .service-detail-page .mid-tone-bg { background-color: #e9ecef; }
-
-  .service-hero { border-bottom: 1px solid #dee2e6; }
-  .service-hero h1 { font-size: 2.8rem; color: #1a1a1a; margin-bottom: 0.25rem; }
-  .service-hero .sub-service-name { font-size: 1.5rem; color: #007bff; font-weight: 500; margin-bottom: 0.75rem; }
-  .service-hero .lead { font-size: 1.3rem; color: #495057; line-height: 1.6; }
-
-  .introduction-ai p { font-size: 1.1rem; line-height: 1.8; color: #343a40; margin-bottom: 1.5rem; }
-  .what-is-ai-ml { background-color: #e0e5e9; padding: 1.5rem 2rem; border-radius: 8px; margin-top: 2rem; }
-  .what-is-ai-ml h3 { font-size: 1.6rem; color: #1a1a1a; margin-top: 0; margin-bottom: 0.75rem; }
-  .what-is-ai-ml p { font-size: 1.05rem; margin-bottom: 1rem;}
-  .what-is-ai-ml p:last-child { margin-bottom: 0; }
-  .what-is-ai-ml strong { color: #0056b3; }
-  
-  .section-title-dark { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 2.5rem; }
-  .benefits-subheader {
-    font-size: 1.8rem;
-    color: #333;
-    margin-top: 3rem; /* Espacio después de la propuesta de valor */
-    margin-bottom: 1.5rem;
-  }
-
-  .value-prop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  .value-card {
-    background-color: #fff;
-    padding: 1.75rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    text-align: left;
-  }
-  .value-icon { font-size: 2rem; color: #007bff; margin-bottom: 0.75rem; display: block; }
-  .value-card h4 { font-size: 1.25rem; color: #1a1a1a; margin-top: 0; margin-bottom: 0.5rem; }
-  .value-card p { font-size: 0.95rem; color: #555; line-height: 1.6; }
-
-  .benefits-grid-ai {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Tarjetas un poco más pequeñas */
-    gap: 1rem; /* Gap un poco menor */
-  }
-  .benefit-card-ai {
-    background-color: transparent; /* Sin fondo para diferenciarlas */
-    padding: 1rem;
-    border: 1px solid #ced4da; /* Borde sutil */
-    border-radius: 6px;
-    text-align: left;
-  }
-  .benefit-card-ai h5 { font-size: 1.1rem; color: #0056b3; margin-top: 0; margin-bottom: 0.5rem; }
-  .benefit-card-ai p { font-size: 0.9rem; color: #495057; line-height: 1.5; margin-bottom:0; }
-
-
-  .service-cta-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1rem; }
-  .service-cta-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-  .cta-button.large-cta { padding: 0.9rem 2.2rem; font-size: 1.15rem; background-color: #1a1a1a; color: #fff; border: 1px solid #1a1a1a; }
-  .cta-button.large-cta:hover { background-color: #000; }
-
-  @media (max-width: 767px) {
-    .service-hero h1 { font-size: 2.3rem; }
-    .service-hero .sub-service-name { font-size: 1.3rem; }
-    .service-hero .lead { font-size: 1.15rem; }
-    .section-title-dark, .benefits-subheader { font-size: 1.9rem; }
-    .value-prop-grid, .benefits-grid-ai { grid-template-columns: 1fr; }
-  }
-</style>
+<ProductPageLayout
+  pageTitle={pageTitle}
+  serviceName={serviceName}
+  leadParagraph={leadParagraph}
+  featureSections={featureSections}
+/>

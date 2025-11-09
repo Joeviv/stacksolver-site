@@ -1,0 +1,262 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { 
+  pageTitle, 
+  serviceName, 
+  leadParagraph, 
+  featureSections = [] 
+} = Astro.props;
+---
+<BaseLayout title={pageTitle}>
+  <main class="page-content">
+    <header class="page-hero">
+      <div class="container">
+        <h1>{serviceName}</h1>
+        <p class="lead">{leadParagraph}</p>
+      </div>
+    </header>
+
+    <div class="interactive-layout-grid">
+      <div class="feature-list-column">
+        {featureSections.map(section => (
+          <>
+            {section.title && (
+              <div class="section-divider">
+                <h2 class="section-title">{section.title}</h2>
+              </div>
+            )}
+            {section.features.map(feature => (
+              <div 
+                class="feature-item" 
+                data-media-type={feature.media.type} 
+                data-media-src={feature.media.src}
+                data-descriptive-text={feature.descriptiveText}
+              >
+                <div class="feature-item-content">
+                  <div class="feature-icon" set:html={feature.icon} />
+                  <div class="feature-text">
+                    <h4>{feature.name}</h4>
+                    <p>{feature.description}</p>
+                  </div>
+                </div>
+                <div class="media-display-box-mobile"></div>
+              </div>
+            ))}
+          </>
+        ))}
+      </div>
+      <div class="media-viewer-column-desktop">
+        <div class="media-sticky-wrapper">
+          <div id="media-display" class="media-display-box"></div>
+          <div id="media-description" class="media-description-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-padding cta-section">
+      <div class="container">
+        <h2>Transforma tu Gestión con una App a Medida</h2>
+        <a href="/nosotros#contacto-section" class="cta-button">Contactar Ahora</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script is:inline>
+  function setupInteractiveFeatures() {
+    const featureItems = document.querySelectorAll('.feature-item');
+    const mediaDisplayDesktop = document.getElementById('media-display');
+    const mediaDescriptionDesktop = document.getElementById('media-description');
+    const DESKTOP_BREAKPOINT = 992;
+    let resizeTimer;
+
+    function createMediaElement(mediaType, src) {
+        let mediaElement;
+        if (mediaType === 'vimeo') {
+            mediaElement = document.createElement('iframe');
+            mediaElement.setAttribute('src', `${src}?autoplay=1&muted=1&loop=1&background=1`);
+            mediaElement.setAttribute('frameborder', '0');
+            mediaElement.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+        } else if (mediaType === 'localVideo') {
+            mediaElement = document.createElement('video');
+            mediaElement.src = src;
+            mediaElement.autoplay = true; mediaElement.loop = true; mediaElement.muted = true; mediaElement.playsInline = true;
+        } else {
+            mediaElement = document.createElement('img');
+            mediaElement.src = src; mediaElement.alt = "Vista previa de la solución";
+        }
+        return mediaElement;
+    }
+
+    function updateMediaAndDescription(item, mediaContainer, descriptionContainer) {
+        const mediaType = item.dataset.mediaType;
+        const mediaSrc = item.dataset.mediaSrc;
+        const descText = item.dataset.descriptiveText;
+
+        if (mediaSrc && mediaContainer) {
+            const newMediaElement = createMediaElement(mediaType, mediaSrc);
+            mediaContainer.style.opacity = 0;
+            setTimeout(() => { 
+                mediaContainer.innerHTML = ''; 
+                mediaContainer.appendChild(newMediaElement); 
+                mediaContainer.style.opacity = 1; 
+            }, 200);
+        }
+
+        if (descriptionContainer) {
+            descriptionContainer.style.opacity = 0;
+            setTimeout(() => {
+                descriptionContainer.textContent = descText;
+                descriptionContainer.style.display = descText ? 'block' : 'none';
+                descriptionContainer.style.opacity = 1;
+            }, 200);
+        }
+    }
+    
+    function resetAllMobileStates() {
+        document.querySelectorAll('.feature-item.is-mobile-active').forEach(activeItem => {
+            activeItem.classList.remove('is-mobile-active');
+            const mobileViewer = activeItem.querySelector('.media-display-box-mobile');
+            if(mobileViewer) {
+                mobileViewer.style.display = 'none';
+                mobileViewer.innerHTML = '';
+            }
+        });
+    }
+
+    function handleDesktopHover(event) {
+        if (window.innerWidth < DESKTOP_BREAKPOINT) return;
+        featureItems.forEach(i => i.classList.remove('is-active'));
+        event.currentTarget.classList.add('is-active');
+        updateMediaAndDescription(event.currentTarget, mediaDisplayDesktop, mediaDescriptionDesktop);
+    }
+
+    function handleMobileClick(event) {
+        if (window.innerWidth >= DESKTOP_BREAKPOINT) return;
+        const item = event.currentTarget;
+        const mobileViewer = item.querySelector('.media-display-box-mobile');
+        const wasActive = item.classList.contains('is-mobile-active');
+        
+        resetAllMobileStates();
+
+        if (!wasActive) {
+            item.classList.add('is-mobile-active');
+            mobileViewer.style.display = 'block';
+            mobileViewer.innerHTML = '';
+
+            const mediaType = item.dataset.mediaType;
+            const mediaSrc = item.dataset.mediaSrc;
+            const descText = item.dataset.descriptiveText;
+
+            if (mediaSrc && mobileViewer) {
+                const newMediaElement = createMediaElement(mediaType, mediaSrc);
+                mobileViewer.appendChild(newMediaElement);
+            }
+            
+            if (descText && mobileViewer) {
+                const descElement = document.createElement('p');
+                descElement.textContent = descText;
+                descElement.className = 'media-description-box-mobile';
+                mobileViewer.appendChild(descElement);
+            }
+        }
+    }
+
+    function initialize() {
+        resetAllMobileStates();
+        
+        if (window.innerWidth >= DESKTOP_BREAKPOINT) {
+            if (mediaDisplayDesktop) {
+                const firstItem = featureItems[0];
+                if (firstItem) {
+                    featureItems.forEach(i => i.classList.remove('is-active'));
+                    firstItem.classList.add('is-active');
+                    updateMediaAndDescription(firstItem, mediaDisplayDesktop, mediaDescriptionDesktop);
+                }
+            }
+        } else {
+             if (mediaDisplayDesktop) mediaDisplayDesktop.innerHTML = '';
+             if (mediaDescriptionDesktop) mediaDescriptionDesktop.textContent = '';
+        }
+    }
+    
+    function attachEventListeners() {
+        featureItems.forEach(item => {
+            item.addEventListener('mouseenter', handleDesktopHover);
+            item.addEventListener('click', handleMobileClick);
+        });
+
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(initialize, 250);
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initialize();
+        attachEventListeners();
+    });
+  }
+  setupInteractiveFeatures();
+</script>
+
+<style is:global>
+  .page-content { color: var(--text-color-secondary); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+  .page-hero { text-align: center; padding: 6rem 2rem 5rem 2rem; }
+  .page-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); color: var(--text-color-primary); margin-bottom: 1.5rem; }
+  .page-hero .lead { font-size: 1.25rem; color: var(--text-color-secondary); line-height: 1.6; max-width: 700px; margin: 0 auto; }
+  .interactive-layout-grid { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 1400px; margin: 0 auto; padding: 2rem; }
+  @media (min-width: 992px) { .interactive-layout-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; } }
+  .feature-list-column { display: flex; flex-direction: column; gap: 1.5rem; }
+  
+  .feature-item { border-radius: 12px; opacity: 0.6; transition: opacity 0.3s ease, background-color 0.3s ease; cursor: pointer; background-color: #111111; border: 1px solid var(--border-color); }
+  .feature-item-content { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem; }
+  .feature-item.is-active, .feature-item:hover { opacity: 1; background-color: #1f1f1f; }
+  
+  .feature-icon svg { width: 28px; height: 28px; color: var(--text-color-primary); flex-shrink: 0; margin-top: 4px; }
+  .feature-text h4 { font-size: 1.25rem; color: var(--text-color-primary); margin: 0 0 0.5rem 0; }
+  .feature-text p { font-size: 1rem; line-height: 1.6; margin: 0; }
+  
+  .section-divider { padding-top: 2rem; border-top: 1px solid var(--border-color); }
+  .section-title { font-size: 2.5rem; color: var(--text-color-primary); text-align: left; }
+  
+  .media-display-box-mobile {
+    display: none;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  .media-display-box-mobile img, .media-display-box-mobile video, .media-display-box-mobile iframe {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    aspect-ratio: 16/9;
+  }
+  
+  .media-description-box-mobile {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .media-viewer-column-desktop { display: none; }
+  @media (min-width: 992px) { .media-viewer-column-desktop { display: block; } .media-sticky-wrapper { position: sticky; top: 100px; } }
+  .media-display-box { width: 100%; aspect-ratio: 16 / 10; background-color: #000; border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: opacity 0.2s ease-in-out; }
+  .media-display-box img, .media-display-box video, .media-display-box iframe { width: 100%; height: 100%; object-fit: cover; }
+  
+  .media-description-box {
+    margin-top: 1.5rem;
+    padding: 0.2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color-secondary);
+    transition: opacity 0.3s ease;
+  }
+
+  .cta-section { text-align: center; border-top: 1px solid var(--border-color); }
+  .cta-section h2 { font-size: 2.2rem; color: var(--text-color-primary); margin-bottom: 1.5rem; }
+  .cta-button { display: inline-block; background-color: #fff; color: #0A0A0A; padding: 0.8rem 2rem; border-radius: 8px; font-weight: 600; transition: transform 0.2s ease; }
+  .cta-button:hover { transform: scale(1.05); }
+</style>

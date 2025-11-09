@@ -1,136 +1,64 @@
 ---
-// src/pages/estrategia-digital.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductPageLayout from '../layouts/ProductPageLayout.astro';
 
-const pageTitle = "Estrategia Digital Personalizada | Potenciamos tu Negocio - Stacksolver.tech";
-const heroTitle = "Tu Estrategia Digital, Potenciada por Expertos";
-const heroLead = "En Stacksolver.tech, no solo implementamos tecnología; te acompañamos en la definición y ejecución de una estrategia digital integral que impulse tus objetivos de negocio y te prepare para el futuro.";
+const pageTitle = "Estrategia Digital Integral | Construimos tu Futuro Tecnológico - Stacksolver.tech";
+const serviceName = "Construimos tu Hoja de Ruta Tecnológica";
+const leadParagraph = "La tecnología sin una estrategia es solo un gasto. Actuamos como tu socio estratégico para diseñar, implementar y evolucionar un ecosistema digital que no solo resuelve problemas hoy, sino que impulsa tu crecimiento y te prepara para el mañana.";
 
-// Pilares de la estrategia digital - puedes adaptarlos
-const strategyPillars = [
-  { name: "Diagnóstico y Comprensión Profunda", description: "Comenzamos por entender a fondo tu negocio, tus procesos actuales, tus desafíos y tus metas a corto, mediano y largo plazo.", icon: "🔍" },
-  { name: "Diseño del 'Stack Tecnológico' Ideal", description: "Con base en el diagnóstico, diseñamos una combinación personalizada de herramientas, plataformas y procesos (tu 'stack') que se alinee perfectamente con tu estrategia.", icon: "🧱" },
-  { name: "Implementación Ágil y Centrada en el Valor", description: "Desarrollamos e integramos las soluciones de forma iterativa, asegurando entregas de valor tempranas y la capacidad de adaptarnos a medida que avanzamos.", icon: "⚙️" },
-  { name: "Optimización y Evolución Continua", description: "La tecnología y el mercado cambian. Te ayudamos a monitorear, optimizar y evolucionar tu stack tecnológico para mantener la competitividad y aprovechar nuevas oportunidades.", icon: "📈" },
-  { name: "Capacitación y Adopción", description: "Aseguramos que tu equipo comprenda y adopte las nuevas herramientas y procesos, maximizando el retorno de tu inversión tecnológica.", icon: "🤝" }
+const strategyFeatures = [
+  {
+    id: "ed-diagnosis",
+    name: "Diagnóstico 360°: Entender para Construir",
+    description: "Analizamos tu negocio, procesos y metas para crear un mapa claro de tus desafíos y oportunidades tecnológicas.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12a.75.75 0 01.75-.75h.008v.001M3.75 12a.75.75 0 00-.75.75h.008v-.001M19.5 12a.75.75 0 01.75-.75h.008v.001M19.5 12a.75.75 0 00-.75.75h.008v-.001M12 19.5a.75.75 0 01.75-.75h.008v.001M12 19.5a.75.75 0 00-.75.75h.008v-.001M12 4.5a.75.75 0 01.75-.75h.008v.001M12 4.5a.75.75 0 00-.75.75h.008v-.001M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/strategy-diagnosis.jpg' },
+    descriptiveText: "Nuestra consultoría comienza con una inmersión profunda. A través de talleres y análisis, entendemos tu visión, tu operación y tu mercado. El resultado es un diagnóstico claro que sirve como la base sólida para todas las decisiones tecnológicas futuras, asegurando que cada paso que demos esté alineado con tus objetivos de negocio."
+  },
+  {
+    id: "ed-stack",
+    name: "Arquitectura a Medida: Tu 'Stack Tecnológico' Ideal",
+    description: "Diseñamos la combinación perfecta de herramientas y plataformas que se alinea con tu estrategia y presupuesto.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 012.25 10.875v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/strategy-stack.jpg' },
+    descriptiveText: "Este es nuestro enfoque 'Stack Solver'. No forzamos una herramienta, construimos una solución. Seleccionamos y combinamos las tecnologías más adecuadas —sean desarrollos a medida con FileMaker, webs ultrarrápidas con Astro, o plataformas LMS con Moodle— para crear una arquitectura tecnológica que es potente, escalable y, sobre todo, tuya."
+  },
+  {
+    id: "ed-implementation",
+    name: "Implementación Ágil y Centrada en el Valor",
+    description: "Desarrollamos e integramos las soluciones de forma iterativa, entregando valor tangible en cada fase del proyecto.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21V3M4.685 15.345a9.004 9.004 0 01-1.423-4.582M19.315 15.345a9.004 9.004 0 00-1.423-4.582" /></svg>`,
+    media: { type: 'localVideo', src: '/videos/features/strategy-agile.mp4' },
+    descriptiveText: "Olvídate de los proyectos de 'caja negra' que duran meses sin resultados visibles. Trabajamos con metodologías ágiles, dividiendo el proyecto en sprints y entregando funcionalidades operativas de forma regular. Esto te permite dar feedback constante y asegura que el producto final esté perfectamente alineado con tus expectativas."
+  },
+  {
+    id: "ed-evolution",
+    name: "Optimización y Evolución Continua",
+    description: "El lanzamiento es solo el comienzo. Te ayudamos a monitorear, optimizar y evolucionar tu tecnología para mantener la competitividad.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/strategy-evolution.jpg' },
+    descriptiveText: "El mercado no se detiene, y tu tecnología tampoco debería. Establecemos métricas de rendimiento, analizamos los datos de uso y te proponemos mejoras continuas para asegurar que tu inversión tecnológica no se vuelva obsoleta, sino que evolucione y se adapte junto a tu negocio."
+  },
+  {
+    id: "ed-adoption",
+    name: "Capacitación y Gestión del Cambio",
+    description: "Aseguramos que tu equipo adopte las nuevas herramientas, maximizando el impacto y el retorno de tu inversión.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.928A9.09 9.09 0 005.25 18.72m-8.384-2.88a3 3 0 014.682-2.72m-12.122.992A9.09 9.09 0 013.75 18.72m12.54-1.665a9.094 9.094 0 01-3.742-.479m-8.383-2.928a9.09 9.09 0 013.742-.479M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/strategy-adoption.jpg' },
+    descriptiveText: "La mejor herramienta del mundo es inútil si nadie sabe cómo usarla. Parte de nuestra estrategia es un plan de gestión del cambio que incluye capacitación, documentación y soporte, asegurando que tu equipo no solo utilice la nueva tecnología, sino que la abrace como una mejora a su trabajo diario."
+  }
+];
+
+const featureSections = [
+    {
+        title: "Nuestra Metodología Estratégica",
+        features: strategyFeatures
+    }
 ];
 ---
 
-<BaseLayout title={pageTitle}>
-  <main class="estrategia-digital-page">
-    
-    <header class="page-hero-general section-padding text-center light-bg">
-      <div class="container narrow-container">
-        <h1>{heroTitle}</h1>
-        <p class="lead">{heroLead}</p>
-      </div>
-    </header>
-
-    <section class="philosophy-section section-padding">
-      <div class="container narrow-container">
-        <h2 class="text-center">Más que Tecnología, una Verdadera Transformación</h2>
-        <p>
-          Entendemos que la transformación digital va más allá de simplemente adoptar nuevas herramientas. Se trata de 
-          repensar procesos, empoderar a tus equipos y crear nuevas formas de valor para tus clientes. 
-          Nuestra aproximación a la estrategia digital se basa en ser tus aliados tecnológicos, guiándote 
-          en cada paso del camino.
-        </p>
-        <div class="stack-solver-explanation">
-            <h3>El Poder del Enfoque "Stack Solver"</h3>
-            <p>
-                No creemos en soluciones únicas para todos. Cada empresa es un mundo, con sus propias particularidades. 
-                El enfoque "Stack Solver" implica un análisis detallado de tus necesidades para construir una arquitectura 
-                tecnológica – tu 'stack' – que no solo resuelva problemas actuales, sino que también siente las bases 
-                para el crecimiento futuro y la innovación continua.
-            </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="pillars-section section-padding mid-tone-bg">
-      <div class="container">
-        <h2 class="text-center section-title-dark">Pilares de Nuestra Consultoría en Estrategia Digital</h2>
-        <div class="pillars-grid">
-          {strategyPillars.map(pillar => (
-            <div class="pillar-card">
-              <span class="pillar-icon">{pillar.icon}</span>
-              <h3>{pillar.name}</h3>
-              <p>{pillar.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-    
-    <section class="service-cta-section section-padding text-center">
-      <div class="container narrow-container">
-        <h2>¿Listo para Definir o Redefinir tu Estrategia Digital?</h2>
-        <p>Permítenos ser el catalizador de tu transformación. Juntos, podemos diseñar el futuro tecnológico de tu empresa.</p>
-        <a href="/nosotros#contacto-section" class="cta-button large-cta">
-          Iniciar Conversación Estratégica
-        </a>
-      </div>
-    </section>
-
-  </main>
-</BaseLayout>
-
-<style is:global>
-  /* Estilos generales de la página */
-  .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
-  .narrow-container { max-width: 800px; }
-  .text-center { text-align: center; }
-  .light-bg { background-color: #f8f9fa; }
-  .mid-tone-bg { background-color: #e9ecef; }
-
-  .page-hero-general { border-bottom: 1px solid #dee2e6; }
-  .page-hero-general h1 { font-size: 2.8rem; color: #1a1a1a; margin-bottom: 0.75rem; }
-  .page-hero-general .lead { font-size: 1.3rem; color: #495057; line-height: 1.6; }
-
-  .philosophy-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1.5rem; }
-  .philosophy-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-  .stack-solver-explanation {
-    background-color: #e0e5e9; /* Mismo fondo que en otras definiciones */
-    padding: 1.5rem 2rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-    text-align: left; /* Para que el texto dentro no se centre */
-  }
-  .stack-solver-explanation h3 {
-    font-size: 1.6rem;
-    color: #1a1a1a;
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-  }
-  
-  .section-title-dark { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 2.5rem; }
-
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Pueden ser más de 2 o 3 columnas si caben */
-    gap: 1.5rem;
-  }
-  .pillar-card {
-    background-color: #fff;
-    padding: 1.75rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    text-align: center; 
-  }
-  .pillar-icon { font-size: 2.5rem; color: #007bff; margin-bottom: 0.75rem; display: block; }
-  .pillar-card h3 { font-size: 1.3rem; color: #333; margin-top: 0; margin-bottom: 0.5rem; }
-  .pillar-card p { font-size: 0.95rem; color: #555; line-height: 1.6; }
-
-  .service-cta-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1rem; }
-  .service-cta-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-  .cta-button.large-cta { padding: 0.9rem 2.2rem; font-size: 1.15rem; background-color: #1a1a1a; color: #fff; border: 1px solid #1a1a1a; }
-  .cta-button.large-cta:hover { background-color: #000; }
-
-  @media (max-width: 767px) {
-    .page-hero-general h1 { font-size: 2.3rem; }
-    .page-hero-general .lead { font-size: 1.15rem; }
-    .philosophy-section h2, .section-title-dark { font-size: 1.9rem; }
-    .pillars-grid { grid-template-columns: 1fr; }
-  }
-</style>
+<ProductPageLayout
+  pageTitle={pageTitle}
+  serviceName={serviceName}
+  leadParagraph={leadParagraph}
+  featureSections={featureSections}
+/>

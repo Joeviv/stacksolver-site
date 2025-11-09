@@ -1,130 +1,64 @@
 ---
-// src/pages/productos/visualizacion-datos.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductPageLayout from '../../layouts/ProductPageLayout.astro';
 
 const pageTitle = "Visualización Avanzada de Datos con Looker Studio | Stacksolver.tech";
-const serviceName = "Visualización Avanzada de Datos";
-const subServiceName = "Decisiones Inteligentes con Google Looker Studio";
-const heroLead = "Tus Datos, Claros Como el Agua: Transformamos Números en Dashboards Impactantes.";
+const serviceName = "Decisiones Inteligentes con Google Looker Studio";
+const leadParagraph = "Tus datos son una mina de oro, pero sin las herramientas adecuadas, son solo ruido. Convertimos tus hojas de cálculo, bases de datos y analíticas en dashboards interactivos y claros que te cuentan la historia de tu negocio en tiempo real, permitiéndote tomar decisiones basadas en evidencia, no en intuición.";
 
-const lookerStudioBenefits = [
-  { title: "Entiende tus Números de un Vistazo", description: "Diseñamos informes y dashboards interactivos que son claros, concisos y fáciles de interpretar, incluso para usuarios no técnicos." },
-  { title: "Decisiones Basadas en Hechos, no en Suposiciones", description: "Accede a información actualizada en tiempo real (o según la frecuencia que necesites) para fundamentar tus estrategias y tomar acciones más efectivas." },
-  { title: "Conecta Todas tus Fuentes de Datos", description: "Integramos datos de múltiples orígenes: Google Sheets, Google Analytics, Google Ads, bases de datos SQL, CRMs, y muchas más, todo en un solo lugar." },
-  { title: "Dashboards Personalizados y Compartibles", description: "Creamos visualizaciones a la medida de tus KPIs y objetivos, fácilmente compartibles con tu equipo o stakeholders." }
+const dataVizFeatures = [
+  {
+    id: "dv-connect",
+    name: "Tu Universo de Datos en un Solo Lugar",
+    description: "Conectamos todas tus fuentes de datos dispersas en un único panel de control coherente y centralizado.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/dv-sources.jpg' },
+    descriptiveText: "Basta de saltar entre Google Analytics, tu CRM, hojas de cálculo y reportes de redes sociales. Integramos todas tus fuentes de datos (Google Suite, bases de datos SQL, Facebook Ads, etc.) en Looker Studio para crear una 'fuente única de verdad'. Obtienes una visión de 360 grados de tu operación sin tener que unir las piezas manualmente nunca más."
+  },
+  {
+    id: "dv-dashboards",
+    name: "Dashboards Interactivos, No Informes Estáticos",
+    description: "Diseñamos visualizaciones a medida que responden a las preguntas clave de tu negocio en tiempo real.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 1.5m-5-1.5l1-1.5m-5 1.5l-1-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+    media: { type: 'localVideo', src: '/videos/features/dv-interactive.mp4' },
+    descriptiveText: "Un PDF o un PowerPoint se vuelven obsoletos en el momento en que se envían. Creamos dashboards vivos donde puedes filtrar por fechas, productos, regiones o cualquier dimensión relevante para ti. ¿Quieres ver el rendimiento del último trimestre con un solo clic? ¿Comparar dos campañas publicitarias al instante? Te damos el poder de explorar tus datos y encontrar respuestas por ti mismo."
+  },
+  {
+    id: "dv-democratize",
+    name: "Inteligencia de Negocio para Todos, no solo para Analistas",
+    description: "Hacemos que los datos sean comprensibles y accesibles para cada miembro de tu equipo, fomentando una cultura data-driven.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.928A9.09 9.09 0 005.25 18.72m-8.384-2.88a3 3 0 014.682-2.72m-12.122.992A9.09 9.09 0 013.75 18.72m12.54-1.665a9.094 9.094 0 01-3.742-.479m-8.383-2.928a9.09 9.09 0 013.742-.479M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/dv-team.jpg' },
+    descriptiveText: "La toma de decisiones informada no debe ser un privilegio del departamento de análisis. Creamos dashboards intuitivos para cada área: Marketing puede ver el ROI de sus campañas, Ventas puede seguir su pipeline en tiempo real y Operaciones puede monitorear la eficiencia. Rompemos los silos de información y empoderamos a todo tu equipo."
+  },
+  {
+    id: "dv-insights",
+    name: "Revela la Historia Oculta en tus Datos",
+    description: "Nuestros dashboards están diseñados para resaltar patrones, tendencias y oportunidades que pasarían desapercibidas en una hoja de cálculo.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>`,
+    media: { type: 'localImage', src: '/images/features/dv-trends.jpg' },
+    descriptiveText: "Más allá de mostrar lo que pasó, te ayudamos a entender el 'porqué'. Visualizamos tus datos de forma que las correlaciones saltan a la vista. Descubre qué productos tienen mayor rentabilidad por región, identifica los puntos de fricción en tu embudo de conversión o entiende la estacionalidad de tu demanda. Convertimos datos pasados en una hoja de ruta para el futuro."
+  },
+  {
+    id: "dv-automation",
+    name: "Automatiza tus Reportes y Libera Horas de Trabajo",
+    description: "Pon fin a la creación manual de informes. Programamos tus dashboards para que estén siempre actualizados y se distribuyan solos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.664 0l3.181-3.183m-11.664 0l4.992-4.993m-4.993 0l-3.181 3.183A8.25 8.25 0 004.62 16.5" /></svg>`,
+    media: { type: 'localVideo', src: '/videos/features/dv-automation.mp4' },
+    descriptiveText: "¿Cuántas horas invierte tu equipo cada semana o mes en copiar y pegar datos en hojas de cálculo y presentaciones? Automatizamos todo el proceso. Los datos se actualizan solos y los informes se pueden enviar por correo electrónico a las partes interesadas de forma programada. Tu equipo recupera tiempo valioso para dedicarse al análisis y la estrategia, no a la recolección de datos."
+  }
+];
+
+const featureSections = [
+    {
+        title: "Nuestro Proceso de Visualización",
+        features: dataVizFeatures
+    }
 ];
 ---
 
-<BaseLayout title={pageTitle}>
-  <main class="service-detail-page looker-studio-page">
-    
-    <header class="service-hero section-padding text-center light-bg">
-      <div class="container narrow-container">
-        {/* <img src="/images/products/looker-studio-hero.png" alt="Visualización de Datos con Looker Studio" class="service-hero-image"/> */}
-        <h1>{serviceName}</h1>
-        <p class="sub-service-name">{subServiceName}</p>
-        <p class="lead">{heroLead}</p>
-      </div>
-    </header>
-
-    <section class="introduction-visualization section-padding">
-      <div class="container narrow-container">
-        <h2>¿Tienes muchos datos pero te cuesta entenderlos y aprovecharlos?</h2>
-        <p>
-          En la era digital, los datos son uno de tus activos más valiosos, pero solo si puedes traducirlos en conocimiento accionable. 
-          Transformamos hojas de cálculo complejas y bases de datos extensas en gráficos dinámicos, tablas interactivas y 
-          paneles (dashboards) intuitivos que te muestran lo que realmente importa de tu negocio de forma clara y visual.
-        </p>
-        
-        <div class="what-is-dataviz">
-          <h3>¿Qué es la Visualización de Datos?</h3>
-          <p>
-            Es el arte y la ciencia de contar historias con tus datos. Utilizamos elementos visuales como gráficos, mapas, 
-            indicadores y tablas para representar la información de manera que sea fácilmente comprensible. 
-            Te ayuda a identificar tendencias, patrones, correlaciones y oportunidades que de otra manera podrían pasar desapercibidas 
-            en filas y columnas de números.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="benefits-looker-section section-padding mid-tone-bg">
-      <div class="container"> {/* Contenedor más ancho para la cuadrícula */}
-        <h2 class="text-center section-title-dark">Beneficios de Nuestras Visualizaciones con Google Looker Studio</h2>
-        <div class="benefits-grid">
-          {lookerStudioBenefits.map(benefit => (
-            <div class="benefit-card">
-              <span class="benefit-icon">📊</span> {/* Placeholder icon */}
-              <h4>{benefit.title}</h4>
-              <p>{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-    
-    <section class="service-cta-section section-padding text-center">
-      <div class="container narrow-container">
-        <h2>Descubre el Poder Oculto en tus Datos</h2>
-        <p>Permítenos ayudarte a transformar tus datos en tu mayor ventaja competitiva.</p>
-        <a href="/nosotros#contacto-section" class="cta-button large-cta">
-          Solicita una Demo de Visualización
-        </a>
-      </div>
-    </section>
-
-  </main>
-</BaseLayout>
-
-<style is:global>
-  /* Estilos heredados/globales */
-  .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
-  .narrow-container { max-width: 800px; }
-  .text-center { text-align: center; }
-
-  .service-detail-page .light-bg { background-color: #f8f9fa; }
-  .service-detail-page .mid-tone-bg { background-color: #e9ecef; }
-
-  .service-hero { border-bottom: 1px solid #dee2e6; }
-  .service-hero h1 { font-size: 2.8rem; color: #1a1a1a; margin-bottom: 0.25rem; }
-  .service-hero .sub-service-name { font-size: 1.5rem; color: #007bff; font-weight: 500; margin-bottom: 0.75rem; }
-  .service-hero .lead { font-size: 1.3rem; color: #495057; line-height: 1.6; }
-
-  .introduction-visualization p { font-size: 1.1rem; line-height: 1.8; color: #343a40; margin-bottom: 1.5rem; }
-  .what-is-dataviz { background-color: #e0e5e9; padding: 1.5rem 2rem; border-radius: 8px; margin-top: 2rem; }
-  .what-is-dataviz h3 { font-size: 1.6rem; color: #1a1a1a; margin-top: 0; margin-bottom: 0.75rem; }
-  
-  .section-title-dark { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 2.5rem; }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Ajuste para tarjetas un poco más anchas */
-    gap: 1.5rem;
-  }
-  .benefit-card {
-    background-color: #fff;
-    padding: 1.75rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-  }
-  .benefit-icon { font-size: 2rem; color: #007bff; margin-bottom: 0.75rem; }
-  .benefit-card h4 { font-size: 1.25rem; color: #333; margin-top: 0; margin-bottom: 0.5rem; }
-  .benefit-card p { font-size: 0.95rem; color: #555; line-height: 1.6; flex-grow: 1; }
-
-  .service-cta-section h2 { font-size: 2.2rem; color: #1a1a1a; margin-bottom: 1rem; }
-  .service-cta-section p { font-size: 1.1rem; line-height: 1.7; color: #343a40; margin-bottom: 1.5rem; }
-  .cta-button.large-cta { padding: 0.9rem 2.2rem; font-size: 1.15rem; background-color: #1a1a1a; color: #fff; border: 1px solid #1a1a1a; }
-  .cta-button.large-cta:hover { background-color: #000; }
-
-  @media (max-width: 767px) {
-    .service-hero h1 { font-size: 2.3rem; }
-    .service-hero .sub-service-name { font-size: 1.3rem; }
-    .service-hero .lead { font-size: 1.15rem; }
-    .section-title-dark { font-size: 1.9rem; }
-    .benefits-grid { grid-template-columns: 1fr; }
-  }
-</style>
+<ProductPageLayout
+  pageTitle={pageTitle}
+  serviceName={serviceName}
+  leadParagraph={leadParagraph}
+  featureSections={featureSections}
+/>

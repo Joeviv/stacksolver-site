@@ -6,23 +6,70 @@ import Sidebar from "../components/Sidebar";
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
+	type?: "website" | "article";
+	canonicalURL?: string;
 }
 
 const {
 	title,
 	description = "StackSolver - Soluciones Tecnológicas Integrales e Inteligencia Artificial",
+	image = "/og-image.png", // Asegúrate de tener una imagen por defecto en public/
+	type = "website",
+	canonicalURL = Astro.url.href,
 } = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.href : "https://www.stacksolver.tech";
+const socialImageURL = new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
 <html lang="es" class="dark">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- SEO General -->
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImageURL} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={socialImageURL} />
+
+		<!-- JSON-LD Structured Data -->
+		<script
+			type="application/ld+json"
+			is:inline
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				name: "StackSolver",
+				url: siteUrl,
+				description: description,
+				publisher: {
+					"@type": "Organization",
+					name: "StackSolver",
+					logo: {
+						"@type": "ImageObject",
+						url: `${siteUrl}/favicon.svg`,
+					},
+				},
+			})}
+		/>
 
 		<!-- Librería PDF.js para previsualización de documentos -->
 		<script

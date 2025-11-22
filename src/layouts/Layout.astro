@@ -1,0 +1,41 @@
+---
+// ARCHIVO: src/layouts/Layout.astro
+import '../styles/global.css';
+import Sidebar from '../components/Sidebar';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "StackSolver - Soluciones Tecnológicas Integrales e Inteligencia Artificial" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+        <!-- Librería PDF.js para previsualización de documentos -->
+        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+        <script is:inline>
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        </script>
+	</head>
+	<body class="bg-black text-zinc-50 font-sans flex min-h-screen overflow-x-hidden">
+		
+		<!-- Sidebar de React hidratado para interactividad móvil -->
+		<Sidebar client:load />
+
+		<!-- Contenido Principal -->
+		<main class="flex-1 md:ml-72 w-full relative min-h-screen">
+			<slot />
+		</main>
+
+	</body>
+</html>

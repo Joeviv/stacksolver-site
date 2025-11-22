@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.stacksolver.tech/sitemap-index.xml
+
+# Ayuda a los bots de IA a entender tu contenido principal
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /

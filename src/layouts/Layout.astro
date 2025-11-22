@@ -1,14 +1,17 @@
 ---
 // ARCHIVO: src/layouts/Layout.astro
-import '../styles/global.css';
-import Sidebar from '../components/Sidebar';
+import "../styles/global.css";
+import Sidebar from "../components/Sidebar";
 
 interface Props {
 	title: string;
 	description?: string;
 }
 
-const { title, description = "StackSolver - Soluciones Tecnológicas Integrales e Inteligencia Artificial" } = Astro.props;
+const {
+	title,
+	description = "StackSolver - Soluciones Tecnológicas Integrales e Inteligencia Artificial",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -21,14 +24,19 @@ const { title, description = "StackSolver - Soluciones Tecnológicas Integrales 
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
-        <!-- Librería PDF.js para previsualización de documentos -->
-        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-        <script is:inline>
-            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        </script>
+		<!-- Librería PDF.js para previsualización de documentos -->
+		<script
+			is:inline
+			src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+		></script>
+		<script is:inline>
+			window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+				"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+		</script>
 	</head>
-	<body class="bg-black text-zinc-50 font-sans flex min-h-screen overflow-x-hidden">
-		
+	<body
+		class="bg-black text-zinc-50 font-sans flex flex-col md:flex-row min-h-screen overflow-x-hidden"
+	>
 		<!-- Sidebar de React hidratado para interactividad móvil -->
 		<Sidebar client:load />
 
@@ -36,6 +44,5 @@ const { title, description = "StackSolver - Soluciones Tecnológicas Integrales 
 		<main class="flex-1 md:ml-72 w-full relative min-h-screen">
 			<slot />
 		</main>
-
 	</body>
 </html>

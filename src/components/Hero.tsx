@@ -91,16 +91,8 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* TEXTO PRINCIPAL ACTUALIZADO (Español) */}
-      <div className="text-center relative z-10 max-w-6xl mx-auto px-4 pt-8">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 leading-[1.1]">
-          Tu Visión. <br/>
-          <span className="underline decoration-4 decoration-blue-500 underline-offset-4 md:underline-offset-8 text-white">Nuestra Tecnología</span>.
-        </h1>
-        <p className="text-base sm:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed font-light">
-          La intersección perfecta entre ingeniería de software avanzada e Inteligencia Artificial práctica para potenciar tu empresa.
-        </p>
-      </div>
+      {/* TEXTO PRINCIPAL ELIMINADO (Ahora está en index.astro) */}
+
     </>
   );
 };

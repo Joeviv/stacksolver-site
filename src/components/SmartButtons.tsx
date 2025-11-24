@@ -1,0 +1,30 @@
+// ARCHIVO: src/components/SmartButtons.tsx
+import React from 'react';
+import { SERVICES_MENU } from '../data/menuData';
+
+export default function SmartButtons() {
+    return (
+        <div className="flex flex-wrap justify-center gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            {SERVICES_MENU.map((section) => {
+                const Icon = section.icon;
+                return (
+                    <a
+                        key={section.id}
+                        href={`/servicios/${section.id}/${section.subsections[0].id}`} // Link to the first subsection or a main section page if it existed
+                        className="
+              group flex items-center gap-2 px-4 py-2 rounded-full
+              bg-white/5 backdrop-blur-sm border border-white/10
+              text-zinc-300 text-sm font-medium
+              transition-all duration-300 ease-out
+              hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-105
+              hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]
+            "
+                    >
+                        <Icon className="w-4 h-4 text-blue-500 group-hover:text-blue-400 transition-colors" />
+                        <span>{section.title}</span>
+                    </a>
+                );
+            })}
+        </div>
+    );
+}

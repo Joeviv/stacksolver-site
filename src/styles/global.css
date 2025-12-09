@@ -1,12 +1,18 @@
 /* ARCHIVO: src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Configuración base estándar */
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   scroll-behavior: smooth;
-  background-color: #000000; /* bg-black */
-  color: #fafafa; /* text-zinc-50 */
+  background-color: #000000;
+  /* bg-black */
+  color: #fafafa;
+  /* text-zinc-50 */
 }
 
 /* Scrollbar personalizado (CSS estándar para Webkit) */
@@ -14,14 +20,17 @@ html, body {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #09090b;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #27272a;
   border-radius: 9999px;
   border: 2px solid #09090b;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background-color: #3f3f46;
 }

@@ -1,8 +1,8 @@
 # StackSolver Site
 
 > **Website oficial de StackSolver** - Tu empresa
-> **URL**: (por definir con Amplify)
-> **Última actualización**: 2025-12-08
+> **URL**: https://www.stacksolver.tech
+> **Última actualización**: 2025-12-09
 
 ---
 
@@ -10,13 +10,12 @@
 
 | Aspecto | Estado |
 |---------|--------|
-| **Framework** | Astro 4.3.5 |
-| **Vulnerabilidades** | ⚠️ 4 (requiere Astro v5) |
+| **Framework** | Astro 5.x ✅ |
+| **React** | 18.3.1 ✅ |
+| **Tailwind** | 3.x via PostCSS |
+| **Vulnerabilidades** | ✅ 0 |
 | **Deploy** | AWS Amplify |
 | **Repositorio** | Joeviv/stacksolver-site |
-
-> [!NOTE]
-> Se mantiene en Astro v4 por compatibilidad con paquetes específicos.
 
 ---
 

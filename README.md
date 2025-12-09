@@ -1,43 +1,83 @@
-# Astro Starter Kit: Minimal
+# StackSolver Site
 
-```sh
-npm create astro@latest -- --template minimal
+> **Website oficial de StackSolver** - Tu empresa
+> **URL**: (por definir con Amplify)
+> **Última actualización**: 2025-12-08
+
+---
+
+## 📊 Estado Actual
+
+| Aspecto | Estado |
+|---------|--------|
+| **Framework** | Astro 4.3.5 |
+| **Vulnerabilidades** | ⚠️ 4 (requiere Astro v5) |
+| **Deploy** | AWS Amplify |
+| **Repositorio** | Joeviv/stacksolver-site |
+
+> [!NOTE]
+> Se mantiene en Astro v4 por compatibilidad con paquetes específicos.
+
+---
+
+## 🔧 Stack Técnico
+
+- **Framework**: Astro 4.3.5
+- **UI Library**: React 18.2.0
+- **Styling**: TailwindCSS 3.4.1
+- **Icons**: Heroicons React 2.1.1
+- **SEO**: @astrojs/sitemap 3.0.5
+
+---
+
+## 📋 Historial de Cambios
+
+### 2025-12-08
+- Ejecutado `npm audit fix` (4 vulnerabilidades requieren Astro v5)
+- Documentación de seguridad creada
+
+### (Historial anterior pendiente de documentar)
+
+---
+
+## 🎯 Próximos Cambios Planificados
+
+- [ ] (Por definir)
+
+---
+
+## ⚙️ Preferencias de Desarrollo
+
+```yaml
+Package Manager: pnpm (preferido) / npm
+Astro Version: v4.x (no actualizar a v5 sin pruebas)
+Deployment: AWS Amplify (auto-deploy desde main)
+Branch Strategy: main (producción)
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 🔒 Seguridad
 
-Inside of your Astro project, you'll see the following folders and files:
+- **GitHub**: Joeviv/stacksolver-site
+- **2FA**: ✅ YubiKey + Passkeys
+- **Dependabot**: ⏳ Por activar
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+---
+
+## 📝 Notas Importantes
+
+- Mantener Astro en v4 hasta confirmar compatibilidad con v5
+- Usar `pnpm install` para nuevas dependencias
+- Correr `npm audit` antes de cada deploy
+
+---
+
+## 🧞 Comandos
+
+```bash
+pnpm install        # Instalar dependencias
+npm run dev         # Servidor local en localhost:4321
+npm run build       # Build de producción
+npm run preview     # Preview del build
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

@@ -57,14 +57,14 @@ export const siteSEO = {
     // Configuración específica por página
     pages: {
         home: {
-            title: "StackSolver | Expertos en Claris FileMaker (+18 años), IA & ISO",
-            description: "Desde Colombia para toda Latam (Perú, Chile, México). +18 años de experiencia en Claris FileMaker, implementación de ISO 27001/42001 y desarrollo de ERPs modernos.",
+            title: "StackSolver | Expertos en Claris FileMaker, GRC & ERP (+18 años)",
+            description: "Desde Colombia para Centro y Sur América. Expertos en sistemas GRC y ERP, Apps Claris FileMaker (+18 años) e implementación de normas ISO con IA.",
             keywords: [
                 "Empresa de Software Colombia",
-                "Soluciones Empresariales Chile",
-                "Consultoría FileMaker Perú",
-                "Asesoría ISO 27001 Latam",
-                "Desarrollo de Apps Empresariales",
+                "Sistemas GRC Latam",
+                "Desarrollo ERP Centroamérica",
+                "Consultoría FileMaker Suramérica",
+                "Expertos ISO 27001",
                 "Modernización de Legacy Systems"
             ]
         },

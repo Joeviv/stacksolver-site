@@ -2,13 +2,14 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {},
   },
   plugins: [
     // Aquí recreamos la clase .glass-panel y .text-glow sin usar CSS externo
-    plugin(function({ addUtilities }) {
+    plugin(function ({ addUtilities }) {
       addUtilities({
         '.glass-panel': {
           'background-color': 'rgba(24, 24, 27, 0.4)', // bg-zinc-900/40

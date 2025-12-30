@@ -26,12 +26,34 @@ const socialImageURL = new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+
+        <!-- Script Anti-FOUC (Flash of Unstyled Content) para Tema -->
+        <script is:inline>
+            (function() {
+                try {
+                    const localTheme = localStorage.getItem('theme');
+                    const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    
+                    // Si hay tema guardado 'dark' O no hay nada y el sistema es dark -> Dark Mode
+                    // Si el usuario pidió Light Mode Default, cambiamos la lógica:
+                    // Default Light: Solo si explícitamente es dark, se pone dark.
+                    
+                    if (localTheme === 'dark') {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                    }
+                } catch (e) {
+                    console.error("Error setting theme", e);
+                }
+            })();
+        </script>
 
 		<!-- SEO General -->
 		<title>{title}</title>
@@ -85,7 +107,7 @@ const socialImageURL = new URL(image, siteUrl).href;
 		</script>
 	</head>
 	<body
-		class="bg-black text-zinc-50 font-sans flex flex-col min-h-screen overflow-x-hidden"
+		class="bg-white text-zinc-900 dark:bg-black dark:text-zinc-50 font-sans flex flex-col min-h-screen overflow-x-hidden transition-colors duration-300"
 	>
 		<!-- Navbar de React hidratado para interactividad -->
 		<Navbar client:load />

@@ -9,10 +9,7 @@ body {
   height: 100%;
   width: 100%;
   scroll-behavior: smooth;
-  background-color: #000000;
-  /* bg-black */
-  color: #fafafa;
-  /* text-zinc-50 */
+  @apply bg-white text-zinc-900 dark:bg-black dark:text-zinc-50;
 }
 
 /* Scrollbar personalizado (CSS estándar para Webkit) */

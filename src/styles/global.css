@@ -1,7 +1,10 @@
 /* ARCHIVO: src/styles/global.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Configuración básica de tema: variables (opcional con TW4 pero útil para referencia) */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
 /* Configuración base estándar */
 html,
@@ -12,7 +15,18 @@ body {
   @apply bg-white text-zinc-900 dark:bg-black dark:text-zinc-50;
 }
 
-/* Scrollbar personalizado (CSS estándar para Webkit) */
+/* Utilitarios Personalizados (Migrados de tailwind.config.cjs) */
+.glass-panel {
+  background-color: rgba(24, 24, 27, 0.4);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Scrollbar personalizado */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

@@ -4,11 +4,16 @@ import Layout from "../layouts/Layout.astro";
 import { Hero } from "../components/Hero"; // Usamos solo la parte visual
 import { SparklesIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import SmartButtons from "../components/SmartButtons"; // Importar el nuevo componente
+import { siteSEO } from "../data/seoData";
+
+// Combinar keywords globales + específicas de home
+const pageKeywords = [...siteSEO.global.keywords, ...siteSEO.pages.home.keywords].join(", ");
 ---
 
 <Layout
-    title="StackSolver | Ecosistema Tecnológico & IA"
-    description="Transformamos empresas complejas en operaciones eficientes mediante tecnología estratégica y consultoría experta. Desde Gobernanza Corporativa hasta Desarrollo a Medida."
+    title={siteSEO.pages.home.title}
+    description={siteSEO.pages.home.description}
+    keywords={pageKeywords}
     type="website"
 >
     <div class="relative min-h-screen flex flex-col">

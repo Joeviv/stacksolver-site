@@ -7,6 +7,7 @@ interface Props {
 	title: string;
 	description?: string;
 	image?: string;
+    keywords?: string; // Nuevo prop opcional
 	type?: "website" | "article";
 	canonicalURL?: string;
 }
@@ -15,6 +16,7 @@ const {
 	title,
 	description = "StackSolver - Soluciones Tecnológicas Integrales e Inteligencia Artificial",
 	image = "/og-image.png", // Asegúrate de tener una imagen por defecto en public/
+    keywords = "",
 	type = "website",
 	canonicalURL = Astro.url.href,
 } = Astro.props;
@@ -34,6 +36,7 @@ const socialImageURL = new URL(image, siteUrl).href;
 		<!-- SEO General -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
+        {keywords && <meta name="keywords" content={keywords} />}
 		<link rel="canonical" href={canonicalURL} />
 
 		<!-- Open Graph / Facebook -->

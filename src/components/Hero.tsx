@@ -4,24 +4,24 @@ import { DocumentTextIcon, CalculatorIcon, PuzzlePieceIcon, ClipboardDocumentChe
 import { CursorArrowRaysIcon, ChartBarIcon, SparklesIcon } from '@heroicons/react/24/solid';
 
 // Componente interno de animación (se mantiene igual)
-const DrawingTransformation = ({ 
-  initialIcon: InitialIcon, 
-  finalIcon: FinalIcon, 
+const DrawingTransformation = ({
+  initialIcon: InitialIcon,
+  finalIcon: FinalIcon,
   label,
-  delay, 
-  x, 
+  delay,
+  x,
   y,
   rotation = 0
-}: { 
-  initialIcon: React.ElementType, 
-  finalIcon: React.ElementType, 
+}: {
+  initialIcon: React.ElementType,
+  finalIcon: React.ElementType,
   label: string,
   delay: number,
   x: string,
   y: string,
   rotation?: number
 }) => {
-  const [stage, setStage] = useState(0); 
+  const [stage, setStage] = useState(0);
 
   useEffect(() => {
     const cycle = () => {
@@ -38,33 +38,33 @@ const DrawingTransformation = ({
   }, [delay]);
 
   return (
-    <div 
+    <div
       className="absolute transition-all duration-1000 ease-in-out z-0 pointer-events-none"
       style={{ top: y, left: x, transform: `rotate(${rotation}deg)` }}
     >
-      <div className={`relative w-20 h-28 md:w-28 md:h-40 rounded-lg backdrop-blur-md transition-all duration-1000 ${stage === 2 ? 'bg-zinc-800/40 border-zinc-500/50 shadow-xl scale-110 -translate-y-4' : 'bg-zinc-900/10 border-zinc-800 scale-100 border border-dashed'}`}>
+      <div className={`relative w-20 h-28 md:w-28 md:h-40 rounded-lg backdrop-blur-md transition-all duration-1000 ${stage === 2 ? 'bg-white/80 border-blue-200 dark:bg-zinc-800/40 dark:border-zinc-500/50 shadow-xl scale-110 -translate-y-4' : 'bg-white/40 border-zinc-200 dark:bg-zinc-900/10 dark:border-zinc-800 scale-100 border border-dashed'}`}>
         <div className={`absolute -top-3 left-1/2 -translate-x-1/2 bg-zinc-100 text-zinc-900 border border-zinc-200 text-[8px] md:text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm transition-all duration-500 ${stage === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
-            {label}
+          {label}
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <div className={`absolute transition-all duration-1000 ${stage === 1 ? 'opacity-100' : 'opacity-0'}`}>
-             <InitialIcon className="w-8 h-8 md:w-12 md:h-12 text-zinc-500 stroke-1" />
-             <div className="absolute -inset-2 border border-zinc-700/30 opacity-50"></div>
-             <div className="absolute top-0 left-0 w-2 h-2 border-l border-t border-zinc-500"></div>
-             <div className="absolute top-0 right-0 w-2 h-2 border-r border-t border-zinc-500"></div>
-             <div className="absolute bottom-0 left-0 w-2 h-2 border-l border-b border-zinc-500"></div>
-             <div className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-zinc-500"></div>
+            <InitialIcon className="w-8 h-8 md:w-12 md:h-12 text-zinc-400 dark:text-zinc-500 stroke-1" />
+            <div className="absolute -inset-2 border border-blue-500/10 dark:border-zinc-700/30 opacity-50"></div>
+            <div className="absolute top-0 left-0 w-2 h-2 border-l border-t border-zinc-400 dark:border-zinc-500"></div>
+            <div className="absolute top-0 right-0 w-2 h-2 border-r border-t border-zinc-400 dark:border-zinc-500"></div>
+            <div className="absolute bottom-0 left-0 w-2 h-2 border-l border-b border-zinc-400 dark:border-zinc-500"></div>
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-zinc-400 dark:border-zinc-500"></div>
           </div>
           <div className={`absolute transition-all duration-700 flex flex-col items-center ${stage === 2 ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-75 blur-sm'}`}>
-             <FinalIcon className="w-10 h-10 md:w-14 md:h-14 text-blue-500" />
-             {stage === 2 && (
-               <div className="mt-3 flex items-center gap-2 px-2 py-1 bg-zinc-900/80 rounded-full border border-zinc-700/50">
-                 <div className="w-1 h-1 bg-green-500 rounded-full"></div>
-                 <div className="w-8 h-0.5 bg-zinc-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 w-2/3 animate-[pulse_1s_infinite]"></div>
-                 </div>
-               </div>
-             )}
+            <FinalIcon className="w-10 h-10 md:w-14 md:h-14 text-blue-600 dark:text-blue-500" />
+            {stage === 2 && (
+              <div className="mt-3 flex items-center gap-2 px-2 py-1 bg-white/80 border-zinc-200 dark:bg-zinc-900/80 rounded-full border dark:border-zinc-700/50">
+                <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                <div className="w-8 h-0.5 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 w-2/3 animate-[pulse_1s_infinite]"></div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -78,16 +78,16 @@ export const Hero: React.FC = () => {
       {/* Elementos de Fondo (Animaciones) */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="hidden lg:block">
-            <DrawingTransformation initialIcon={ClipboardDocumentCheckIcon} finalIcon={SparklesIcon} label="CALIDAD" delay={0} x="4%" y="8%" rotation={-3} />
+          <DrawingTransformation initialIcon={ClipboardDocumentCheckIcon} finalIcon={SparklesIcon} label="CALIDAD" delay={0} x="4%" y="8%" rotation={-3} />
         </div>
         <div className="hidden md:block">
-            <DrawingTransformation initialIcon={PuzzlePieceIcon} finalIcon={CursorArrowRaysIcon} label="LÓGICA" delay={3000} x="88%" y="75%" rotation={2} />
+          <DrawingTransformation initialIcon={PuzzlePieceIcon} finalIcon={CursorArrowRaysIcon} label="LÓGICA" delay={3000} x="88%" y="75%" rotation={2} />
         </div>
         <div className="hidden lg:block">
-            <DrawingTransformation initialIcon={NewspaperIcon} finalIcon={ChartBarIcon} label="DATOS" delay={6000} x="88%" y="12%" rotation={1} />
+          <DrawingTransformation initialIcon={NewspaperIcon} finalIcon={ChartBarIcon} label="DATOS" delay={6000} x="88%" y="12%" rotation={1} />
         </div>
         <div className="hidden md:block">
-            <DrawingTransformation initialIcon={DocumentTextIcon} finalIcon={CalculatorIcon} label="APP" delay={4500} x="5%" y="72%" rotation={-2} />
+          <DrawingTransformation initialIcon={DocumentTextIcon} finalIcon={CalculatorIcon} label="APP" delay={4500} x="5%" y="72%" rotation={-2} />
         </div>
       </div>
 

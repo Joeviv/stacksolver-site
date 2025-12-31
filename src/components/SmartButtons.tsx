@@ -13,11 +13,13 @@ export default function SmartButtons() {
                         href={`/servicios/${section.id}/${section.subsections[0].id}`} // Link to the first subsection or a main section page if it existed
                         className="
               group flex items-center gap-2 px-4 py-2 rounded-full
-              bg-white/5 backdrop-blur-sm border border-white/10
-              text-zinc-300 text-sm font-medium
+              bg-white border border-zinc-200 text-zinc-600
+              dark:bg-white/5 dark:border-white/10 dark:text-zinc-300
+              text-sm font-medium
               transition-all duration-300 ease-out
-              hover:bg-white/10 hover:border-white/20 hover:text-white hover:scale-105
-              hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]
+              hover:scale-105 hover:shadow-lg
+              hover:bg-zinc-50 hover:border-blue-300 hover:text-blue-600 hover:shadow-blue-500/20
+              dark:hover:bg-white/10 dark:hover:border-white/20 dark:hover:text-white dark:hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]
             "
                     >
                         <Icon className="w-4 h-4 text-blue-500 group-hover:text-blue-400 transition-colors" />

@@ -13,39 +13,39 @@ import { EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline';
         
         <!-- Columna Información -->
         <div class="space-y-8">
-            <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight">
+            <h1 class="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-white tracking-tight">
                 Hablemos de <br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">tu Futuro.</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-600">tu Futuro.</span>
             </h1>
-            <p class="text-zinc-400 text-lg leading-relaxed max-w-md">
+            <p class="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed max-w-md">
                 Ya sea que tengas una idea clara o un desafío complejo, estamos aquí para escuchar y construir la solución perfecta.
             </p>
 
-            <div class="space-y-6 pt-8 border-t border-zinc-800">
+            <div class="space-y-6 pt-8 border-t border-zinc-200 dark:border-zinc-800">
                 <div class="flex items-start gap-4">
-                    <div class="p-3 bg-zinc-900 rounded-lg border border-zinc-800">
-                        <EnvelopeIcon className="w-6 h-6 text-blue-500" />
+                    <div class="p-3 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-900 dark:border-zinc-800 shadow-sm dark:shadow-none">
+                        <EnvelopeIcon className="w-6 h-6 text-blue-600 dark:text-blue-500" />
                     </div>
                     <div>
-                        <h3 className="text-white font-medium mb-1">Email Directo</h3>
-                        <a href="mailto:info@stacksolver.tech" class="text-zinc-400 hover:text-white transition-colors">info@stacksolver.tech</a>
+                        <h3 className="text-zinc-900 dark:text-white font-medium mb-1">Email Directo</h3>
+                        <a href="mailto:info@stacksolver.tech" class="text-zinc-600 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-white transition-colors">info@stacksolver.tech</a>
                     </div>
                 </div>
                 
                 <div class="flex items-start gap-4">
-                    <div class="p-3 bg-zinc-900 rounded-lg border border-zinc-800">
-                        <MapPinIcon className="w-6 h-6 text-purple-500" />
+                    <div class="p-3 bg-white border border-zinc-200 rounded-lg dark:bg-zinc-900 dark:border-zinc-800 shadow-sm dark:shadow-none">
+                        <MapPinIcon className="w-6 h-6 text-purple-600 dark:text-purple-500" />
                     </div>
                     <div>
-                        <h3 className="text-white font-medium mb-1">Ubicación</h3>
-                        <p class="text-zinc-400">Bogotá, Colombia</p>
+                        <h3 className="text-zinc-900 dark:text-white font-medium mb-1">Ubicación</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400">Bogotá, Colombia</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Columna Formulario -->
-        <div class="bg-zinc-900/30 border border-zinc-800 rounded-3xl p-6 md:p-10 backdrop-blur-sm shadow-2xl">
+        <div class="bg-white border border-zinc-200 dark:bg-zinc-900/30 dark:border-zinc-800 rounded-3xl p-6 md:p-10 backdrop-blur-sm shadow-xl dark:shadow-2xl">
             <ContactForm client:load />
         </div>
 

@@ -19,8 +19,8 @@ const clarisUrl = "https://www.claris.com/partners/profile/company.20000006479/"
             
             <!-- Header -->
             <div class="text-center space-y-6">
-                <h1 class="text-4xl md:text-6xl font-bold text-white">Sobre Nosotros</h1>
-                <p class="text-xl text-zinc-300 leading-relaxed font-light">
+                <h1 class="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-white">Sobre Nosotros</h1>
+                <p class="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed font-light">
                     StackSolver es un socio tecnológico estratégico. Combinamos ingeniería de software tradicional con la potencia de la Inteligencia Artificial para entregar soluciones que antes eran imposibles.
                 </p>
             </div>
@@ -28,26 +28,26 @@ const clarisUrl = "https://www.claris.com/partners/profile/company.20000006479/"
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {stats.map(stat => (
-                    <div class="p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800 flex flex-col items-center justify-center text-center hover:bg-zinc-900/50 transition-colors">
+                    <div class="p-8 bg-white border border-zinc-200 dark:bg-zinc-900/30 dark:border-zinc-800 flex flex-col items-center justify-center text-center hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors shadow-sm dark:shadow-none">
                         <span class={`text-5xl font-bold mb-2 ${stat.color}`}>{stat.value}</span>
-                        <span class="text-zinc-500 text-sm uppercase tracking-wider">{stat.label}</span>
+                        <span class="text-zinc-600 dark:text-zinc-500 text-sm uppercase tracking-wider">{stat.label}</span>
                     </div>
                 ))}
             </div>
 
             <!-- Sección Claris Partner (Rescatada del sitio antiguo) -->
-            <div class="bg-white text-black rounded-3xl p-8 md:p-12 overflow-hidden relative">
+            <div class="bg-blue-50 text-zinc-900 rounded-3xl p-8 md:p-12 overflow-hidden relative dark:bg-white dark:text-black">
                 <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-3xl font-bold mb-4">Partners Oficiales de Claris en Colombia</h2>
-                        <p class="text-zinc-600 mb-6 leading-relaxed">
+                        <p class="text-zinc-700 mb-6 leading-relaxed">
                             Nuestra alianza con Claris nos permite ofrecerte soluciones de primer nivel con FileMaker, respaldadas por el conocimiento y soporte directo del creador de la plataforma.
                         </p>
                         <a 
                             href={clarisUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-bold hover:bg-zinc-800 transition-colors"
+                            class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 text-white rounded-full font-bold hover:bg-zinc-800 transition-colors"
                         >
                             <ShieldCheckIcon className="w-5 h-5" />
                             Verificar Membresía
@@ -56,7 +56,7 @@ const clarisUrl = "https://www.claris.com/partners/profile/company.20000006479/"
                     <div class="flex justify-center">
                         {/* Si tienes la imagen original, guárdala en public/images/logos/ y descomenta esto. 
                             Por ahora usamos un placeholder visual elegante. */}
-                        <div class="w-64 h-64 bg-zinc-100 rounded-2xl border-2 border-zinc-200 flex flex-col items-center justify-center text-zinc-400 p-4 text-center">
+                        <div class="w-64 h-64 bg-white rounded-2xl border-2 border-zinc-200 flex flex-col items-center justify-center text-zinc-400 p-4 text-center shadow-lg">
                             <BoltIcon className="w-16 h-16 mb-4 text-blue-600" />
                             <span class="font-bold text-zinc-900">Claris FileMaker</span>
                             <span class="text-sm">Certified Partner</span>
@@ -67,15 +67,15 @@ const clarisUrl = "https://www.claris.com/partners/profile/company.20000006479/"
 
              <!-- Valores -->
              <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-8 rounded-3xl border border-zinc-800 bg-zinc-900/20">
-                    <h3 class="text-2xl font-bold text-white mb-4">Misión</h3>
-                    <p class="text-zinc-400 leading-relaxed">
+                <div class="p-8 rounded-3xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900/20 shadow-sm dark:shadow-none">
+                    <h3 class="text-2xl font-bold text-zinc-900 dark:text-white mb-4">Misión</h3>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                         Entender la raíz de tus desafíos de negocio para aplicar la tecnología de forma inteligente, generando un impacto real y medible en tu crecimiento.
                     </p>
                 </div>
-                <div class="p-8 rounded-3xl border border-zinc-800 bg-zinc-900/20">
-                    <h3 class="text-2xl font-bold text-white mb-4">Visión</h3>
-                    <p class="text-zinc-400 leading-relaxed">
+                <div class="p-8 rounded-3xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900/20 shadow-sm dark:shadow-none">
+                    <h3 class="text-2xl font-bold text-zinc-900 dark:text-white mb-4">Visión</h3>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                         Ser el referente latinoamericano en la implementación de tecnologías emergentes (IA Generativa) aplicadas a procesos corporativos reales.
                     </p>
                 </div>

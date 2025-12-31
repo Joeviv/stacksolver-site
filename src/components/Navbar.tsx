@@ -51,10 +51,10 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-900/30 group-hover:scale-110 transition-transform">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
                 <CodeBracketIcon className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-white text-lg tracking-tight">StackSolver</span>
+              <span className="font-bold text-zinc-900 dark:text-white text-lg tracking-tight">StackSolver</span>
             </a>
           </div>
 
@@ -90,7 +90,7 @@ export default function Navbar() {
                 {/* Dropdown Panel */}
                 {activeDropdown === 'services' && (
                   <div className="absolute left-0 mt-2 w-screen max-w-md px-2 sm:px-0 lg:max-w-3xl z-50 transform -translate-x-1/4 lg:-translate-x-1/2">
-                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                    <div className="rounded-lg shadow-lg ring-1 ring-black/5 dark:ring-white/10 overflow-hidden">
                       <div className="relative grid gap-6 bg-white dark:bg-zinc-900 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                         {SERVICES_MENU.map((section) => {
                           const Icon = section.icon;
@@ -171,11 +171,11 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-black border-b border-zinc-800">
+        <div className="md:hidden bg-white dark:bg-black border-b border-zinc-200 dark:border-zinc-800">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a
               href="/"
-              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/') ? 'bg-zinc-900 text-white' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
+              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/') ? 'bg-blue-50 text-blue-600 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white'
                 }`}
             >
               Inicio
@@ -187,17 +187,17 @@ export default function Navbar() {
               </div>
               {SERVICES_MENU.map(section => (
                 <div key={section.id} className="pl-4">
-                  <div className="px-3 py-1 text-sm font-medium text-zinc-300">
+                  <div className="px-3 py-1 text-sm font-medium text-zinc-900 dark:text-zinc-300">
                     {section.title}
                   </div>
-                  <div className="pl-4 mt-1 space-y-1 border-l border-zinc-800 ml-3">
+                  <div className="pl-4 mt-1 space-y-1 border-l border-zinc-200 dark:border-zinc-800 ml-3">
                     {section.subsections.map(sub => (
                       <a
                         key={sub.id}
                         href={`/servicios/${section.id}/${sub.id}`}
                         className={`block px-3 py-2 rounded-md text-sm font-medium ${isActive(`/servicios/${section.id}/${sub.id}`)
-                          ? 'text-blue-400 bg-blue-900/10'
-                          : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
+                          ? 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/10'
+                          : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800'
                           }`}
                       >
                         {sub.title}
@@ -210,7 +210,7 @@ export default function Navbar() {
 
             <a
               href="/nosotros"
-              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/nosotros') ? 'bg-zinc-900 text-white' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
+              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/nosotros') ? 'bg-blue-50 text-blue-600 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white'
                 }`}
             >
               Nosotros
@@ -218,7 +218,7 @@ export default function Navbar() {
 
             <a
               href="/contacto"
-              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/contacto') ? 'bg-zinc-900 text-white' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
+              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/contacto') ? 'bg-blue-50 text-blue-600 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white'
                 }`}
             >
               Contacto

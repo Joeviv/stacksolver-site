@@ -1,5 +1,6 @@
 /* ARCHIVO: src/styles/global.css */
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 
 /* Configuración básica de tema: variables (opcional con TW4 pero útil para referencia) */
 @theme {

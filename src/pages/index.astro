@@ -7,7 +7,10 @@ import SmartButtons from "../components/SmartButtons"; // Importar el nuevo comp
 import { siteSEO } from "../data/seoData";
 
 // Combinar keywords globales + específicas de home
-const pageKeywords = [...siteSEO.global.keywords, ...siteSEO.pages.home.keywords].join(", ");
+const pageKeywords = [
+    ...siteSEO.global.keywords,
+    ...siteSEO.pages.home.keywords,
+].join(", ");
 ---
 
 <Layout
@@ -81,45 +84,62 @@ const pageKeywords = [...siteSEO.global.keywords, ...siteSEO.pages.home.keywords
         </section>
 
         <!-- Sección de Introducción Rápida -->
-        <section class="py-24 bg-zinc-50 dark:bg-black transition-colors duration-300">
+        <section
+            class="py-24 bg-zinc-50 dark:bg-black transition-colors duration-300"
+        >
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div
-                        class="p-8 rounded-3xl bg-white border border-zinc-200 hover:border-zinc-300 dark:bg-zinc-900/20 dark:border-zinc-800/50 dark:hover:border-zinc-700 transition-colors shadow-sm dark:shadow-none"
+                    <a
+                        href="/servicios/enterprise/ent-erp"
+                        class="block p-8 rounded-3xl bg-white border border-zinc-200 hover:border-blue-500 hover:shadow-lg dark:bg-zinc-900/20 dark:border-zinc-800/50 dark:hover:border-zinc-700 transition-all duration-300 group"
                     >
-                        <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-3">
+                        <h3
+                            class="text-xl font-bold text-zinc-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+                        >
                             Consultoría Estratégica
                         </h3>
-                        <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed"
+                        >
                             No solo escribimos código. Entendemos tu modelo de
                             negocio para proponer soluciones que generan ROI
                             real.
                         </p>
-                    </div>
-                    <div
-                        class="p-8 rounded-3xl bg-white border border-zinc-200 hover:border-zinc-300 dark:bg-zinc-900/20 dark:border-zinc-800/50 dark:hover:border-zinc-700 transition-colors shadow-sm dark:shadow-none"
+                    </a>
+                    <a
+                        href="/servicios/web/web-dev"
+                        class="block p-8 rounded-3xl bg-white border border-zinc-200 hover:border-blue-500 hover:shadow-lg dark:bg-zinc-900/20 dark:border-zinc-800/50 dark:hover:border-zinc-700 transition-all duration-300 group"
                     >
-                        <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-3">
+                        <h3
+                            class="text-xl font-bold text-zinc-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+                        >
                             Desarrollo a Medida
                         </h3>
-                        <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed"
+                        >
                             Expertos en React, Astro, Claris FileMaker y
                             ecosistemas Cloud. Software que se adapta a ti, no
                             al revés.
                         </p>
-                    </div>
-                    <div
-                        class="p-8 rounded-3xl bg-white border border-zinc-200 hover:border-zinc-300 dark:bg-zinc-900/20 dark:border-zinc-800/50 dark:hover:border-zinc-700 transition-colors shadow-sm dark:shadow-none"
+                    </a>
+                    <a
+                        href="/servicios/grc/grc-gov"
+                        class="block p-8 rounded-3xl bg-white border border-zinc-200 hover:border-blue-500 hover:shadow-lg dark:bg-zinc-900/20 dark:border-zinc-800/50 dark:hover:border-zinc-700 transition-all duration-300 group"
                     >
-                        <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-3">
+                        <h3
+                            class="text-xl font-bold text-zinc-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+                        >
                             Seguridad y GRC
                         </h3>
-                        <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed"
+                        >
                             Protege tus activos. Implementamos marcos de
                             gobernanza, riesgo y cumplimiento (GRC) de clase
                             mundial.
                         </p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>

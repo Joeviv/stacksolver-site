@@ -48,7 +48,7 @@ export default function ContactForm() {
         </div>
         <h3 className="text-2xl font-bold text-white mb-2">¡Mensaje Enviado!</h3>
         <p className="text-zinc-400">Gracias por contactarnos. Nuestro equipo revisará tu solicitud y te responderá en breve.</p>
-        <button 
+        <button
           onClick={() => setStatus('IDLE')}
           className="mt-8 text-green-400 hover:text-green-300 text-sm font-medium underline underline-offset-4"
         >
@@ -62,87 +62,87 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-            <label htmlFor="nombre" className="text-sm font-medium text-zinc-400 ml-1">Nombre Completo</label>
-            <input 
-                required 
-                type="text" 
-                name="nombre" 
-                id="nombre"
-                placeholder="Juan Pérez" 
-                className="w-full bg-black border border-zinc-800 rounded-xl p-4 text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700" 
-            />
+          <label htmlFor="nombre" className="text-sm font-medium text-zinc-700 dark:text-zinc-400 ml-1">Nombre Completo</label>
+          <input
+            required
+            type="text"
+            name="nombre"
+            id="nombre"
+            placeholder="Juan Pérez"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+          />
         </div>
         <div className="space-y-2">
-            <label htmlFor="empresa" className="text-sm font-medium text-zinc-400 ml-1">Empresa</label>
-            <input 
-                type="text" 
-                name="empresa" 
-                id="empresa"
-                placeholder="Tu Empresa S.A.S" 
-                className="w-full bg-black border border-zinc-800 rounded-xl p-4 text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700" 
-            />
+          <label htmlFor="empresa" className="text-sm font-medium text-zinc-700 dark:text-zinc-400 ml-1">Empresa</label>
+          <input
+            type="text"
+            name="empresa"
+            id="empresa"
+            placeholder="Tu Empresa S.A.S"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+          />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-zinc-400 ml-1">Correo Electrónico</label>
-            <input 
-                required 
-                type="email" 
-                name="email" 
-                id="email"
-                placeholder="juan@empresa.com" 
-                className="w-full bg-black border border-zinc-800 rounded-xl p-4 text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700" 
-            />
+          <label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-400 ml-1">Correo Electrónico</label>
+          <input
+            required
+            type="email"
+            name="email"
+            id="email"
+            placeholder="juan@empresa.com"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+          />
         </div>
         <div className="space-y-2">
-            <label htmlFor="telefono" className="text-sm font-medium text-zinc-400 ml-1">Teléfono (Opcional)</label>
-            <input 
-                type="tel" 
-                name="telefono" 
-                id="telefono"
-                placeholder="+57 300 123 4567" 
-                className="w-full bg-black border border-zinc-800 rounded-xl p-4 text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700" 
-            />
+          <label htmlFor="telefono" className="text-sm font-medium text-zinc-700 dark:text-zinc-400 ml-1">Teléfono (Opcional)</label>
+          <input
+            type="tel"
+            name="telefono"
+            id="telefono"
+            placeholder="+57 300 123 4567"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+          />
         </div>
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="mensaje" className="text-sm font-medium text-zinc-400 ml-1">¿Cómo podemos ayudarte?</label>
-        <textarea 
-            required
-            name="mensaje" 
-            id="mensaje"
-            rows={5} 
-            placeholder="Cuéntanos sobre tu proyecto..." 
-            className="w-full bg-black border border-zinc-800 rounded-xl p-4 text-white focus:border-blue-500 outline-none resize-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
+        <label htmlFor="mensaje" className="text-sm font-medium text-zinc-700 dark:text-zinc-400 ml-1">¿Cómo podemos ayudarte?</label>
+        <textarea
+          required
+          name="mensaje"
+          id="mensaje"
+          rows={5}
+          placeholder="Cuéntanos sobre tu proyecto..."
+          className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none resize-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
         ></textarea>
       </div>
 
       {/* Campos Ocultos de Formspree */}
       <input type="hidden" name="_subject" value="Nuevo Mensaje de Contacto desde Stacksolver.tech" />
-      <input type="text" name="_gotcha" style={{display: 'none'}} />
+      <input type="text" name="_gotcha" style={{ display: 'none' }} />
 
       {status === 'ERROR' && (
         <div className="flex items-center gap-2 text-red-400 bg-red-900/20 p-4 rounded-lg border border-red-900/50">
-            <ExclamationCircleIcon className="w-5 h-5" />
-            <span className="text-sm">{errorMessage || "Hubo un error al enviar el mensaje."}</span>
+          <ExclamationCircleIcon className="w-5 h-5" />
+          <span className="text-sm">{errorMessage || "Hubo un error al enviar el mensaje."}</span>
         </div>
       )}
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         disabled={status === 'SUBMITTING'}
-        className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-black font-bold py-4 rounded-xl dark:hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {status === 'SUBMITTING' ? (
-            'Enviando...'
+          'Enviando...'
         ) : (
-            <>
-                Enviar Mensaje
-                <PaperAirplaneIcon className="w-5 h-5" />
-            </>
+          <>
+            Enviar Mensaje
+            <PaperAirplaneIcon className="w-5 h-5" />
+          </>
         )}
       </button>
     </form>

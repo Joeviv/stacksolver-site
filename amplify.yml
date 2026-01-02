@@ -15,7 +15,3 @@ frontend:
     baseDirectory: dist
     files:
       - '**/*'
-  cache:
-    paths:
-      - .pnpm-store/**/*
-      - node_modules/**/*

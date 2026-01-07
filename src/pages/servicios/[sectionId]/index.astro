@@ -47,7 +47,8 @@ const fullDescription = getDescription(section.id);
 
 const videoMapping: Record<string, string> = {
     enterprise: "1134880582",
-    // Agregar otros IDs aquí: 'ai-local': 'ID_VIDEO',
+    grc: "1152285799",
+    "ai-local": "1152338281",
 };
 const videoId = videoMapping[section.id];
 ---
@@ -119,7 +120,7 @@ const videoId = videoMapping[section.id];
                                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                                 allowfullscreen
                                 title={`Video ${title}`}
-                            ></iframe>
+                            />
                         );
                     } else {
                         return (
@@ -130,7 +131,7 @@ const videoId = videoMapping[section.id];
                                 allow="autoplay; fullscreen; picture-in-picture"
                                 allowfullscreen
                                 title="Presentación del Servicio"
-                            ></iframe>
+                            />
                         );
                     }
                 })()

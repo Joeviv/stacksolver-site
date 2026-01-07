@@ -10,7 +10,7 @@ export default function SmartButtons() {
                 return (
                     <a
                         key={section.id}
-                        href={`/servicios/${section.id}/${section.subsections[0].id}`} // Link to the first subsection or a main section page if it existed
+                        href={`/servicios/${section.id}`} // Link to the main section page
                         className="
               group flex items-center gap-2 px-4 py-2 rounded-full
               bg-white border border-zinc-200 text-zinc-600

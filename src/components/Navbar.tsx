@@ -96,13 +96,13 @@ export default function Navbar() {
                           const Icon = section.icon;
                           return (
                             <div key={section.id} className="group relative flex items-start p-3 -m-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
-                              <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-100 dark:bg-blue-600/10 text-blue-600 dark:text-blue-500 sm:h-12 sm:w-12">
+                              <a href={`/servicios/${section.id}`} className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-100 dark:bg-blue-600/10 text-blue-600 dark:text-blue-500 sm:h-12 sm:w-12 hover:scale-110 transition-transform">
                                 <Icon className="h-6 w-6" aria-hidden="true" />
-                              </div>
+                              </a>
                               <div className="ml-4">
-                                <p className="text-base font-medium text-zinc-900 dark:text-white">
+                                <a href={`/servicios/${section.id}`} className="block text-base font-medium text-zinc-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
                                   {section.title}
-                                </p>
+                                </a>
                                 <div className="mt-1 space-y-1">
                                   {section.subsections.map(sub => (
                                     <a
@@ -187,9 +187,9 @@ export default function Navbar() {
               </div>
               {SERVICES_MENU.map(section => (
                 <div key={section.id} className="pl-4">
-                  <div className="px-3 py-1 text-sm font-medium text-zinc-900 dark:text-zinc-300">
+                  <a href={`/servicios/${section.id}`} className="block px-3 py-1 text-sm font-medium text-zinc-900 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400">
                     {section.title}
-                  </div>
+                  </a>
                   <div className="pl-4 mt-1 space-y-1 border-l border-zinc-200 dark:border-zinc-800 ml-3">
                     {section.subsections.map(sub => (
                       <a

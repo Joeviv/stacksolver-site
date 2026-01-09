@@ -14,6 +14,7 @@ export type ImplementationStep = {
   step: number;
   title: string;
   description: string;
+  longDescription?: string;
 };
 
 export type FeatureItem = {
@@ -31,6 +32,7 @@ export type SubSection = {
   image: string;
   isInteractiveBuilder?: boolean;
   techBadge?: string;
+  videoId?: string;
 };
 
 export type Section = {
@@ -150,17 +152,46 @@ export const SERVICES_MENU: Section[] = [
     subsections: [
       {
         id: 'ent-erp',
-        title: 'ERP Personalizado',
-        shortDescription: 'Sistemas de Planificación hechos a la medida.',
-        fullDescription: 'Sistemas ERP personalizados que centralizan operaciones, contabilidad, ventas e inventario en una sola plataforma.',
-        techBadge: 'Desarrollado con Claris FileMaker',
+        title: 'ERP GRC Enterprise',
+        shortDescription: 'Gobernanza, Riesgo y Cumplimiento en una sola plataforma.',
+        fullDescription: 'Más que un software, es un modelo de gestión. Centralice su operación bajo estándares GRC (Gobernanza, Riesgo y Cumplimiento), integrando sus procesos críticos (BPM), financieros y operativos en una "Fuente Única de Verdad" desarrollada sobre Claris FileMaker.',
+        techBadge: 'Desarrollado con Claris FileMaker (Partner Oficial)',
+        videoId: '1134880582',
         implementationPlan: [
-          { step: 1, title: 'Levantamiento', description: 'Mapeo de flujos operativos.' },
-          { step: 2, title: 'Arquitectura', description: 'Diseño relacional en Claris FileMaker.' },
-          { step: 3, title: 'Desarrollo Modular', description: 'Construcción ágil por módulos.' },
-          { step: 4, title: 'Migración', description: 'Importación de datos y capacitación.' }
+          {
+            step: 1,
+            title: 'Entendimiento',
+            description: 'Levantamiento de infraestructura y Mapa de Actores.',
+            longDescription: 'Iniciamos con una inmersión profunda en su operación. No instalamos nada sin entender. Mapeamos su infraestructura actual (Servidores, Redes, Dispositivos), identificamos a los Actores Clave (Stakeholders) y documentamos los "Pain Points" que frenan su crecimiento. El entregable es un Diagnóstico Técnico y Operativo claro.'
+          },
+          {
+            step: 2,
+            title: 'Capacitación Core',
+            description: 'Entrenamiento intensivo antes de la carga de datos.',
+            longDescription: 'Rompemos el paradigma tradicional. Antes de migrar datos, entrenamos a su equipo en los módulos base: Gestión de Recursos, Actores y Procesos. Aseguramos que los líderes de área dominen la herramientas básicas y "hablen el idioma" del nuevo ERP. Esto reduce la resistencia al cambio drásticamente.'
+          },
+          {
+            step: 3,
+            title: 'Implementación',
+            description: 'Despliegue granular por Áreas y Privilegios.',
+            longDescription: 'Desplegamos los módulos estratégicos por fases: primero Financiera para control de caja, luego Comercial para ingresos, y finalmente Operativa para el "core business". Configuramos roles de seguridad granular (Privilegios) para que cada usuario vea estrictamente lo que necesita. La seguridad es la prioridad.'
+          },
+          {
+            step: 4,
+            title: 'Ajuste 70/30',
+            description: 'Estándar probado (70%) + Personalización (30%).',
+            longDescription: 'Entregamos el 70% del sistema basado en nuestras mejores prácticas GRC (probadas en múltiples industrias) para agilidad. El 30% restante lo dedicamos a personalizar esos flujos específicos que son su ventaja competitiva. El resultado: Un ERP robusto pero flexible que se adapta a usted, no al revés.'
+          }
         ],
-        features: ['Multi-usuario', 'Reportes personalizados', 'Facturación electrónica', 'Seguridad basada en roles'],
+        features: [
+          { title: 'BPM & Procesos', description: 'El "cerebro" del sistema. Documentación viva de sus procesos, políticas y manuales, integrados en el flujo diario.' },
+          { title: 'Stakeholders 360', description: 'CRM unificado que vincula a Clientes, Proveedores y Empleados con sus contratos y riesgos en una sola vista.' },
+          { title: 'Gestión Financiera', description: 'Control presupuestal en tiempo real. Compare Presupuesto vs Ejecución al instante, sin esperar cierres contables.' },
+          { title: 'Semáforos GRC', description: 'Sistema de alertas tempranas. Identifique desviaciones de cumplimiento o riesgos operativos antes de que se materialicen.' },
+          { title: 'Gestión Documental', description: 'Biblioteca centralizada para contratos y actas. Versionamiento automático y permisos de acceso estrictos.' },
+          { title: 'Auditoría & Logs', description: 'Trazabilidad total. Sepa quién hizo qué, cuándo y desde qué dispositivo. Seguridad de grado bancario.' },
+          { title: 'Movilidad (iPad/iOS)', description: 'Operación real en campo. App nativa para técnicos y comerciales que funciona 100% Offline y sincroniza al volver.' }
+        ],
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop'
       },
       {

@@ -42,6 +42,7 @@ const {
     implementationPlan,
     techBadge,
     shortDescription,
+    videoId,
 } = subsection;
 ---
 
@@ -94,18 +95,20 @@ const {
                     </p>
                 </div>
 
-                {/* Grid de Características */}
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+                {/* Grid de Características (Vertical list) */}
+                <div class="grid grid-cols-1 gap-6 mb-12">
                     {
                         features.map((feature) => (
-                            <div class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none">
-                                <CheckCircleIcon className="w-5 h-5 text-green-600 dark:text-green-500 flex-shrink-0 mt-0.5" />
-                                <div class="flex flex-col">
-                                    <span class="text-zinc-700 dark:text-zinc-300 text-sm font-medium">
-                                        {typeof feature === 'string' ? feature : feature.title}
+                            <div class="flex items-start gap-4 p-6 rounded-2xl bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none hover:border-blue-500/30 transition-colors">
+                                <CheckCircleIcon className="w-6 h-6 text-green-600 dark:text-green-500 flex-shrink-0 mt-1" />
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-zinc-900 dark:text-white text-lg font-bold">
+                                        {typeof feature === "string"
+                                            ? feature
+                                            : feature.title}
                                     </span>
-                                    {typeof feature !== 'string' && (
-                                        <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+                                    {typeof feature !== "string" && (
+                                        <p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                             {feature.description}
                                         </p>
                                     )}
@@ -115,47 +118,9 @@ const {
                     }
                 </div>
 
-                {/* Plan de Implementación (Estático) */}
-                <div
-                    class="bg-white dark:bg-zinc-900/20 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 shadow-sm dark:shadow-none"
-                >
-                    <h3
-                        class="text-2xl font-bold text-zinc-900 dark:text-white mb-8 flex items-center gap-2"
-                    >
-                        <ClockIcon className="w-6 h-6 text-blue-500" />
-                        Plan de Implementación
-                    </h3>
-                    <div class="space-y-0 relative">
-                        {/* Línea Vertical Conectora */}
-                        <div
-                            class="absolute left-[19px] top-2 bottom-4 w-0.5 bg-zinc-200 dark:bg-zinc-800"
-                        >
-                        </div>
+                {/* Plan de Implementación moved to full width below */}
 
-                        {
-                            implementationPlan.map((step) => (
-                                <div class="relative flex gap-6 mb-8 last:mb-0 group">
-                                    <div class="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 group-hover:border-blue-500 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-colors flex items-center justify-center text-sm font-bold text-zinc-500 dark:text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                                        {step.step}
-                                    </div>
-                                    <div class="pt-1">
-                                        <h4 class="text-zinc-900 dark:text-white font-bold text-lg mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                            {step.title}
-                                        </h4>
-                                        <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
-                                            {step.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-
-                {/* INTERACTIVIDAD: Gantt Chart (Componente React) */}
-                <div class="mt-12">
-                    <ProjectGantt client:visible steps={implementationPlan} />
-                </div>
+                {/* Gantt moved to full width below */}
 
                 <div class="mt-12">
                     <a
@@ -167,52 +132,131 @@ const {
                 </div>
             </div>
 
-            {/* Columna Derecha: Imagen Destacada */}
+            {/* Columna Derecha: Imagen/Video Destacada */}
             <div class="xl:col-span-5">
-                <div class="sticky top-8 space-y-6">
+                <div class="space-y-6">
                     <div class="relative group perspective-1000">
-                        <div
-                            class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"
-                        >
-                        </div>
-                        <div
-                            class="relative rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 aspect-[3/4] shadow-2xl"
-                        >
-                            {
-                                image && (
-                                    <img
-                                        src={image}
-                                        alt={title}
-                                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        {
+                            videoId ? (
+                                <div class="relative rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-900 aspect-video shadow-2xl">
+                                    <iframe
+                                        src={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479&background=1`}
+                                        class="w-full h-full"
+                                        frameborder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture"
+                                        title={title}
                                     />
-                                )
-                            }
-                            {
-                                !image && (
-                                    <div class="w-full h-full flex items-center justify-center bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-700">
-                                        <span class="text-sm">
-                                            Imagen no disponible
-                                        </span>
+                                </div>
+                            ) : (
+                                <>
+                                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000" />
+                                    <div class="relative rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 aspect-[3/4] shadow-2xl">
+                                        {image && (
+                                            <img
+                                                src={image}
+                                                alt={title}
+                                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                            />
+                                        )}
+                                        {!image && (
+                                            <div class="w-full h-full flex items-center justify-center bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-700">
+                                                <span class="text-sm">
+                                                    Imagen no disponible
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {/* Overlay Gradient */}
+                                        <div class="absolute inset-0 bg-gradient-to-t from-white/90 dark:from-zinc-950 via-transparent to-transparent opacity-80" />
+
+                                        <div class="absolute bottom-8 left-8 right-8">
+                                            <p class="text-zinc-900 dark:text-white font-medium text-lg italic">
+                                                "{shortDescription}"
+                                            </p>
+                                        </div>
                                     </div>
-                                )
-                            }
+                                </>
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            {/* Overlay Gradient */}
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-white/90 dark:from-zinc-950 via-transparent to-transparent opacity-80"
-                            >
-                            </div>
+        {/* FULL WIDTH SECTION: Roadmap & Details */}
+        <div class="mt-24 border-t border-zinc-200 dark:border-zinc-800 pt-16">
+            <h2
+                class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-16 text-center"
+            >
+                Ruta de Transformación Digital
+            </h2>
 
-                            <div class="absolute bottom-8 left-8 right-8">
-                                <p
-                                    class="text-zinc-900 dark:text-white font-medium text-lg italic"
-                                >
-                                    "{shortDescription}"
+            {/* 1. Horizontal Steps Flow */}
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24 relative"
+            >
+                {/* Connecting Line (Desktop) */}
+                <div
+                    class="hidden lg:block absolute top-8 left-0 w-full h-0.5 bg-zinc-200 dark:bg-zinc-800 -z-10"
+                >
+                </div>
+
+                {
+                    implementationPlan.map((step) => (
+                        <div class="relative group">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="w-16 h-16 rounded-2xl bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 group-hover:border-blue-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center text-xl font-bold text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-6 shadow-sm z-10">
+                                    {step.step}
+                                </div>
+                                <h3 class="text-xl font-bold text-zinc-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                    {step.title}
+                                </h3>
+                                <p class="text-zinc-500 dark:text-zinc-400 text-sm px-4">
+                                    {step.description}
                                 </p>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    ))
+                }
+            </div>
+
+            {/* 2. Interactive Gantt */}
+            <div class="max-w-5xl mx-auto mb-24">
+                <h3
+                    class="text-2xl font-bold text-zinc-900 dark:text-white mb-8 text-center flex items-center justify-center gap-2"
+                >
+                    <ClockIcon className="w-6 h-6 text-blue-500" />
+                    Cronograma de Ejecución
+                </h3>
+                <ProjectGantt client:visible steps={implementationPlan} />
+                <p
+                    class="text-center text-zinc-500 dark:text-zinc-400 mt-4 text-sm"
+                >
+                    * Metodología ágil: Entregas continuas cada 2 semanas.
+                </p>
+            </div>
+
+            {/* 3. Detailed Phase Description */}
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+            >
+                {
+                    implementationPlan.map((step) => (
+                        <div class="bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl p-8 border border-zinc-100 dark:border-zinc-800/50 hover:border-blue-500/30 transition-colors">
+                            <div class="flex items-center gap-4 mb-4">
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full">
+                                    Fase {step.step}
+                                </span>
+                                <h4 class="text-lg font-bold text-zinc-900 dark:text-white">
+                                    {step.title}
+                                </h4>
+                            </div>
+                            <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed text-sm">
+                                {step.longDescription || step.description}
+                            </p>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </div>

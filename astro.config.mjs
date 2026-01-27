@@ -4,6 +4,9 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  security: {
+    checkOrigin: true
+  },
   site: 'https://www.stacksolver.tech',
   integrations: [
     react(),

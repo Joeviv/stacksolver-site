@@ -10,9 +10,9 @@
 
 | Aspecto | Estado |
 |---------|--------|
-| **Framework** | Astro 5.x ✅ |
-| **React** | 18.3.1 ✅ |
-| **Tailwind** | 3.x via PostCSS |
+| **Framework** | Astro 6.0 Beta 4 🚀 |
+| **react** | 19.x ✅ |
+| **Tailwind** | 4.x via Vite |
 | **Vulnerabilidades** | ✅ 0 |
 | **Deploy** | AWS Amplify |
 | **Repositorio** | Joeviv/stacksolver-site |
@@ -21,35 +21,39 @@
 
 ## 🔧 Stack Técnico
 
-- **Framework**: Astro 4.3.5
-- **UI Library**: React 18.2.0
-- **Styling**: TailwindCSS 3.4.1
-- **Icons**: Heroicons React 2.1.1
-- **SEO**: @astrojs/sitemap 3.0.5
+- **Framework**: Astro 6.0 Beta
+- **UI Library**: React 19.0
+- **Styling**: TailwindCSS 4.x
+- **Icons**: Heroicons React 2.2
+- **SEO**: @astrojs/sitemap 3.6 Beta
 
 ---
 
 ## 📋 Historial de Cambios
 
+### 2026-01-27
+- **Upgrade Major**: Astro 6 Beta Upgrade
+- **Seguridad**: Implementado CSP Estricto, HTTP Security Headers y checkOrigin
+- Actualización a React 19
+
 ### 2025-12-08
 - Ejecutado `npm audit fix` (4 vulnerabilidades requieren Astro v5)
 - Documentación de seguridad creada
-
-### (Historial anterior pendiente de documentar)
 
 ---
 
 ## 🎯 Próximos Cambios Planificados
 
-- [ ] (Por definir)
+- [ ] Verificar Server Islands (Astro 6 Feature)
+- [ ] Implementar animaciones de ViewTransitions nativas
 
 ---
 
 ## ⚙️ Preferencias de Desarrollo
 
 ```yaml
-Package Manager: pnpm (preferido) / npm
-Astro Version: v4.x (no actualizar a v5 sin pruebas)
+Package Manager: pnpm (MANDATORIO)
+Astro Version: v6.x Beta
 Deployment: AWS Amplify (auto-deploy desde main)
 Branch Strategy: main (producción)
 ```
@@ -60,7 +64,8 @@ Branch Strategy: main (producción)
 
 - **GitHub**: Joeviv/stacksolver-site
 - **2FA**: ✅ YubiKey + Passkeys
-- **Dependabot**: ⏳ Por activar
+- **Dependabot**: ✅ Activo
+- **Hardening**: ✅ CSP + Headers Activos
 
 ---
 

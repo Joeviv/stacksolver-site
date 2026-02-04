@@ -7,9 +7,10 @@ interface Props {
 	title: string;
 	description?: string;
 	image?: string;
-    keywords?: string; // Nuevo prop opcional
+	keywords?: string; // Nuevo prop opcional
 	type?: "website" | "article";
 	canonicalURL?: string;
+    robots?: string; // Control de indexación
 }
 
 const {
@@ -19,6 +20,7 @@ const {
     keywords = "",
 	type = "website",
 	canonicalURL = Astro.url.href,
+    robots = "index, follow", // Default: indexar
 } = Astro.props;
 
 const siteUrl = Astro.site ? Astro.site.href : "https://www.stacksolver.tech";
@@ -59,6 +61,7 @@ const socialImageURL = new URL(image, siteUrl).href;
 		<title>{title}</title>
 		<meta name="description" content={description} />
         {keywords && <meta name="keywords" content={keywords} />}
+        <meta name="robots" content={robots} />
 		<link rel="canonical" href={canonicalURL} />
 
 		<!-- Open Graph / Facebook -->

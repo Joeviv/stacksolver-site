@@ -1,0 +1,251 @@
+---
+import EstimateTemplate from "../../../components/templates/EstimateTemplate.astro";
+---
+
+<EstimateTemplate
+  clientName="Biopromedic"
+  projectName="Transformación Digital y Gestión Administrativa"
+  date="2026-02-04"
+  status="Draft"
+  hideHeader={true}
+>
+  <div class="max-w-4xl mx-auto text-zinc-800 dark:text-zinc-200">
+    <!-- Intro -->
+    <section class="mb-12">
+        <h1 class="text-3xl font-bold mb-2 text-zinc-900 dark:text-white">Propuesta de Proyecto: Transformación Digital y Gestión Administrativa Biopromedic</h1>
+        <p class="text-zinc-500 mb-8 border-b pb-4">Para: Paola y Felipe | De: Stacksolver</p>
+
+        <p class="leading-relaxed mb-4">
+            Hola Paola y Felipe,<br/><br/>
+            Fue muy productivo conversar con ustedes y entender a fondo el momento crucial que vive Biopromedic. Identificamos claramente que tienen el conocimiento médico y la calidad humana, pero las herramientas actuales (y el desorden operativo natural del crecimiento) les están costando tiempo, dinero y tranquilidad.
+        </p>
+
+        <h3 class="text-xl font-bold mt-8 mb-4 text-zinc-900 dark:text-white">¿Por qué una solución a la medida y no un "paquete estándar"?</h3>
+        <p class="leading-relaxed mb-4">
+            Antes de pasar a los números, es vital hacer una distinción. En el mercado existen plataformas genéricas con costos de suscripción bajos, pero tienen dos problemas ocultos: son rígidas (ustedes deben cambiar su empresa para adaptarse al software) y se entregan "vacías" (la carga de subir datos y configurar recae 100% en ustedes).
+        </p>
+        <p class="leading-relaxed mb-4">
+            Nuestra propuesta en Stacksolver es diferente: entregamos una solución "Llave en Mano". Nosotros adaptamos la tecnología a sus procesos reales, migramos su información y les entregamos el sistema funcionando con datos reales y pruebas de uso. No vendemos solo el vehículo, les enseñamos a manejarlo y se los entregamos con gasolina.
+        </p>
+        <p class="leading-relaxed">
+            A continuación, presentamos la estructura del proyecto por fases para retomar el control.
+        </p>
+    </section>
+
+    <!-- Enfoque -->
+    <section class="mb-12 bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg border border-zinc-200 dark:border-zinc-800">
+        <h2 class="text-xl font-bold mb-4 text-zinc-900 dark:text-white">Enfoque del Proyecto</h2>
+        <p class="mb-4">Nuestro objetivo es implementar un Sistema de Gestión Administrativa y Operativa (ERP/CRM) a la medida.</p>
+        <div class="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 text-sm">
+            <p><strong>⚠️ Aclaración Importante:</strong> Esta solución NO es un software contable (no reemplaza la herramienta de impuestos de su contador). Es una herramienta de Gestión Operativa diseñada para controlar el negocio día a día. Sin embargo, el sistema generará y exportará reportes organizados listos para que su contabilidad los procese sin digitación manual.</p>
+        </div>
+    </section>
+
+    <!-- Fases Accordion -->
+    <section class="mb-12 space-y-4">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Fases de Implementación e Inversión (Servicios Stacksolver)</h2>
+        <p class="mb-6">Nuestra recomendación es iniciar con la Fase 1 para solucionar el problema de caja. Las siguientes fases se activan progresivamente.</p>
+
+        <!-- Fase 1 -->
+        <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden" open>
+            <summary class="flex justify-between items-center p-6 cursor-pointer bg-blue-50/50 dark:bg-blue-900/10 hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-colors">
+                <span class="font-bold text-lg text-blue-800 dark:text-blue-300">Fase 1: Control Financiero y Tesorería (Prioridad Inmediata)</span>
+                <span class="transform group-open:rotate-180 transition-transform text-blue-500">▼</span>
+            </summary>
+            <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                <p class="mb-4">El objetivo es blindar la caja, organizar los ingresos y reducir costos de facturación.</p>
+                <div class="mb-4">
+                    <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Módulo de Tesorería (Registro ágil de Ingresos y Egresos).</li>
+                        <li>Lógica de "Billetera Virtual" y Anticipos: Para recibir dinero y facturar posteriormente por paquetes.</li>
+                        <li>Gestión de Pagos Recurrentes (automatización de cuentas por pagar fijas).</li>
+                        <li>Dashboard financiero básico y exportación de datos para el contador.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+                    <span class="mb-2 sm:mb-0"><strong>Tiempo estimado:</strong> 5 semanas.</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Servicios Stacksolver: $3.200.000 COP</span>
+                </div>
+            </div>
+        </details>
+
+        <!-- Fase 2 -->
+        <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                <span class="font-bold text-lg">Fase 2: Centralización de Datos e Inventario</span>
+                <span class="transform group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+             <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                <p class="mb-4">Organizar la información para dejar de depender de la memoria o de cuadernos.</p>
+                <div class="mb-4">
+                    <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Migración y limpieza de base de datos actual (Clientes/Mascotas).</li>
+                        <li>Historia Clínica Digital unificada.</li>
+                        <li>Control de Inventario (Kardex) y alertas de stock bajo.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+                    <span class="mb-2 sm:mb-0"><strong>Tiempo estimado:</strong> 5 - 6 semanas.</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Servicios Stacksolver: $3.400.000 COP</span>
+                </div>
+            </div>
+        </details>
+
+        <!-- Fase 3 -->
+        <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                <span class="font-bold text-lg">Fase 3: Agenda Inteligente y Cultura de Citas</span>
+                <span class="transform group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+             <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                <p class="mb-4">Transformar la cultura de "llegada espontánea" a "agenda programada".</p>
+                <div class="mb-4">
+                    <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Calendario visual interactivo (Agenda por doctores/servicios).</li>
+                        <li>Bloques de disponibilidad.</li>
+                        <li>Gestión de consumo de "Paquetes Comerciales" (Saber cuántas sesiones le quedan al cliente).</li>
+                         <li>Integración de notificaciones básicas.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+                    <span class="mb-2 sm:mb-0"><strong>Tiempo estimado:</strong> 5 semanas.</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Servicios Stacksolver: $1.800.000 COP</span>
+                </div>
+            </div>
+        </details>
+
+        <!-- Fase 4 -->
+        <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                <span class="font-bold text-lg">Fase 4: Expansión Virtual y Clientes 24/7</span>
+                <span class="transform group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+             <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                <div class="mb-4">
+                    <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Portal de autogestión para clientes o módulo de Pedidos Express (Domicilios/Recogida en portería).</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+                    <span class="mb-2 sm:mb-0"><strong>Tiempo estimado:</strong> 5 semanas.</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Servicios Stacksolver: $2.300.000 COP</span>
+                </div>
+            </div>
+        </details>
+
+         <!-- Fase 5 -->
+        <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                <span class="font-bold text-lg">Fase 5: Integración Facturación Electrónica</span>
+                <span class="transform group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+             <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                <div class="mb-4">
+                    <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                         <li>Conexión técnica directa con proveedor tecnológico para emisión legal desde el sistema.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+                    <span class="mb-2 sm:mb-0"><strong>Tiempo estimado:</strong> 4 semanas.</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Servicios Stacksolver: $2.000.000 COP</span>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <!-- Tecnología y Movilidad -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Tecnología y Movilidad: ¿Cómo funcionará su sistema?</h2>
+        
+        <p class="mb-4">
+            Olvidamos mencionar un punto clave sobre la potencia de esta tecnología. Biopromedic tendrá acceso a una solución <strong>100% en la nube</strong>, soportada por <strong>Claris Inc. (filial de Apple)</strong>. Esto significa que cuentan con el respaldo de una de las empresas más grandes del mundo, garantizando todos los protocolos de seguridad y tranquilidad en el manejo de su infraestructura, sin que ustedes deban comprar servidores físicos.
+        </p>
+
+        <p class="mb-6 font-medium text-zinc-800 dark:text-zinc-200">
+            ¿Cómo opera en el día a día? En cada sede podrán usar el sistema desde dispositivos móviles (iPads, iPhones) o computadores.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-lg border border-blue-100 dark:border-blue-900/30">
+                <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2">
+                    <span>🔹</span> Movilidad Total
+                </h3>
+                <p class="text-sm text-zinc-700 dark:text-zinc-300">
+                    La gran ventaja es que no dependen de una ubicación fija. Pueden llevar este sistema a cualquier lado para atender y gestionar solicitudes desde donde estén. Por ejemplo: pueden atender clientes desde sus hogares e ir gestionando requerimientos en vivo, registrando pagos y revisando agendas en tiempo real.
+                </p>
+            </div>
+
+            <div class="bg-indigo-50 dark:bg-indigo-900/10 p-5 rounded-lg border border-indigo-100 dark:border-indigo-900/30">
+                <h3 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2 flex items-center gap-2">
+                    <span>🔹</span> Recuperación de Espacio
+                </h3>
+                <p class="text-sm text-zinc-700 dark:text-zinc-300">
+                    Al implementar este sistema, lograremos descongestionar la sede. Los clientes frecuentes se manejarán de forma inteligente con programaciones y entregas a domicilio (o recogida rápida), liberando el espacio físico para impresionar y atender mejor a los clientes nuevos que sí requieren la visita presencial.
+                </p>
+            </div>
+
+             <div class="bg-teal-50 dark:bg-teal-900/10 p-5 rounded-lg border border-teal-100 dark:border-teal-900/30">
+                <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-2 flex items-center gap-2">
+                    <span>🔹</span> Agilidad
+                </h3>
+                <p class="text-sm text-zinc-700 dark:text-zinc-300">
+                    Habilitaremos entregas de pedidos donde el cliente lo necesite y pagos programados, evitando filas y demoras en recepción por trámites recurrentes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infraestructura -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Infraestructura Tecnológica y Licenciamiento</h2>
+        <p class="mb-4">Utilizaremos la tecnología Claris FileMaker Cloud (respaldo de Apple) para garantizar seguridad y acceso remoto sin depender de servidores físicos en la oficina.</p>
+        
+        <div class="bg-gray-50 dark:bg-zinc-900 p-6 rounded-lg mb-6 border border-zinc-200 dark:border-zinc-800">
+            <h4 class="font-bold mb-2 text-zinc-900 dark:text-white">Costos de Licenciamiento (Pago directo a Claris Inc):</h4>
+            <ul class="list-disc pl-5 text-sm space-y-1 mb-4">
+                <li>Paquete Mínimo: 5 Usuarios.</li>
+                <li>Costo por usuario: $22 USD / mes.</li>
+                <li>Facturación: Pago anual anticipado.</li>
+            </ul>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="uppercase bg-gray-100 dark:bg-zinc-800/50">
+                        <tr>
+                            <th class="px-4 py-2">Concepto</th>
+                            <th class="px-4 py-2">Valor en USD (Anual)</th>
+                            <th class="px-4 py-2">Valor Aprox. en COP (Anual)*</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-zinc-700">
+                        <tr>
+                             <td class="px-4 py-2 font-medium">Costo Mensual Total (5 usuarios x $22 USD)</td>
+                             <td class="px-4 py-2">$110 USD / mes</td>
+                             <td class="px-4 py-2">~$401.500 COP / mes</td>
+                        </tr>
+                         <tr class="font-bold">
+                             <td class="px-4 py-2">Total Pago Anual Anticipado</td>
+                             <td class="px-4 py-2">$1.320 USD / año</td>
+                             <td class="px-4 py-2">~$4.818.000 COP / año</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">*Conversión estimada a TRM $3.650 (sujeta a tasa del día). El cobro lo realiza Claris Inc. en dólares.</p>
+        </div>
+    </section>
+
+    <!-- Siguientes Pasos -->
+    <section class="mb-8">
+        <h2 class="text-xl font-bold mb-4 text-zinc-900 dark:text-white">Siguientes Pasos</h2>
+        <p class="mb-4">Paola, Felipe, nuestra sugerencia es dar luz verde a la Fase 1 para poner orden a la tesorería de inmediato. Una vez tengamos el control del dinero, construiremos sobre bases sólidas el resto del sueño.</p>
+        <p class="mt-8 font-bold text-lg text-zinc-900 dark:text-white">Quedamos atentos para iniciar,<br/>Stacksolver</p>
+    </section>
+
+  </div>
+</EstimateTemplate>

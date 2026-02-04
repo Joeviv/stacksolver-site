@@ -10,8 +10,8 @@
 
 | Aspecto | Estado |
 |---------|--------|
-| **Framework** | Astro 6.0.0-beta.6 🚀 |
-| **react** | 19.x ✅ |
+| **Framework** | Astro 6.0.0-beta.7 🚀 |
+| **react** | 19.2.4 ✅ |
 | **Tailwind** | 4.x via Vite |
 | **Vulnerabilidades** | ✅ 0 |
 | **Deploy** | AWS Amplify |
@@ -31,8 +31,9 @@
 
 ## 📋 Historial de Cambios
 
-### 2026-01-27
-- **Upgrade Major**: Astro 6 Beta Upgrade
+### 2026-02-04
+- **Maintenance**: Update to Astro 6.0.0-beta.7, React 19.2.4.
+- **Config**: Amplify Node.js actualizado a v24.
 - **Seguridad**: Implementado CSP Estricto, HTTP Security Headers y checkOrigin
 - Actualización a React 19
 

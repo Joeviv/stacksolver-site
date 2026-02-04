@@ -10,7 +10,7 @@
 
 | Aspecto | Estado |
 |---------|--------|
-| **Framework** | Astro 6.0 Beta 4 🚀 |
+| **Framework** | Astro 6.0.0-beta.6 🚀 |
 | **react** | 19.x ✅ |
 | **Tailwind** | 4.x via Vite |
 | **Vulnerabilidades** | ✅ 0 |

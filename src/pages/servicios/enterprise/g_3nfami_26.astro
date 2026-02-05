@@ -1,0 +1,234 @@
+---
+import EstimateTemplate from "../../../components/templates/EstimateTemplate.astro";
+
+// COLORES DE ESTADO
+// Green: bg-emerald-100 text-emerald-800 border-emerald-200
+// Yellow: bg-amber-100 text-amber-800 border-amber-200
+// Red: bg-red-100 text-red-800 border-red-200
+// Gray (Pending): bg-zinc-100 text-zinc-800 border-zinc-200
+
+---
+
+<EstimateTemplate
+  clientName="Fundación Genfami"
+  projectName="Tablero de Gobierno y Control de Proyectos"
+  date="2026-02-05"
+  status="Active"
+  hideHeader={true}
+>
+  <div class="max-w-6xl mx-auto text-zinc-800 dark:text-zinc-200">
+    
+    <!-- HEADER ALERT -->
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-4 mb-8">
+        <div class="flex items-start">
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-amber-800 dark:text-amber-200">Punto de Verdad Único</h3>
+                <div class="mt-2 text-sm text-amber-700 dark:text-amber-300">
+                    <p>Este tablero refleja el <strong>estado real y acordado</strong> de los 3 frentes de trabajo. Cualquier solicitud o cambio que no esté registrado en la sección "Bitácora de Cambios" se considera <strong>fuera del alcance</strong> actual.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TÍTULO -->
+    <section class="mb-10 border-b border-zinc-200 dark:border-zinc-800 pb-6">
+        <h1 class="text-3xl font-bold mb-2 text-zinc-900 dark:text-white">Frente de Trabajo Unificado: StackSolver <> Genfami</h1>
+        <p class="text-zinc-500">Actualizado: {new Date().toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+    </section>
+
+    <!-- RESUMEN EJECUTIVO (KPIs) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        <!-- KPI 1 -->
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center justify-between">
+            <div>
+                <p class="text-xs text-zinc-500 uppercase font-semibold">Proyecto 1: Moodle LMS</p>
+                <p class="text-lg font-bold text-emerald-600">En Curso</p>
+            </div>
+            <div class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse"></div>
+        </div>
+        <!-- KPI 2 -->
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center justify-between">
+            <div>
+                <p class="text-xs text-zinc-500 uppercase font-semibold">Proyecto 2: Data (Looker)</p>
+                <p class="text-lg font-bold text-amber-600">Revisión Requerida</p>
+            </div>
+            <div class="h-3 w-3 rounded-full bg-amber-500"></div>
+        </div>
+        <!-- KPI 3 -->
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center justify-between">
+            <div>
+                <p class="text-xs text-zinc-500 uppercase font-semibold">Proyecto 3: ERP Claris</p>
+                <p class="text-lg font-bold text-red-600">Bloqueado / Definición</p>
+            </div>
+             <div class="h-3 w-3 rounded-full bg-red-500"></div>
+        </div>
+    </div>
+
+    <!-- PROYECTO 1: MOODLE (LMS) -->
+    <section class="mb-12">
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-zinc-900 dark:text-white">
+            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Frente 1</span> 
+            Implementación Cursos LMS (Moodle)
+        </h2>
+        
+        <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-zinc-50 dark:bg-zinc-800">
+                    <tr>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Entregable (Curso)</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Estado</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Responsable Actual</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Fecha Estimada</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700 bg-white dark:bg-zinc-900">
+                    <!-- Curso 1 -->
+                    <tr>
+                        <td class="px-6 py-4 font-medium">1. Curso Inducción General</td>
+                        <td class="px-6 py-4"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-xs border border-emerald-200">✅ Completado</span></td>
+                        <td class="px-6 py-4 text-zinc-500">StackSolver</td>
+                        <td class="px-6 py-4">Entregado</td>
+                    </tr>
+                    <!-- Curso 2 -->
+                    <tr>
+                        <td class="px-6 py-4 font-medium">2. Curso Habilidades Blandas</td>
+                        <td class="px-6 py-4"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-xs border border-emerald-200">🚀 En Desarrollo</span></td>
+                        <td class="px-6 py-4 text-blue-600 font-bold">StackSolver (Cargando)</td>
+                        <td class="px-6 py-4">Feb 15</td>
+                    </tr>
+                    <!-- Curso 3 -->
+                    <tr>
+                        <td class="px-6 py-4 font-medium">3. Curso Normativa 2026</td>
+                        <td class="px-6 py-4"><span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs border border-amber-200">⚠️ Esperando Contenido</span></td>
+                        <td class="px-6 py-4 text-red-600 font-bold">Genfami (Envío Material)</td>
+                        <td class="px-6 py-4">Detenido</td>
+                    </tr>
+                     <!-- Curso 4 -->
+                    <tr>
+                        <td class="px-6 py-4 font-medium">4. Curso Seguridad SST</td>
+                        <td class="px-6 py-4"><span class="bg-zinc-100 text-zinc-800 px-2 py-1 rounded text-xs border border-zinc-200">⏳ Pendiente</span></td>
+                        <td class="px-6 py-4">StackSolver</td>
+                        <td class="px-6 py-4">Por Iniciar</td>
+                    </tr>
+                    <!-- Curso 5 -->
+                     <tr>
+                        <td class="px-6 py-4 font-medium">5. Curso Liderazgo</td>
+                        <td class="px-6 py-4"><span class="bg-zinc-100 text-zinc-800 px-2 py-1 rounded text-xs border border-zinc-200">⏳ Pendiente</span></td>
+                        <td class="px-6 py-4">StackSolver</td>
+                        <td class="px-6 py-4">Por Iniciar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- PROYECTO 2: LOOKER (DATA) -->
+    <section class="mb-12">
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-zinc-900 dark:text-white">
+             <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Frente 2</span>
+            Mapeo & Visualización (Looker Studio)
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white dark:bg-zinc-900 p-6 rounded-lg border border-zinc-200 dark:border-zinc-800">
+                <h3 class="font-bold mb-2">Estado Actual</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+                    Se ha estructurado la conexión de datos, pero existen inconsistencias en la fuente (Excels planos) que impiden la visualización automática.
+                </p>
+                <div class="bg-amber-50 p-3 rounded border border-amber-200 text-xs text-amber-800">
+                    <strong>Bloqueante:</strong> Necesitamos validación del formato de fecha en los archivos fuente por parte de TI Genfami.
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+                 <table class="w-full text-sm">
+                    <thead class="bg-zinc-50 dark:bg-zinc-800">
+                        <tr>
+                            <th class="px-4 py-2 text-left">Hito</th>
+                            <th class="px-4 py-2">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="px-4 py-2">Conexión Fuentes</td>
+                            <td class="px-4 py-2 text-center text-emerald-600">✅ Listo</td>
+                        </tr>
+                         <tr>
+                            <td class="px-4 py-2">Limpieza de Datos</td>
+                            <td class="px-4 py-2 text-center text-amber-600">⚠️ En Revisión</td>
+                        </tr>
+                         <tr>
+                            <td class="px-4 py-2">Dashboard V1</td>
+                            <td class="px-4 py-2 text-center text-zinc-400">⏳ Pendiente</td>
+                        </tr>
+                    </tbody>
+                 </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTO 3: ERP CLARIS -->
+    <section class="mb-12">
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-zinc-900 dark:text-white">
+             <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Frente 3</span>
+            ERP Gestión (Claris FileMaker)
+        </h2>
+        <div class="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/30 rounded-lg p-6">
+            <div class="flex items-start gap-4">
+                <div class="text-3xl">🛑</div>
+                <div>
+                    <h3 class="font-bold text-red-800 dark:text-red-300">Proyecto Detenido / Re-definición de Alcance</h3>
+                    <p class="text-sm text-red-700 dark:text-red-200 mt-2">
+                        Se han recibido solicitudes contradictorias sobre los módulos a implementar. StackSolver no avanzará desarrollo hasta tener el "Documento de Alcance" firmado por Gerencia.
+                    </p>
+                    <div class="mt-4">
+                        <span class="text-xs font-bold text-red-800 uppercase tracking-wide">Acción Requerida:</span>
+                        <p class="text-sm bg-white dark:bg-black/20 p-2 rounded mt-1 border border-red-100">
+                            Reunión de alineación exclusiva para ERP (Fecha propuesta: Feb 10).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BITÁCORA DE CAMBIOS (SCOPE CREEP) -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white border-b pb-2">Control de Cambios y Alcance</h2>
+        <p class="mb-4 text-sm text-zinc-600">
+            Registro de solicitudes que <strong>no estaban en la cotización original</strong>. Estas solicitudes están sujetas a cotización adicional o intercambio de horas.
+        </p>
+
+        <div class="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+                    <tr>
+                        <th class="px-4 py-3">Fecha Solicitud</th>
+                        <th class="px-4 py-3">Descripción del Cambio</th>
+                        <th class="px-4 py-3">Solicitado Por</th>
+                        <th class="px-4 py-3">Impacto</th>
+                        <th class="px-4 py-3">Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700 bg-white dark:bg-zinc-900">
+                    <tr>
+                        <td class="px-4 py-3 text-zinc-500">Feb 02</td>
+                        <td class="px-4 py-3">Agregar módulo de "Encuestas" al LMS</td>
+                        <td class="px-4 py-3">Coord. Talento</td>
+                        <td class="px-4 py-3 text-red-600 font-medium">+10 Horas Dev</td>
+                        <td class="px-4 py-3"><span class="bg-zinc-200 text-zinc-700 px-2 py-1 rounded text-xs">Pendiente Cotizar</span></td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3 text-zinc-500">Ene 28</td>
+                        <td class="px-4 py-3">Cambio de colores en Looker a nueva marca</td>
+                        <td class="px-4 py-3">Gerencia</td>
+                        <td class="px-4 py-3 text-amber-600 font-medium">+2 Horas Diseño</td>
+                        <td class="px-4 py-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-xs">Aprobado / Bonificado</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+  </div>
+</EstimateTemplate>

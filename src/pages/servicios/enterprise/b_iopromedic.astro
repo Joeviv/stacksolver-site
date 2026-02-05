@@ -123,19 +123,46 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
         <!-- Fase 4 -->
         <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
             <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                <span class="font-bold text-lg">Fase 4: Expansión Virtual y Clientes 24/7</span>
+                <span class="font-bold text-lg">Fase 4: Expansión Virtual y Clientes 24/7 (Página Web & Portal)</span>
                 <span class="transform group-open:rotate-180 transition-transform">▼</span>
             </summary>
              <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
-                <div class="mb-4">
-                    <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                        <li>Portal de autogestión para clientes o módulo de Pedidos Express (Domicilios/Recogida en portería).</li>
-                    </ul>
+                <p class="mb-4">Desarrollo de la identidad digital y canales de autogestión para desbordar la operación telefónica.</p>
+                
+                <div class="space-y-6">
+                    <!-- 4.1 Infraestructura -->
+                    <div>
+                        <h4 class="font-bold text-zinc-900 dark:text-white mb-2">4.1 Infraestructura & Web Corporativa</h4>
+                        <ul class="list-disc pl-5 text-sm space-y-1 text-zinc-700 dark:text-zinc-300">
+                            <li><strong>Setup AWS (Amazon Web Services):</strong> Configuración de cuenta, dominio <code>biopromedic.com</code> y hosting de alta velocidad.</li>
+                            <li><strong>Framework Moderno (Astro):</strong> Tecnología de última generación (la misma de esta propuesta) para máxima velocidad y SEO.</li>
+                            <li><strong>Páginas Informativas:</strong> Home, Nosotros (Equipo Médico), Servicios, Productos destacados.</li>
+                            <li><em class="text-zinc-500 text-xs">Nota sobre costos AWS: Esta cuenta es propiedad de ustedes. El costo es por consumo real. Para el tráfico inicial (aprox. 30 usuarios concurrentes), estimamos un costo mensual muy bajo (aprox. $5 - $15 USD), muy competitivo frente a hostings tradicionales.</em></li>
+                        </ul>
+                    </div>
+
+                    <!-- 4.2 Portal -->
+                    <div>
+                        <h4 class="font-bold text-zinc-900 dark:text-white mb-2">4.2 Portal de Clientes ("Mi Mascota")</h4>
+                        <p class="text-sm mb-2 text-zinc-600 dark:text-zinc-400">
+                            Login seguro para que cada propietario acceda a la información de sus mascotas en tiempo real.
+                        </p>
+                        <ul class="list-disc pl-5 text-sm space-y-1 text-zinc-700 dark:text-zinc-300">
+                            <li><strong>Base de Datos Híbrida (Recomendación: Supabase):</strong> Usaremos una base de datos en la nube segura especializada para web, conectada a FileMaker.
+                                <ul class="list-none pl-4 mt-1 border-l-2 border-blue-200 dark:border-blue-900 text-xs py-1">
+                                    <li>🔌 <strong>Web → FileMaker:</strong> Cuando el cliente pide una cita o hace un pedido, la solicitud viaja a su sistema Claris para que recepción apruebe/despache.</li>
+                                    <li>🔌 <strong>FileMaker → Web:</strong> Cuando el médico actualiza la historia clínica o una vacuna, el sistema actualiza automáticamente el portal del cliente.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Funcionalidad del Cliente:</strong> Ver Ficha Médica, Próximas Vacunas, Historial de Compras, Preferencias de comida.</li>
+                            <li><strong>Calendario Personal:</strong> Visualización de citas programadas y recordatorios.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
-                    <span class="mb-2 sm:mb-0"><strong>Tiempo estimado:</strong> 5 semanas.</span>
-                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Servicios Stacksolver: $2.300.000 COP</span>
+
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200 mt-4">
+                    <span class="mb-2 sm:mb-0"><strong>Estimación de Esfuerzo:</strong> 80 - 100 Horas de Ingeniería.</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Aprox: Consultar</span>
                 </div>
             </div>
         </details>
@@ -143,7 +170,40 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
          <!-- Fase 5 -->
         <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
             <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                <span class="font-bold text-lg">Fase 5: Integración Facturación Electrónica</span>
+                <span class="font-bold text-lg">Fase 5: Expansión Virtual vía WhatsApp Business API</span>
+                <span class="transform group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+             <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                <p class="mb-4">Convertir el WhatsApp de un "chat" a una "herramienta de gestión".</p>
+                <div class="mb-4">
+                    <strong class="text-zinc-900 dark:text-white">Alcance & Automatización:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                         <li><strong>Conexión API Oficial (Meta):</strong> Uso de la línea oficial de Biopromedic con la API de WhatsApp (requiere verificación de negocio).</li>
+                         <li><strong>Bot Inteligente & FileMaker:</strong>
+                            <ul class="list-circle pl-5 mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                                <li>El cliente escribe y el Bot consulta en tiempo real en FileMaker si hay disponibilidad de citas.</li>
+                                <li>Automatización de recordatorios de vacunas (FileMaker detecta la fecha y le "dice" a WhatsApp que envíe el mensaje proactivamente).</li>
+                                <li>Captura de datos automática: El bot pide nombre/datos y crea la ficha en FileMaker sin intervención humana.</li>
+                            </ul>
+                         </li>
+                    </ul>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+                    <span class="mb-2 sm:mb-0"><strong>Estimación de Esfuerzo:</strong> 30 - 40 Horas de Desarrollo.</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión Aprox: Consultar</span>
+                </div>
+            </div>
+        </details>
+
+        <!-- Fase 6 Gap -->
+        <div class="p-6 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg text-center text-zinc-400 italic text-sm">
+            Fase 6: Reservada para Futura Expansión (Marketing / Fidelización)
+        </div>
+
+        <!-- Fase 7 -->
+        <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                <span class="font-bold text-lg">Fase 7: Integración Facturación Electrónica</span>
                 <span class="transform group-open:rotate-180 transition-transform">▼</span>
             </summary>
              <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">

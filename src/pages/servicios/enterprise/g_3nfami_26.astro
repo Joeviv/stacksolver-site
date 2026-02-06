@@ -70,6 +70,18 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
             <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Frente 1</span> 
             Implementación Cursos LMS (Moodle)
         </h2>
+
+        <!-- Alerta de Riesgo: Diseño -->
+        <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 rounded-lg p-6 mb-6">
+            <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-2">⚠️ Alerta de Riesgo: Lineamientos Gráficos</h3>
+            <p class="text-sm text-zinc-700 dark:text-zinc-300">
+                Se ha levantado una solicitud para investigar el uso de "Múltiples Plantillas Gráficas". 
+                <strong class="block mt-2 text-amber-900 border-l-4 border-amber-400 pl-2">Impacto Crítico:</strong>
+                1. Moodle opera bajo una (1) plantilla unificada (Configuración de Hosting <strong>Edulabs</strong>).<br/>
+                2. Implementar múltiples diseños generará inconsistencia técnica y <strong>retrasará la entrega final</strong> (proyectada a 2-3 meses).<br/>
+                3. <span class="underline">Acción StackSolver:</span> No podemos avanzar sin una referencia gráfica unificada entregada por Genfami.
+            </p>
+        </div>
         
         <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
             <table class="w-full text-sm text-left">
@@ -173,6 +185,7 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
              <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Frente 3</span>
             ERP Gestión (Claris FileMaker)
         </h2>
+        
         <!-- Alerta de Bloqueo -->
         <div class="bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-900/30 rounded-lg p-6 mb-8">
             <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-2">🚀 Plan de Activación (Febrero 6 - 19)</h3>
@@ -279,6 +292,15 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700 bg-white dark:bg-zinc-900">
+                    <!-- Cambio Nuevo: Moodle Templates -->
+                    <tr>
+                        <td class="px-4 py-3 text-zinc-500">Feb 05</td>
+                        <td class="px-4 py-3">Investigación "Múltiples Plantillas Moodle"</td>
+                        <td class="px-4 py-3">Genfami</td>
+                        <td class="px-4 py-3 text-red-600 font-medium">No Viable / Riesgo Retraso</td>
+                        <td class="px-4 py-3"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Bloqueante Tecnológico</span></td>
+                    </tr>
+                    <!-- Cambio Anterior -->
                     <tr>
                         <td class="px-4 py-3 text-zinc-500">Feb 02</td>
                         <td class="px-4 py-3">Agregar módulo de "Encuestas" al LMS</td>

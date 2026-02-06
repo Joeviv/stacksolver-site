@@ -119,14 +119,10 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
         </h2>
 
         <!-- Alerta de Riesgo: Diseño -->
-        <div class="grid md:grid-cols-2 gap-6 mb-8">
-            <div class="p-6 border-l-4 border-amber-500 bg-white dark:bg-zinc-950 shadow-sm">
-                <h3 class="font-bold text-amber-700 dark:text-amber-500 mb-2 uppercase text-xs tracking-widest">⚠️ Riesgo: Lineamientos Gráficos</h3>
-                <p class="text-sm text-zinc-600 dark:text-zinc-400">
-                    Investigar "Múltiples Plantillas" genera inconsistencia técnica con <strong>Edulabs</strong>.
-                    <span class="block mt-2 text-xs text-zinc-400">Acción: StackSolver espera referencia gráfica única.</span>
-                </p>
-            </div>
+        <!-- Alertas y Definiciones Técnicas -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            
+            <!-- COL 1: RIESGO DE TIEMPOS (Original - Mantener) -->
             <div class="p-6 border-l-4 border-red-500 bg-white dark:bg-zinc-950 shadow-sm">
                 <h3 class="font-bold text-red-600 dark:text-red-400 mb-2 uppercase text-xs tracking-widest">🛑 Riesgo: Cuello de Botella (Carga)</h3>
                 <p class="text-sm text-zinc-600 dark:text-zinc-400">
@@ -134,6 +130,71 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
                     <span class="block mt-2 font-medium text-zinc-900 dark:text-white">Requerimiento:</span>
                     Se debe entregar material de forma progresiva (parcial) AHORA para iniciar montaje. Acumular entregas pone en riesgo la fecha final.
                 </p>
+            </div>
+
+            <!-- COL 2: DEFINICIÓN DE DISEÑO (Nuevo - Texto Usuario) -->
+            <div class="p-6 border-l-4 border-zinc-400 bg-zinc-50 dark:bg-zinc-900/50">
+                <h3 class="font-bold text-zinc-700 dark:text-zinc-300 mb-3 uppercase text-xs tracking-widest">🎨 Alcance de Diseño y Estética</h3>
+                <div class="text-sm text-zinc-600 dark:text-zinc-400 space-y-3">
+                    <p>
+                        "Entendemos que la estética del sitio es vital para el éxito del proyecto. En Stacksolver, nuestro alcance es la <strong>adaptación de su imagen corporativa</strong> al entorno técnico de Moodle.
+                    </p>
+                    <p>
+                        Hasta ahora, hemos tomado como referencia su portal institucional y manual de marca para garantizar coherencia. Si desean un diseño que se aleje de su línea gráfica actual o una propuesta visual disruptiva, necesitaríamos que su equipo de diseño nos proporcione el <strong>'Look & Feel' deseado (Mockups o guías de estilo)</strong>.
+                    </p>
+                    <p class="font-medium text-zinc-800 dark:text-zinc-200">
+                        Una vez recibida esa estructura gráfica, nosotros nos encargamos de la implementación técnica para que sea funcional en los cursos. Sin esa guía, corremos el riesgo de proponer estilos que no alineen con sus expectativas de marca."
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECCIÓN TÉCNICA: MÚLTIPLES PLANTILLAS (Nuevo - Texto Usuario) -->
+        <div class="mb-12 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <div class="bg-zinc-100 dark:bg-zinc-800 px-6 py-3 border-b border-zinc-200 dark:border-zinc-700">
+                <h3 class="font-bold text-zinc-700 dark:text-zinc-200 text-sm">💡 Recomendación Técnica: Implementación de Múltiples Plantillas</h3>
+            </div>
+            <div class="p-6 bg-white dark:bg-zinc-950 text-sm text-zinc-600 dark:text-zinc-400 grid md:grid-cols-2 gap-8">
+                
+                <div>
+                    <p class="mb-4">
+                        <strong class="text-zinc-900 dark:text-white">Factibilidad:</strong> Es posible técnicamente manejar múltiples diseños por curso, pero la ejecución requiere una gestión previa de su parte con el proveedor de infraestructura (Edulabs).
+                    </p>
+                    
+                    <h4 class="font-bold text-zinc-800 dark:text-zinc-300 mb-2 border-b border-zinc-100 pb-1">División de Responsabilidades</h4>
+                    <ul class="space-y-3 mb-4">
+                        <li>
+                            <strong class="text-indigo-600 dark:text-indigo-400">Gestión del Cliente / Edulabs:</strong>
+                            Deben solicitar a Edulabs la instalación de los paquetes de temas en el servidor y la habilitación de la función global "Permitir temas de curso". Sin esta acción técnica en el hosting, nosotros no tenemos acceso para aplicar cambios individuales.
+                        </li>
+                        <li>
+                            <strong class="text-indigo-600 dark:text-indigo-400">Gestión de Stacksolver:</strong>
+                            Una vez habilitado el sistema por Edulabs, nosotros procedemos con la configuración visual y la carga de contenidos bajo los nuevos parámetros.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-zinc-800 dark:text-zinc-300 mb-2 border-b border-zinc-100 pb-1">Riesgos y Requerimientos</h4>
+                    <ul class="space-y-3">
+                        <li class="flex gap-2">
+                            <span>⚠️</span>
+                            <span><strong>Carga Operativa:</strong> Manejar múltiples plantillas eleva la complejidad de configuración y revisión, lo que podría impactar los tiempos de entrega final.</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span>⚠️</span>
+                            <span><strong>Fragmentación de Marca:</strong> Existe el riesgo de perder la unidad visual de la plataforma, generando confusión en el usuario final si no hay una coherencia estética clara.</span>
+                        </li>
+                        <li class="bg-zinc-50 dark:bg-zinc-900 p-3 rounded border-l-2 border-indigo-500">
+                            <strong>Definición de Identidad:</strong> Para proceder, es indispensable que nos entreguen la definición exacta de la identidad gráfica (logos, paleta de colores y estilos) para cada uno de los nuevos entornos.
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
+                        Estado Actual: Esperando Habilitación Edulabs + Manuales
+                    </div>
+                </div>
+
             </div>
         </div>
         

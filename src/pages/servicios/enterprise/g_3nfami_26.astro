@@ -138,10 +138,11 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
             <div class="bg-white dark:bg-zinc-900 p-6 rounded-lg border border-zinc-200 dark:border-zinc-800">
                 <h3 class="font-bold mb-2">Estado Actual</h3>
                 <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-                    Se ha estructurado la conexión de datos, pero existen inconsistencias en la fuente (Excels planos) que impiden la visualización automática.
+                    <strong>StackSolver:</strong> Infraestructura, sitio de pruebas y datos simulados listos.<br/>
+                    <strong>Genfami:</strong> Retraso de 3 semanas en entrega de "Datos Provisionales".
                 </p>
                 <div class="bg-amber-50 p-3 rounded border border-amber-200 text-xs text-amber-800">
-                    <strong>Bloqueante:</strong> Necesitamos validación del formato de fecha en los archivos fuente por parte de TI Genfami.
+                    <strong>Bloqueante Insumos:</strong> No podemos avanzar en el "Mapeo de Campos Reales" hasta recibir el archivo de datos provisionales prometido hace 3 semanas.
                 </div>
             </div>
             
@@ -155,16 +156,16 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
                     </thead>
                     <tbody class="divide-y">
                         <tr>
-                            <td class="px-4 py-2">Conexión Fuentes</td>
-                            <td class="px-4 py-2 text-center text-emerald-600">✅ Listo</td>
+                            <td class="px-4 py-2">Infraestructura Demo</td>
+                            <td class="px-4 py-2 text-center text-emerald-600">✅ Completado</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-2">Limpieza de Datos</td>
-                            <td class="px-4 py-2 text-center text-amber-600">⚠️ En Revisión</td>
+                            <td class="px-4 py-2">Entrega Insumos (Datos)</td>
+                            <td class="px-4 py-2 text-center text-red-600">🛑 Retraso (+3 Sem)</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-2">Dashboard V1</td>
-                            <td class="px-4 py-2 text-center text-zinc-400">⏳ Pendiente</td>
+                            <td class="px-4 py-2">Mapeo de Campos</td>
+                            <td class="px-4 py-2 text-center text-zinc-400">⏳ Bloqueado por Insumos</td>
                         </tr>
                     </tbody>
                  </table>

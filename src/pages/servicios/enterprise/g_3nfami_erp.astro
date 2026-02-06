@@ -1,0 +1,160 @@
+---
+import EstimateTemplate from "../../../components/templates/EstimateTemplate.astro";
+
+// COLORES DE ESTADO
+// Green: bg-emerald-100 text-emerald-800 border-emerald-200 (Completado)
+// Blue: bg-blue-100 text-blue-800 border-blue-200 (En Progreso / Despliegue)
+// Gray: bg-zinc-100 text-zinc-800 border-zinc-200 (Pendiente)
+// Red: bg-red-100 text-red-800 border-red-200 (Bloqueado)
+
+---
+
+<EstimateTemplate
+  clientName="Fundación Genfami"
+  projectName="ERP Claris FileMaker (D260016)"
+  date="2026-02-06"
+  status="Active"
+  hideHeader={true}
+>
+  <div class="max-w-6xl mx-auto text-zinc-800 dark:text-zinc-200">
+    
+    <!-- NAVIGATION -->
+    <div class="mb-6 flex gap-4 text-sm">
+        <a href="/servicios/enterprise/g_3nfami_26" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-white flex items-center gap-1">
+            ← Volver al Tablero Directivo
+        </a>
+    </div>
+
+    <!-- TÍTULO -->
+    <section class="mb-10 border-b border-zinc-200 dark:border-zinc-800 pb-6 flex flex-col md:flex-row justify-between items-start md:items-end">
+        <div>
+            <h1 class="text-3xl font-bold mb-2 text-zinc-900 dark:text-white">ERP Gestión Integral (Claris FileMaker)</h1>
+            <p class="text-zinc-500">Proyecto ID: D260016 | Implementación Modular</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+             <div class="bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 px-4 py-2 rounded-lg text-right">
+                <span class="block text-xs uppercase font-bold tracking-widest">Avance Global</span>
+                <span class="text-2xl font-black">15%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <div class="prose dark:prose-invert max-w-none mb-12 text-sm text-zinc-600 dark:text-zinc-400">
+        <p>
+            Este plan de entregas detalla la implementación del ERP "Llave en Mano". A diferencia de un desarrollo tradicional, 
+            aquí se liberan <strong>Módulos Funcionales</strong> que agregan valor inmediato a la operación de Genfami.
+        </p>
+    </div>
+
+    <!-- ROADMAP DE ENTREGABLES -->
+    <div class="space-y-8">
+        
+        <!-- FASE 1: INSTALACIÓN -->
+        <div class="border border-emerald-200 dark:border-emerald-800/50 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm relative">
+            <div class="absolute top-0 right-0 p-4">
+                 <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded border border-emerald-200">✅ FASE COMPLETADA</span>
+            </div>
+            <div class="p-6 border-b border-zinc-100 dark:border-zinc-800">
+                <h2 class="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-3">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-600 text-white text-sm">1</span>
+                    Arquitectura y Conexión
+                </h2>
+                <p class="text-sm text-zinc-500 mt-1 ml-11">Fundamentos Tecnológicos y Entendimiento del Ecosistema.</p>
+            </div>
+            <div class="p-6 bg-zinc-50 dark:bg-zinc-800/30">
+                <ul class="space-y-3 text-sm ml-11">
+                    <li class="flex items-center gap-2">
+                        <span class="text-emerald-500">✓</span> Instalación de Claris Server en Servidor Seguro.
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-emerald-500">✓</span> Configuración de Certificados SSL y Seguridad Perimetral.
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-emerald-500">✓</span> Definición del VPN y Accesos Remotos.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FASE 2: STAKEHOLDERS (ACTIVO) -->
+        <div class="border border-blue-200 dark:border-blue-800/50 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm relative ring-2 ring-blue-500 ring-offset-2 ring-offset-white dark:ring-offset-zinc-950">
+             <div class="absolute top-0 right-0 p-4">
+                 <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded border border-blue-200 animate-pulse">🚀 EN EJECUCIÓN</span>
+            </div>
+            <div class="p-6 border-b border-zinc-100 dark:border-zinc-800">
+                <h2 class="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-3">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm">2</span>
+                    Módulo de Stakeholders (Directorio Maestro)
+                </h2>
+                <p class="text-sm text-zinc-500 mt-1 ml-11">Centralización de la Base de Datos de Contactos y Entidades.</p>
+            </div>
+            <div class="p-6 bg-white dark:bg-zinc-900">
+                 <div class="grid md:grid-cols-2 gap-8 ml-11">
+                    <div>
+                        <h3 class="font-bold text-sm mb-3">Entregables Funcionales</h3>
+                        <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                            <li>• Ficha Única de Terceros (Clientes, Proveedores, Empleados).</li>
+                            <li>• Categorización Inteligente (Quién es quién).</li>
+                            <li>• Repositorio de Documentos Legales por Tercero.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm mb-3">Estado y Bloqueos</h3>
+                         <div class="p-3 bg-amber-50 dark:bg-amber-900/20 rounded border border-amber-200 dark:border-amber-800 text-xs">
+                            <strong class="text-amber-800 dark:text-amber-300">Requerimiento Crítico:</strong>
+                            <p class="mt-1 text-amber-900 dark:text-amber-100">Necesitamos la lista limpia de los primeros 50 Stakeholders claves para poblar el sistema.</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+
+        <!-- FASE 3: RECURSOS -->
+        <div class="border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm opacity-60">
+            <div class="p-6">
+                <h2 class="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-3">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 text-sm">3</span>
+                    Módulo de Recursos (Inventario y Servicios)
+                </h2>
+                <p class="text-sm text-zinc-500 mt-1 ml-11">Catálogo maestro de lo que Genfami compra y vende.</p>
+            </div>
+        </div>
+
+        <!-- FASE 4: PROYECTOS -->
+        <div class="border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm opacity-60">
+            <div class="p-6">
+                <h2 class="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-3">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 text-sm">4</span>
+                    Módulo de Gestión de Proyectos
+                </h2>
+                <p class="text-sm text-zinc-500 mt-1 ml-11">Control de iniciativas, cronogramas, responsables y tareas.</p>
+            </div>
+        </div>
+
+         <!-- FASE 5: PROCESOS -->
+        <div class="border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm opacity-60">
+            <div class="p-6">
+                <h2 class="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-3">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 text-sm">5</span>
+                    Módulo de Gestión de Procesos (BPM)
+                </h2>
+                <p class="text-sm text-zinc-500 mt-1 ml-11">Estandarización de flujos de trabajo repetitivos y calidad.</p>
+            </div>
+        </div>
+
+         <!-- FASE 6: FINANCIERO -->
+        <div class="border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm opacity-60">
+            <div class="p-6">
+                <h2 class="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-3">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 text-sm">6</span>
+                    Módulo Financiero y Presupuestal
+                </h2>
+                <p class="text-sm text-zinc-500 mt-1 ml-11">Control de costos, ingresos, facturación y caja.</p>
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+</EstimateTemplate>

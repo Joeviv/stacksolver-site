@@ -141,14 +141,22 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
         </h2>
 
         <!-- Alerta de Riesgo: Diseño -->
-        <div class="mb-8 p-6 border-l-4 border-amber-500 bg-white dark:bg-zinc-950 shadow-sm">
-            <h3 class="font-bold text-amber-700 dark:text-amber-500 mb-2 uppercase text-xs tracking-widest">⚠️ Riesgo: Lineamientos Gráficos</h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400">
-                Se ha levantado una solicitud para investigar el uso de "Múltiples Plantillas Gráficas".
-                <span class="block mt-2 font-medium text-zinc-900 dark:text-white">Impacto Crítico:</span>
-                Inconsistencia técnica con hosting <strong>Edulabs</strong> y riesgo de retraso en entrega final.
-                <span class="block mt-2 text-xs text-zinc-400">Acción: StackSolver espera referencia gráfica unificada de Genfami.</span>
-            </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="p-6 border-l-4 border-amber-500 bg-white dark:bg-zinc-950 shadow-sm">
+                <h3 class="font-bold text-amber-700 dark:text-amber-500 mb-2 uppercase text-xs tracking-widest">⚠️ Riesgo: Lineamientos Gráficos</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                    Investigar "Múltiples Plantillas" genera inconsistencia técnica con <strong>Edulabs</strong>.
+                    <span class="block mt-2 text-xs text-zinc-400">Acción: StackSolver espera referencia gráfica única.</span>
+                </p>
+            </div>
+            <div class="p-6 border-l-4 border-red-500 bg-white dark:bg-zinc-950 shadow-sm">
+                <h3 class="font-bold text-red-600 dark:text-red-400 mb-2 uppercase text-xs tracking-widest">🛑 Riesgo: Cuello de Botella (Carga)</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                    <strong>Acuerdo Comité:</strong> Es inviable cargar 5 cursos en la semana de auditoría.
+                    <span class="block mt-2 font-medium text-zinc-900 dark:text-white">Requerimiento:</span>
+                    Se debe entregar material de forma progresiva (parcial) AHORA para iniciar montaje. Acumular entregas pone en riesgo la fecha final.
+                </p>
+            </div>
         </div>
         
         <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
@@ -206,13 +214,13 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
             <div>
                 <h3 class="font-bold text-zinc-900 dark:text-white mb-2">Estado Actual</h3>
                 <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-                    <strong>StackSolver:</strong> Infraestructura, sitio de pruebas y datos simulados listos.<br/>
-                    <strong>Genfami:</strong> Retraso de 3 semanas en entrega de "Datos Provisionales".
+                    <strong>StackSolver:</strong> Infraestructura lista. Esperando insumo.<br/>
+                    <strong>Acuerdo de Mitigación:</strong> Se acordó enviar "Data que tengan" (sin limpiar) para armar estructura de tablas y ganar tiempo.
                 </p>
                 <div class="p-4 border-l-4 border-red-500 bg-white dark:bg-zinc-950 shadow-sm">
-                    <strong class="block text-red-600 uppercase text-xs tracking-bold mb-1">Bloqueo Activo</strong>
+                    <strong class="block text-red-600 uppercase text-xs tracking-bold mb-1">Incumplimiento de Entrega</strong>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400">
-                        No podemos avanzar en "Mapeo de Campos" sin el archivo de datos provisionales (Insumo Genfami).
+                        A pesar del acuerdo de enviar "lo que haya", llevamos <strong>3 semanas de retraso</strong>. Sin estos archivos (así sean borradores), no se puede construir el entorno en Looker.
                     </p>
                 </div>
             </div>

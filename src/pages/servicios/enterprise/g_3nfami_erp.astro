@@ -47,7 +47,90 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
         </p>
     </div>
 
-    <!-- ROADMAP DE ENTREGABLES -->
+    <!-- VISUAL GANTT CHART -->
+    <div class="mb-12 overflow-x-auto">
+        <h3 class="font-bold text-zinc-900 dark:text-white mb-4 flex items-center gap-2">
+            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Vista Cronológica</span>
+            Gantt de Ejecución
+        </h3>
+        <div class="min-w-[800px] bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6">
+            <!-- Weeks Header -->
+            <div class="grid grid-cols-12 gap-1 mb-4 border-b border-zinc-100 dark:border-zinc-800 pb-2">
+                <div class="col-span-3 text-xs font-bold text-zinc-400 uppercase tracking-wider">Fase / Módulo</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 1</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 2</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 3</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 4</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 5</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 6</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 7</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 8</div>
+                <div class="col-span-1 text-center text-xs text-zinc-400">Sem 9</div>
+            </div>
+
+            <!-- Row 1: Arquitectura -->
+            <div class="grid grid-cols-12 gap-1 mb-3 items-center group">
+                <div class="col-span-3 text-xs font-medium text-zinc-600 dark:text-zinc-300">1. Arquitectura</div>
+                <!-- Start: 1, Duration: 2 -->
+                <div class="col-span-2 bg-emerald-500 h-2 rounded-full relative group-hover:h-3 transition-all">
+                    <span class="absolute -top-6 left-0 bg-zinc-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Completado</span>
+                </div>
+            </div>
+
+            <!-- Row 2: Stakeholders -->
+            <div class="grid grid-cols-12 gap-1 mb-3 items-center group">
+                <div class="col-span-3 text-xs font-medium text-zinc-600 dark:text-zinc-300">2. Stakeholders</div>
+                <div class="col-span-2"></div> <!-- Offset 2 -->
+                <!-- Duration: 2 (Weeks 3-4) -->
+                <div class="col-span-2 bg-blue-500 h-2 rounded-full relative group-hover:h-3 transition-all animate-pulse">
+                     <span class="absolute -top-6 left-0 bg-zinc-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">En Ejecución</span>
+                </div>
+            </div>
+
+             <!-- Row 3: Recursos -->
+            <div class="grid grid-cols-12 gap-1 mb-3 items-center group">
+                <div class="col-span-3 text-xs font-medium text-zinc-600 dark:text-zinc-300">3. Recursos</div>
+                <div class="col-span-4"></div> <!-- Offset 4 -->
+                <!-- Duration: 2 (Weeks 5-6) -->
+                <div class="col-span-2 bg-zinc-200 dark:bg-zinc-700 h-2 rounded-full relative group-hover:bg-zinc-300 transition-all"></div>
+            </div>
+
+            <!-- Row 4: Proyectos -->
+            <div class="grid grid-cols-12 gap-1 mb-3 items-center group">
+                <div class="col-span-3 text-xs font-medium text-zinc-600 dark:text-zinc-300">4. Proyectos</div>
+                 <div class="col-span-5"></div>
+                 <!-- Duration: 2 (Weeks 6-7) -->
+                <div class="col-span-2 bg-zinc-200 dark:bg-zinc-700 h-2 rounded-full relative group-hover:bg-zinc-300 transition-all"></div>
+            </div>
+
+            <!-- Row 5: Procesos -->
+            <div class="grid grid-cols-12 gap-1 mb-3 items-center group">
+                <div class="col-span-3 text-xs font-medium text-zinc-600 dark:text-zinc-300">5. Procesos (BPM)</div>
+                 <div class="col-span-6"></div>
+                 <!-- Duration: 2 (Weeks 7-8) -->
+                <div class="col-span-2 bg-zinc-200 dark:bg-zinc-700 h-2 rounded-full relative group-hover:bg-zinc-300 transition-all"></div>
+            </div>
+
+             <!-- Row 6: Financiero -->
+            <div class="grid grid-cols-12 gap-1 mb-3 items-center group">
+                <div class="col-span-3 text-xs font-medium text-zinc-600 dark:text-zinc-300">6. Financiero</div>
+                 <div class="col-span-7"></div>
+                 <!-- Duration: 2 (Weeks 8-9) -->
+                <div class="col-span-2 bg-zinc-200 dark:bg-zinc-700 h-2 rounded-full relative group-hover:bg-zinc-300 transition-all"></div>
+            </div>
+
+             <!-- Row 7: Bonus (Extras) -->
+            <div class="grid grid-cols-12 gap-1 mb-3 items-center group border-t border-dashed border-zinc-200 pt-3 mt-2">
+                <div class="col-span-3 text-xs font-bold text-indigo-600 dark:text-indigo-400">7. Extras (Bonus)</div>
+                 <div class="col-span-2"></div>
+                 <!-- Continuous Delivery -->
+                <div class="col-span-7 bg-indigo-100 dark:bg-indigo-900/30 h-1.5 rounded-full relative"></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- ROADMAP DETALLADO -->
     <div class="space-y-8">
         
         <!-- FASE 1: INSTALACIÓN -->
@@ -151,6 +234,33 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
                     Módulo Financiero y Presupuestal
                 </h2>
                 <p class="text-sm text-zinc-500 mt-1 ml-11">Control de costos, ingresos, facturación y caja.</p>
+            </div>
+        </div>
+
+        <!-- FASE 7: EXTRAS (BONUS) -->
+        <div class="border-2 border-dashed border-indigo-200 dark:border-indigo-900 rounded-xl overflow-hidden bg-indigo-50/50 dark:bg-indigo-900/10">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                     <h2 class="text-xl font-bold text-indigo-900 dark:text-indigo-300 flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-800 text-indigo-600 dark:text-indigo-300 text-sm">★</span>
+                        Módulo Extra: "Bonus Pack"
+                    </h2>
+                     <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-1 rounded border border-indigo-200">FUERA DE ALCANCE (CORTESÍA)</span>
+                </div>
+               
+                <p class="text-sm text-zinc-600 ml-11 mb-6">
+                    Herramientas adicionales activadas por StackSolver como valor agregado. No forman parte del contrato principal ni de los entregables obligatorios.
+                </p>
+
+                <div class="bg-white dark:bg-zinc-900 p-4 rounded-lg border border-indigo-100 dark:border-indigo-900/50 ml-11">
+                    <h3 class="font-bold text-sm text-indigo-700 dark:text-indigo-400 mb-2">💎 Claris Studio (Web Forms)</h3>
+                    <p class="text-xs text-zinc-500 mb-3">
+                        Plataforma para formularios web públicos (Proveedores, Encuestas anónimas).
+                    </p>
+                    <div class="p-2 bg-zinc-100 dark:bg-zinc-800 rounded text-xs text-zinc-500 italic border-l-2 border-zinc-400">
+                        <strong>Nota de Exención:</strong> Esta herramienta está en fase "Preview" por el fabricante. StackSolver la habilita "As Is" (Tal cual) y no está obligado a generar manuales de usuario ni capacitación formal sobre esta herramienta específica.
+                    </div>
+                </div>
             </div>
         </div>
 

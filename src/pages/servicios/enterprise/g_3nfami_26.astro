@@ -303,6 +303,32 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
                 <span class="ml-2">→</span>
             </a>
         </div>
+
+        <!-- DEFINICIÓN ESTRUCTURAL ERP (70/30 RULE) -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12 items-center bg-zinc-50 dark:bg-zinc-900/50 p-6 rounded-lg border border-zinc-200 dark:border-zinc-800">
+            <div>
+                <h3 class="font-bold text-zinc-900 dark:text-white uppercase tracking-widest text-xs mb-4">📐 Definición de Alcance Estructural</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+                    Este ERP no es un desarrollo a medida desde cero. Se rige por el modelo <strong>"Core 70 / Flex 30"</strong> para garantizar estabilidad y tiempos de entrega.
+                </p>
+                <ul class="text-sm space-y-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-zinc-400">◼</span>
+                        <span class="text-zinc-700 dark:text-zinc-300"><strong>70% Core (Inmutable):</strong> Estructura base probada, flujos de datos vitales y lógica de negocio estándar. <span class="text-zinc-400 italic">(No sujeto a cambios).</span></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">◼</span>
+                        <span class="text-zinc-700 dark:text-zinc-300"><strong>30% Flex (Adaptable):</strong> Capa de personalización para reportes específicos, nombres de campo y ajustes de flujo que no rompan el Core.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white dark:bg-zinc-950 p-5 rounded border-l-4 border-indigo-500 shadow-sm">
+                <strong class="block text-indigo-700 dark:text-indigo-400 text-xs uppercase tracking-widest mb-2">Regla de Gobernanza Técnica</strong>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 italic">
+                    "Cualquier solicitud de cambio que contradiga o ponga en riesgo la integridad estructural del 70% Core será técnicamente rechazada, ya que compromete la estabilidad de todo el ecosistema."
+                </p>
+            </div>
+        </div>
         
         <!-- Alerta de Bloqueo -->
         <div class="mb-8 p-6 border-l-4 border-blue-500 bg-white dark:bg-zinc-950 shadow-sm">

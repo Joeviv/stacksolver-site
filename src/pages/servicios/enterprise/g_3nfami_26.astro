@@ -173,22 +173,90 @@ import EstimateTemplate from "../../../components/templates/EstimateTemplate.ast
              <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Frente 3</span>
             ERP Gestión (Claris FileMaker)
         </h2>
-        <div class="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/30 rounded-lg p-6">
-            <div class="flex items-start gap-4">
-                <div class="text-3xl">🛑</div>
-                <div>
-                    <h3 class="font-bold text-red-800 dark:text-red-300">Proyecto Detenido / Re-definición de Alcance</h3>
-                    <p class="text-sm text-red-700 dark:text-red-200 mt-2">
-                        Se han recibido solicitudes contradictorias sobre los módulos a implementar. StackSolver no avanzará desarrollo hasta tener el "Documento de Alcance" firmado por Gerencia.
-                    </p>
-                    <div class="mt-4">
-                        <span class="text-xs font-bold text-red-800 uppercase tracking-wide">Acción Requerida:</span>
-                        <p class="text-sm bg-white dark:bg-black/20 p-2 rounded mt-1 border border-red-100">
-                            Reunión de alineación exclusiva para ERP (Fecha propuesta: Feb 10).
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <!-- Alerta de Bloqueo -->
+        <div class="bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-900/30 rounded-lg p-6 mb-8">
+            <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-2">🚀 Plan de Activación (Febrero 6 - 19)</h3>
+            <p class="text-sm text-zinc-700 dark:text-zinc-300">
+                Se ha definido un cronograma estricto para iniciar la operación técnica y capacitación. El avance depende del cumplimiento puntual de los requisitos previos por parte de Genfami (Usuarios y Claris Studio).
+            </p>
+        </div>
+
+        <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-zinc-50 dark:bg-zinc-800">
+                    <tr>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400 w-12">#</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Actividad / Hito Técnica</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Fecha Clave</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Responsable / Dependencia</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700 bg-white dark:bg-zinc-900">
+                    <!-- Hito 0 -->
+                    <tr class="bg-blue-50/50 dark:bg-blue-900/10">
+                        <td class="px-6 py-4 font-bold text-blue-600">0</td>
+                        <td class="px-6 py-4 font-bold">Inicio Grupo Técnico</td>
+                        <td class="px-6 py-4 font-bold text-blue-600">Vie 06 Feb</td>
+                        <td class="px-6 py-4">Alineación Equipos</td>
+                    </tr>
+                    <!-- Tarea 1 -->
+                    <tr>
+                        <td class="px-6 py-4 text-zinc-500">1</td>
+                        <td class="px-6 py-4">Definición de 4 Usuarios (Correos + Roles)</td>
+                        <td class="px-6 py-4">Inmediato</td>
+                        <td class="px-6 py-4 font-bold text-red-600">Genfami (Prerrequisito)</td>
+                    </tr>
+                    <!-- Tarea 2 -->
+                    <tr>
+                        <td class="px-6 py-4 text-zinc-500">2</td>
+                        <td class="px-6 py-4">Activación Claris Studio (Configurar cuenta info@genfami.org)</td>
+                        <td class="px-6 py-4">Inmediato</td>
+                        <td class="px-6 py-4"><span class="text-zinc-500">StackSolver / Genfami</span></td>
+                    </tr>
+                    <!-- Tarea 3 -->
+                    <tr>
+                        <td class="px-6 py-4 text-zinc-500">3</td>
+                        <td class="px-6 py-4">Instalación Software en 4 Equipos</td>
+                        <td class="px-6 py-4">09 - 12 Feb</td>
+                        <td class="px-6 py-4 text-zinc-500">StackSolver (Requiere Tarea 1)</td>
+                    </tr>
+                    <!-- Tarea 4 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">4</td>
+                        <td class="px-6 py-4 font-medium text-emerald-700">Inicio Capacitaciones</td>
+                        <td class="px-6 py-4 font-bold text-emerald-700">Vie 13 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                    <!-- Tarea 5 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">5</td>
+                        <td class="px-6 py-4">Capacitación: Carga de Datos Stakeholders</td>
+                        <td class="px-6 py-4 text-zinc-400">Post-Inicio</td>
+                        <td class="px-6 py-4 text-amber-600">Requiere Claris Studio (Tarea 2)</td>
+                    </tr>
+                     <!-- Tarea 6 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">6</td>
+                        <td class="px-6 py-4">Capacitación: Formularios Proveedores/Clientes (Studio)</td>
+                        <td class="px-6 py-4">Mar 17 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                     <!-- Tarea 7 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">7</td>
+                        <td class="px-6 py-4">Capacitación: Gestión de Proyectos Básica</td>
+                        <td class="px-6 py-4">Mié 18 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                     <!-- Tarea 8 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">8</td>
+                        <td class="px-6 py-4">Capacitación: Transacciones Recurrentes (Financiera)</td>
+                        <td class="px-6 py-4">Jue 19 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 

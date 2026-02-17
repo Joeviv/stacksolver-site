@@ -31,6 +31,10 @@
 
 ## 📋 Historial de Cambios
 
+### 2026-02-17
+- **Maintenance**: Update to Astro 6.0.0-beta.12.
+- **Sitemap**: Update to 3.6.1-beta.3.
+
 ### 2026-02-04
 - **Maintenance**: Update to Astro 6.0.0-beta.7, React 19.2.4.
 - **Config**: Amplify Node.js actualizado a v24.

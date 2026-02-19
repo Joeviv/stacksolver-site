@@ -24,6 +24,7 @@ const DrawingTransformation = ({
   const [stage, setStage] = useState(0);
 
   useEffect(() => {
+    // Animation cycle - Client side only
     const cycle = () => {
       setStage(0);
       setTimeout(() => setStage(1), 500);

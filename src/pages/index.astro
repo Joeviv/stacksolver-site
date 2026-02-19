@@ -2,6 +2,9 @@
 // ARCHIVO: src/pages/index.astro
 import Layout from "../layouts/Layout.astro";
 import { Hero } from "../components/Hero"; // Usamos solo la parte visual
+
+export const prerender = false;
+
 import { SparklesIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import SmartButtons from "../components/SmartButtons"; // Importar el nuevo componente
 import VideoEmbed from "../components/VideoEmbed";

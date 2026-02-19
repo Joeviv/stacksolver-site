@@ -16,6 +16,7 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Client-side only logic
     if (typeof window !== 'undefined') {
       setCurrentPath(window.location.pathname);
     }
@@ -28,10 +29,14 @@ export default function Navbar() {
         setActiveDropdown(null);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+
+    // Safety check for document
+    if (typeof document !== 'undefined') {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
   }, []);
 
   const isActive = (path: string) => currentPath === path || currentPath.startsWith(path + '/');

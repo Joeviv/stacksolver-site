@@ -5,7 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   output: 'static',
-  outDir: 'build_static',
   security: {
     checkOrigin: true
   },

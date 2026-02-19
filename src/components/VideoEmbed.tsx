@@ -11,6 +11,7 @@ export default function VideoEmbed({ vimeoId, title, delay = 0 }: VideoEmbedProp
     const [isVisible, setIsVisible] = useState(delay === 0);
 
     useEffect(() => {
+        // Client-side only delay
         if (delay > 0) {
             const timer = setTimeout(() => {
                 setIsVisible(true);

@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/react": "5.0.0-beta.3",
-    "@astrojs/sitemap": "3.6.1-beta.3",
+    "@astrojs/sitemap": "3.7.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/turndown": "^5.0.6",

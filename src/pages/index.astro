@@ -2,6 +2,9 @@
 // ARCHIVO: src/pages/index.astro
 import Layout from "../layouts/Layout.astro";
 import { Hero } from "../components/Hero"; // Usamos solo la parte visual
+
+export const prerender = false;
+
 import { SparklesIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import SmartButtons from "../components/SmartButtons"; // Importar el nuevo componente
 import VideoEmbed from "../components/VideoEmbed";
@@ -65,7 +68,7 @@ const pageKeywords = [
                             client:load
                             vimeoId="1152338281"
                             title="ERP/GRC con Rust y AI Local"
-                            delay={6}
+                            delay={3}
                         />
                     </div>
 
@@ -80,7 +83,7 @@ const pageKeywords = [
                             client:load
                             vimeoId="1134880582"
                             title="ERP/GRC con Claris FileMaker"
-                            delay={12}
+                            delay={6}
                         />
                     </div>
                 </div>

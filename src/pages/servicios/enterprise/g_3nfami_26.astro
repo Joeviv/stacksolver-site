@@ -1,0 +1,405 @@
+---
+import EstimateTemplate from "../../../components/templates/EstimateTemplate.astro";
+
+// COLORES DE ESTADO
+// Green: bg-emerald-100 text-emerald-800 border-emerald-200
+// Yellow: bg-amber-100 text-amber-800 border-amber-200
+// Red: bg-red-100 text-red-800 border-red-200
+// Gray (Pending): bg-zinc-100 text-zinc-800 border-zinc-200
+
+---
+
+<EstimateTemplate
+  clientName="Fundación Genfami"
+  projectName="Tablero de Gobierno y Control de Proyectos"
+  date="2026-02-05"
+  status="Active"
+  hideHeader={true}
+>
+  <div class="max-w-6xl mx-auto text-zinc-800 dark:text-zinc-200">
+    
+    <!-- HEADER STRATEGIC (MINIMALIST) -->
+    <div class="mb-16 border-b border-zinc-200 dark:border-zinc-800 pb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6">
+            <div>
+                <h6 class="text-xs font-bold text-zinc-400 uppercase tracking-[0.2em] mb-2">Reporte Ejecutivo</h6>
+                <h1 class="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tight leading-tight">Informe de estado</h1>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+                <p class="text-zinc-500 text-sm">Actualización: {new Date().toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <div class="flex items-center justify-end gap-2 mt-2">
+                    <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                    <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+                    <span class="h-2 w-2 rounded-full bg-red-500"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 pt-6 border-t border-zinc-100 dark:border-zinc-800/50">
+            <div>
+                <strong class="block text-zinc-900 dark:text-zinc-200 mb-1">Propósito Estratégico</strong>
+                <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-md">
+                    Instrumento exclusivo para la <strong>Toma de Decisiones de Alto Nivel</strong>. Foco en Salud del Portafolio, Bloqueos Críticos y Gestión de Riesgos (No operativo).
+                </p>
+            </div>
+            <div class="flex items-end justify-end">
+                <div class="text-sm text-zinc-400 text-right">
+                    <p>StackSolver <span class="mx-2 text-zinc-300">|</span> Genfami</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MARCO DE GOBERNANZA (MINIMALIST GRID - DETAILED TEXT RESTORED) -->
+    <section class="mb-20">
+        <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-8 border-b border-zinc-100 pb-2">Marco de Gobernanza</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <!-- 1. Naturaleza -->
+            <div class="group">
+                <div class="h-1 w-12 bg-zinc-200 mb-4 group-hover:bg-zinc-900 transition-colors"></div>
+                <strong class="block text-zinc-900 dark:text-zinc-100 text-lg mb-3">1. Naturaleza del Acuerdo</strong>
+                <p class="text-zinc-500 text-sm leading-relaxed mb-4">
+                    La alianza se fundamenta en la experticia de StackSolver en <strong>ERP y Procesos</strong>.
+                </p>
+                <p class="text-xs text-zinc-400 italic pl-3 border-l-2 border-zinc-100">
+                    "Para los frentes de LMS y Data, Genfami aceptó ejecutar el proyecto conociendo que no son la especialidad core de StackSolver, asumiendo el riesgo técnico a cambio de la centralización del proveedor."
+                </p>
+            </div>
+            
+            <!-- 2. Barrera Conocimiento -->
+            <div class="group">
+                <div class="h-1 w-12 bg-zinc-200 mb-4 group-hover:bg-zinc-900 transition-colors"></div>
+                <strong class="block text-zinc-900 dark:text-zinc-100 text-lg mb-3">2. Criterio Editorial</strong>
+                <p class="text-zinc-500 text-sm leading-relaxed mb-4">
+                     StackSolver no posee el criterio clínico ni psicológico para seleccionar imágenes sobre temas sensibles (Violencia de Género, Protocolos de Privacidad).
+                </p>
+                <div class="text-xs text-zinc-600 bg-zinc-50 dark:bg-zinc-800 p-3 rounded-sm border border-zinc-100 dark:border-zinc-700">
+                    <strong>Acuerdo Operativo:</strong> Se definió en comités que Genfami enviaría la selección curada de fotos. StackSolver <strong>está a la espera de estos activos</strong> para integrarlos.
+                </div>
+            </div>
+
+            <!-- 3. Alcance -->
+            <div class="group">
+                <div class="h-1 w-12 bg-zinc-200 mb-4 group-hover:bg-zinc-900 transition-colors"></div>
+                <strong class="block text-zinc-900 dark:text-zinc-100 text-lg mb-3">3. Alcance y Límites</strong>
+                <p class="text-zinc-500 text-sm leading-relaxed mb-2">
+                    <strong>Contrato:</strong> Configuración y montaje de contenidos para <strong>5 Cursos Virtuales</strong>.
+                </p>
+                <p class="text-zinc-500 text-sm leading-relaxed mb-4">
+                    <strong>Hosting (Edulabs):</strong> El hosting, actualizaciones y acceso al código fuente son controlados exclusivamente por el proveedor EDULABS.
+                </p>
+                <div class="text-xs text-zinc-600 border-l-2 border-zinc-900 pl-3">
+                    <strong>Nota Técnica:</strong> StackSolver opera sobre las funciones que Edulabs habilita. No somos responsables por limitaciones de plantilla o servidor, aunque aplicamos <em>"Best Effort"</em>.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRITICAL MILESTONE ALERT (DARK STYLE) -->
+    <div class="mb-20 bg-zinc-900 text-white rounded-lg p-8 shadow-xl">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-bold uppercase tracking-tight mb-2">Auditoría Final de Entregas</h2>
+                <p class="text-zinc-400 max-w-xl text-sm">
+                    Fecha límite definida y esperada por parte de Genfami para la recepción y validación de todos los entregables contractuales.
+                </p>
+            </div>
+            <div class="flex flex-col items-center">
+                <span class="text-5xl font-black tracking-tighter">MARZO 31</span>
+                <span class="text-xl font-light text-zinc-500 uppercase tracking-widest">2026</span>
+            </div>
+        </div>
+    </div>
+    <!-- PROYECTO 1: MOODLE (LMS) -->
+    <section class="mb-20 border-b border-zinc-100 dark:border-zinc-800 pb-16">
+        <h2 class="text-2xl font-bold text-zinc-900 dark:text-white mb-8 flex items-center gap-4">
+            Moodle LMS (Entrega 5 Cursos)
+            <span class="text-xs font-normal text-zinc-400 uppercase tracking-widest border border-zinc-200 px-3 py-1 rounded-full">Frente 1</span>
+        </h2>
+
+        <!-- Alerta de Riesgo: Diseño -->
+        <!-- Alertas y Definiciones Técnicas -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            
+            <!-- COL 1: RIESGO DE TIEMPOS (Original - Mantener) -->
+            <div class="p-6 border-l-4 border-red-500 bg-white dark:bg-zinc-950 shadow-sm">
+                <h3 class="font-bold text-red-600 dark:text-red-400 mb-2 uppercase text-xs tracking-widest">🛑 Riesgo: Cuello de Botella (Carga)</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                    <strong>Acuerdo Comité:</strong> Dado la dependencia del contenido que todavía está pendiente por definir y el diseño gráfico, existe alto riesgo de no poder cumplir con el desarrollo y carga de los 5 cursos en la semana de auditoría (finales de marzo).
+                    <span class="block mt-2 font-medium text-zinc-900 dark:text-white">Recomendación para mejora del proceso:</span>
+                    Se debe entregar material de forma progresiva (parcial), en un ritmo constante, esto para poder cumplir la fecha esperada. Acumular entregas pone en riesgo la fecha final.
+                </p>
+            </div>
+
+            <!-- COL 2: DEFINICIÓN DE DISEÑO (Nuevo - Texto Usuario) -->
+            <div class="p-6 border-l-4 border-zinc-400 bg-zinc-50 dark:bg-zinc-900/50">
+                <h3 class="font-bold text-zinc-700 dark:text-zinc-300 mb-3 uppercase text-xs tracking-widest">🎨 Alcance de Diseño y Estética</h3>
+                <div class="text-sm text-zinc-600 dark:text-zinc-400 space-y-3">
+                    <p>
+                        "Entendemos que la estética y funcionalidad del sitio es vital para el éxito del proyecto. En Stacksolver, nuestro alcance es la adaptación de su imagen corporativa al entorno técnico de Moodle.
+                    </p>
+                    <p>
+                        Hasta ahora, hemos tomado como referencia su portal institucional y manual de marca para garantizar coherencia. De acuerdo a nuestra última reunión conjunta, y teniendo en cuenta que desean un diseño que se aleje de su línea gráfica actual o una propuesta visual disruptiva distinta, el acuerdo es que necesitamos que su equipo de diseño nos proporcione el <strong>'Look & Feel' deseado (Mockups o guías de estilo)</strong>. Esto permite reducir tiempo y poder cumplir con la fecha esperada de finales de Marzo.
+                    </p>
+                    <p class="font-medium text-zinc-800 dark:text-zinc-200">
+                        Una vez recibida esa estructura gráfica, nosotros nos encargamos de la implementación técnica para que sea funcional en los cursos. Sin esa guía, corremos el riesgo de proponer estilos que no alineen con sus expectativas de marca."
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECCIÓN TÉCNICA: MÚLTIPLES PLANTILLAS (Nuevo - Texto Usuario) -->
+        <div class="mb-12 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <div class="bg-zinc-100 dark:bg-zinc-800 px-6 py-3 border-b border-zinc-200 dark:border-zinc-700">
+                <h3 class="font-bold text-zinc-700 dark:text-zinc-200 text-sm">💡 Recomendación Técnica: Implementación de Múltiples Plantillas</h3>
+            </div>
+            <div class="p-6 bg-white dark:bg-zinc-950 text-sm text-zinc-600 dark:text-zinc-400 grid md:grid-cols-2 gap-8">
+                
+                <div>
+                    <p class="mb-4">
+                        <strong class="text-zinc-900 dark:text-white">Factibilidad:</strong> Es posible técnicamente manejar múltiples diseños por curso, pero la ejecución requiere una gestión previa de su parte con el proveedor de infraestructura (Edulabs).
+                    </p>
+                    
+                    <h4 class="font-bold text-zinc-800 dark:text-zinc-300 mb-2 border-b border-zinc-100 pb-1">División de Responsabilidades</h4>
+                    <ul class="space-y-3 mb-4">
+                        <li>
+                            <strong class="text-indigo-600 dark:text-indigo-400">Gestión del Cliente / Edulabs:</strong>
+                            Deben solicitar a Edulabs la instalación de los paquetes de temas en el servidor y la habilitación de la función global "Permitir temas de curso". Sin esta acción técnica en el hosting, nosotros no tenemos acceso para aplicar cambios individuales.
+                        </li>
+                        <li>
+                            <strong class="text-indigo-600 dark:text-indigo-400">Gestión de Stacksolver:</strong>
+                            Una vez habilitado el sistema por Edulabs, nosotros procedemos con la configuración visual y la carga de contenidos bajo los nuevos parámetros.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-zinc-800 dark:text-zinc-300 mb-2 border-b border-zinc-100 pb-1">Riesgos y Requerimientos</h4>
+                    <ul class="space-y-3">
+                        <li class="flex gap-2">
+                            <span>⚠️</span>
+                            <span><strong>Carga Operativa:</strong> Manejar múltiples plantillas eleva la complejidad de configuración y revisión, lo que podría impactar los tiempos de entrega final.</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span>⚠️</span>
+                            <span><strong>Fragmentación de Marca:</strong> Existe el riesgo de perder la unidad visual de la plataforma, generando confusión en el usuario final si no hay una coherencia estética clara.</span>
+                        </li>
+                        <li class="bg-zinc-50 dark:bg-zinc-900 p-3 rounded border-l-2 border-indigo-500">
+                            <strong>Definición de Identidad:</strong> Para proceder, es indispensable que nos entreguen la definición exacta de la identidad gráfica (logos, paleta de colores y estilos) para cada uno de los nuevos entornos.
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest leading-relaxed">
+                        Estado Actual: por medio de correo enviado el viernes, Feb 6, a las 10:23 AM con asunto "Detalles técnicos para backup preventivo y lineamientos sobre plantillas de cursos (Moodle Workplace)", Genfami informa a Stacksolver que "...la idea es que Stacksolver, continúe avanzando con la propuesta de estructura/plantilla que ustedes nos indicaron, alineada a las necesidades de GENFAMI..".
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Tabla removida para informe semanal -->
+    </section>
+
+    <!-- PROYECTO 2: LOOKER (DATA) -->
+    <section class="mb-20 border-b border-zinc-100 dark:border-zinc-800 pb-16">
+        <h2 class="text-2xl font-bold text-zinc-900 dark:text-white mb-8 flex items-center gap-4">
+            Visualización avanzada de datos usando Google Looker (mapeo)
+            <span class="text-xs font-normal text-zinc-400 uppercase tracking-widest border border-zinc-200 px-3 py-1 rounded-full">Frente 2</span>
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="font-bold text-zinc-900 dark:text-white mb-2">Estado Actual</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
+                    <strong>StackSolver:</strong> Infraestructura lista. Esperando estructura de datos (los campos que quieren ver) y el correo a usar para que el desarrollo quede asociado a una cuenta Genfami.<br/>
+                    <strong>Acuerdo de Mitigación:</strong> Se acordó enviar la estructura de datos (premilinar), la "Data que tengan" (sin limpiar) para armar estructura de tablas y ganar tiempo, y la cuenta de correo Genfami definitiva para uso del desarrollo de mapeo.
+                </p>
+                <div class="p-4 border-l-4 border-red-500 bg-white dark:bg-zinc-950 shadow-sm">
+                    <strong class="block text-red-600 uppercase text-xs tracking-bold mb-1">Riesgo: Cuello de Botella (Carga)</strong>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                        A pesar del acuerdo de enviar "lo que haya" y la estructura preliminar de los datos, llevamos <strong>3 semanas de retraso</strong>. Sin estos archivos (así sean borradores), no se puede construir el entorno en Looker. Es importante el envío pronto de lo solicitado para que esto no siga impacto la fecha de entrega final esperada.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+                <!-- Tabla removida -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTO 3: ERP CLARIS -->
+    <section class="mb-20">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
+            <h2 class="text-2xl font-bold text-zinc-900 dark:text-white flex items-center gap-4">
+                ERP Claris
+                <span class="text-xs font-normal text-zinc-400 uppercase tracking-widest border border-zinc-200 px-3 py-1 rounded-full">Frente 3</span>
+            </h2>
+            <a href="/servicios/enterprise/g_3nfami_erp" class="group relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white transition-all duration-200 bg-indigo-600 font-pj rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                Ver Plan Maestro de Módulos (Detallado)
+                <span class="ml-2">→</span>
+            </a>
+        </div>
+
+        <!-- DEFINICIÓN ESTRUCTURAL ERP (70/30 RULE) -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12 items-center bg-zinc-50 dark:bg-zinc-900/50 p-6 rounded-lg border border-zinc-200 dark:border-zinc-800">
+            <div>
+                <h3 class="font-bold text-zinc-900 dark:text-white uppercase tracking-widest text-xs mb-4">📐 Definición de Alcance Estructural</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+                    Este ERP no es un desarrollo a medida desde cero. Se rige por el modelo <strong>"Core 70 / Flex 30"</strong> para garantizar estabilidad y tiempos de entrega.
+                </p>
+                <ul class="text-sm space-y-2">
+                    <li class="flex items-start gap-2">
+                        <span class="text-zinc-400">◼</span>
+                        <span class="text-zinc-700 dark:text-zinc-300"><strong>70% Core (Inmutable):</strong> Estructura base probada, flujos de datos vitales y lógica de negocio estándar. <span class="text-zinc-400 italic">(No sujeto a cambios).</span></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">◼</span>
+                        <span class="text-zinc-700 dark:text-zinc-300"><strong>30% Flex (Adaptable):</strong> Capa de personalización para reportes específicos, nombres de campo y ajustes de flujo que no rompan el Core.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white dark:bg-zinc-950 p-5 rounded border-l-4 border-indigo-500 shadow-sm">
+                <strong class="block text-indigo-700 dark:text-indigo-400 text-xs uppercase tracking-widest mb-2">Regla de Gobernanza Técnica</strong>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 italic">
+                    "Cualquier solicitud de cambio que contradiga o ponga en riesgo la integridad estructural del 70% Core será técnicamente rechazada, ya que compromete la estabilidad de todo el ecosistema."
+                </p>
+            </div>
+        </div>
+        
+        <!-- Alerta de Bloqueo -->
+        <div class="mb-8 p-6 border-l-4 border-blue-500 bg-white dark:bg-zinc-950 shadow-sm">
+            <h3 class="font-bold text-blue-700 dark:text-blue-500 mb-2 uppercase text-xs tracking-widest">🚀 Plan de Activación (Febrero 6 - 19)</h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                Cronograma estricto para iniciar operación. Avance depende del cumplimiento puntual de requisitos previos (Usuarios y Claris Studio).
+            </p>
+        </div>
+
+        <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-zinc-50 dark:bg-zinc-800">
+                    <tr>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400 w-12">#</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Actividad / Hito Técnica</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Fecha Clave</th>
+                        <th class="px-6 py-3 font-medium text-zinc-500 dark:text-zinc-400">Responsable / Dependencia</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700 bg-white dark:bg-zinc-900">
+                    <!-- Hito 0 -->
+                    <tr class="bg-blue-50/50 dark:bg-blue-900/10">
+                        <td class="px-6 py-4 font-bold text-blue-600">0</td>
+                        <td class="px-6 py-4 font-bold">Inicio Grupo Técnico</td>
+                        <td class="px-6 py-4 font-bold text-blue-600">Lun 09 Feb</td>
+                        <td class="px-6 py-4">Alineación Equipos</td>
+                    </tr>
+                    <!-- Tarea 1 -->
+                    <tr>
+                        <td class="px-6 py-4 text-zinc-500">1</td>
+                        <td class="px-6 py-4">Definición de 4 Usuarios (Correos + Roles)</td>
+                        <td class="px-6 py-4">Inmediato</td>
+                        <td class="px-6 py-4 font-bold text-red-600">Genfami (Prerrequisito)</td>
+                    </tr>
+                    <!-- Tarea 2 -->
+                    <tr>
+                        <td class="px-6 py-4 text-zinc-500">2</td>
+                        <td class="px-6 py-4">Activación Claris Studio (Configurar cuenta info@genfami.org)</td>
+                        <td class="px-6 py-4">Inmediato</td>
+                        <td class="px-6 py-4"><span class="text-zinc-500">StackSolver / Genfami</span></td>
+                    </tr>
+                    <!-- Tarea 3 -->
+                    <tr>
+                        <td class="px-6 py-4 text-zinc-500">3</td>
+                        <td class="px-6 py-4">Instalación Software en 4 Equipos</td>
+                        <td class="px-6 py-4">09 - 12 Feb</td>
+                        <td class="px-6 py-4 text-zinc-500">StackSolver (Requiere Tarea 1)</td>
+                    </tr>
+                    <!-- Tarea 4 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">4</td>
+                        <td class="px-6 py-4 font-medium text-emerald-700">Inicio Capacitaciones</td>
+                        <td class="px-6 py-4 font-bold text-emerald-700">Vie 13 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                    <!-- Tarea 5 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">5</td>
+                        <td class="px-6 py-4">Capacitación: Carga de Datos Stakeholders</td>
+                        <td class="px-6 py-4 text-zinc-400">Post-Inicio</td>
+                        <td class="px-6 py-4 text-amber-600">Requiere Claris Studio (Tarea 2)</td>
+                    </tr>
+                     <!-- Tarea 6 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">6</td>
+                        <td class="px-6 py-4">Capacitación: Formularios Proveedores/Clientes (Studio)</td>
+                        <td class="px-6 py-4">Mar 17 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                     <!-- Tarea 7 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">7</td>
+                        <td class="px-6 py-4">Capacitación: Gestión de Proyectos Básica</td>
+                        <td class="px-6 py-4">Mié 18 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                     <!-- Tarea 8 -->
+                     <tr>
+                        <td class="px-6 py-4 text-zinc-500">8</td>
+                        <td class="px-6 py-4">Capacitación: Transacciones Recurrentes (Financiera)</td>
+                        <td class="px-6 py-4">Jue 19 Feb</td>
+                        <td class="px-6 py-4">StackSolver</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- BITÁCORA DE CAMBIOS (SCOPE CREEP) -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white border-b pb-2">Control de Cambios y Alcance</h2>
+        <p class="mb-4 text-sm text-zinc-600">
+            Registro de solicitudes que <strong>no estaban en la cotización original</strong>. Estas solicitudes están sujetas a cotización adicional o intercambio de horas.
+        </p>
+
+        <div class="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+                    <tr>
+                        <th class="px-4 py-3">Fecha Solicitud</th>
+                        <th class="px-4 py-3">Descripción del Cambio</th>
+                        <th class="px-4 py-3">Solicitado Por</th>
+                        <th class="px-4 py-3">Impacto</th>
+                        <th class="px-4 py-3">Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700 bg-white dark:bg-zinc-900">
+                    <!-- Cambio 1: Diseño Gráfico -->
+                    <tr>
+                        <td class="px-4 py-3 text-zinc-500">Feb 01</td>
+                        <td class="px-4 py-3">
+                            <strong class="block text-zinc-900 dark:text-white">Servicios de Diseño Gráfico y Creatividad</strong>
+                            <span class="text-xs text-zinc-500">Solicitud para que StackSolver provea diseñador gráfico dedicado para crear la identidad visual de los cursos.</span>
+                        </td>
+                        <td class="px-4 py-3">Genfami</td>
+                        <td class="px-4 py-3 text-red-600 font-medium">Alto (Costos/Tiempo)</td>
+                        <td class="px-4 py-3"><span class="bg-zinc-200 text-zinc-700 px-2 py-1 rounded text-xs border border-zinc-300">Incluido, en espera propuesta de diseño final por parte de Genfami</span></td>
+                    </tr>
+                    <!-- Cambio 2: ERP Financiero -->
+                    <tr>
+                        <td class="px-4 py-3 text-zinc-500">Feb 05</td>
+                        <td class="px-4 py-3">
+                            <strong class="block text-zinc-900 dark:text-white">Sistema Financiero Avanzado (Contabilidad NIIF)</strong>
+                            <span class="text-xs text-zinc-500">Solicitud de un módulo contable completo integrado. El alcance actual es "Gestión Financiera Básica" (CxC / CxP).</span>
+                        </td>
+                        <td class="px-4 py-3">Gerencia Financiera</td>
+                        <td class="px-4 py-3 text-red-600 font-medium">Crítico (Requiere Fase 2)</td>
+                        <td class="px-4 py-3"><span class="bg-zinc-200 text-zinc-700 px-2 py-1 rounded text-xs border border-zinc-300">Rechazado / Futura Fase</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+  </div>
+</EstimateTemplate>

@@ -1,0 +1,194 @@
+---
+import EstimateTemplate from "../../../components/templates/EstimateTemplate.astro";
+
+// --- CONFIGURACIÓN DE LA PROPUESTA ---
+const clientName = "[CLIENTE]";
+const projectName = "[NOMBRE_PROYECTO]"; // Ej: Transformación Digital e Inteligencia de Datos
+const projectDate = "2026-MM-DD";
+const stakeholders = "[NOMBRES_STAKEHOLDERS]"; // Ej: Juan y María
+const softwareActual = "[SOFTWARE_ACTUAL]"; // Ej: SAP, Excel, Software Legado
+const softwareCompetencia = "[COMPETENCIA/ESTANDAR]"; // Ej: Salesforce, Hubspot, o "Hojas de Cálculo"
+const industria = "[INDUSTRIA]"; // Ej: Logística, Salud, Retail
+
+---
+
+<EstimateTemplate
+  clientName={clientName}
+  projectName={projectName}
+  date={projectDate}
+  status="Draft"
+  hideHeader={true}
+>
+  <div class="max-w-4xl mx-auto text-zinc-800 dark:text-zinc-200">
+    
+    <!-- HEADER INTRO-->
+    <section class="mb-12">
+        <h1 class="text-3xl font-bold mb-2 text-zinc-900 dark:text-white">Propuesta de Proyecto: {projectName} {clientName}</h1>
+        <p class="text-zinc-500 mb-8 border-b pb-4">Para: {stakeholders} | De: Stacksolver</p>
+
+        <!-- DIAGNOSTICO ESTRATEGICO -->
+        <div class="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-lg border border-blue-100 dark:border-blue-900/30 mb-8">
+            <h3 class="text-xl font-bold mb-4 text-zinc-900 dark:text-white">📍 Análisis de Situación: {softwareActual} vs. Solución Propia</h3>
+            <p class="mb-4 text-zinc-700 dark:text-zinc-300">
+                Antes de hablar de nuestra propuesta, es importante reconocer el panorama actual. Sabemos que <strong>{softwareActual}</strong> es una herramienta estándar en el mercado de {industria}, ofrece funciones conocidas y opera en múltiples empresas.
+            </p>
+            <p class="text-zinc-700 dark:text-zinc-300">
+                Sin embargo, si hoy estamos conversando, es porque hay necesidades operativas y estratégicas que no están siendo cubiertas. Por eso, antes de invertir en tecnología, los invitamos a hacerse estas preguntas clave:
+            </p>
+        </div>
+
+        <!-- PREGUNTAS DE REFLEXION (Personalizar según dolores del cliente) -->
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+            <div class="bg-white dark:bg-zinc-900 p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                <h4 class="font-bold text-red-500 mb-2">Sobre la Expectativa</h4>
+                <p class="text-sm italic text-zinc-600 dark:text-zinc-400">
+                    "Si llevan un tiempo utilizándolo, ¿por qué <strong>esta</strong> herramienta no ha resuelto el desorden administrativo o escalado con ustedes?"
+                </p>
+            </div>
+            <div class="bg-white dark:bg-zinc-900 p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                <h4 class="font-bold text-red-500 mb-2">Sobre la Tecnología Cloud</h4>
+                <p class="text-sm italic text-zinc-600 dark:text-zinc-400">
+                    "¿Tienen acceso real a sus datos desde cualquier lugar y dispositivo, o dependen de estar en la oficina o de conexiones remotas lentas?"
+                </p>
+            </div>
+            <div class="bg-white dark:bg-zinc-900 p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                <h4 class="font-bold text-red-500 mb-2">Sobre la Adaptabilidad</h4>
+                <p class="text-sm italic text-zinc-600 dark:text-zinc-400">
+                    "¿Sienten que el software se adapta a la forma única en que {clientName} opera, o ustedes han tenido que cambiar sus procesos para encajar en el software?"
+                </p>
+            </div>
+             <div class="bg-white dark:bg-zinc-900 p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                <h4 class="font-bold text-red-500 mb-2">Sobre el Control</h4>
+                <p class="text-sm italic text-zinc-600 dark:text-zinc-400">
+                    "¿Pueden hoy generar reportes en tiempo real de su operación, o dependen de procesos manuales en Excel para saber cómo va el negocio?"
+                </p>
+            </div>
+        </div>
+
+        <!-- TABLA COMPARATIVA -->
+        <h3 class="text-xl font-bold mb-6 text-zinc-900 dark:text-white">Comparativa Estratégica: ¿Alquilar o Construir?</h3>
+        <div class="overflow-x-auto mb-8">
+            <table class="w-full text-sm text-left border-collapse">
+                <thead class="bg-zinc-100 dark:bg-zinc-800">
+                    <tr>
+                        <th class="p-4 rounded-tl-lg">Característica</th>
+                        <th class="p-4 text-blue-800 dark:text-blue-300 w-1/3">Opción A: {softwareActual} (Estándar)</th>
+                        <th class="p-4 text-emerald-700 dark:text-emerald-400 w-1/3 rounded-tr-lg border-2 border-emerald-500 border-b-0 bg-emerald-50 dark:bg-emerald-900/20">Opción B: StackSolver (Ecosistema Propio)</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
+                    <tr>
+                        <td class="p-4 font-medium">Modelo de Propiedad</td>
+                        <td class="p-4"><strong>Alquiler Software.</strong> Nunca son dueños del software ni de los datos al 100%.</td>
+                        <td class="p-4 border-l-2 border-r-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-900/10"><strong>Dueños de la Solución.</strong> Ustedes son dueños del código y la lógica.</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-medium">Especialidad</td>
+                        <td class="p-4">Genérico para {industria}. Ideal si buscan operar sin personalizar procesos.</td>
+                        <td class="p-4 border-l-2 border-r-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-900/10">Diseñado para la <strong>Gestión Empresarial</strong> específica de {clientName}.</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-medium">Flexibilidad</td>
+                        <td class="p-4">Baja. Deben esperar a que el proveedor decida lanzar nuevas funciones.</td>
+                        <td class="p-4 border-l-2 border-r-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-900/10"><strong>Total.</strong> Si se les ocurre cambiar, modificar algun proceso o adicionar otra linea de negocio se puede integrar.</td>
+                    </tr>
+                     <tr class="font-bold">
+                        <td class="p-4">Conclusión</td>
+                        <td class="p-4">Seguro para empresas estándar, limitante para empresas en crecimiento.</td>
+                        <td class="p-4 border-2 border-emerald-500 border-t-0 rounded-br-lg rounded-bl-lg bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-300">Un traje a la medida diseñado para escalar, controlar el dinero y diferenciarse.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg border-l-4 border-zinc-900 dark:border-zinc-200 italic">
+            <p>"Deben analizar estos puntos para mediano y largo plazo de acuerdo a la proyección que tienen de su empresa"</p>
+        </div>
+    </section>
+
+    <!-- DIAGRAMA ECOSISTEMA (Placeholder) -->
+    <!-- NOTA: Reemplazar nodos según el proyecto específico -->
+    <section class="mb-16 mt-12">
+        <h2 class="text-xl font-bold mb-8 text-zinc-900 dark:text-white text-center">Ecosistema Digital Integrado</h2>
+        <div class="p-12 text-center border-2 border-dashed border-zinc-300 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+            <p class="text-zinc-500">[Inserte aquí el Diagrama del Ecosistema Específico del Cliente]</p>
+            <p class="text-xs text-zinc-400 mt-2">Core: Claris FileMaker + Satélites (Web, Apps, Integraciones)</p>
+        </div>
+    </section>
+
+    <!-- FASES DE IMPLEMENTACION -->
+    <section class="mb-12 space-y-4">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Fases de Implementación e Inversión</h2>
+        <p class="mb-6">
+            Estructura de proyecto recomendada para garantizar retorno de inversión desde el primer mes.
+        </p>
+
+        <!-- Fase Ejemplo 1 -->
+        <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden" open>
+            <summary class="flex justify-between items-center p-6 cursor-pointer bg-blue-50/50 dark:bg-blue-900/10 hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-colors">
+                <span class="font-bold text-lg text-blue-800 dark:text-blue-300">Fase 1: Fundamentos y Control (Prioridad)</span>
+                <span class="transform group-open:rotate-180 transition-transform text-blue-500">▼</span>
+            </summary>
+            <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                <p class="mb-4">Objetivo principal de la fase.</p>
+                <div class="mb-4">
+                    <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Entregable 1.</li>
+                        <li>Entregable 2.</li>
+                        <li>Entregable 3.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+                    <span class="mb-2 sm:mb-0"><strong>Tiempo estimado:</strong> [SEMANAS].</span>
+                    <span class="font-bold text-lg text-blue-600 dark:text-blue-400">Inversión: $[VALOR] COP</span>
+                </div>
+            </div>
+        </details>
+
+        <!-- Fase Ejemplo 2... Copiar estructura <details> para más fases -->
+
+    </section>
+
+    <!-- TECNOLOGIA -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Tecnología y Movilidad</h2>
+        <p class="mb-4">
+            Solución <strong>100% Cloud</strong> soportada por <strong>Claris Inc. (Apple)</strong>. Sin servidores físicos, accesible desde cualquier lugar.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6">
+             <div class="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-lg border border-blue-100 dark:border-blue-900/30">
+                <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Movilidad</h3>
+                <p class="text-sm">Acceso desde iPad, iPhone, Mac o Windows en cualquier lugar.</p>
+            </div>
+             <div class="bg-indigo-50 dark:bg-indigo-900/10 p-5 rounded-lg border border-indigo-100 dark:border-indigo-900/30">
+                <h3 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Seguridad</h3>
+                <p class="text-sm">Encriptación y backups automáticos gestionados por el motor Claris.</p>
+            </div>
+             <div class="bg-teal-50 dark:bg-teal-900/10 p-5 rounded-lg border border-teal-100 dark:border-teal-900/30">
+                <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Escalabilidad</h3>
+                <p class="text-sm">El sistema crece con ustedes. Sin límites de registros o lógica.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LICENCIAMIENTO -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Infraestructura y Licencias</h2>
+        <div class="bg-gray-50 dark:bg-zinc-900 p-6 rounded-lg mb-6 border border-zinc-200 dark:border-zinc-800">
+            <h4 class="font-bold mb-2 text-zinc-900 dark:text-white">Costos Claris FileMaker Cloud:</h4>
+            <ul class="list-disc pl-5 text-sm space-y-1 mb-4">
+                <li>Pago directo a Claris Inc. (Apple).</li>
+                <li>Paquete Mínimo: 5 Usuarios.</li>
+                <li>Costo ref: $22 USD / usuario / mes (Facturación Anual).</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="mb-8">
+        <p class="mt-8 font-bold text-lg text-zinc-900 dark:text-white">Quedamos atentos para iniciar,<br/>Stacksolver</p>
+    </section>
+
+  </div>
+</EstimateTemplate>

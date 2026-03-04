@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  clientName: string;
+  projectName: string;
+  status?: "Draft" | "Review" | "Approved";
+  date: string;
+  hideHeader?: boolean;
+}
+
+const { clientName, projectName, status = "Draft", date, hideHeader = false } = Astro.props;
+---
+
+<Layout 
+  title={`Estimación: ${projectName} - ${clientName}`}
+  description="Propuesta comercial confidencial."
+  robots="noindex, nofollow"
+>
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    <!-- Header -->
+    {
+      !hideHeader && (
+        <header class="border-b border-zinc-200 dark:border-zinc-800 pb-8 mb-10">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 mb-4">
+                {status}
+              </span>
+              <h1 class="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 mb-2">
+                {projectName}
+              </h1>
+              <p class="text-lg text-zinc-600 dark:text-zinc-400">
+                Preparado para: <span class="font-semibold text-zinc-900 dark:text-white">{clientName}</span>
+              </p>
+            </div>
+            <div class="text-right text-sm text-zinc-500 dark:text-zinc-400">
+              <p>Fecha: {date}</p>
+              <p>StackSolver Inc.</p>
+            </div>
+          </div>
+        </header>
+      )
+    }
+
+    <!-- Content Slot -->
+    <div class="prose prose-zinc dark:prose-invert max-w-none">
+      <slot />
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 text-center text-sm text-zinc-500">
+      <p>Este documento contiene información confidencial y propietaria de StackSolver.</p>
+      <p>&copy; {new Date().getFullYear()} StackSolver. Tech Solutions.</p>
+    </footer>
+  </div>
+</Layout>

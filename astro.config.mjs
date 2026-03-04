@@ -4,6 +4,10 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  output: 'static',
+  security: {
+    checkOrigin: true
+  },
   site: 'https://www.stacksolver.tech',
   integrations: [
     react(),

@@ -8,6 +8,8 @@ import {
     ArrowLongRightIcon,
 } from "@heroicons/react/24/outline";
 
+export const prerender = true;
+
 // 1. Generación de rutas estáticas para cada Sección Principal (ej: /servicios/ai-local)
 export async function getStaticPaths() {
     return SERVICES_MENU.map((section) => ({

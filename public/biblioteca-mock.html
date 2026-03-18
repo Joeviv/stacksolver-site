@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca — StackSolver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fafafa;--surface:#fff;--border:#e4e4e7;--border-strong:#18181b;
+  --accent:#18181b;--accent-fg:#fff;--accent-sub:#f4f4f5;
+  --indigo:#6366f1;--indigo-sub:#eef2ff;
+  --green:#16a34a;--green-sub:#f0fdf4;
+  --amber:#d97706;--amber-sub:#fffbeb;
+  --text:#18181b;--text2:#71717a;--text3:#a1a1aa;
+  --r:6px;--font:'Inter',-apple-system,sans-serif;
+  --sb:240px;--nav:52px;
+}
+body.dark{
+  --bg:#0a0a0a;--surface:#111;--border:#27272a;--border-strong:#fafafa;
+  --accent:#fafafa;--accent-fg:#18181b;--accent-sub:#27272a;
+  --indigo:#818cf8;--indigo-sub:#1e1b4b;
+  --green:#4ade80;--green-sub:#052e16;
+  --text:#fafafa;--text2:#a1a1aa;--text3:#52525b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:var(--bg);border-bottom:1px solid var(--border)}
+.logo{font-size:14px;font-weight:700;letter-spacing:-.3px}
+.logo em{color:var(--indigo);font-style:normal}
+.nav-r{display:flex;gap:6px;align-items:center}
+.nav-link{font-size:13px;color:var(--text2);padding:4px 10px;border-radius:var(--r);transition:all .15s}
+.nav-link:hover{color:var(--text);background:var(--accent-sub)}
+.nav-link.on{color:var(--text);font-weight:500}
+.icon-btn{width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2)}
+.icon-btn:hover{border-color:var(--text3);color:var(--text)}
+.lang-wrap{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.lb{padding:3px 10px;font-size:12px;font-weight:600;border:none;background:none;color:var(--text2);cursor:pointer;font-family:var(--font)}
+.lb.on{background:var(--accent);color:var(--accent-fg)}
+
+/* LAYOUT */
+.layout{display:flex;min-height:100vh;padding-top:var(--nav)}
+.sidebar{width:var(--sb);flex-shrink:0;position:fixed;top:var(--nav);bottom:0;left:0;overflow-y:auto;border-right:1px solid var(--border);background:var(--bg);padding:16px 0}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.sb-section{font-size:11px;font-weight:600;letter-spacing:.7px;text-transform:uppercase;color:var(--text3);padding:12px 16px 4px;margin-top:8px}
+.sb-section:first-child{margin-top:0}
+.sb-item{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:13px;font-weight:400;color:var(--text2);cursor:pointer;border-left:2px solid transparent;transition:all .1s}
+.sb-item:hover{color:var(--text);background:var(--accent-sub)}
+.sb-item.on{color:var(--text);font-weight:500;border-left-color:var(--text);background:var(--accent-sub)}
+.sb-item svg{flex-shrink:0;width:14px;height:14px;opacity:.6}
+.sb-item.on svg{opacity:1}
+.sb-sub{padding-left:38px;font-size:12px;padding-top:4px;padding-bottom:4px;border-left:2px solid transparent}
+.sb-sub:hover{color:var(--text);background:var(--accent-sub)}
+.sb-sub.on{color:var(--text);font-weight:500;border-left-color:var(--text);background:var(--accent-sub)}
+
+/* CONTENT */
+.content{margin-left:var(--sb);flex:1;padding:48px 60px;max-width:calc(var(--sb) + 820px)}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);margin-bottom:24px}
+.breadcrumb span{color:var(--text2)}
+.page-title{font-size:30px;font-weight:700;letter-spacing:-.6px;margin-bottom:6px;line-height:1.2}
+.page-desc{font-size:15px;color:var(--text2);line-height:1.65;margin-bottom:32px;max-width:600px}
+.divider-h{height:1px;background:var(--border);margin:32px 0}
+
+/* SECTION LABEL */
+.sec-label{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+
+/* VIDEO */
+.video-wrap{width:100%;aspect-ratio:16/9;background:var(--accent-sub);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-bottom:32px;position:relative;overflow:hidden}
+.video-icon{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.video-icon svg{width:18px;height:18px;color:var(--text3)}
+.video-label{font-size:13px;color:var(--text3);font-weight:500}
+.video-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);background:var(--surface);border:1px solid var(--border);padding:2px 8px;border-radius:4px}
+
+/* DEFINITION BOX */
+.def-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:32px}
+.def-box p{font-size:14px;color:var(--text2);line-height:1.7}
+.def-box strong{color:var(--text)}
+
+/* ACCORDION */
+.acc-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.acc-item{border-bottom:1px solid var(--border)}
+.acc-item:last-child{border-bottom:none}
+.acc-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:none;border:none;font-family:var(--font);font-size:14px;font-weight:500;color:var(--text);cursor:pointer;text-align:left;transition:background .1s}
+.acc-q:hover{background:var(--bg)}
+.acc-q svg{flex-shrink:0;width:15px;height:15px;color:var(--text3);transition:transform .2s}
+.acc-item.open .acc-q svg{transform:rotate(180deg)}
+.acc-a{display:none;padding:0 20px 16px;font-size:13px;color:var(--text2);line-height:1.7}
+.acc-item.open .acc-a{display:block}
+.acc-a ul{padding-left:16px;margin-top:6px}
+.acc-a li{margin-bottom:4px}
+.acc-a strong{color:var(--text)}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+.tag{font-size:11px;font-weight:500;padding:3px 9px;border-radius:4px;border:1px solid var(--border);color:var(--text2)}
+.tag.ind{border-color:#c7d2fe;background:#eef2ff;color:#4338ca}
+.tag.grc{border-color:#fde68a;background:#fffbeb;color:#92400e}
+.tag.ai{border-color:#bbf7d0;background:#f0fdf4;color:#166534}
+body.dark .tag.ind{border-color:var(--indigo-sub);background:var(--indigo-sub);color:var(--indigo)}
+body.dark .tag.grc{border-color:var(--amber-sub);background:var(--amber-sub);color:var(--amber)}
+body.dark .tag.ai{border-color:var(--green-sub);background:var(--green-sub);color:var(--green)}
+
+/* INFO PILL */
+.info-pill{display:flex;gap:8px;padding:10px 14px;border-radius:var(--r);background:var(--indigo-sub);border:1px solid #c7d2fe;font-size:12px;color:#4338ca;line-height:1.5;margin-bottom:20px}
+body.dark .info-pill{border-color:var(--indigo-sub);color:var(--indigo)}
+.partner-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r);background:var(--green-sub);border:1px solid #bbf7d0;font-size:12px;font-weight:600;color:var(--green);margin-bottom:20px}
+body.dark .partner-badge{border-color:var(--green-sub)}
+
+/* MOBILE */
+.mob-sb-btn{display:none;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px 12px;cursor:pointer;margin-bottom:20px}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);transition:transform .2s;z-index:150}
+  .sidebar.open{transform:translateX(0)}
+  .content{margin-left:0;padding:24px 20px}
+  .mob-sb-btn{display:flex}
+  .page-title{font-size:22px}
+}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-left:var(--sb)}
+.footer-contact{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)}
+.footer-contact a{color:var(--text2);text-decoration:none;transition:color .15s}
+.footer-contact a:hover{color:var(--text)}
+.footer-contact svg{width:15px;height:15px;color:var(--text3)}
+.footer-copy{font-size:12px;color:var(--text3)}
+@media(max-width:768px){footer{margin-left:0}}
+</style>
+</head>
+<body>
+<svg style="display:none">
+  <symbol id="V-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="V-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></symbol>
+  <symbol id="V-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M18.66 5.34l-1.41 1.41"/></symbol>
+  <symbol id="V-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="V-fin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+  <symbol id="V-hr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></symbol>
+  <symbol id="V-proj" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="6" height="18" rx="1"/><rect x="9" y="3" width="6" height="11" rx="1"/><rect x="16" y="3" width="6" height="15" rx="1"/></symbol>
+  <symbol id="V-sc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+  <symbol id="V-crm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></symbol>
+  <symbol id="V-sh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l8.5 3.5V11c0 5.25-3.8 9.74-8.5 11-4.7-1.26-8.5-5.75-8.5-11V5.5L12 2z"/></symbol>
+  <symbol id="V-bpm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="6" height="5" rx="1"/><rect x="16" y="2" width="6" height="5" rx="1"/><rect x="9" y="17" width="6" height="5" rx="1"/><path d="M5 7v4h14V7M12 11v6"/></symbol>
+  <symbol id="V-str" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+  <symbol id="V-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></symbol>
+  <symbol id="V-srv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></symbol>
+  <symbol id="V-lic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></symbol>
+  <symbol id="V-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M7 9H5m2 3H5m2 3H5m12-6h2m-2 3h2m-2 3h2M9 7V5m3 2V5m3 2V5M9 17v2m3-2v2m3-2v2"/></symbol>
+  <symbol id="V-local" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="V-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4 3 9 3s9-1.34 9-3v-4"/></symbol>
+  <symbol id="V-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7M8 7h8M9 15h.01M15 15h.01"/></symbol>
+  <symbol id="V-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></symbol>
+  <symbol id="V-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="V-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+<symbol id="V-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+<symbol id="V-sec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l8.5 3.5V11c0 5.25-3.8 9.74-8.5 11-4.7-1.26-8.5-5.75-8.5-11V5.5L12 2z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="15" r=".5" fill="currentColor"/></symbol>
+<symbol id="V-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></symbol>
+<symbol id="V-cert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></symbol>
+<symbol id="V-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:24px">
+    <div class="logo">Stack<em>Solver</em></div>
+    <a class="nav-link" href="/diagnostico-mock.html" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+    <a class="nav-link on" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+    <a class="nav-link" href="/nosotros-mock.html" data-es="Nosotros" data-en="About">Nosotros</a>
+  </div>
+  <div class="nav-r">
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()"><svg width="14" height="14"><use href="#V-moon"/></svg></button>
+    <div class="lang-wrap">
+      <button class="lb on" onclick="setLang('es')">ES</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-section" data-es="ERP & GRC" data-en="ERP & GRC">ERP & GRC</div>
+    <div class="sb-item on" data-page="fin" onclick="showPage('fin',this)"><svg><use href="#V-fin"/></svg><span data-es="Gestión Financiera" data-en="Financial Mgmt">Gestión Financiera</span></div>
+    <div class="sb-item" data-page="hr" onclick="showPage('hr',this)"><svg><use href="#V-hr"/></svg><span data-es="Talento Humano" data-en="Human Resources">Talento Humano</span></div>
+    <div class="sb-item" data-page="proj" onclick="showPage('proj',this)"><svg><use href="#V-proj"/></svg><span data-es="Gestión de Proyectos" data-en="Project Mgmt">Gestión de Proyectos</span></div>
+    <div class="sb-item" data-page="sc" onclick="showPage('sc',this)"><svg><use href="#V-sc"/></svg><span data-es="Cadena de Suministro" data-en="Supply Chain">Cadena de Suministro</span></div>
+    <div class="sb-item" data-page="crm" onclick="showPage('crm',this)"><svg><use href="#V-crm"/></svg><span data-es="Clientes y CRM" data-en="Clients & CRM">Clientes y CRM</span></div>
+    <div class="sb-item" data-page="grc" onclick="showPage('grc',this)"><svg><use href="#V-sh"/></svg><span data-es="GRC — Gobernanza" data-en="GRC — Governance">GRC — Gobernanza</span></div>
+    <div class="sb-item" data-page="bpm" onclick="showPage('bpm',this)"><svg><use href="#V-bpm"/></svg><span data-es="Gestión de Procesos" data-en="Process Mgmt">Gestión de Procesos</span></div>
+    <div class="sb-item" data-page="str" onclick="showPage('str',this)"><svg><use href="#V-str"/></svg><span data-es="Estrategia y Gobierno" data-en="Strategy & Gov.">Estrategia y Gobierno</span></div>
+
+    <div class="sb-section" data-es="Claris FileMaker" data-en="Claris FileMaker">Claris FileMaker</div>
+    <div class="sb-item" data-page="cloud" onclick="showPage('cloud',this)"><svg><use href="#V-cloud"/></svg><span>Claris Cloud</span></div>
+    <div class="sb-item" data-page="onprem" onclick="showPage('onprem',this)"><svg><use href="#V-srv"/></svg><span data-es="On Premise" data-en="On Premise">On Premise</span></div>
+    <div class="sb-item" data-page="lic" onclick="showPage('lic',this)"><svg><use href="#V-lic"/></svg><span data-es="Licencias" data-en="Licensing">Licencias</span></div>
+
+    <div class="sb-section" data-es="Local AI" data-en="Local AI">Local AI</div>
+    <div class="sb-item" data-page="ai-intro" onclick="showPage('ai-intro',this)"><svg><use href="#V-cpu"/></svg><span data-es="Introducción" data-en="Introduction">Introducción</span></div>
+    <div class="sb-item" data-page="ai-local" onclick="showPage('ai-local',this)"><svg><use href="#V-local"/></svg><span data-es="Local First" data-en="Local First">Local First</span></div>
+    <div class="sb-item" data-page="ai-db" onclick="showPage('ai-db',this)"><svg><use href="#V-db"/></svg><span>Rust + SurrealDB</span></div>
+    <div class="sb-item" data-page="ai-agents" onclick="showPage('ai-agents',this)"><svg><use href="#V-bot"/></svg><span data-es="Agentes Especializados" data-en="Specialized Agents">Agentes Especializados</span></div>
+
+    <div class="sb-section" data-es="Cumplimiento" data-en="Compliance">Cumplimiento</div>
+    <div class="sb-item" data-page="iso27001" onclick="showPage('iso27001',this)"><svg><use href="#V-sh"/></svg><span>ISO 27001</span></div>
+    <div class="sb-item" data-page="iso42001" onclick="showPage('iso42001',this)"><svg><use href="#V-bot"/></svg><span>ISO 42001</span></div>
+    <div class="sb-item" data-page="comp-ind" onclick="showPage('comp-ind',this)"><svg><use href="#V-bpm"/></svg><span data-es="Por Industria" data-en="By Industry">Por Industria</span></div>
+    <div class="sb-item" data-page="comp-pais" onclick="showPage('comp-pais',this)"><svg><use href="#V-globe"/></svg><span data-es="Por País" data-en="By Country">Por País</span></div>
+
+    <div class="sb-section" data-es="Seguridad" data-en="Security">Seguridad</div>
+    <div class="sb-item" data-page="sec-arch" onclick="showPage('sec-arch',this)"><svg><use href="#V-sec"/></svg><span data-es="Arquitectura Segura" data-en="Secure Architecture">Arquitectura Segura</span></div>
+    <div class="sb-item" data-page="sec-data" onclick="showPage('sec-data',this)"><svg><use href="#V-lock"/></svg><span data-es="Protección de Datos" data-en="Data Protection">Protección de Datos</span></div>
+    <div class="sb-item" data-page="sec-access" onclick="showPage('sec-access',this)"><svg><use href="#V-lic"/></svg><span data-es="Control de Acceso" data-en="Access Control">Control de Acceso</span></div>
+    <div class="sb-item" data-page="sec-audit" onclick="showPage('sec-audit',this)"><svg><use href="#V-cert"/></svg><span data-es="Auditoría y Trazabilidad" data-en="Audit & Traceability">Auditoría y Trazabilidad</span></div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content" id="mainContent">
+    <button class="mob-sb-btn" onclick="toggleSb()"><svg width="14" height="14"><use href="#V-menu"/></svg><span data-es="Menú" data-en="Menu">Menú</span></button>
+    <div id="pageContent"></div>
+  </main>
+</div>
+
+<script>
+const lang = () => document.documentElement.lang || 'es';
+
+const PAGES = {
+  fin: {
+    vimeo: '1152338281',
+    es: {
+      crumb: 'ERP & GRC', title: 'Gestión Financiera',
+      desc: 'Centraliza todas las operaciones monetarias de la empresa en un sistema integrado. Contabilidad, tesorería, impuestos y planeación presupuestal en tiempo real — con cierre diario automático y conciliación bancaria.',
+      tags: [['ERP','ind'],['Contabilidad','ind'],['Tesorería','ind'],['Impuestos','grc']],
+      acc: [
+        ['¿Qué es?','El módulo de Gestión Financiera es el núcleo económico del ERP. Registra cada movimiento monetario de la empresa mediante un modelo de partida doble (NIIF), generando un libro mayor inmutable y auditable en tiempo real. Toda transacción queda trazada a la tarea operativa que la originó.'],
+        ['Contabilidad — NIIF y Libro Mayor','<ul><li><strong>Libro mayor inmutable:</strong> Tabla T04_LEDGER donde cada entrada solo se puede insertar, nunca modificar — garantía de integridad para auditorías.</li><li><strong>Partida doble:</strong> Débito y Crédito suman siempre cero, validado automáticamente.</li><li><strong>Trazabilidad operativa:</strong> Cada asiento contable está vinculado mediante UUID a la tarea (venta, compra, nómina) que lo generó.</li><li><strong>Reportes NIIF:</strong> Balance general, PyG y flujo de caja generados automáticamente.</li></ul>'],
+        ['Tesorería — Flujo de Caja en Tiempo Real','<ul><li><strong>Posición de caja:</strong> Bancos, caja menor y cuentas por cobrar/pagar visibles en un solo panel.</li><li><strong>Conciliación bancaria:</strong> Interfaz tipo Tinder — el sistema presenta cada movimiento bancario y el usuario confirma o rechaza el cruce con el registro ERP.</li><li><strong>Alertas de liquidez:</strong> Avisos automáticos cuando el saldo proyectado cae por debajo del umbral definido.</li></ul>'],
+        ['Impuestos — Cumplimiento Fiscal Automático','<ul><li><strong>IVA, Renta, ICA, Exógena:</strong> Cálculo automático de tasas desde tabla de impuestos centralizada.</li><li><strong>Calendario fiscal:</strong> Alertas de vencimiento 30-15-5 días antes de cada obligación.</li><li><strong>Informes para DIAN:</strong> Generación de archivos en formato oficial para presentación electrónica.</li></ul>'],
+        ['Planeación — Presupuesto vs. Ejecución','<ul><li><strong>Construcción de presupuesto:</strong> Por centro de costo, línea de negocio o proyecto.</li><li><strong>Seguimiento en tiempo real:</strong> Varianza automática entre presupuesto aprobado y ejecución actual.</li><li><strong>Escenarios:</strong> Simulación de impacto ante cambios en ingresos o costos fijos.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'Financial Management',
+      desc: 'Centralizes all monetary operations in one integrated system. Accounting, treasury, taxes and budget planning in real time — with automatic daily closing and bank reconciliation.',
+      tags: [['ERP','ind'],['Accounting','ind'],['Treasury','ind'],['Taxes','grc']],
+      acc: [
+        ['What is it?','The Financial Management module is the economic core of the ERP. It records every monetary movement using double-entry bookkeeping (IFRS), generating an immutable, auditable ledger in real time. Every transaction is traced to the operational task that originated it.'],
+        ['Accounting — IFRS & General Ledger','<ul><li><strong>Immutable ledger:</strong> T04_LEDGER table where entries can only be inserted, never modified — audit integrity guaranteed.</li><li><strong>Double-entry:</strong> Debit and Credit always sum to zero, automatically validated.</li><li><strong>Operational traceability:</strong> Each journal entry is UUID-linked to the task (sale, purchase, payroll) that generated it.</li></ul>'],
+        ['Treasury — Real-Time Cash Flow','<ul><li><strong>Cash position:</strong> Banks, petty cash and accounts receivable/payable in a single panel.</li><li><strong>Bank reconciliation:</strong> Tinder-like interface — the system presents each bank movement and the user confirms or rejects the match.</li><li><strong>Liquidity alerts:</strong> Automatic alerts when projected balance falls below defined threshold.</li></ul>'],
+        ['Taxes — Automated Tax Compliance','<ul><li><strong>VAT, Income Tax, local levies:</strong> Automatic rate calculation from centralized tax table.</li><li><strong>Fiscal calendar:</strong> 30-15-5 day deadline alerts for each tax obligation.</li></ul>'],
+        ['Planning — Budget vs. Execution','<ul><li><strong>Budget construction:</strong> By cost center, business line or project.</li><li><strong>Real-time tracking:</strong> Automatic variance between approved budget and current execution.</li></ul>'],
+      ]
+    }
+  },
+  hr: {
+    es: {
+      crumb: 'ERP & GRC', title: 'Talento Humano y Cultura',
+      desc: 'Gestión integral del capital humano: nómina electrónica, seguridad social (PILA), SGSST, bienestar y desarrollo organizacional. Todo conectado al núcleo financiero del ERP.',
+      tags: [['ERP','ind'],['Nómina','ind'],['SGSST','grc'],['PILA','grc']],
+      acc: [
+        ['¿Qué es?','El módulo de Talento Humano gestiona el ciclo de vida completo del empleado — desde la selección hasta el retiro. Genera nómina electrónica integrada con contabilidad y garantiza el cumplimiento de las obligaciones laborales y de seguridad social en Colombia.'],
+        ['Nómina y Seguridad Social (PILA)','<ul><li><strong>Liquidación de nómina:</strong> Salarios, horas extra, bonificaciones, descuentos y préstamos.</li><li><strong>PILA automático:</strong> Cálculo de aportes a salud, pensión y ARL según normativa colombiana.</li><li><strong>Integración contable:</strong> Cada cierre de nómina genera automáticamente los asientos contables en el módulo financiero.</li><li><strong>Comprobantes de pago:</strong> Generados y enviados digitalmente a cada empleado.</li></ul>'],
+        ['SGSST — Sistema de Gestión de Seguridad','<ul><li><strong>Decreto 1072:</strong> Cumplimiento del estándar colombiano de seguridad y salud en el trabajo.</li><li><strong>Registro de incidentes:</strong> Trazabilidad completa de accidentes, incidentes y enfermedades laborales.</li><li><strong>Indicadores de gestión:</strong> IAFAS, IATAS y frecuencia de accidentalidad automáticos.</li><li><strong>Inspecciones:</strong> Programación y registro de inspecciones de seguridad periódicas.</li></ul>'],
+        ['Selección y Onboarding','<ul><li><strong>Pipeline de selección:</strong> Vacante → Postulaciones → Entrevistas → Oferta → Contratación.</li><li><strong>Onboarding digital:</strong> Checklist automatizado de documentos, accesos y capacitación inicial.</li><li><strong>Contratos digitales:</strong> Generación y firma de contratos de trabajo desde el sistema.</li></ul>'],
+        ['Bienestar y Clima Organizacional','<ul><li><strong>Programa de bienestar:</strong> Registro y seguimiento de actividades de bienestar por empleado.</li><li><strong>Encuestas de clima:</strong> Plantillas configurables con análisis de resultados.</li><li><strong>Plan de desarrollo:</strong> Metas de capacitación y seguimiento de competencias por cargo.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'Human Resources & Culture',
+      desc: 'Full employee lifecycle management: payroll, social security, workplace safety (OSHA-equivalent), wellness and organizational development. All connected to the financial core.',
+      tags: [['ERP','ind'],['Payroll','ind'],['Safety','grc']],
+      acc: [
+        ['What is it?','The HR module manages the complete employee lifecycle — from recruitment to exit. It generates electronic payroll integrated with accounting and ensures compliance with labor and social security obligations.'],
+        ['Payroll & Social Security','<ul><li><strong>Payroll calculation:</strong> Salaries, overtime, bonuses, deductions and loans.</li><li><strong>Social contributions:</strong> Health, pension and occupational risk automatically calculated per local regulation.</li><li><strong>Accounting integration:</strong> Each payroll cycle auto-generates journal entries in the financial module.</li></ul>'],
+        ['Workplace Safety (SGSST)','<ul><li><strong>Incident registry:</strong> Full traceability of accidents and occupational illnesses.</li><li><strong>Safety KPIs:</strong> Accident frequency and severity indices auto-calculated.</li><li><strong>Inspections:</strong> Scheduling and recording of periodic safety inspections.</li></ul>'],
+      ]
+    }
+  },
+  proj: {
+    es: {
+      crumb: 'ERP & GRC', title: 'Gestión de Proyectos',
+      desc: 'Organiza y controla proyectos con jerarquía Proyecto → Fase → Tarea → Recurso. Trazabilidad financiera completa, aprobaciones integradas y control de GRC en cada entrega.',
+      tags: [['ERP','ind'],['Proyectos','ind'],['GRC','grc']],
+      acc: [
+        ['¿Qué es?','El módulo de Gestión de Proyectos extiende el modelo universal de tareas del ERP a la gestión de proyectos complejos. Permite planificar, ejecutar y controlar proyectos con visibilidad en tiempo real del avance, presupuesto y riesgos — todo dentro de la misma plataforma.'],
+        ['Estructura jerárquica del proyecto','<ul><li><strong>Proyecto:</strong> Contenedor principal con responsable, fechas y presupuesto global.</li><li><strong>Fase:</strong> Agrupación de tareas por etapa o entregable.</li><li><strong>Tarea:</strong> Unidad ejecutable con responsable, fechas, recursos humanos y materiales.</li><li><strong>Recurso:</strong> Horas-hombre y materiales asociados a cada tarea con costo real calculado.</li></ul>'],
+        ['Control financiero del proyecto','<ul><li><strong>Presupuesto vs. ejecución:</strong> Varianza en tiempo real por fase y tarea.</li><li><strong>Costeo real:</strong> Cada hora registrada y cada recurso consumido impacta automáticamente el costo del proyecto.</li><li><strong>Facturación por hitos:</strong> Generación de facturas condicionada al cumplimiento de entregables aprobados.</li></ul>'],
+        ['Trazabilidad y aprobaciones GRC','<ul><li><strong>Flujo de aprobación:</strong> Cambios de alcance, presupuesto adicional y cierre de fases requieren aprobación digital con evidencia auditada.</li><li><strong>Registro de riesgos:</strong> Cada proyecto tiene su propia matriz de riesgos vinculada al módulo GRC.</li><li><strong>Lecciones aprendidas:</strong> Repositorio de conocimiento al cierre de cada proyecto.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'Project Management',
+      desc: 'Organizes and controls projects with a Project → Phase → Task → Resource hierarchy. Full financial traceability, integrated approvals and GRC control on every deliverable.',
+      tags: [['ERP','ind'],['Projects','ind'],['GRC','grc']],
+      acc: [
+        ['What is it?','The Project Management module extends the ERP universal task model to complex project management. Plan, execute and control projects with real-time visibility of progress, budget and risks — all within the same platform.'],
+        ['Project hierarchy','<ul><li><strong>Project:</strong> Main container with owner, dates and global budget.</li><li><strong>Phase:</strong> Task grouping by stage or deliverable.</li><li><strong>Task:</strong> Executable unit with owner, dates, human and material resources.</li></ul>'],
+      ]
+    }
+  },
+  sc: {
+    es: {
+      crumb: 'ERP & GRC', title: 'Cadena de Suministro y Operaciones',
+      desc: 'Gestión integral de compras, inventario, logística y producción. Incluye el Semáforo de Proveedores (Verde/Amarillo/Rojo) para control de riesgo en adquisiciones.',
+      tags: [['ERP','ind'],['Compras','ind'],['Inventario','ind'],['Riesgo','grc']],
+      acc: [
+        ['¿Qué es?','El módulo de Cadena de Suministro conecta proveedores, inventario, logística y producción en un flujo continuo y auditable. Controla cada movimiento de materiales desde la orden de compra hasta la entrega al cliente final, con trazabilidad financiera completa.'],
+        ['Compras y Semáforo de Proveedores','<ul><li><strong>🟢 Verde (Confianza):</strong> Proveedores únicos (servicios públicos), entidades del Estado o socios estratégicos validados. No requieren cotización comparativa.</li><li><strong>🟡 Amarillo (Competitivo):</strong> Mercados abiertos. El sistema exige comparar mínimo 3 opciones periódicamente.</li><li><strong>🔴 Rojo (Restringido):</strong> Proveedores sancionados o con mal desempeño. El sistema bloquea automáticamente las órdenes de compra.</li></ul>'],
+        ['Inventario y Almacén (WMS)','<ul><li><strong>Movimientos:</strong> Entradas, salidas, traslados y ajustes con trazabilidad por lote y fecha de vencimiento.</li><li><strong>Valoración:</strong> FIFO, promedio ponderado o costo específico según política de la empresa.</li><li><strong>Alertas de stock:</strong> Mínimos, máximos y punto de reorden configurables por referencia.</li><li><strong>Kardex automático:</strong> Historial completo de movimientos por producto.</li></ul>'],
+        ['Logística y Transporte','<ul><li><strong>Órdenes de despacho:</strong> Planificación de rutas y asignación de transportistas.</li><li><strong>Seguimiento:</strong> Registro de entregas con firma digital del receptor.</li><li><strong>Devoluciones:</strong> Flujo estructurado de devoluciones con impacto automático en inventario y contabilidad.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'Supply Chain & Operations',
+      desc: 'Full procurement, inventory, logistics and production management. Includes the Vendor Traffic Light (Green/Yellow/Red) for risk control in acquisitions.',
+      tags: [['ERP','ind'],['Procurement','ind'],['Inventory','ind'],['Risk','grc']],
+      acc: [
+        ['What is it?','The Supply Chain module connects vendors, inventory, logistics and production in a continuous, auditable flow. Controls every material movement from purchase order to final delivery, with full financial traceability.'],
+        ['Vendor Traffic Light','<ul><li><strong>🟢 Green (Trusted):</strong> Unique vendors or validated partners — no competitive quotes required.</li><li><strong>🟡 Yellow (Competitive):</strong> Open markets — system requires comparing at least 3 options periodically.</li><li><strong>🔴 Red (Blocked):</strong> Sanctioned or poor-performing vendors — purchase orders automatically blocked.</li></ul>'],
+      ]
+    }
+  },
+  crm: {
+    es: {
+      crumb: 'ERP & GRC', title: 'Clientes y Mercado — CRM',
+      desc: 'Gestión completa del ciclo del cliente: generación de leads, pipeline de ventas, atención (PQRS) y fidelización. Todo integrado con facturación y contabilidad.',
+      tags: [['CRM','ind'],['Ventas','ind'],['Servicio','grc']],
+      acc: [
+        ['¿Qué es?','El módulo CRM gestiona la relación con el cliente desde el primer contacto hasta la posventa. Integra marketing, ventas, facturación y servicio al cliente en un único flujo trazable, eliminando los silos de información entre departamentos.'],
+        ['Pipeline de Ventas','<ul><li><strong>Etapas configurables:</strong> Prospecto → Calificado → Propuesta → Negociación → Cierre.</li><li><strong>Probabilidad de cierre:</strong> Forecast automático basado en historial de conversión.</li><li><strong>Cotizaciones:</strong> Generación directa desde el pipeline con listas de precios y descuentos por cliente.</li><li><strong>Conversión a factura:</strong> Un click para convertir cotización aprobada en factura electrónica.</li></ul>'],
+        ['PQRS — Peticiones, Quejas, Reclamos','<ul><li><strong>Canal único:</strong> Web, correo y presencial canalizados al mismo registro.</li><li><strong>SLA automático:</strong> Tiempos de respuesta configurables con alertas por vencimiento.</li><li><strong>Trazabilidad:</strong> Historial completo de interacciones por cliente.</li><li><strong>GRC nativo:</strong> Los incumplimientos de SLA se registran automáticamente como eventos de riesgo operativo.</li></ul>'],
+        ['Marketing y Fidelización','<ul><li><strong>Segmentación:</strong> Por industria, tamaño, región o comportamiento de compra.</li><li><strong>Campañas:</strong> Seguimiento de efectividad por canal.</li><li><strong>NPS:</strong> Medición automática de satisfacción post-entrega.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'Clients & Market — CRM',
+      desc: 'Full client lifecycle management: lead generation, sales pipeline, support (PQRS) and retention. All integrated with invoicing and accounting.',
+      tags: [['CRM','ind'],['Sales','ind'],['Service','grc']],
+      acc: [
+        ['What is it?','The CRM module manages the client relationship from first contact to after-sales. Integrates marketing, sales, invoicing and customer service in a single traceable flow, eliminating data silos between departments.'],
+        ['Sales Pipeline','<ul><li><strong>Configurable stages:</strong> Prospect → Qualified → Proposal → Negotiation → Close.</li><li><strong>Forecast:</strong> Automatic closing probability based on conversion history.</li><li><strong>Quotes to invoice:</strong> One click to convert an approved quote into an electronic invoice.</li></ul>'],
+      ]
+    }
+  },
+  grc: {
+    es: {
+      crumb: 'ERP & GRC', title: 'GRC — Gobernanza, Riesgo y Cumplimiento',
+      desc: 'GRC nativo integrado en cada transacción del ERP. Genera evidencias automáticas, controla riesgos en tiempo real y garantiza cumplimiento normativo sin trabajo manual adicional.',
+      tags: [['GRC','grc'],['ISO','grc'],['Auditoría','grc'],['Riesgo','grc']],
+      acc: [
+        ['¿Qué es GRC y por qué es su ventaja competitiva?','GRC (Gobernanza, Riesgo y Cumplimiento) no es burocracia — es la estructura que permite a su empresa operar de forma confiable, auditada y protegida en cualquier mercado. <strong>Las empresas sin GRC estructurado enfrentan: multas evitables, pérdida de contratos con grandes compradores, auditorías costosas y riesgos reputacionales.</strong> En el ERP de StackSolver, el GRC no es un módulo separado — está integrado en cada operación.'],
+        ['Gobernanza — Quién decide qué','<ul><li><strong>Flujos de aprobación:</strong> Cada acción crítica (compra, pago, contratación) tiene un aprobador definido con evidencia digital.</li><li><strong>Segregación de funciones:</strong> Quien solicita no puede aprobar; quien aprueba no puede ejecutar.</li><li><strong>Trazabilidad total:</strong> Cada cambio en el sistema queda registrado con usuario, fecha/hora y justificación.</li><li><strong>Políticas digitales:</strong> Repositorio de políticas institucionales con versiones y confirmación de lectura.</li></ul>'],
+        ['Gestión de Riesgo — Control Continuo','<ul><li><strong>Matriz de riesgos:</strong> Probabilidad × Impacto con semáforo automático (Verde/Amarillo/Rojo).</li><li><strong>KRIs automáticos:</strong> Indicadores de riesgo calculados en tiempo real desde datos operativos.</li><li><strong>Planes de tratamiento:</strong> Controles preventivos, detectivos y correctivos vinculados a cada riesgo.</li><li><strong>Alertas automáticas:</strong> Notificaciones cuando un KRI supera el umbral de tolerancia.</li></ul>'],
+        ['Cumplimiento y Auditoría','<ul><li><strong>Calendario de obligaciones:</strong> Registro de todas las obligaciones normativas (ISO, DIAN, MinTrabajo, reguladores sectoriales) con alertas 30-15-5 días antes.</li><li><strong>Evidencias automáticas:</strong> El sistema genera y almacena evidencias de cumplimiento en cada transacción — sin trabajo manual.</li><li><strong>Informes de auditoría:</strong> Generados automáticamente en formato estandarizado para auditorías internas y externas.</li><li><strong>Normas soportadas:</strong> ISO 9001, ISO 27001, NIIF/IFRS, SOX, GDPR, y normativas colombianas sectoriales.</li></ul>'],
+        ['Cierre Diario Universal — Auditoría Continua','<ul><li><strong>Reconciliación diaria:</strong> El sistema compara registros ERP (facturas, recibos) vs. realidad (extractos bancarios, caja física).</li><li><strong>Estado "Conciliado":</strong> Ningún período puede cerrarse sin que todos los movimientos lleguen a estado conciliado.</li><li><strong>Alertas de discrepancia:</strong> Cualquier diferencia genera automáticamente un evento de riesgo GRC.</li><li><strong>Pista de auditoría perpetua:</strong> El libro mayor es inmutable — los auditores pueden verificar cualquier período histórico sin alteraciones.</li></ul>'],
+        ['Operamos en cualquier jurisdicción','Nuestros sistemas GRC se adaptan al marco regulatorio de cada país. Tenemos experiencia con clientes en Colombia, Reino Unido y las Bahamas. La metodología es universal — las regulaciones son locales.'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'GRC — Governance, Risk & Compliance',
+      desc: 'Native GRC integrated into every ERP transaction. Generates automatic evidence, controls risk in real time, and ensures regulatory compliance without additional manual work.',
+      tags: [['GRC','grc'],['ISO','grc'],['Audit','grc'],['Risk','grc']],
+      acc: [
+        ['What is GRC and why is it your competitive advantage?','GRC (Governance, Risk and Compliance) is not bureaucracy — it is the structure that allows your company to operate reliably, audited and protected in any market. <strong>Companies without structured GRC face: avoidable fines, loss of contracts with major buyers, costly audits and reputational risks.</strong> In the StackSolver ERP, GRC is not a separate module — it is integrated into every operation.'],
+        ['Governance — Who decides what','<ul><li><strong>Approval workflows:</strong> Every critical action (purchase, payment, hiring) has a defined approver with digital evidence.</li><li><strong>Segregation of duties:</strong> Requestor cannot approve; approver cannot execute.</li><li><strong>Full traceability:</strong> Every system change is recorded with user, timestamp and justification.</li></ul>'],
+        ['Risk Management — Continuous Control','<ul><li><strong>Risk matrix:</strong> Probability × Impact with automatic traffic light (Green/Yellow/Red).</li><li><strong>Automatic KRIs:</strong> Risk indicators calculated in real time from operational data.</li><li><strong>Treatment plans:</strong> Preventive, detective and corrective controls linked to each risk.</li></ul>'],
+        ['Compliance & Audit','<ul><li><strong>Obligations calendar:</strong> All regulatory deadlines with 30-15-5 day alerts.</li><li><strong>Automatic evidence:</strong> System generates and stores compliance evidence in every transaction — no manual work.</li><li><strong>Standards supported:</strong> ISO 9001, ISO 27001, IFRS, SOX, GDPR and local sector regulations.</li></ul>'],
+      ]
+    }
+  },
+  bpm: {
+    es: {
+      crumb: 'ERP & GRC', title: 'Gestión de Procesos — BPM',
+      desc: 'Motor de procesos empresariales con jerarquía de 5 niveles y más de 230 actividades predefinidas. Estandariza la operación y elimina la dependencia del conocimiento individual.',
+      tags: [['BPM','ind'],['Procesos','ind'],['Estandarización','grc']],
+      acc: [
+        ['¿Qué es BPM?','Business Process Management (BPM) es la metodología para identificar, documentar, ejecutar, medir y mejorar los procesos de una organización. En el ERP de StackSolver, el BPM no es una herramienta externa — es el esqueleto sobre el que corren todas las operaciones. Cada tarea que se ejecuta en el sistema es una instancia de un proceso definido en la jerarquía BPM.'],
+        ['Jerarquía de 5 Niveles','<ul><li><strong>Nivel 1 — Categoría:</strong> Dominio de negocio (ej: Gestión Financiera, Talento Humano).</li><li><strong>Nivel 2 — Grupo:</strong> Función dentro del dominio (ej: Impuestos y Cumplimiento).</li><li><strong>Nivel 3 — Proceso:</strong> Objetivo específico (ej: Declaración de IVA bimestral).</li><li><strong>Nivel 4 — Actividad/Proveedor:</strong> Quién ejecuta o qué entidad participa.</li><li><strong>Nivel 5 — Tarea:</strong> Instrucción operativa paso a paso.</li></ul>'],
+        ['Catálogo preconfigurado para Colombia','<ul><li><strong>+230 actividades:</strong> Predefinidas según estándares ISO y APQC, adaptadas a regulaciones colombianas.</li><li><strong>Importación desde CSV:</strong> El sistema arranca vacío pero inteligente — el catálogo se carga desde un master file en minutos.</li><li><strong>Activación selectiva:</strong> La empresa activa solo los procesos que aplican a su modelo de negocio.</li></ul>'],
+        ['Modelo Universal de Transacción','<ul><li><strong>Toda acción = Tarea:</strong> Venta, compra, pago, contratación, producción — todo se ejecuta como una Task en el sistema, con aprobador, fecha, recurso y evidencia.</li><li><strong>Estados del flujo:</strong> Borrador → Por Aprobar → Aprobado → Ejecutado → Conciliado.</li><li><strong>Eliminación de dependencia:</strong> Cuando alguien clave se va, el proceso sigue — está documentado y ejecutándose en el sistema.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'Process Management — BPM',
+      desc: 'Business process engine with a 5-level hierarchy and 230+ predefined activities. Standardizes operations and eliminates dependence on individual knowledge.',
+      tags: [['BPM','ind'],['Processes','ind'],['Standards','grc']],
+      acc: [
+        ['What is BPM?','Business Process Management is the methodology to identify, document, execute, measure and improve organizational processes. In the StackSolver ERP, BPM is not an external tool — it is the skeleton on which all operations run. Every task executed in the system is an instance of a process defined in the BPM hierarchy.'],
+        ['5-Level Hierarchy','<ul><li><strong>Level 1 — Category:</strong> Business domain (e.g. Financial Management).</li><li><strong>Level 2 — Group:</strong> Function within the domain.</li><li><strong>Level 3 — Process:</strong> Specific objective.</li><li><strong>Level 4 — Activity/Vendor:</strong> Who executes or which entity participates.</li><li><strong>Level 5 — Task:</strong> Step-by-step operational instruction.</li></ul>'],
+      ]
+    }
+  },
+  str: {
+    es: {
+      crumb: 'ERP & GRC', title: 'Estrategia y Gobierno Corporativo',
+      desc: 'Módulo de planeación estratégica con OKRs, gestión de la gobernanza corporativa y documentación institucional. El punto de partida de cualquier transformación digital.',
+      tags: [['Estrategia','ind'],['OKRs','ind'],['Gobernanza','grc']],
+      acc: [
+        ['¿Qué es?','El módulo de Estrategia y Gobierno Corporativo conecta la visión a largo plazo de la organización con la ejecución operativa diaria. Define la misión, visión y valores como documentos vivos, gestiona OKRs con seguimiento automático, y controla la gobernanza del sistema como un activo institucional.'],
+        ['OKRs y Roadmap Estratégico','<ul><li><strong>Objetivos y resultados clave:</strong> Definición de OKRs por periodo con seguimiento automático de avance.</li><li><strong>Cascada:</strong> OKRs corporativos → departamentales → individuales, todos trazables.</li><li><strong>Roadmap:</strong> Iniciativas estratégicas con fechas, responsables y presupuesto asociado.</li><li><strong>Tablero ejecutivo:</strong> Semáforo de cumplimiento de OKRs en tiempo real.</li></ul>'],
+        ['Documentación Institucional','<ul><li><strong>Misión, Visión, Valores:</strong> Documentos vivos con versiones históricas y fecha de aprobación por junta.</li><li><strong>Mapa de procesos:</strong> Representación gráfica de todos los procesos del sistema BPM.</li><li><strong>Manual del sistema:</strong> Documentación técnica y funcional generada automáticamente desde el ERP.</li></ul>'],
+        ['Gobernanza Corporativa','<ul><li><strong>Actas de junta:</strong> Registro y seguimiento de compromisos de junta directiva.</li><li><strong>Comités:</strong> Gestión de comités (auditoría, riesgo, ética) con actas y seguimiento de acuerdos.</li><li><strong>Código de conducta:</strong> Publicación, distribución y confirmación de lectura por todos los empleados.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'ERP & GRC', title: 'Strategy & Corporate Governance',
+      desc: 'Strategic planning module with OKRs, corporate governance management and institutional documentation. The starting point of any digital transformation.',
+      tags: [['Strategy','ind'],['OKRs','ind'],['Governance','grc']],
+      acc: [
+        ['What is it?','The Strategy & Corporate Governance module connects the organization long-term vision with daily operational execution. It defines mission, vision and values as living documents, manages OKRs with automatic tracking, and controls system governance as an institutional asset.'],
+      ]
+    }
+  },
+  cloud: {
+    es: {
+      crumb: 'Claris FileMaker', title: 'Claris Cloud',
+      desc: 'FileMaker en la nube administrada por Claris/Apple. Sin servidor propio — acceso desde cualquier lugar mediante Claris ID. Ideal para empresas que quieren empezar rápido sin infraestructura propia.',
+      tags: [['Claris','ind'],['SaaS','ind'],['Cloud','ind']],
+      acc: [
+        ['¿Qué es Claris Cloud?','Claris Cloud es la versión SaaS de FileMaker Server, administrada directamente por Claris (subsidiaria de Apple) sobre infraestructura AWS. No requiere servidor propio ni conocimientos de administración de sistemas. El cliente accede a sus aplicaciones desde cualquier navegador con su Claris ID.'],
+        ['¿Cómo funciona?','<ul><li><strong>Acceso:</strong> Web Direct (navegador), FileMaker Pro (desktop) y FileMaker Go (iOS) mediante Claris ID.</li><li><strong>Administración:</strong> A través de la Claris Customer Console — sin SSH, sin FileMaker Server Admin Console local.</li><li><strong>Actualizaciones:</strong> Automáticas, gestionadas por Claris. Siempre en la versión más reciente.</li><li><strong>Backups:</strong> Automáticos diarios con retención configurable.</li></ul>'],
+        ['¿Para quién es ideal?','<ul><li>Empresas que no quieren gestionar infraestructura de servidor.</li><li>Equipos distribuidos o con trabajo remoto.</li><li>Proyectos que necesitan arrancar rápido con inversión inicial mínima.</li><li>Organizaciones que ya tienen Claris ID para sus empleados.</li></ul>'],
+        ['Diferencias vs. On Premise','<ul><li><strong>Cloud:</strong> Sin acceso SSH, actualizaciones automáticas, menor control sobre configuración del servidor.</li><li><strong>On Premise:</strong> Control total, integraciones de red local, scripts del lado del servidor más potentes.</li><li><strong>Costo:</strong> Cloud tiene costo mensual recurrente; On Premise requiere inversión inicial en servidor pero puede ser más económico a largo plazo.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Claris FileMaker', title: 'Claris Cloud',
+      desc: 'FileMaker on cloud infrastructure managed by Claris/Apple. No server required — access from anywhere via Claris ID. Ideal for companies that want to start fast without their own infrastructure.',
+      tags: [['Claris','ind'],['SaaS','ind'],['Cloud','ind']],
+      acc: [
+        ['What is Claris Cloud?','Claris Cloud is the SaaS version of FileMaker Server, managed directly by Claris (an Apple subsidiary) on AWS infrastructure. No own server required, no systems administration knowledge needed. Clients access their applications from any browser with their Claris ID.'],
+        ['How it works','<ul><li><strong>Access:</strong> Web Direct (browser), FileMaker Pro (desktop) and FileMaker Go (iOS) via Claris ID.</li><li><strong>Administration:</strong> Through Claris Customer Console — no SSH, no local Admin Console.</li><li><strong>Updates:</strong> Automatic, managed by Claris. Always on the latest version.</li></ul>'],
+      ]
+    }
+  },
+  onprem: {
+    es: {
+      crumb: 'Claris FileMaker', title: 'On Premise',
+      desc: 'FileMaker Server instalado en la infraestructura del cliente. Control total del servidor, integración con redes locales y mayor capacidad de personalización técnica.',
+      tags: [['Claris','ind'],['On Premise','ind'],['Control','grc']],
+      acc: [
+        ['¿Qué es On Premise?','On Premise significa que FileMaker Server corre en un servidor bajo el control directo del cliente — ya sea en sus instalaciones físicas o en una instancia de nube privada. Ofrece máximo control, integración profunda con la red local y acceso completo a todas las capacidades del servidor.'],
+        ['Ventajas del modelo On Premise','<ul><li><strong>Control total:</strong> Acceso SSH completo, Admin Console, configuración avanzada del servidor.</li><li><strong>Integración local:</strong> VPN, Active Directory, servidores de archivos, impresoras y sistemas heredados.</li><li><strong>Scripts del servidor:</strong> Ejecución de scripts programados con mayor potencia y sin límites de timeout de Cloud.</li><li><strong>Soberanía de datos:</strong> Los datos permanecen en la infraestructura del cliente, sin tránsito por servidores externos.</li></ul>'],
+        ['Requisitos técnicos','<ul><li><strong>Hardware:</strong> Servidor dedicado (Windows Server o macOS Server según versión).</li><li><strong>Red:</strong> IP fija o dominio para acceso externo si se requiere Web Direct.</li><li><strong>SSL:</strong> Certificado SSL para conexiones seguras.</li><li><strong>Mantenimiento:</strong> Actualizaciones manuales — StackSolver ofrece soporte de mantenimiento y monitoreo.</li></ul>'],
+        ['¿Cuándo elegir On Premise?','<ul><li>Cuando los datos no pueden salir de las instalaciones del cliente (regulaciones sectoriales, salud, gobierno).</li><li>Cuando se requiere integración profunda con sistemas internos (ERP legacy, servidores de archivos).</li><li>Cuando el volumen de usuarios o datos hace que On Premise sea más económico a largo plazo.</li><li>Cuando se necesita personalización avanzada del servidor (caches, límites de conexión, scripts de servidor complejos).</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Claris FileMaker', title: 'On Premise',
+      desc: 'FileMaker Server installed on the client infrastructure. Full server control, local network integration and greater technical customization.',
+      tags: [['Claris','ind'],['On Premise','ind'],['Control','grc']],
+      acc: [
+        ['What is On Premise?','On Premise means FileMaker Server runs on a server under the direct control of the client. Offers maximum control, deep integration with the local network, and full access to all server capabilities.'],
+        ['Advantages','<ul><li><strong>Full control:</strong> Complete SSH access, Admin Console, advanced server configuration.</li><li><strong>Local integration:</strong> VPN, Active Directory, file servers, legacy systems.</li><li><strong>Data sovereignty:</strong> Data stays on client infrastructure, no transit through external servers.</li></ul>'],
+      ]
+    }
+  },
+  lic: {
+    es: {
+      crumb: 'Claris FileMaker', title: 'Licencias Claris',
+      desc: 'StackSolver es partner oficial de Claris para Colombia, con contacto directo con Claris LATAM. Gestionamos licencias para clientes en Colombia y podemos acompañar la gestión en otras regiones según las necesidades del proyecto.',
+      tags: [['Claris','ind'],['Licencias','ind'],['Partner Oficial','ai']],
+      acc: [
+        ['StackSolver — Partner Oficial de Claris para Colombia','StackSolver está registrado como partner oficial de Claris (Apple) para Colombia, en contacto directo con Elena Lazaro de Claris LATAM. Esto significa que podemos gestionar la compra, renovación y optimización de licencias directamente — con precios de partner y soporte prioritario de Claris.'],
+        ['Tipos de licencias Claris','<ul><li><strong>Licencias por Usuario Nombrado:</strong> Asignadas a una persona específica. Incluye acceso a FileMaker Pro (desktop), FileMaker Go (iOS) y Web Direct.</li><li><strong>Licencias Concurrentes:</strong> Paga por sesiones activas simultáneas — ideal cuando muchos usuarios usan el sistema pero no todos al mismo tiempo.</li><li><strong>Licencias de Sitio:</strong> Usuarios ilimitados en un servidor On Premise — económico para organizaciones grandes.</li><li><strong>Claris Connect:</strong> Plataforma de automatización (tipo Zapier nativa de Claris) para integraciones con servicios externos.</li></ul>'],
+        ['¿Cómo elegir la licencia correcta?','<ul><li><strong>Menos de 10 usuarios activos:</strong> Licencias por usuario nombrado en Claris Cloud.</li><li><strong>10–50 usuarios:</strong> Evaluar concurrentes vs. nombradas según patrones de uso.</li><li><strong>Más de 50 usuarios:</strong> Licencia de sitio On Premise generalmente más económica.</li><li><strong>Proyectos con fluctuación:</strong> Concurrentes — solo se paga por quién está conectado en ese momento.</li><li>StackSolver hace este análisis sin costo como parte del diagnóstico inicial.</li></ul>'],
+        ['Gestión continua de licencias','<ul><li><strong>Renovaciones:</strong> Gestionamos las renovaciones anuales con anticipación para evitar interrupciones.</li><li><strong>Optimización:</strong> Auditoría periódica de uso real vs. licencias activas — muchas empresas pagan por usuarios que ya no trabajan.</li><li><strong>Escalamiento:</strong> Gestión de incrementos de licencias cuando el negocio crece.</li><li><strong>Multi-cliente:</strong> Administramos licencias de Wasvelt, Genfami y otros clientes en una sola consola.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Claris FileMaker', title: 'Claris Licensing',
+      desc: 'StackSolver is the official Claris partner for Colombia, in direct contact with Claris LATAM. We manage licenses for clients in Colombia and can support license management in other regions based on project needs.',
+      tags: [['Claris','ind'],['Licensing','ind'],['Official Partner','ai']],
+      acc: [
+        ['StackSolver — Official Claris Partner for Colombia','StackSolver is registered as an official Claris (Apple) partner for Colombia, in direct contact with Claris LATAM. We manage license purchase, renewal and optimization directly — at partner prices with priority Claris support.'],
+        ['License types','<ul><li><strong>Named User:</strong> Assigned to a specific person. Includes FileMaker Pro, FileMaker Go and Web Direct.</li><li><strong>Concurrent:</strong> Pay for simultaneous active sessions — ideal when many users share the system but not at the same time.</li><li><strong>Site License:</strong> Unlimited users on an On Premise server — cost-effective for large organizations.</li></ul>'],
+      ]
+    }
+  },
+  'ai-intro': {
+    vimeo: '1152285799',
+    es: {
+      crumb: 'Local AI', title: 'Introducción a IA Local',
+      desc: 'IA Local significa implementar inteligencia artificial directamente en la infraestructura del cliente — sin depender de la nube, sin exponer datos a terceros. Sus modelos, en su empresa.',
+      tags: [['Local AI','ai'],['Soberanía de Datos','ai'],['Sin Nube','ai']],
+      acc: [
+        ['¿Qué es IA Local?','IA Local es la implementación de modelos de inteligencia artificial (LLMs, embeddings, agentes) en servidores propios del cliente. A diferencia de servicios como ChatGPT, Copilot o Claude API — donde los datos viajan a servidores externos — en IA Local todo el procesamiento ocurre dentro del perímetro de seguridad de la empresa.'],
+        ['¿Por qué no solo usar la nube?','<ul><li><strong>Confidencialidad:</strong> Datos financieros, de clientes o de empleados nunca salen de su empresa.</li><li><strong>Cumplimiento regulatorio:</strong> Sectores como salud, finanzas y gobierno tienen restricciones sobre dónde pueden procesarse los datos.</li><li><strong>Costos a escala:</strong> Las APIs de nube cobran por token — para uso intensivo, una infraestructura local es más económica.</li><li><strong>Disponibilidad:</strong> Sin dependencia de conectividad o interrupciones de servicio de terceros.</li><li><strong>Personalización:</strong> Los modelos se pueden ajustar (fine-tune) con datos propios de la empresa.</li></ul>'],
+        ['Casos de uso concretos','<ul><li><strong>Asistente de contratos:</strong> Analiza contratos y detecta cláusulas de riesgo sin enviar el documento a ningún servidor externo.</li><li><strong>Agente financiero:</strong> Responde preguntas sobre el estado financiero en tiempo real conectado al ERP.</li><li><strong>Procesamiento de facturas:</strong> Extrae y clasifica datos de facturas en PDF automáticamente.</li><li><strong>Knowledge base interna:</strong> Chatbot que responde sobre procesos internos, políticas y documentación de la empresa.</li></ul>'],
+        ['Punto de partida recomendado','<ul><li><strong>Diagnóstico de datos:</strong> Identificamos qué datos tiene disponibles y en qué formato.</li><li><strong>MVP de bajo riesgo:</strong> Comenzamos con un caso de uso específico con ROI medible en 30 días.</li><li><strong>Infraestructura gradual:</strong> No necesita un servidor potente desde el día 1 — escalamos según la demanda.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Local AI', title: 'Introduction to Local AI',
+      desc: 'Local AI means deploying artificial intelligence directly on client infrastructure — no cloud dependency, no data exposed to third parties. Your models, in your company.',
+      tags: [['Local AI','ai'],['Data Sovereignty','ai'],['No Cloud','ai']],
+      acc: [
+        ['What is Local AI?','Local AI is the deployment of AI models (LLMs, embeddings, agents) on client-owned servers. Unlike services like ChatGPT or Copilot — where data travels to external servers — in Local AI all processing happens within the company security perimeter.'],
+        ['Why not just use the cloud?','<ul><li><strong>Confidentiality:</strong> Financial, client or employee data never leaves your company.</li><li><strong>Regulatory compliance:</strong> Health, finance and government sectors have restrictions on where data can be processed.</li><li><strong>Cost at scale:</strong> Cloud APIs charge per token — for intensive use, local infrastructure is more economical.</li></ul>'],
+      ]
+    }
+  },
+  'ai-local': {
+    es: {
+      crumb: 'Local AI', title: 'Local First',
+      desc: 'Principio fundamental de nuestra arquitectura de IA: todos los datos permanecen en la empresa. Los modelos se ejecutan localmente, garantizando soberanía total.',
+      tags: [['Local First','ai'],['Privacidad','ai'],['Soberanía','ai']],
+      acc: [
+        ['¿Qué significa Local First?','Local First es un paradigma de diseño donde la función principal del sistema ocurre en la máquina del usuario o en servidores bajo su control. Para IA, esto significa que los modelos de lenguaje, los embeddings y los agentes se ejecutan en infraestructura propia — no en AWS, Azure u OpenAI.'],
+        ['Seguridad y soberanía de datos','<ul><li><strong>Perímetro cerrado:</strong> Los datos de la empresa (contratos, estados financieros, datos de empleados) nunca salen del servidor local.</li><li><strong>Sin telemetría:</strong> Los modelos open-source que utilizamos no envían métricas de uso a ningún proveedor.</li><li><strong>Airgap compatible:</strong> El sistema puede funcionar sin conexión a internet — crítico para manufactura, minería o sitios remotos.</li><li><strong>Encriptación en reposo y en tránsito:</strong> Todos los datos del Knowledge Graph están encriptados.</li></ul>'],
+        ['Industrias que lo requieren','<ul><li><strong>Salud:</strong> Datos de pacientes, historias clínicas, resultados de laboratorio — regulados por normativas de privacidad de datos.</li><li><strong>Finanzas:</strong> Estrategias, movimientos de caja, información de contrapartes — sensibles para competidores.</li><li><strong>Gobierno y defensa:</strong> Información clasificada que no puede procesarse en nube pública.</li><li><strong>Legal:</strong> Contratos y estrategias de litigio bajo secreto profesional.</li><li><strong>Manufactura:</strong> Fórmulas, procesos y datos de producción que son secreto industrial.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Local AI', title: 'Local First',
+      desc: 'Core principle of our AI architecture: all data stays in the company. Models run locally, ensuring total sovereignty.',
+      tags: [['Local First','ai'],['Privacy','ai'],['Sovereignty','ai']],
+      acc: [
+        ['What does Local First mean?','Local First is a design paradigm where the primary system function happens on the user machine or servers under their control. For AI, this means language models, embeddings and agents run on owned infrastructure — not on AWS, Azure or OpenAI.'],
+        ['Industries that require it','<ul><li><strong>Health:</strong> Patient data regulated by privacy laws.</li><li><strong>Finance:</strong> Strategies and cash movements sensitive to competitors.</li><li><strong>Legal:</strong> Contracts and litigation strategies under professional secrecy.</li><li><strong>Manufacturing:</strong> Formulas and production data that are trade secrets.</li></ul>'],
+      ]
+    }
+  },
+  'ai-db': {
+    es: {
+      crumb: 'Local AI', title: 'Rust + SurrealDB',
+      desc: 'Motor tecnológico de alto rendimiento para IA Local. Rust garantiza velocidad y seguridad de memoria; SurrealDB construye el Knowledge Graph consultable por los agentes en tiempo real.',
+      tags: [['Rust','ai'],['SurrealDB','ai'],['Knowledge Graph','ai']],
+      acc: [
+        ['¿Por qué Rust?','Rust es un lenguaje de programación de sistemas que combina la velocidad de C/C++ con garantías de seguridad de memoria en tiempo de compilación. En el contexto de IA Local:<ul><li><strong>Rendimiento:</strong> El backend en Rust procesa embeddings y consultas al Knowledge Graph a velocidades cercanas a metal desnudo.</li><li><strong>Seguridad:</strong> Sin errores de memoria (buffer overflows, use-after-free) — crítico para sistemas que manejan datos sensibles.</li><li><strong>Concurrencia:</strong> Maneja múltiples agentes ejecutándose en paralelo sin condiciones de carrera.</li><li><strong>Tauri:</strong> Usamos Rust con Tauri para crear interfaces de escritorio nativas para los agentes.</li></ul>'],
+        ['¿Qué es SurrealDB?','SurrealDB es una base de datos multi-modelo moderna que combina documentos, grafos y series de tiempo en una sola instancia. Para IA Local es ideal porque:<ul><li><strong>Graph nativo:</strong> Modela relaciones complejas entre entidades (Empleado → Proyecto → Contrato → Proveedor) como un grafo consultable.</li><li><strong>Embeddings:</strong> Almacena vectores de embeddings junto a los datos relacionales — sin necesidad de una base de datos vectorial separada.</li><li><strong>Consultas semánticas:</strong> Los agentes pueden hacer búsquedas por similitud semántica directamente sobre el Knowledge Graph.</li><li><strong>Tiempo real:</strong> Las actualizaciones en los datos del ERP se propagan inmediatamente al Knowledge Graph disponible para los agentes.</li></ul>'],
+        ['Knowledge Graph — La Red de Conocimiento de su Empresa','<ul><li><strong>Concepto:</strong> En vez de tablas relacionales aisladas, el Knowledge Graph conecta todos los datos de la empresa como una red de nodos y relaciones.</li><li><strong>Ejemplo:</strong> Un agente legal puede preguntar "¿qué contratos con este proveedor están activos y cuáles tienen cláusulas de penalización?" — el grafo resuelve la consulta atravesando relaciones entre contratos, proveedores y cláusulas.</li><li><strong>Ingesta:</strong> Los datos del ERP (Claris FileMaker) se sincronizan automáticamente al Knowledge Graph mediante conectores configurados.</li></ul>'],
+        ['Arquitectura del sistema','<ul><li><strong>SRV02_Diamante_Rust:</strong> Servidor dedicado de IA Local (Linux/macOS, red local 192.168.x.x).</li><li><strong>Backend Rust:</strong> API REST para consultas al Knowledge Graph, orquestación de agentes.</li><li><strong>SurrealDB:</strong> Base de datos local con datos del ERP + embeddings + grafo de relaciones.</li><li><strong>Modelos LLM:</strong> Llama, Mistral u otros modelos open-source ejecutándose localmente via Ollama o llama.cpp.</li><li><strong>Clientes Tauri:</strong> Interfaces desktop nativas para los agentes especializados.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Local AI', title: 'Rust + SurrealDB',
+      desc: 'High-performance technology engine for Local AI. Rust ensures speed and memory safety; SurrealDB builds the Knowledge Graph queryable by agents in real time.',
+      tags: [['Rust','ai'],['SurrealDB','ai'],['Knowledge Graph','ai']],
+      acc: [
+        ['Why Rust?','Rust is a systems programming language combining C/C++ speed with compile-time memory safety guarantees. For Local AI: high performance, no memory errors, safe concurrency for multiple parallel agents.'],
+        ['What is SurrealDB?','SurrealDB is a modern multi-model database combining documents, graphs and time series in one instance. Native graph support, vector embeddings storage, and semantic similarity queries — without needing a separate vector database.'],
+        ['Knowledge Graph','Instead of isolated relational tables, the Knowledge Graph connects all company data as a network of nodes and relationships. An agent can query "which active contracts with this vendor have penalty clauses?" — the graph resolves it by traversing relationships between contracts, vendors and clauses.'],
+      ]
+    }
+  },
+  iso27001: {
+    es: {
+      crumb: 'Cumplimiento', title: 'ISO 27001 — Seguridad de la Información',
+      desc: 'El estándar internacional para Sistemas de Gestión de Seguridad de la Información (SGSI). Define cómo proteger activos de información mediante un ciclo continuo de evaluación y mejora del riesgo.',
+      tags: [['ISO 27001','grc'],['SGSI','grc'],['Riesgo','grc'],['Auditoría','grc']],
+      acc: [
+        ['¿Qué es ISO 27001?','ISO 27001 es la norma internacional publicada por la ISO (Organización Internacional de Normalización) que especifica los requisitos para establecer, implementar, mantener y mejorar un Sistema de Gestión de Seguridad de la Información (SGSI). Su enfoque central es la gestión del riesgo: identificar qué activos de información existen, qué amenazas los afectan y qué controles aplicar para reducir el riesgo a un nivel aceptable.'],
+        ['Los 14 dominios de control','<ul><li><strong>A.5 — Políticas de seguridad:</strong> Documentos formales aprobados por dirección que gobiernan el SGSI.</li><li><strong>A.6 — Organización de la seguridad:</strong> Roles, responsabilidades y segregación de funciones.</li><li><strong>A.7 — Seguridad del recurso humano:</strong> Verificaciones previas al empleo, concienciación, proceso de desvinculación.</li><li><strong>A.8 — Gestión de activos:</strong> Inventario, clasificación y manejo de activos de información.</li><li><strong>A.9 — Control de acceso:</strong> Política de acceso, gestión de usuarios, responsabilidad del usuario, control de acceso a sistemas.</li><li><strong>A.10 — Criptografía:</strong> Política de uso de controles criptográficos y gestión de claves.</li><li><strong>A.11 — Seguridad física y del entorno:</strong> Áreas seguras, equipamiento y escritorio limpio.</li><li><strong>A.12 — Seguridad de operaciones:</strong> Procedimientos operativos, malware, copias de seguridad, logs, vulnerabilidades.</li><li><strong>A.13 — Seguridad de comunicaciones:</strong> Gestión de redes, transferencia de información.</li><li><strong>A.14 — Adquisición, desarrollo y mantenimiento:</strong> Seguridad en ciclos de desarrollo de software.</li><li><strong>A.15 — Relaciones con proveedores:</strong> Seguridad en la cadena de suministro y acuerdos de nivel de servicio.</li><li><strong>A.16 — Gestión de incidentes:</strong> Procedimientos de respuesta, aprendizaje y mejora post-incidente.</li><li><strong>A.17 — Continuidad del negocio:</strong> Planificación de la continuidad incluyendo la seguridad de la información.</li><li><strong>A.18 — Cumplimiento:</strong> Cumplimiento legal, regulatorio y de políticas internas.</li></ul>'],
+        ['Ciclo PDCA — Mejora continua','ISO 27001 se basa en el ciclo de Deming: <strong>Plan</strong> (definir alcance, política, evaluación de riesgos) → <strong>Do</strong> (implementar controles) → <strong>Check</strong> (monitorear, medir, auditar) → <strong>Act</strong> (tomar acciones correctivas). La certificación requiere una auditoría externa por un organismo acreditado y auditorías de vigilancia anuales.'],
+        ['Cómo lo implementamos en el ERP','<ul><li><strong>Registro de activos:</strong> Módulo de inventario de activos de información integrado al ERP — hardware, software, datos y servicios clasificados por criticidad.</li><li><strong>Gestión de riesgos:</strong> Matriz de riesgos con probabilidad, impacto y tratamiento (aceptar, mitigar, transferir, evitar).</li><li><strong>Controles técnicos:</strong> Logs de auditoría inmutables, gestión de accesos por roles, cifrado de datos sensibles.</li><li><strong>Evidencias para auditoría:</strong> El ERP genera automáticamente reportes de cumplimiento con evidencia trazable para cada control del Anexo A.</li></ul>'],
+        ['ISO 27001 vs. ISO 27002','ISO 27001 es el estándar certificable — define los requisitos del SGSI. ISO 27002 es su guía de implementación — proporciona orientación detallada sobre cada control. La certificación se obtiene contra ISO 27001; ISO 27002 se usa como referencia de mejores prácticas durante la implementación.'],
+      ]
+    },
+    en: {
+      crumb: 'Compliance', title: 'ISO 27001 — Information Security',
+      desc: 'The international standard for Information Security Management Systems (ISMS). Defines how to protect information assets through a continuous risk assessment and improvement cycle.',
+      tags: [['ISO 27001','grc'],['ISMS','grc'],['Risk','grc'],['Audit','grc']],
+      acc: [
+        ['What is ISO 27001?','ISO 27001 is the international standard that specifies requirements for establishing, implementing, maintaining and continually improving an Information Security Management System (ISMS). Its core is risk management: identify information assets, threats that affect them, and controls to reduce risk to an acceptable level.'],
+        ['The 14 control domains','<ul><li><strong>A.5 Security policies:</strong> Formal management-approved documents governing the ISMS.</li><li><strong>A.6 Organization of security:</strong> Roles, responsibilities and segregation of duties.</li><li><strong>A.7 Human resource security:</strong> Pre-employment screening, awareness, exit process.</li><li><strong>A.8 Asset management:</strong> Inventory, classification and handling of information assets.</li><li><strong>A.9 Access control:</strong> Access policy, user management, system access control.</li><li><strong>A.10 Cryptography:</strong> Policy on use of cryptographic controls and key management.</li><li><strong>A.12 Operations security:</strong> Procedures, malware protection, backups, logging, vulnerability management.</li><li><strong>A.16 Incident management:</strong> Response procedures, post-incident learning and improvement.</li><li><strong>A.18 Compliance:</strong> Legal, regulatory and internal policy compliance.</li></ul>'],
+        ['PDCA — Continuous improvement','ISO 27001 follows the Deming cycle: Plan (scope, policy, risk assessment) → Do (implement controls) → Check (monitor, measure, audit) → Act (corrective actions). Certification requires external audit by an accredited body plus annual surveillance audits.'],
+      ]
+    }
+  },
+  iso42001: {
+    es: {
+      crumb: 'Cumplimiento', title: 'ISO 42001 — Gestión de Sistemas de IA',
+      desc: 'El primer estándar internacional para Sistemas de Gestión de Inteligencia Artificial (SGAI). Publicado en 2023, define cómo desarrollar, desplegar y gobernar sistemas de IA de forma responsable y auditable.',
+      tags: [['ISO 42001','grc'],['IA Responsable','ai'],['Gobernanza IA','grc'],['2023','grc']],
+      acc: [
+        ['¿Qué es ISO 42001?','ISO/IEC 42001:2023 es la primera norma internacional que especifica los requisitos para un Sistema de Gestión de Inteligencia Artificial (SGAI). Publicada en diciembre de 2023, proporciona un marco para que las organizaciones que desarrollan, proveen o usan sistemas de IA lo hagan de forma responsable, transparente y auditable. Es certificable, similar a ISO 27001 e ISO 9001.'],
+        ['Principios fundamentales de la IA responsable','<ul><li><strong>Transparencia:</strong> Los sistemas de IA deben ser explicables — las decisiones automatizadas deben poder justificarse ante los afectados.</li><li><strong>Responsabilidad:</strong> Designar roles claros de responsabilidad sobre el ciclo de vida de cada sistema de IA (desarrollo, despliegue, monitoreo, retiro).</li><li><strong>Gestión del sesgo:</strong> Identificar y mitigar sesgos en datos de entrenamiento y en las salidas del modelo.</li><li><strong>Privacidad por diseño:</strong> Los sistemas de IA deben respetar la privacidad de los datos desde el diseño, no como añadido posterior.</li><li><strong>Seguridad y robustez:</strong> Resistencia ante ataques adversariales, alucinaciones y comportamientos inesperados.</li><li><strong>Supervisión humana:</strong> Los sistemas de IA críticos deben tener mecanismos de intervención y supervisión humana activos.</li></ul>'],
+        ['Estructura del SGAI','<ul><li><strong>Contexto de la organización:</strong> Identificar partes interesadas, alcance de los sistemas de IA y su impacto potencial.</li><li><strong>Evaluación de impacto de IA:</strong> Para cada sistema: ¿qué decisiones automatiza? ¿qué datos usa? ¿a quién afecta? ¿qué riesgos introduce?</li><li><strong>Política de IA:</strong> Documento de alto nivel que define los principios éticos y los límites de uso aceptable de la IA en la organización.</li><li><strong>Gestión de riesgos de IA:</strong> Identificar, evaluar y tratar riesgos específicos de IA: sesgo, alucinaciones, fuga de datos, dependencia de proveedor.</li><li><strong>Ciclo de vida del sistema de IA:</strong> Controles desde el diseño, desarrollo, pruebas, despliegue, monitoreo y retiro de cada sistema.</li></ul>'],
+        ['Relación con ISO 27001','ISO 42001 fue diseñado para integrarse con ISO 27001. Mientras ISO 27001 protege la información que usan los sistemas, ISO 42001 gobierna los sistemas de IA en sí mismos. En la práctica: ISO 27001 como base de seguridad de la información + ISO 42001 como capa de gobernanza de IA = postura de cumplimiento robusta para organizaciones que adoptan IA.'],
+        ['ISO 42001 en IA Local (Local First)','Nuestra arquitectura de IA Local facilita el cumplimiento de ISO 42001: <ul><li><strong>Trazabilidad total:</strong> Cada consulta a los modelos se registra en el log de auditoría del ERP.</li><li><strong>Supervisión humana integrada:</strong> Los agentes nunca ejecutan acciones sin aprobación explícita del usuario — humano siempre en control.</li><li><strong>Sin fuga de datos:</strong> Los modelos se ejecutan localmente — los datos de la empresa nunca llegan a proveedores externos de IA.</li><li><strong>Gestión de modelos:</strong> Registro de versiones de modelos, fechas de actualización y evaluaciones de rendimiento.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Compliance', title: 'ISO 42001 — AI Management Systems',
+      desc: 'The first international standard for Artificial Intelligence Management Systems (AIMS). Published in 2023, it defines how to develop, deploy and govern AI systems responsibly and auditably.',
+      tags: [['ISO 42001','grc'],['Responsible AI','ai'],['AI Governance','grc'],['2023','grc']],
+      acc: [
+        ['What is ISO 42001?','ISO/IEC 42001:2023 is the first international standard specifying requirements for an AI Management System (AIMS). Published December 2023, it provides a framework for organizations that develop, provide or use AI systems to do so responsibly, transparently and auditably. It is certifiable, similar to ISO 27001 and ISO 9001.'],
+        ['Core principles of responsible AI','<ul><li><strong>Transparency:</strong> AI systems must be explainable — automated decisions must be justifiable to those affected.</li><li><strong>Accountability:</strong> Clear ownership roles for each AI system lifecycle (development, deployment, monitoring, retirement).</li><li><strong>Bias management:</strong> Identify and mitigate biases in training data and model outputs.</li><li><strong>Privacy by design:</strong> AI systems must respect data privacy from design, not as an afterthought.</li><li><strong>Human oversight:</strong> Critical AI systems must have active human intervention and supervision mechanisms.</li></ul>'],
+        ['ISO 42001 with Local AI','Our Local AI architecture facilitates ISO 42001 compliance: full query audit trail, human-in-the-loop approval for all agent actions, no data leaving company perimeter, and model version management with performance evaluations.'],
+      ]
+    }
+  },
+  'comp-ind': {
+    es: {
+      crumb: 'Cumplimiento', title: 'Cumplimiento por Industria',
+      desc: 'Cada industria tiene su propio marco regulatorio. Mapeamos los requisitos de cumplimiento más relevantes para los sectores donde operan nuestros clientes y los integramos en el ERP y el SGSI.',
+      tags: [['Regulatorio','grc'],['Industria','grc'],['Cumplimiento','grc']],
+      acc: [
+        ['Salud — Protección de datos clínicos','<ul><li><strong>Ley 1581 de 2012 (Colombia):</strong> Protección de datos personales — habeas data. Datos de salud son datos sensibles con protección reforzada. Requiere: consentimiento explícito, medidas técnicas de protección, registro ante SIC.</li><li><strong>Resolución 1995 de 1999:</strong> Historia clínica — 20 años de conservación mínima, confidencialidad, integridad y autenticidad.</li><li><strong>Interoperabilidad:</strong> Sistemas de salud deben prepararse para estándares HL7/FHIR para intercambio de datos clínicos.</li><li><strong>En el ERP:</strong> Módulo de consentimientos, log inmutable de accesos a datos sensibles, cifrado de campos clínicos.</li></ul>'],
+        ['Finanzas — Regulación SFC y UIAF','<ul><li><strong>SARLAFT:</strong> Sistema de Administración del Riesgo de Lavado de Activos y Financiación del Terrorismo. Obligatorio para entidades vigiladas por SFC. Requiere: debida diligencia de clientes (KYC), monitoreo de transacciones, reporte de operaciones sospechosas a UIAF.</li><li><strong>SARO:</strong> Sistema de Administración del Riesgo Operativo. Identificación, medición, control y monitoreo de riesgo operacional.</li><li><strong>Circular Básica Jurídica SFC:</strong> Controles de seguridad informática para entidades financieras.</li><li><strong>NIIF / IFRS:</strong> Estándares contables internacionales — implementados en el módulo financiero del ERP.</li></ul>'],
+        ['Manufactura — Calidad y seguridad industrial','<ul><li><strong>ISO 9001:</strong> Sistema de gestión de calidad. Enfocado en procesos reproducibles, trazabilidad de producción y mejora continua.</li><li><strong>Decreto 1072 de 2015 (SGSST):</strong> Sistema de Gestión de Seguridad y Salud en el Trabajo. Obligatorio en Colombia para cualquier empleador. Implementado en el módulo de Talento Humano.</li><li><strong>Normas técnicas NTC:</strong> Estándares colombianos aplicables a productos y procesos según el sector (alimentos, construcción, metalmecánica).</li><li><strong>Ambiental — ISO 14001:</strong> Gestión ambiental para empresas con impacto en recursos naturales.</li></ul>'],
+        ['Gobierno — Transparencia y datos públicos','<ul><li><strong>Ley 1712 de 2014:</strong> Transparencia y acceso a la información pública. Las entidades públicas deben publicar proactivamente información sobre contratos, presupuesto y gestión.</li><li><strong>Ley 594 de 2000 (Archivo General):</strong> Gestión documental — tablas de retención documental, custodia y destrucción de archivos.</li><li><strong>MIPG:</strong> Modelo Integrado de Planeación y Gestión. Marco de referencia para entidades del sector público colombiano.</li><li><strong>Ley 1474 (Estatuto Anticorrupción):</strong> Controles de contratación pública y mecanismos de denuncia.</li></ul>'],
+        ['Educación — Calidad y privacidad de estudiantes','<ul><li><strong>Ley General de Educación (Ley 115):</strong> Marco regulatorio general para instituciones educativas colombianas.</li><li><strong>Sistema de aseguramiento de calidad:</strong> Registro Calificado (MEN) para programas de educación superior, acreditación CNA.</li><li><strong>Protección de datos de menores:</strong> Los datos de menores de edad tienen protección reforzada bajo Ley 1581 — requieren consentimiento de padres o tutores.</li><li><strong>SPADIES / SNIES:</strong> Reporte obligatorio de información académica al sistema nacional.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Compliance', title: 'Compliance by Industry',
+      desc: 'Every industry has its own regulatory framework. We map the most relevant compliance requirements for the sectors where our clients operate and integrate them into the ERP and ISMS.',
+      tags: [['Regulatory','grc'],['Industry','grc'],['Compliance','grc']],
+      acc: [
+        ['Healthcare — Clinical data protection','<ul><li><strong>Data protection law:</strong> Health data is sensitive personal data requiring reinforced protection, explicit consent, and technical security measures.</li><li><strong>Clinical records:</strong> Minimum 20-year retention, confidentiality, integrity and authenticity requirements.</li><li><strong>In the ERP:</strong> Consent management module, immutable access log for sensitive data, clinical field encryption.</li></ul>'],
+        ['Finance — AML & Regulatory','<ul><li><strong>AML/CFT framework (SARLAFT):</strong> Customer due diligence (KYC), transaction monitoring, suspicious activity reporting.</li><li><strong>Operational Risk (SARO):</strong> Identification, measurement, control and monitoring of operational risk.</li><li><strong>IFRS accounting standards:</strong> Implemented in the ERP financial module.</li></ul>'],
+        ['Manufacturing — Quality & Safety','<ul><li><strong>ISO 9001:</strong> Quality management system — reproducible processes, production traceability, continuous improvement.</li><li><strong>Workplace safety (SGSST):</strong> Mandatory for all Colombian employers. Implemented in the HR module.</li></ul>'],
+      ]
+    }
+  },
+  'comp-pais': {
+    es: {
+      crumb: 'Cumplimiento', title: 'Cumplimiento por País',
+      desc: 'Operamos con clientes en Colombia, USA, Canadá, Europa y UK. Cada jurisdicción tiene marcos regulatorios distintos. Diseñamos sistemas que pueden cumplir con múltiples regímenes simultáneamente.',
+      tags: [['Multi-jurisdicción','grc'],['Global','grc'],['GDPR','grc'],['Colombia','grc']],
+      acc: [
+        ['Colombia — Marco regulatorio principal','<ul><li><strong>Ley 1581 de 2012:</strong> Protección de datos personales (habeas data). Requiere registro de bases de datos ante la SIC, política de tratamiento de datos, consentimiento explícito y canal de consultas/reclamos.</li><li><strong>SIC (Superintendencia de Industria y Comercio):</strong> Entidad de control — investiga y sanciona incumplimientos con multas de hasta 2.000 SMMLV.</li><li><strong>DIAN:</strong> Facturación electrónica obligatoria, exógena, retención en la fuente. Integrado en el módulo financiero.</li><li><strong>Supersociedades:</strong> Reporte anual para sociedades de cierto tamaño — estados financieros y documentación de gestión.</li><li><strong>Decreto 1072 / SGSST:</strong> Seguridad y salud laboral obligatoria para todo empleador.</li></ul>'],
+        ['Unión Europea — GDPR','<ul><li><strong>GDPR (Reglamento General de Protección de Datos):</strong> Aplica a cualquier organización que trate datos de ciudadanos europeos, sin importar dónde esté ubicada. Multas de hasta €20M o el 4% de la facturación global anual.</li><li><strong>Principios clave:</strong> Licitud del tratamiento, minimización de datos, exactitud, limitación del plazo de conservación, integridad y confidencialidad, y responsabilidad proactiva (accountability).</li><li><strong>Derechos del titular:</strong> Acceso, rectificación, supresión (derecho al olvido), portabilidad, oposición y decisiones automatizadas.</li><li><strong>NIS2:</strong> Directiva de ciberseguridad — aplica a sectores críticos con requisitos de reporte de incidentes en 24h.</li><li><strong>DORA (2025):</strong> Resiliencia operativa digital para entidades financieras — gestión de riesgos TI y pruebas de penetración.</li></ul>'],
+        ['UK — Post-Brexit','<ul><li><strong>UK GDPR:</strong> Equivalente al GDPR europeo, aplicable desde el Brexit. La ICO (Information Commissioner\'s Office) es la autoridad supervisora.</li><li><strong>FCA (Financial Conduct Authority):</strong> Regula servicios financieros — requiere sistemas de gestión de riesgos robustos y reporte de incidentes operacionales.</li><li><strong>Companies Act 2006:</strong> Requisitos de gobierno corporativo y reporte financiero para empresas registradas en UK.</li></ul>'],
+        ['USA y Canadá','<ul><li><strong>SOX (Sarbanes-Oxley):</strong> Aplica a empresas cotizadas en bolsas USA. Requiere controles internos sobre reportes financieros (ICFR) y auditoría externa.</li><li><strong>HIPAA:</strong> Protección de información médica — aplica a covered entities y sus business associates que manejen PHI (Protected Health Information).</li><li><strong>CCPA (California):</strong> Protección de datos para residentes de California — derechos similares al GDPR para consumidores.</li><li><strong>PIPEDA (Canadá):</strong> Ley federal de privacidad para el sector privado canadiense — principios de consentimiento, acceso y exactitud.</li></ul>'],
+        ['Transferencias internacionales de datos','Al operar en múltiples jurisdicciones, las transferencias de datos entre países requieren mecanismos legales específicos: <ul><li><strong>Colombia → UE:</strong> La UE no ha emitido decisión de adecuación para Colombia — se requieren cláusulas contractuales estándar (SCCs).</li><li><strong>UE → USA:</strong> EU-US Data Privacy Framework (2023) reemplaza al Privacy Shield invalidado.</li><li><strong>Recomendación:</strong> Diseño Local First — minimizar transferencias internacionales procesando datos en el país de origen reduce riesgo de cumplimiento transfronterizo.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Compliance', title: 'Compliance by Country',
+      desc: 'We work with clients in Colombia, USA, Canada, Europe and UK. Each jurisdiction has distinct regulatory frameworks. We design systems that can comply with multiple regimes simultaneously.',
+      tags: [['Multi-jurisdiction','grc'],['Global','grc'],['GDPR','grc']],
+      acc: [
+        ['European Union — GDPR','<ul><li><strong>GDPR:</strong> Applies to any organization processing EU citizen data, regardless of location. Fines up to €20M or 4% of global annual turnover.</li><li><strong>Key principles:</strong> Lawfulness, data minimization, accuracy, storage limitation, integrity & confidentiality, and accountability.</li><li><strong>Data subject rights:</strong> Access, rectification, erasure (right to be forgotten), portability, objection and automated decision-making.</li></ul>'],
+        ['UK — Post-Brexit','<ul><li><strong>UK GDPR:</strong> GDPR equivalent, applicable post-Brexit. ICO is the supervisory authority.</li><li><strong>FCA:</strong> Financial services regulation — robust risk management systems and operational incident reporting required.</li></ul>'],
+        ['USA & Canada','<ul><li><strong>SOX:</strong> Applies to US-listed companies — internal controls over financial reporting (ICFR) and external audit.</li><li><strong>HIPAA:</strong> Medical information protection for covered entities and business associates handling PHI.</li><li><strong>CCPA:</strong> California consumer privacy rights — GDPR-similar rights for California residents.</li><li><strong>PIPEDA:</strong> Canadian federal private-sector privacy law — consent, access and accuracy principles.</li></ul>'],
+        ['International data transfers','Operating across jurisdictions requires legal mechanisms for data transfers: Standard Contractual Clauses (SCCs) for EU transfers, EU-US Data Privacy Framework for transatlantic flows. Local First architecture minimizes cross-border transfer risk by processing data in the country of origin.'],
+      ]
+    }
+  },
+  'sec-arch': {
+    es: {
+      crumb: 'Seguridad', title: 'Arquitectura Segura',
+      desc: 'La seguridad no es una capa que se añade al final — es un principio de diseño. Construimos sistemas con defensa en profundidad, principio de mínimo privilegio y segmentación de red desde el primer día.',
+      tags: [['Arquitectura','grc'],['Defense in Depth','grc'],['Zero Trust','grc']],
+      acc: [
+        ['Defensa en profundidad','Ningún control único es suficiente. La defensa en profundidad (defense in depth) usa múltiples capas de controles independientes de modo que si una falla, las demás contienen el daño:<ul><li><strong>Capa perimetral:</strong> Firewall, IDS/IPS, segmentación de red (VLANs), VPN para acceso remoto.</li><li><strong>Capa de aplicación:</strong> Autenticación robusta, autorización por roles (RBAC), validación de entradas, cifrado en tránsito (TLS 1.3).</li><li><strong>Capa de datos:</strong> Cifrado en reposo, clasificación de datos, backup cifrado, acceso mínimo privilegiado.</li><li><strong>Capa de auditoría:</strong> Logs inmutables de todas las acciones, alertas de comportamiento anómalo, revisión periódica de accesos.</li></ul>'],
+        ['Principio de mínimo privilegio','Cada usuario, proceso y sistema recibe únicamente los permisos necesarios para realizar su función — nada más. Implementación en el ERP:<ul><li><strong>Roles granulares:</strong> Contador solo ve datos financieros, almacenista solo ve inventario — nunca datos cruzados.</li><li><strong>Segregación de funciones:</strong> Quien crea un proveedor no puede aprobar pagos a ese proveedor.</li><li><strong>Revisión periódica de accesos:</strong> Cada trimestre se revisan todos los permisos activos — accesos huérfanos se revocan automáticamente.</li><li><strong>Privilegio temporal:</strong> Para operaciones sensibles (backup, actualización de sistema), se otorga acceso elevado por tiempo limitado con registro completo.</li></ul>'],
+        ['Zero Trust — Nunca confiar, siempre verificar','El modelo Zero Trust asume que la red interna puede estar comprometida. Principios aplicados:<ul><li><strong>Verificación continua:</strong> La identidad se verifica en cada solicitud, no solo al iniciar sesión.</li><li><strong>Acceso contextual:</strong> El acceso depende del dispositivo, ubicación, hora y comportamiento — no solo de usuario y contraseña.</li><li><strong>Microsegmentación:</strong> Cada componente del sistema solo puede comunicarse con los componentes que necesita — no con toda la red.</li><li><strong>Cifrado universal:</strong> Todo el tráfico se cifra, incluso dentro de la red interna.</li></ul>'],
+        ['Segmentación de red en infraestructura propia','Para clientes con FileMaker Server On Premise:<ul><li><strong>VLAN de producción:</strong> Servidor FileMaker aislado — acceso solo desde la VLAN de usuarios autorizados.</li><li><strong>VLAN de gestión:</strong> Acceso SSH y Admin Console solo desde equipos de administración designados.</li><li><strong>VLAN de IA Local:</strong> El servidor de IA (Diamante_Rust) en su propio segmento — solo puede consultar el ERP, no administrarlo.</li><li><strong>DMZ para acceso externo:</strong> Web Direct y FileMaker Data API expuestos a través de reverse proxy en zona desmilitarizada.</li></ul>'],
+        ['Gestión de vulnerabilidades','<ul><li><strong>Inventario de activos:</strong> Cada componente de software y hardware documentado con versión y estado de soporte.</li><li><strong>Escaneo periódico:</strong> Análisis de vulnerabilidades mensual en toda la infraestructura.</li><li><strong>Parches críticos:</strong> Ventana de 72h para aplicar parches de seguridad críticos (CVSS ≥ 9).</li><li><strong>Pruebas de penetración:</strong> Evaluación anual por equipo externo — resultados integrados al plan de mejora del SGSI.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Security', title: 'Secure Architecture',
+      desc: 'Security is not a layer added at the end — it is a design principle. We build systems with defense in depth, least privilege and network segmentation from day one.',
+      tags: [['Architecture','grc'],['Defense in Depth','grc'],['Zero Trust','grc']],
+      acc: [
+        ['Defense in depth','No single control is sufficient. Defense in depth uses multiple independent control layers so that if one fails, others contain the damage: perimeter (firewall, IDS/IPS, VLANs), application (RBAC, TLS 1.3), data (encryption at rest, classification) and audit (immutable logs, anomaly alerts).'],
+        ['Principle of least privilege','Every user, process and system receives only the permissions needed for its function. Granular roles, segregation of duties, quarterly access review, and time-limited elevated privileges for sensitive operations.'],
+        ['Zero Trust','Never trust, always verify. Continuous identity verification on every request, context-aware access (device, location, time, behavior), microsegmentation and universal encryption — even on internal networks.'],
+      ]
+    }
+  },
+  'sec-data': {
+    es: {
+      crumb: 'Seguridad', title: 'Protección de Datos',
+      desc: 'Los datos son el activo más valioso de la empresa. Implementamos clasificación, cifrado, gestión de claves y backup como parte integral del sistema — no como configuraciones opcionales.',
+      tags: [['Cifrado','grc'],['Backup','grc'],['Clasificación','grc'],['Privacidad','grc']],
+      acc: [
+        ['Clasificación de datos','El primer paso para proteger datos es saber qué datos existen y cuán sensibles son:<ul><li><strong>Nivel 1 — Público:</strong> Información que puede compartirse libremente (catálogos, precios publicados).</li><li><strong>Nivel 2 — Interno:</strong> Información de uso interno que no debe salir de la empresa (procedimientos, comunicaciones).</li><li><strong>Nivel 3 — Confidencial:</strong> Datos de clientes, estados financieros, contratos — acceso restringido a roles específicos.</li><li><strong>Nivel 4 — Crítico / Sensible:</strong> Datos de salud, datos de tarjetas de pago, secretos industriales — controles máximos: cifrado, acceso con doble factor, log de cada acceso.</li></ul>'],
+        ['Cifrado en reposo y en tránsito','<ul><li><strong>En tránsito:</strong> Todo el tráfico de red usa TLS 1.3 — FileMaker Server, Web Direct, FileMaker Data API. Certificados SSL gestionados y renovados automáticamente.</li><li><strong>En reposo:</strong> Bases de datos cifradas con AES-256. Claves de cifrado separadas de los datos — almacenadas en módulo HSM o vault de claves.</li><li><strong>Campos sensibles:</strong> Números de cuenta, contraseñas, datos biométricos — cifrados a nivel de campo, no solo a nivel de base de datos.</li><li><strong>Dispositivos finales:</strong> Equipos con acceso al ERP deben tener cifrado de disco completo (FileVault, BitLocker) habilitado.</li></ul>'],
+        ['Gestión de claves criptográficas','<ul><li><strong>Rotación de claves:</strong> Claves de cifrado rotadas automáticamente cada 12 meses o tras incidente de seguridad.</li><li><strong>Separación de funciones:</strong> El administrador de datos no tiene acceso a las claves de cifrado — y viceversa.</li><li><strong>Backup de claves:</strong> Copia de claves en custodia segura con acceso de emergencia documentado y auditado.</li><li><strong>Claves de acceso a API:</strong> Tokens de API rotados cada 90 días, sin almacenamiento en texto plano.</li></ul>'],
+        ['Backup y recuperación ante desastres','<ul><li><strong>Regla 3-2-1:</strong> 3 copias de los datos, en 2 tipos de medios diferentes, con 1 copia offsite.</li><li><strong>RPO y RTO definidos:</strong> RPO (cuánto dato se puede perder) y RTO (en cuánto tiempo recuperarse) definidos por criticidad del sistema.</li><li><strong>Backups cifrados:</strong> Las copias de seguridad usan el mismo nivel de cifrado que la producción.</li><li><strong>Pruebas de restauración:</strong> Verificación mensual de que los backups son recuperables — una copia no probada no es un backup real.</li><li><strong>FileMaker específico:</strong> FileMaker Server tiene backup incremental configurado con rotación diaria/semanal/mensual.</li></ul>'],
+        ['Retención y eliminación segura de datos','<ul><li><strong>Tablas de retención:</strong> Cada tipo de dato tiene un período de retención definido por requisito legal y de negocio.</li><li><strong>Eliminación certificada:</strong> Al finalizar el ciclo de vida del dato, eliminación segura con sobreescritura múltiple — no simple borrado.</li><li><strong>Derecho al olvido (GDPR):</strong> Proceso documentado para eliminar todos los datos de un titular cuando lo solicita, con evidencia de cumplimiento.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Security', title: 'Data Protection',
+      desc: 'Data is the company\'s most valuable asset. We implement classification, encryption, key management and backup as integral parts of the system — not optional configurations.',
+      tags: [['Encryption','grc'],['Backup','grc'],['Classification','grc'],['Privacy','grc']],
+      acc: [
+        ['Data classification','Level 1 Public → Level 2 Internal → Level 3 Confidential → Level 4 Critical/Sensitive. Each level has defined access controls, encryption requirements and handling procedures.'],
+        ['Encryption at rest and in transit','All network traffic uses TLS 1.3. Databases encrypted with AES-256, keys separate from data. Sensitive fields encrypted at field level. End-user devices require full disk encryption.'],
+        ['Backup and disaster recovery','3-2-1 rule: 3 copies, 2 media types, 1 offsite. Defined RPO and RTO per system criticality. Encrypted backups. Monthly restoration tests — an untested backup is not a real backup.'],
+      ]
+    }
+  },
+  'sec-access': {
+    es: {
+      crumb: 'Seguridad', title: 'Control de Acceso',
+      desc: 'Quién puede ver qué, quién puede hacer qué. El control de acceso es la primera línea de defensa interna. Implementamos RBAC, autenticación multifactor y gestión de identidades como parte del ERP.',
+      tags: [['RBAC','grc'],['MFA','grc'],['Identidad','grc'],['Acceso','grc']],
+      acc: [
+        ['RBAC — Control de acceso basado en roles','Role-Based Access Control (RBAC) es el modelo que usamos para gestionar permisos en el ERP:<ul><li><strong>Roles predefinidos:</strong> Administrador, Contador, Almacenista, Vendedor, Gerente, Auditor (solo lectura), Usuario básico.</li><li><strong>Permisos granulares:</strong> Cada rol define qué tablas puede ver, qué registros puede crear/editar/eliminar y qué scripts puede ejecutar.</li><li><strong>Herencia de roles:</strong> Un usuario puede tener múltiples roles — sus permisos son la unión de los permisos de todos sus roles.</li><li><strong>Roles temporales:</strong> Para proyectos específicos, se pueden asignar roles con fecha de expiración automática.</li></ul>'],
+        ['Autenticación multifactor (MFA)','La contraseña sola no es suficiente. MFA agrega una segunda capa de verificación:<ul><li><strong>TOTP (Time-based One-Time Password):</strong> Código de 6 dígitos generado por app (Google Authenticator, Authy) que cambia cada 30 segundos.</li><li><strong>SSO con Claris ID:</strong> Para FileMaker en Claris Cloud, el acceso se gestiona mediante Claris ID — que puede configurarse con MFA y políticas de contraseñas corporativas.</li><li><strong>Cuentas privilegiadas:</strong> Las cuentas de administrador de FileMaker Server siempre requieren MFA — sin excepción.</li><li><strong>Acceso externo:</strong> Cualquier acceso desde fuera de la red corporativa requiere VPN + MFA.</li></ul>'],
+        ['Gestión del ciclo de vida de identidades','<ul><li><strong>Onboarding:</strong> La cuenta se crea siguiendo el proceso documentado — con evidencia del rol asignado y aprobación del supervisor.</li><li><strong>Cambio de rol:</strong> Al cambiar de departamento o cargo, los permisos se actualizan el mismo día — accesos anteriores revocados.</li><li><strong>Offboarding:</strong> Al desvincularse un empleado, la cuenta se desactiva dentro de las 4 horas siguientes — no se elimina, para preservar auditoría.</li><li><strong>Cuentas de servicio:</strong> Los procesos automatizados usan cuentas de servicio específicas con permisos mínimos y contraseñas rotadas cada 90 días.</li></ul>'],
+        ['Gestión de sesiones','<ul><li><strong>Timeout automático:</strong> FileMaker cierra sesión automáticamente tras período de inactividad configurable (15-30 minutos).</li><li><strong>Sesión única:</strong> Opcionalmente, un usuario no puede tener múltiples sesiones simultáneas abiertas.</li><li><strong>Registro de sesiones:</strong> Cada inicio y cierre de sesión queda registrado con timestamp, IP y dispositivo.</li><li><strong>Bloqueo tras intentos fallidos:</strong> 5 intentos fallidos de contraseña → cuenta bloqueada automáticamente + alerta al administrador.</li></ul>'],
+        ['Acceso de terceros y proveedores','<ul><li><strong>Cuentas externas con expiración:</strong> Los consultores externos reciben cuentas con fecha de expiración definida antes de comenzar.</li><li><strong>Acceso restringido al scope:</strong> El proveedor solo tiene acceso a los módulos necesarios para su trabajo — nunca al sistema completo.</li><li><strong>Revisión de acceso al cierre:</strong> Al terminar el contrato, se verifica y documenta la revocación de todos los accesos del proveedor.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Security', title: 'Access Control',
+      desc: 'Who can see what, who can do what. Access control is the first internal line of defense. We implement RBAC, multi-factor authentication and identity management as part of the ERP.',
+      tags: [['RBAC','grc'],['MFA','grc'],['Identity','grc'],['Access','grc']],
+      acc: [
+        ['RBAC — Role-based access control','Predefined roles (Administrator, Accountant, Warehouse, Sales, Manager, Auditor, Basic User) with granular permissions per table, record and script. Multiple roles per user, temporary roles with auto-expiry for specific projects.'],
+        ['Multi-factor authentication (MFA)','TOTP (6-digit rotating code via Authenticator app) as second factor. Admin accounts always require MFA. External access requires VPN + MFA. Claris Cloud uses Claris ID with configurable MFA and corporate password policies.'],
+        ['Identity lifecycle management','Documented onboarding with supervisor approval. Same-day permission updates on role changes. 4-hour account deactivation on offboarding (not deletion — preserves audit trail). Service accounts with minimum permissions and 90-day password rotation.'],
+      ]
+    }
+  },
+  'sec-audit': {
+    es: {
+      crumb: 'Seguridad', title: 'Auditoría y Trazabilidad',
+      desc: 'Todo lo que ocurre en el sistema queda registrado. Los logs de auditoría son inmutables, con timestamp y autor en cada acción — garantizando trazabilidad completa para cumplimiento regulatorio e investigación de incidentes.',
+      tags: [['Auditoría','grc'],['Logs','grc'],['Trazabilidad','grc'],['Inmutabilidad','grc']],
+      acc: [
+        ['Principio de inmutabilidad del log','Un log que puede modificarse no es un log de auditoría — es solo un registro. En el ERP implementamos inmutabilidad mediante:<ul><li><strong>Tabla T_AUDIT_LOG:</strong> Solo permite INSERT — ningún rol puede ejecutar UPDATE ni DELETE sobre esta tabla, ni siquiera el administrador.</li><li><strong>Hash encadenado:</strong> Cada entrada del log incluye un hash del registro anterior — cualquier manipulación rompe la cadena y genera una alerta.</li><li><strong>Timestamp con fuente externa:</strong> El timestamp de cada entrada proviene del servidor, no del cliente — imposible de manipular desde la sesión del usuario.</li><li><strong>Backup segregado:</strong> Los logs de auditoría se respaldan en un destino separado al que el administrador del ERP no tiene acceso.</li></ul>'],
+        ['¿Qué se registra?','<ul><li><strong>Autenticación:</strong> Cada inicio de sesión exitoso y fallido, con IP, dispositivo y timestamp.</li><li><strong>Acciones sobre datos sensibles:</strong> Cualquier lectura, creación, modificación o eliminación en tablas clasificadas como Confidencial o Crítico.</li><li><strong>Cambios de configuración:</strong> Modificaciones a roles, permisos, políticas de contraseña o parámetros del sistema.</li><li><strong>Operaciones financieras:</strong> Cada asiento contable, pago, transferencia y ajuste — con el usuario que lo originó.</li><li><strong>Acciones de agentes de IA:</strong> Cada consulta realizada por un agente de IA, qué datos accedió y qué generó.</li><li><strong>Exportaciones masivas:</strong> Cualquier exportación de más de X registros genera una entrada de alerta en el log.</li></ul>'],
+        ['Retención de logs','La retención debe cumplir con el mayor requisito aplicable:<ul><li><strong>ISO 27001:</strong> Retención definida en la política del SGSI — típicamente 1-3 años para logs operacionales.</li><li><strong>GDPR / Ley 1581:</strong> Los logs que contienen datos personales solo se retienen el tiempo necesario.</li><li><strong>SOX (si aplica):</strong> 7 años de retención para logs de controles financieros.</li><li><strong>Práctica recomendada:</strong> Logs de acceso — 1 año mínimo. Logs de cambios financieros — 7 años. Logs de incidentes de seguridad — hasta resolución + 3 años.</li></ul>'],
+        ['Revisión y alertas activas','Los logs solo son útiles si alguien los revisa:<ul><li><strong>Revisión periódica:</strong> El equipo de seguridad revisa los logs de alto riesgo semanalmente.</li><li><strong>Alertas automáticas:</strong> Reglas configuradas para disparar alertas inmediatas en eventos críticos: múltiples fallos de autenticación, acceso a datos fuera de horario laboral, exportaciones masivas.</li><li><strong>Dashboard de auditoría:</strong> Panel en tiempo real con métricas de actividad — accesos por usuario, operaciones críticas del día, anomalías detectadas.</li><li><strong>Revisión de accesos trimestrales:</strong> Cada trimestre se genera un reporte de todos los accesos activos — los accesos sin actividad en 90 días se marcan para revisión.</li></ul>'],
+        ['Preparación para auditorías externas','El ERP genera automáticamente los reportes requeridos para auditorías de ISO 27001, SOX, DIAN o SFC:<ul><li><strong>Evidencia por control:</strong> Para cada control auditado, el sistema puede generar evidencia con fecha, usuario y resultado.</li><li><strong>Exportación de logs:</strong> Logs exportables en formato estándar (CSV, JSON) para análisis por auditores externos.</li><li><strong>Cadena de custodia:</strong> Cada reporte de auditoría incluye hash de integridad — el auditor puede verificar que no fue alterado post-generación.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Security', title: 'Audit & Traceability',
+      desc: 'Everything that happens in the system is recorded. Audit logs are immutable, with timestamp and author on every action — guaranteeing complete traceability for regulatory compliance and incident investigation.',
+      tags: [['Audit','grc'],['Logs','grc'],['Traceability','grc'],['Immutability','grc']],
+      acc: [
+        ['Immutability principle','A log that can be modified is not an audit log. T_AUDIT_LOG table: INSERT-only — no role can UPDATE or DELETE, not even the admin. Hash-chaining detects tampering. Server-side timestamps prevent client manipulation. Segregated backup inaccessible to the ERP admin.'],
+        ['What is logged?','Authentication (all logins/failures with IP and device), sensitive data access, configuration changes, every financial transaction with originating user, AI agent queries (what was accessed and generated), and mass exports triggering alerts.'],
+        ['Log retention','ISO 27001: 1-3 years for operational logs. SOX: 7 years for financial control logs. GDPR: personal data logs retained only as long as necessary. Security incident logs: until resolution + 3 years.'],
+        ['Active review and alerts','Automatic alerts for critical events: multiple auth failures, off-hours sensitive data access, mass exports. Weekly high-risk log review. Real-time audit dashboard. Quarterly access review — accounts inactive 90+ days flagged for deactivation.'],
+      ]
+    }
+  },
+  'ai-agents': {
+    es: {
+      crumb: 'Local AI', title: 'Agentes Especializados',
+      desc: 'Agentes de IA con roles definidos — Legal, Financiero, Operativo, DevOps — entrenados en el contexto exacto de su empresa. No son chatbots genéricos. Son colaboradores digitales con dominio específico.',
+      tags: [['Agentes','ai'],['Orquestación','ai'],['Local AI','ai']],
+      acc: [
+        ['¿Qué es un agente especializado?','Un agente especializado es un modelo de IA configurado con:<ul><li>Un <strong>rol específico</strong> (Legal, Financiero, Operativo, RR.HH., DevOps).</li><li>Acceso solo a los <strong>datos relevantes</strong> para ese rol (el agente legal no puede consultar nóminas).</li><li><strong>Herramientas concretas:</strong> Puede leer contratos, consultar el ERP, generar documentos o ejecutar scripts.</li><li>Un <strong>contexto empresarial</strong> entrenado: conoce los procesos, la terminología y las políticas de la empresa.</li></ul>'],
+        ['Roles disponibles','<ul><li><strong>Agente Legal:</strong> Análisis de contratos, detección de cláusulas de riesgo, seguimiento de obligaciones regulatorias.</li><li><strong>Agente Financiero:</strong> Análisis de estados financieros, respuestas sobre flujo de caja, alertas de presupuesto.</li><li><strong>Agente Operativo:</strong> Seguimiento de proyectos, tareas pendientes, alertas de inventario y producción.</li><li><strong>Agente de RR.HH.:</strong> Estado de nómina, cumplimiento SGSST, métricas de clima organizacional.</li><li><strong>Agente DevOps:</strong> Monitoreo de infraestructura, alertas de sistemas, soporte de primer nivel.</li></ul>'],
+        ['Orquestación multi-agente','<ul><li><strong>Agente Coordinador:</strong> Actúa como router — recibe la tarea y la delega al agente especializado correcto.</li><li><strong>Colaboración automática:</strong> Si un proyecto involucra contratos, el Coordinador activa al Agente Legal automáticamente.</li><li><strong>Contexto compartido:</strong> Los agentes se pasan contexto entre sí mediante el Knowledge Graph de SurrealDB.</li><li><strong>Trazabilidad:</strong> Cada acción de un agente queda registrada en el log del sistema con timestamp y justificación.</li></ul>'],
+        ['Integración con ERP y GRC','<ul><li><strong>Lectura del ERP:</strong> Los agentes consultan en tiempo real el estado de tareas, proyectos, contratos e inventario.</li><li><strong>Acciones en el ERP:</strong> Un agente puede crear borradores de tareas o alertas que el usuario aprueba — el humano sigue en control.</li><li><strong>GRC nativo:</strong> Toda acción de un agente genera una entrada en el log de auditoría — quién preguntó, qué se consultó, qué se generó.</li></ul>'],
+      ]
+    },
+    en: {
+      crumb: 'Local AI', title: 'Specialized Agents',
+      desc: 'AI agents with defined roles — Legal, Financial, Operations, DevOps — trained on your exact company context. Not generic chatbots. Digital collaborators with specific domain expertise.',
+      tags: [['Agents','ai'],['Orchestration','ai'],['Local AI','ai']],
+      acc: [
+        ['What is a specialized agent?','A specialized agent is an AI model configured with a specific role, access only to relevant data, concrete tools (read contracts, query ERP, generate documents), and a trained company context: it knows the processes, terminology and policies of the company.'],
+        ['Available roles','<ul><li><strong>Legal Agent:</strong> Contract analysis, risk clause detection, regulatory obligation tracking.</li><li><strong>Financial Agent:</strong> Financial statement analysis, cash flow queries, budget alerts.</li><li><strong>Operations Agent:</strong> Project tracking, pending tasks, inventory and production alerts.</li><li><strong>DevOps Agent:</strong> Infrastructure monitoring, system alerts, first-level support.</li></ul>'],
+        ['Multi-agent orchestration','<ul><li><strong>Coordinator Agent:</strong> Acts as router — receives the task and delegates to the correct specialist.</li><li><strong>Automatic collaboration:</strong> If a project involves contracts, the Coordinator activates the Legal Agent automatically.</li><li><strong>Shared context:</strong> Agents pass context to each other via the SurrealDB Knowledge Graph.</li></ul>'],
+      ]
+    }
+  }
+};
+
+function renderPage(id) {
+  const l = document.documentElement.lang === 'en' ? 'en' : 'es';
+  const d = PAGES[id][l] || PAGES[id]['es'];
+  const tagsHtml = d.tags.map(([t,c]) => `<span class="tag ${c}">${t}</span>`).join('');
+  const accHtml = d.acc.map(([q,a]) => `
+    <div class="acc-item">
+      <button class="acc-q" onclick="togAcc(this)">
+        <span>${q}</span>
+        <svg width="15" height="15"><use href="#V-ch"/></svg>
+      </button>
+      <div class="acc-a">${a}</div>
+    </div>`).join('');
+
+  // Partner badge for licencias
+  const partnerBadge = id === 'lic'
+    ? `<div class="partner-badge"><svg width="12" height="12"><use href="#V-ok"/></svg>Partner Oficial de Claris para Colombia</div>`
+    : '';
+
+  // Video block — real Vimeo player or placeholder
+  const vimeoId = PAGES[id].vimeo;
+  const videoBlock = vimeoId
+    ? `<div class="sec-label">VIDEO</div>
+       <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:32px">
+         <iframe src="https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479"
+           frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+           style="position:absolute;top:0;left:0;width:100%;height:100%" title=""></iframe>
+       </div>`
+    : `<div class="sec-label">VIDEO</div>
+       <div class="video-wrap">
+         <span class="video-badge">PRÓXIMAMENTE</span>
+         <div class="video-icon"><svg width="18" height="18"><use href="#V-play"/></svg></div>
+         <span class="video-label">Video explicativo disponible pronto</span>
+       </div>`;
+
+  return `
+    <div class="breadcrumb"><span>StackSolver</span> / <span>${d.crumb}</span></div>
+    <h1 class="page-title">${d.title}</h1>
+    <p class="page-desc">${d.desc}</p>
+    <div class="tags">${tagsHtml}</div>
+    ${partnerBadge}
+    ${videoBlock}
+    <div class="divider-h"></div>
+    <div class="sec-label">CONCEPTOS</div>
+    <div class="acc-wrap">${accHtml}</div>
+  `;
+}
+
+function showPage(id, el) {
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('on'));
+  if (el) el.classList.add('on');
+  document.getElementById('pageContent').innerHTML = renderPage(id);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+}
+
+function togAcc(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  item.parentElement.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  document.getElementById('themeBtn').innerHTML = isDark
+    ? '<svg width="14" height="14"><use href="#V-sun"/></svg>'
+    : '<svg width="14" height="14"><use href="#V-moon"/></svg>';
+}
+
+function setLang(l) {
+  document.documentElement.lang = l;
+  document.querySelectorAll('.lb').forEach(b => b.classList.toggle('on', b.textContent === l.toUpperCase()));
+  document.querySelectorAll('[data-es],[data-en]').forEach(el => {
+    const v = el.getAttribute('data-' + l); if (v) el.innerHTML = v;
+  });
+  // re-render current page
+  const active = document.querySelector('.sb-item.on');
+  if (active) showPage(active.dataset.page, active);
+}
+
+function toggleSb() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// init
+showPage('fin', document.querySelector('.sb-item[data-page="fin"]'));
+</script>
+
+<footer>
+  <div class="logo">Stack<em>Solver</em></div>
+  <div class="footer-contact">
+    <svg><use href="#V-mail"/></svg>
+    <a href="mailto:info@stacksolver.tech">info@stacksolver.tech</a>
+  </div>
+  <span class="footer-copy">© 2026 StackSolver · Partner Oficial Claris para Colombia</span>
+</footer>
+</body>
+</html>

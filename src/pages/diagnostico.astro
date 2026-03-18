@@ -1,0 +1,571 @@
+---
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico — StackSolver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fafafa;--surface:#fff;--border:#e4e4e7;--border-strong:#18181b;
+  --accent:#18181b;--accent-fg:#fff;--accent-subtle:#f4f4f5;
+  --indigo:#6366f1;--indigo-sub:#eef2ff;
+  --green:#16a34a;--green-sub:#f0fdf4;
+  --amber:#d97706;--amber-sub:#fffbeb;
+  --text:#18181b;--text2:#71717a;--text3:#a1a1aa;
+  --r:8px;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+body.dark{
+  --bg:#0a0a0a;--surface:#111;--border:#27272a;--border-strong:#fafafa;
+  --accent:#fafafa;--accent-fg:#18181b;--accent-subtle:#27272a;
+  --indigo:#818cf8;--indigo-sub:#1e1b4b;
+  --green:#4ade80;--green-sub:#052e16;
+  --amber:#fbbf24;--amber-sub:#1c1400;
+  --text:#fafafa;--text2:#a1a1aa;--text3:#52525b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--bg);border-bottom:1px solid var(--border)}
+.logo{font-size:14px;font-weight:700;letter-spacing:-.3px;color:var(--text)}
+.logo em{color:var(--indigo);font-style:normal}
+.nav-r{display:flex;gap:6px;align-items:center}
+.icon-btn{width:32px;height:32px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .15s}
+.icon-btn:hover{border-color:var(--text3);color:var(--text)}
+.lang-wrap{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.lb{padding:4px 11px;font-size:12px;font-weight:600;border:none;background:none;color:var(--text2);cursor:pointer;font-family:var(--font)}
+.lb.on{background:var(--accent);color:var(--accent-fg)}
+.wrap{max-width:720px;margin:0 auto;padding:72px 20px 80px}
+.steps{display:flex;align-items:center;margin-bottom:32px}
+.step{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;top:11px;left:calc(50% + 13px);width:calc(100% - 26px);height:1px;background:var(--border)}
+.step.done:not(:last-child)::after{background:var(--indigo)}
+.step-n{width:24px;height:24px;border-radius:50%;font-size:10px;font-weight:700;border:1px solid var(--border);background:var(--bg);color:var(--text3);display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:all .2s}
+.step.on .step-n{border-color:var(--indigo);background:var(--indigo-sub);color:var(--indigo)}
+.step.done .step-n{border-color:var(--green);background:var(--green-sub);color:var(--green)}
+.step-l{font-size:10px;font-weight:500;color:var(--text3);white-space:nowrap}
+.step.on .step-l{color:var(--text2)}
+.step.done .step-l{color:var(--green)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:36px;animation:up .25s ease}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.eyebrow.ind{color:var(--indigo)}
+h1.t{font-size:28px;font-weight:800;letter-spacing:-.6px;line-height:1.2;margin-bottom:8px}
+h2.t{font-size:22px;font-weight:700;letter-spacing:-.4px;line-height:1.25;margin-bottom:8px}
+.sub{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:24px}
+.sub strong{color:var(--text);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;border:1px solid transparent;font-family:var(--font);transition:all .15s;white-space:nowrap}
+.btn:disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+.btn-dark{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn-dark:hover{opacity:.85}
+.btn-out{background:none;border-color:var(--border);color:var(--text2)}
+.btn-out:hover{border-color:var(--text3);color:var(--text)}
+.btn-ghost{background:none;border:none;color:var(--text2);padding:9px 12px}
+.btn-ghost:hover{color:var(--text)}
+.btn-green{background:var(--green);color:#fff;border-color:var(--green)}
+.btn-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--border);margin-top:28px}
+.hint{font-size:12px;color:var(--text3)}
+.feat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:28px}
+.feat{background:var(--surface);padding:16px}
+.feat-ico{width:28px;height:28px;border-radius:6px;background:var(--accent-subtle);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.feat-ico svg{width:14px;height:14px;color:var(--text2)}
+.feat strong{display:block;font-size:13px;font-weight:600;margin-bottom:3px}
+.feat span{font-size:12px;color:var(--text2);line-height:1.5}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--text2);background:var(--accent-subtle);border:1px solid var(--border);padding:4px 10px;border-radius:20px;margin-bottom:20px}
+.div{display:flex;align-items:center;gap:10px;margin:28px 0 18px}
+.div-line{flex:1;height:1px;background:var(--border)}
+.div-txt{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+.how-h{font-size:16px;font-weight:700;letter-spacing:-.2px;margin-bottom:4px}
+.how-sub{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:16px}
+.tab-row{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:20px}
+.tab{padding:8px 16px;font-size:13px;font-weight:500;color:var(--text2);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;font-family:var(--font);transition:all .15s}
+.tab:hover{color:var(--text)}
+.tab.on{color:var(--text);border-bottom-color:var(--text);font-weight:600}
+.panel{display:none;animation:up .2s ease}
+.panel.on{display:block}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.hc{padding:16px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg)}
+.hc-ico{width:30px;height:30px;border-radius:6px;background:var(--accent-subtle);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.hc-ico svg{width:15px;height:15px;color:var(--text)}
+.hc h4{font-size:13px;font-weight:600;margin-bottom:4px}
+.hc p{font-size:12px;color:var(--text2);line-height:1.5}
+.mods-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.mi{padding:12px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface)}
+.mi-ico{width:26px;height:26px;border-radius:6px;background:var(--accent-subtle);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.mi-ico svg{width:13px;height:13px;color:var(--text2)}
+.mi strong{display:block;font-size:11px;font-weight:600;margin-bottom:2px}
+.mi span{font-size:10px;color:var(--text3);line-height:1.4}
+.info-strip{display:flex;gap:8px;padding:12px 14px;border-radius:var(--r);background:var(--accent-subtle);border:1px solid var(--border);font-size:12px;color:var(--text2);line-height:1.5}
+.info-strip strong{color:var(--text)}
+.grc3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.gp{padding:16px;border:1px solid var(--border);border-radius:var(--r);text-align:center}
+.gp-ico{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.gp h4{font-size:12px;font-weight:700;margin-bottom:4px}
+.gp p{font-size:11px;color:var(--text2);line-height:1.5}
+.gov .gp-ico{background:var(--indigo-sub)} .gov .gp-ico svg{color:var(--indigo)}
+.risk .gp-ico{background:var(--amber-sub)} .risk .gp-ico svg{color:var(--amber)}
+.comp .gp-ico{background:var(--green-sub)} .comp .gp-ico svg{color:var(--green)}
+.alert{display:flex;gap:8px;padding:12px 14px;border-radius:var(--r);background:var(--amber-sub);border:1px solid #fde68a;font-size:12px;color:#92400e;line-height:1.5}
+body.dark .alert{color:var(--amber);border-color:var(--amber-sub)}
+.proc{display:flex;gap:0;margin:14px 0 12px}
+.ps{flex:1;text-align:center;position:relative;padding:0 4px}
+.ps:not(:last-child)::after{content:'›';position:absolute;right:-8px;top:8px;font-size:14px;color:var(--text3)}
+.psn{width:22px;height:22px;border-radius:50%;background:var(--accent-subtle);border:1px solid var(--border);font-size:10px;font-weight:700;color:var(--text);display:flex;align-items:center;justify-content:center;margin:0 auto 4px}
+.psl{font-size:10px;color:var(--text2);line-height:1.3}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.chip{font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px;border:1px solid var(--border);color:var(--text3)}
+.re-box{display:flex;gap:8px;padding:10px 14px;border-radius:var(--r);background:var(--green-sub);border:1px solid #bbf7d0;font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:14px}
+body.dark .re-box{border-color:var(--green-sub)}
+.faq-list{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:none;border:none;font-family:var(--font);font-size:13px;font-weight:500;color:var(--text);cursor:pointer;text-align:left}
+.faq-q:hover{background:var(--bg)}
+.faq-q svg{flex-shrink:0;transition:transform .2s;color:var(--text3)}
+.faq-item.open .faq-q svg{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 16px 14px;font-size:13px;color:var(--text2);line-height:1.6}
+.faq-item.open .faq-a{display:block}
+.og{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px}
+.opt{padding:14px;border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .15s;position:relative;background:var(--surface)}
+.opt:hover{border-color:var(--text3)}
+.opt.sel{border:2px solid var(--border-strong)}
+.opt-ck{position:absolute;top:8px;right:8px;width:16px;height:16px;border-radius:4px;background:var(--accent);display:none;align-items:center;justify-content:center}
+.opt-ck svg{width:9px;height:9px;color:var(--accent-fg)}
+.opt.sel .opt-ck{display:flex}
+.opt-ico{width:26px;height:26px;border-radius:6px;background:var(--accent-subtle);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.opt-ico svg{width:13px;height:13px;color:var(--text2)}
+.opt strong{display:block;font-size:12px;font-weight:600;margin-bottom:2px}
+.opt span{font-size:10px;color:var(--text3);line-height:1.4}
+.opt.sel span{color:var(--text2)}
+.pl{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.pain{display:flex;align-items:flex-start;gap:10px;padding:14px;border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .15s;background:var(--surface)}
+.pain:hover{border-color:var(--text3)}
+.pain.sel{border:2px solid var(--border-strong)}
+.pcb{width:18px;height:18px;border-radius:4px;border:1px solid var(--border);background:var(--bg);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.pain.sel .pcb{background:var(--accent);border-color:var(--accent)}
+.pcb svg{width:9px;height:9px;color:var(--accent-fg);display:none}
+.pain.sel .pcb svg{display:block}
+.pt{flex:1}
+.pt strong{display:block;font-size:13px;font-weight:600;margin-bottom:2px}
+.pt span{font-size:11px;color:var(--text2);line-height:1.5}
+.ptag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;align-self:flex-start;margin-top:1px;flex-shrink:0;border:1px solid var(--border);color:var(--text3)}
+.tag-e{border-color:#c7d2fe;background:#eef2ff;color:#4338ca}
+.tag-g{border-color:#fde68a;background:#fffbeb;color:#92400e}
+.tag-a{border-color:#bbf7d0;background:#f0fdf4;color:#166534}
+.tag-w{border-color:#fce7f3;background:#fdf2f8;color:#9d174d}
+body.dark .tag-e{border-color:var(--indigo-sub);background:var(--indigo-sub);color:var(--indigo)}
+body.dark .tag-g{border-color:var(--amber-sub);background:var(--amber-sub);color:var(--amber)}
+body.dark .tag-a{border-color:var(--green-sub);background:var(--green-sub);color:var(--green)}
+body.dark .tag-w{color:#f9a8d4;border-color:#831843;background:#500724}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
+.mc{padding:16px;border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .15s;background:var(--surface);position:relative;display:flex;align-items:flex-start;gap:12px}
+.mc:hover{border-color:var(--text3)}
+.mc.sel{border:2px solid var(--border-strong)}
+.mc-ico{width:34px;height:34px;border-radius:8px;background:var(--accent-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mc-ico svg{width:17px;height:17px;color:var(--text2)}
+.mc-b{flex:1}
+.mc-b strong{display:block;font-size:13px;font-weight:600;margin-bottom:3px}
+.mc-b span{font-size:11px;color:var(--text2);line-height:1.5}
+.mbadge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;border:1px solid var(--border);color:var(--text3)}
+.mb-p{border-color:#c7d2fe;background:#eef2ff;color:#4338ca}
+.mb-n{border-color:#bbf7d0;background:#f0fdf4;color:#166534}
+body.dark .mb-p{border-color:var(--indigo-sub);background:var(--indigo-sub);color:var(--indigo)}
+body.dark .mb-n{border-color:var(--green-sub);background:var(--green-sub);color:var(--green)}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.ff{grid-column:1/-1}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:13px;font-family:var(--font);outline:none;transition:border .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--text3)}
+.field input::placeholder{color:var(--text3)}
+.field textarea{resize:vertical;min-height:72px}
+.field select option{background:var(--surface);color:var(--text)}
+.priv{display:flex;gap:8px;padding:12px 14px;border-radius:var(--r);background:var(--green-sub);border:1px solid #bbf7d0;font-size:12px;color:var(--text2);line-height:1.5;margin-top:4px}
+body.dark .priv{border-color:var(--green-sub)}
+.rt{text-align:center;margin-bottom:28px}
+.sr{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;border:2px solid var(--green);background:var(--green-sub);margin-bottom:12px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.15)}50%{box-shadow:0 0 0 10px rgba(22,163,74,0)}}
+.sn{font-size:26px;font-weight:800;color:var(--green);line-height:1}
+.sl{font-size:9px;font-weight:700;color:var(--green);letter-spacing:1px}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.rc{padding:16px;border:1px solid var(--border);border-radius:var(--r)}
+.rc.pri{border-color:var(--indigo);background:var(--indigo-sub)}
+.rcp{font-size:10px;font-weight:700;letter-spacing:.8px;color:var(--indigo);margin-bottom:4px}
+.rct{font-size:14px;font-weight:700;margin-bottom:4px}
+.rcd{font-size:12px;color:var(--text2);line-height:1.5}
+.rcl{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:11px;color:var(--text3)}
+.tb{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.tf{height:100%;background:var(--indigo);animation:fill 1s .3s ease both}
+@keyframes fill{from{width:0}to{width:var(--w,60%)}}
+.ract{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.ib{display:flex;gap:8px;padding:12px 14px;border-radius:var(--r);background:var(--accent-subtle);border:1px solid var(--border);font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:16px}
+.ctr{font-size:12px;color:var(--text3)}
+.ctr b{color:var(--indigo)}
+@media(max-width:600px){
+  .og{grid-template-columns:1fr 1fr}
+  .mg{grid-template-columns:1fr}
+  .feat-row{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr}
+  .rg{grid-template-columns:1fr}
+  .grc3,.g3,.mods-strip{grid-template-columns:1fr 1fr}
+  .card{padding:24px}
+  .proc{flex-wrap:wrap;gap:8px}
+  .ps:not(:last-child)::after{display:none}
+  .tab{padding:8px 10px;font-size:12px}
+}
+
+footer{border-top:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:760px;margin:0 auto}
+.fc{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)}
+.fc a{color:var(--text2);text-decoration:none}
+.fc a:hover{color:var(--text)}
+.fc svg{width:14px;height:14px;color:var(--text3)}
+</style>
+
+  <!-- SEO 2026 -->
+  <meta name="description" content="Diagnóstico gratuito de sistemas ERP y GRC. Responde 6 preguntas y recibe una evaluación personalizada de tus necesidades tecnológicas. StackSolver — Partner Claris FileMaker Colombia.">
+  <meta name="keywords" content="diagnóstico ERP gratis, evaluación sistema empresarial, consultoría FileMaker Colombia, asesoría GRC, diagnóstico tecnológico empresa, ERP a medida Colombia">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="StackSolver — Johann Vivas">
+  <link rel="canonical" href="https://www.stacksolver.tech/diagnostico">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.stacksolver.tech/diagnostico">
+  <meta property="og:title" content="Diagnóstico ERP & GRC — StackSolver">
+  <meta property="og:description" content="Descubre qué sistema necesita tu empresa. 6 pasos, sin compromiso. Partner Oficial Claris FileMaker Colombia.">
+  <meta property="og:image" content="https://www.stacksolver.tech/og-image.png">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Diagnóstico ERP & GRC — StackSolver">
+  <meta name="twitter:description" content="Evaluación gratuita de tus necesidades de ERP, GRC e IA Local. 6 pasos, sin compromiso.">
+  <meta name="twitter:image" content="https://www.stacksolver.tech/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Diagnóstico ERP & GRC — StackSolver",
+    "description": "Evaluación gratuita de necesidades de sistema ERP, GRC e IA Local para empresas.",
+    "url": "https://www.stacksolver.tech/diagnostico",
+    "isPartOf": {"@type": "WebSite", "name": "StackSolver", "url": "https://www.stacksolver.tech"},
+    "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.stacksolver.tech"},
+      {"@type": "ListItem", "position": 2, "name": "Diagnóstico", "item": "https://www.stacksolver.tech/diagnostico"}
+    ]}
+  }
+  </script>
+</head>
+<body>
+<svg style="display:none">
+  <symbol id="I-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4 3 9 3s9-1.34 9-3v-4"/></symbol>
+  <symbol id="I-sh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l8.5 3.5V11c0 5.25-3.8 9.74-8.5 11-4.7-1.26-8.5-5.75-8.5-11V5.5L12 2z"/></symbol>
+  <symbol id="I-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M7 9H5m2 3H5m2 3H5m12-6h2m-2 3h2m-2 3h2M9 7V5m3 2V5m3 2V5M9 17v2m3-2v2m3-2v2"/></symbol>
+  <symbol id="I-lay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+  <symbol id="I-gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></symbol>
+  <symbol id="I-lb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 18h6m-5 4h4M12 2a7 7 0 017 7c0 2.7-1.5 5-3.7 6.4L15 17H9l-.3-1.6A7 7 0 015 9a7 7 0 017-7z"/></symbol>
+  <symbol id="I-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></symbol>
+  <symbol id="I-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-5-7l7 7-7 7"/></symbol>
+  <symbol id="I-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="I-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M18.66 5.34l-1.41 1.41"/></symbol>
+  <symbol id="I-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></symbol>
+  <symbol id="I-us" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></symbol>
+  <symbol id="I-rc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></symbol>
+  <symbol id="I-ch2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+  <symbol id="I-kb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="6" height="18" rx="1"/><rect x="9" y="3" width="6" height="11" rx="1"/><rect x="16" y="3" width="6" height="15" rx="1"/></symbol>
+  <symbol id="I-fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="6" height="5" rx="1"/><rect x="16" y="2" width="6" height="5" rx="1"/><rect x="9" y="17" width="6" height="5" rx="1"/><path d="M5 7v4h14V7M12 11v6"/></symbol>
+  <symbol id="I-bx" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></symbol>
+  <symbol id="I-ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></symbol>
+  <!-- industry -->
+  <symbol id="I-hlt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M19 8h-2a4 4 0 00-4-4H11a4 4 0 00-4 4H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2v-9a2 2 0 00-2-2z"/><path d="M9 12h6m-3-3v6"/></symbol>
+  <symbol id="I-fac" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 20V10l5-4v4l5-4v4l5-4v14H2z"/><rect x="14" y="14" width="3" height="6"/></symbol>
+  <symbol id="I-tr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+  <symbol id="I-pl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 00-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5L21 16z"/></symbol>
+  <symbol id="I-bld" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="2" width="18" height="20" rx="1"/><path d="M9 22V12h6v10M3 7h4m4 0h4m-8 4h4M7 15h2m6 0h2"/></symbol>
+  <symbol id="I-bf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></symbol>
+  <symbol id="I-bk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></symbol>
+  <symbol id="I-ht" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></symbol>
+  <symbol id="I-bg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 01-8 0"/></symbol>
+  <symbol id="I-lf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 8C8 10 5.9 16.17 3.82 22M9.09 9.91C9 12 9.2 14 11 16c1.5 1.5 4 2 6 1.5C20 16 22 12 22 8c0-3-1-5-5-5-3 0-6 1.5-7.91 6.91z"/></symbol>
+  <symbol id="I-cd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+  <symbol id="I-gr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+<symbol id="I-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+</svg>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:20px">
+    <div class="logo">Stack<em>Solver</em></div>
+    <a style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--font)" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+    <a style="font-size:13px;color:var(--text2);font-family:var(--font);text-decoration:none;transition:color .15s" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+    <a style="font-size:13px;color:var(--text2);font-family:var(--font);text-decoration:none;transition:color .15s" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+  </div>
+  <div class="nav-r">
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()"><svg width="15" height="15"><use href="#I-moon"/></svg></button>
+    <div class="lang-wrap">
+      <button class="lb on" onclick="setLang('es')">ES</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="steps" id="stepsBar">
+    <div class="step on" id="s0"><div class="step-n">1</div><div class="step-l" data-es="Inicio" data-en="Start">Inicio</div></div>
+    <div class="step" id="s1"><div class="step-n">2</div><div class="step-l" data-es="Industria" data-en="Industry">Industria</div></div>
+    <div class="step" id="s2"><div class="step-n">3</div><div class="step-l" data-es="Situación" data-en="Situation">Situación</div></div>
+    <div class="step" id="s3"><div class="step-n">4</div><div class="step-l" data-es="Solución" data-en="Solution">Solución</div></div>
+    <div class="step" id="s4"><div class="step-n">5</div><div class="step-l" data-es="Contacto" data-en="Contact">Contacto</div></div>
+    <div class="step" id="s5"><div class="step-n">✦</div><div class="step-l" data-es="Resultado" data-en="Result">Resultado</div></div>
+  </div>
+
+  <!-- STEP 0 -->
+  <div class="card" id="p0">
+    <div class="eyebrow ind" data-es="Diagnóstico empresarial · Gratuito · Sin compromiso" data-en="Business diagnosis · Free · No commitment">Diagnóstico empresarial · Gratuito · Sin compromiso</div>
+    <h1 class="t" data-es="Descubra exactamente qué<br>necesita su empresa." data-en="Discover exactly what<br>your business needs.">Descubra exactamente qué<br>necesita su empresa.</h1>
+    <p class="sub"><span data-es="En <strong>5 minutos</strong> analizamos su situación y le entregamos un diagnóstico personalizado — qué tecnología le conviene, por dónde empezar y cómo hacerlo." data-en="In <strong>5 minutes</strong> we analyze your situation and deliver a personalized diagnosis — which technology suits you, where to start and how.">En <strong>5 minutos</strong> analizamos su situación y le entregamos un diagnóstico personalizado — qué tecnología le conviene, por dónde empezar y cómo hacerlo.</span></p>
+    <div class="badge"><svg width="11" height="11"><use href="#I-ok"/></svg><span data-es="Tiempo estimado: 4–6 minutos" data-en="Estimated time: 4–6 minutes">Tiempo estimado: 4–6 minutos</span></div>
+    <div class="feat-row">
+      <div class="feat"><div class="feat-ico"><svg><use href="#I-sh"/></svg></div><strong data-es="Diagnóstico real" data-en="Real diagnosis">Diagnóstico real</strong><span data-es="No es un formulario de contacto. Analizamos su contexto para dar una recomendación concreta." data-en="Not a contact form. We analyze your context to give a concrete recommendation.">No es un formulario de contacto. Analizamos su contexto para dar una recomendación concreta.</span></div>
+      <div class="feat"><div class="feat-ico"><svg><use href="#I-us"/></svg></div><strong data-es="Capacitamos su equipo" data-en="We train your team">Capacitamos su equipo</strong><span data-es="No solo instalamos — formamos a su personal módulo a módulo. Su equipo queda autónomo." data-en="We don't just install — we train your staff module by module. Your team stays autonomous.">No solo instalamos — formamos a su personal módulo a módulo. Su equipo queda autónomo.</span></div>
+      <div class="feat"><div class="feat-ico"><svg><use href="#I-rc"/></svg></div><strong data-es="Mejoramos lo que tiene" data-en="We improve what you have">Mejoramos lo que tiene</strong><span data-es="Antes de proponer algo nuevo, evaluamos si su sistema actual puede mejorar. No cambiamos por cambiar." data-en="Before proposing anything new, we evaluate if your current system can improve. We don't change for the sake of it.">Antes de proponer algo nuevo, evaluamos si su sistema puede mejorar. No cambiamos por cambiar.</span></div>
+    </div>
+    <div class="div"><div class="div-line"></div><span class="div-txt" data-es="Cómo lo hacemos" data-en="How we do it">Cómo lo hacemos</span><div class="div-line"></div></div>
+    <div class="how-h" data-es="Sea cual sea su requerimiento — generamos soluciones a su medida." data-en="Whatever your requirement — we build solutions tailored to you.">Sea cual sea su requerimiento — generamos soluciones a su medida.</div>
+    <div class="how-sub" data-es="Somos expertos en procesos empresariales, ERP, GRC y transformación digital. Operamos en cualquier industria y zona geográfica." data-en="We are experts in business processes, ERP, GRC and digital transformation. We operate in any industry and geography.">Somos expertos en procesos empresariales, ERP, GRC y transformación digital. Operamos en cualquier industria y zona geográfica.</div>
+    <div class="tab-row">
+      <button class="tab on" onclick="showTab(0)" data-es="ERP y Módulos" data-en="ERP & Modules">ERP y Módulos</button>
+      <button class="tab" onclick="showTab(1)">GRC</button>
+      <button class="tab" onclick="showTab(2)" data-es="IA Local" data-en="Local AI">IA Local</button>
+      <button class="tab" onclick="showTab(3)" data-es="Metodología" data-en="Methodology">Metodología</button>
+    </div>
+    <div class="panel on" id="t0">
+      <div class="mods-strip">
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-ch2"/></svg></div><strong data-es="Gestión Financiera" data-en="Financial Mgmt">Gestión Financiera</strong><span data-es="Contabilidad, tesorería, impuestos, presupuesto" data-en="Accounting, treasury, taxes, budgeting">Contabilidad, tesorería, impuestos</span></div>
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-us"/></svg></div><strong data-es="Talento Humano" data-en="Human Resources">Talento Humano</strong><span data-es="Nómina, bienestar, SGSST, selección" data-en="Payroll, wellness, safety, recruiting">Nómina, bienestar, SGSST</span></div>
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-kb"/></svg></div><strong data-es="Gestión de Proyectos" data-en="Project Mgmt">Gestión de Proyectos</strong><span data-es="Proyecto → Fase → Tarea → Recursos" data-en="Project → Phase → Task → Resources">Proyecto → Fase → Tarea</span></div>
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-bx"/></svg></div><strong data-es="Cadena de Suministro" data-en="Supply Chain">Cadena de Suministro</strong><span data-es="Compras, inventario, logística, producción" data-en="Procurement, inventory, logistics">Compras, inventario, logística</span></div>
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-ph"/></svg></div><strong data-es="Clientes y CRM" data-en="Clients & CRM">Clientes y CRM</strong><span data-es="Pipeline de ventas, PQRS, marketing" data-en="Sales pipeline, support, marketing">Pipeline, PQRS, marketing</span></div>
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-sh"/></svg></div><strong data-es="GRC Nativo" data-en="Native GRC">GRC Nativo</strong><span data-es="Riesgos, auditoría y cumplimiento integrados" data-en="Risk, audit and compliance built-in">Riesgos, auditoría, cumplimiento</span></div>
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-fl"/></svg></div><strong data-es="Gestión de Procesos" data-en="Process Mgmt">Gestión de Procesos</strong><span data-es="BPM, jerarquía de 5 niveles, 230+ actividades" data-en="BPM, 5-level hierarchy, 230+ activities">BPM — 230+ actividades</span></div>
+        <div class="mi"><div class="mi-ico"><svg><use href="#I-lay"/></svg></div><strong data-es="Estrategia y Gobierno" data-en="Strategy & Gov.">Estrategia y Gobierno</strong><span data-es="OKRs, documentación, gobernanza corporativa" data-en="OKRs, documentation, governance">OKRs, gobernanza, documentación</span></div>
+      </div>
+      <div class="info-strip"><svg width="13" height="13" style="flex-shrink:0;margin-top:1px"><use href="#I-lay"/></svg><span data-es="Construido sobre Claris FileMaker — plataforma empresarial de Apple. Mac, iPad, iPhone y Web. El sistema se adapta a sus procesos, no al revés." data-en="Built on Claris FileMaker — Apple's enterprise platform. Mac, iPad, iPhone and Web. The system adapts to your processes, not the other way around.">Construido sobre Claris FileMaker — plataforma empresarial de Apple. Mac, iPad, iPhone y Web. El sistema se adapta a sus procesos, no al revés.</span></div>
+    </div>
+    <div class="panel" id="t1">
+      <div class="grc3">
+        <div class="gp gov"><div class="gp-ico"><svg width="17" height="17"><use href="#I-lay"/></svg></div><h4 data-es="Gobernanza" data-en="Governance">Gobernanza</h4><p data-es="Procesos claros, aprobaciones digitales, trazabilidad total. Cada acción tiene un responsable y evidencia auditada." data-en="Clear processes, digital approvals, complete traceability. Every action has an owner and audited evidence.">Procesos claros, aprobaciones digitales y trazabilidad total. Cada acción tiene evidencia auditada.</p></div>
+        <div class="gp risk"><div class="gp-ico"><svg width="17" height="17"><use href="#I-sh"/></svg></div><h4 data-es="Gestión de Riesgo" data-en="Risk Management">Gestión de Riesgo</h4><p data-es="Riesgo financiero, legal, operativo y de proveedores — identificados, medidos y controlados automáticamente." data-en="Financial, legal, operational and vendor risk — identified, measured and controlled automatically.">Riesgo financiero, legal y operativo — identificado, medido y controlado automáticamente.</p></div>
+        <div class="gp comp"><div class="gp-ico"><svg width="17" height="17"><use href="#I-ok"/></svg></div><h4 data-es="Cumplimiento y Auditoría" data-en="Compliance & Audit">Cumplimiento y Auditoría</h4><p data-es="ISO 9001/27001, IFRS, SOX, GDPR y normativas locales — evidencias automáticas, auditorías sin trabajo manual." data-en="ISO 9001/27001, IFRS, SOX, GDPR and local regulations — automatic evidence, audits without manual work.">ISO, IFRS, SOX, GDPR y normativas locales — evidencias automáticas, auditorías sin trabajo manual.</p></div>
+      </div>
+      <div class="alert"><svg width="13" height="13" style="flex-shrink:0;margin-top:1px"><use href="#I-lb"/></svg><span data-es="Empresas sin GRC estructurado enfrentan multas, pérdida de contratos y auditorías costosas. GRC no es burocracia — es protección y ventaja competitiva. Operamos en cualquier jurisdicción: Latinoamérica, Norteamérica y Europa." data-en="Companies without structured GRC face fines, loss of contracts and costly audits. GRC is not bureaucracy — it's protection and competitive advantage. We operate in any jurisdiction: Latin America, North America and Europe.">Empresas sin GRC estructurado enfrentan multas, pérdida de contratos y auditorías costosas. GRC no es burocracia — es protección y ventaja competitiva. Operamos en cualquier jurisdicción.</span></div>
+    </div>
+    <div class="panel" id="t2">
+      <div class="g3">
+        <div class="hc"><div class="hc-ico"><svg><use href="#I-cpu"/></svg></div><h4 data-es="Local First" data-en="Local First">Local First</h4><p data-es="Sus datos nunca salen de su empresa. IA en su infraestructura — sin dependencia de la nube, soberanía total." data-en="Your data never leaves your company. AI on your infrastructure — no cloud dependency, total sovereignty.">Sus datos nunca salen de su empresa. IA en su infraestructura — sin dependencia de la nube.</p></div>
+        <div class="hc"><div class="hc-ico"><svg><use href="#I-db"/></svg></div><h4 data-es="Rust + SurrealDB" data-en="Rust + SurrealDB">Rust + SurrealDB</h4><p data-es="Motor de Knowledge Graph de alta velocidad. Conecta todos sus datos como una red de conocimiento consultable por los agentes." data-en="High-speed Knowledge Graph engine. Connects all your data as a knowledge network queryable by agents.">Motor de Knowledge Graph. Conecta todos sus datos como una red consultable por los agentes.</p></div>
+        <div class="hc"><div class="hc-ico"><svg><use href="#I-fl"/></svg></div><h4 data-es="Agentes Especializados" data-en="Specialized Agents">Agentes Especializados</h4><p data-es="No son chatbots genéricos. Agentes con roles definidos — Legal, Financiero, Operativo — entrenados en su contexto." data-en="Not generic chatbots. Agents with defined roles — Legal, Finance, Operations — trained on your context.">Agentes con roles definidos — Legal, Financiero, Operativo — entrenados en el contexto de su empresa.</p></div>
+      </div>
+    </div>
+    <div class="panel" id="t3">
+      <div class="re-box"><svg width="13" height="13" style="flex-shrink:0;margin-top:1px"><use href="#I-rc"/></svg><span data-es="<strong>Primero evaluamos lo que ya tiene.</strong> Si su sistema puede mejorar o integrarse, empezamos ahí. Solo proponemos cambiar cuando el análisis lo justifica." data-en="<strong>We start by evaluating what you already have.</strong> If your system can improve or integrate, we start there. We only propose changes when the analysis justifies it."><strong>Primero evaluamos lo que ya tiene.</strong> Si su sistema puede mejorar o integrarse, empezamos ahí. Solo proponemos cambiar cuando el análisis lo justifica.</span></div>
+      <div class="proc">
+        <div class="ps"><div class="psn">1</div><div class="psl" data-es="Diagnóstico<br>1–2 sem." data-en="Diagnosis<br>1–2 wks">Diagnóstico<br>1–2 sem.</div></div>
+        <div class="ps"><div class="psn">2</div><div class="psl" data-es="Diseño y<br>prototipo" data-en="Design &<br>prototype">Diseño y<br>prototipo</div></div>
+        <div class="ps"><div class="psn">3</div><div class="psl" data-es="Implementación<br>por módulos" data-en="Module<br>rollout">Implementación<br>por módulos</div></div>
+        <div class="ps"><div class="psn">4</div><div class="psl" data-es="Capacitación<br>del equipo" data-en="Team<br>training">Capacitación<br>del equipo</div></div>
+        <div class="ps"><div class="psn">5</div><div class="psl" data-es="Soporte<br>continuo" data-en="Ongoing<br>support">Soporte<br>continuo</div></div>
+      </div>
+      <div class="chips">
+        <span class="chip" data-es="Cualquier industria" data-en="Any industry">Cualquier industria</span>
+        <span class="chip" data-es="Internacional" data-en="International">Internacional</span>
+        <span class="chip" data-es="Entregables verificables" data-en="Verifiable deliverables">Entregables verificables</span>
+        <span class="chip" data-es="Sin arranques traumáticos" data-en="No big-bang launches">Sin arranques traumáticos</span>
+      </div>
+    </div>
+
+        <div class="btn-row" style="border-top:none;margin-top:0;padding-top:0">
+      <span class="hint" data-es="Sin compromiso · 100% gratuito" data-en="No commitment · 100% free">Sin compromiso · 100% gratuito</span>
+      <button class="btn btn-dark" onclick="goTo(1)"><span data-es="Comenzar diagnóstico" data-en="Start diagnosis">Comenzar diagnóstico</span><svg width="13" height="13"><use href="#I-ar"/></svg></button>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="card" id="p1" style="display:none">
+    <div class="eyebrow" data-es="Paso 1 de 5" data-en="Step 1 of 5">Paso 1 de 5</div>
+    <h2 class="t" data-es="¿En qué sector opera su empresa?" data-en="What sector does your company operate in?">¿En qué sector opera su empresa?</h2>
+    <p class="sub" data-es="Esto nos permite personalizar las recomendaciones que siguen." data-en="This allows us to personalize the recommendations that follow.">Esto nos permite personalizar las recomendaciones que siguen.</p>
+    <div class="og" id="indGrid">
+      <div class="opt" onclick="pickInd(this)" data-v="salud"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-hlt"/></svg></div><strong data-es="Salud y Veterinaria" data-en="Health & Veterinary">Salud y Veterinaria</strong><span data-es="Clínicas, hospitales, veterinarias, laboratorios" data-en="Clinics, hospitals, veterinary, labs">Clínicas, hospitales, veterinarias, laboratorios</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="manufactura"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-fac"/></svg></div><strong data-es="Manufactura e Industria" data-en="Manufacturing & Industry">Manufactura e Industria</strong><span data-es="Producción, plantas industriales, ensamblaje" data-en="Production, industrial plants, assembly">Producción, plantas industriales, ensamblaje</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="logistica"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-tr"/></svg></div><strong data-es="Distribución y Logística" data-en="Distribution & Logistics">Distribución y Logística</strong><span data-es="Importadores, distribuidores, cadena de suministro" data-en="Importers, distributors, supply chain">Importadores, distribuidores, supply chain</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="turismo"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-pl"/></svg></div><strong data-es="Turismo y Hotelería" data-en="Tourism & Hospitality">Turismo y Hotelería</strong><span data-es="Hoteles, agencias, restaurantes, tour operadores" data-en="Hotels, agencies, restaurants, tour operators">Hoteles, agencias, restaurantes, tour operadores</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="construccion"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-bld"/></svg></div><strong data-es="Construcción e Inmobiliaria" data-en="Construction & Real Estate">Construcción e Inmobiliaria</strong><span data-es="Constructoras, inmobiliarias, arquitectura" data-en="Builders, real estate, architecture">Constructoras, inmobiliarias, arquitectura</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="servicios"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-bf"/></svg></div><strong data-es="Servicios Profesionales" data-en="Professional Services">Servicios Profesionales</strong><span data-es="Consultoría, legal, contabilidad, ingeniería" data-en="Consulting, legal, accounting, engineering">Consultoría, legal, contabilidad, ingeniería</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="educacion"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-bk"/></svg></div><strong data-es="Educación y Formación" data-en="Education & Training">Educación y Formación</strong><span data-es="Colegios, universidades, academias, LMS" data-en="Schools, universities, academies, LMS">Colegios, universidades, academias, LMS</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="ong"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-ht"/></svg></div><strong data-es="ONG y Fundaciones" data-en="NGO & Foundations">ONG y Fundaciones</strong><span data-es="Sin ánimo de lucro, donantes, reportes de impacto" data-en="Non-profits, donors, impact reports">Sin ánimo de lucro, donantes, impacto</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="comercio"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-bg"/></svg></div><strong data-es="Comercio y Retail" data-en="Commerce & Retail">Comercio y Retail</strong><span data-es="Tiendas físicas, ecommerce, cadenas" data-en="Physical stores, ecommerce, chains">Tiendas físicas, ecommerce, cadenas</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="agro"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-lf"/></svg></div><strong data-es="Agro y Alimentos" data-en="Agriculture & Food">Agro y Alimentos</strong><span data-es="Agroindustria, ganadería, alimentos procesados" data-en="Agro-industry, livestock, food">Agroindustria, ganadería, alimentos</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="tecnologia"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-cd"/></svg></div><strong data-es="Tecnología y Software" data-en="Technology & Software">Tecnología y Software</strong><span data-es="TI, startups, desarrollo de software" data-en="IT companies, startups, software dev">TI, startups, desarrollo de software</span></div>
+      <div class="opt" onclick="pickInd(this)" data-v="otro"><div class="opt-ck"><svg><use href="#I-ok"/></svg></div><div class="opt-ico"><svg><use href="#I-gr"/></svg></div><strong data-es="Otro sector" data-en="Other sector">Otro sector</strong><span data-es="Gobierno, energía, transporte u otro" data-en="Government, energy, transport or other">Gobierno, energía, transporte u otro</span></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="goTo(0)">← <span data-es="Atrás" data-en="Back">Atrás</span></button>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="ctr" id="indCtr"><span data-es="Seleccione una opción" data-en="Select an option">Seleccione una opción</span></span>
+        <button class="btn btn-dark" id="b1" onclick="goTo(2)" disabled><span data-es="Continuar" data-en="Continue">Continuar</span><svg width="13" height="13"><use href="#I-ar"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="card" id="p2" style="display:none">
+    <div class="eyebrow" data-es="Paso 2 de 5" data-en="Step 2 of 5">Paso 2 de 5</div>
+    <h2 class="t" data-es="¿Cuáles son sus mayores desafíos hoy?" data-en="What are your biggest challenges today?">¿Cuáles son sus mayores desafíos hoy?</h2>
+    <p class="sub" data-es="Seleccione todos los que apliquen. Cuantos más marque, más preciso será su diagnóstico." data-en="Select all that apply. The more you mark, the more accurate your diagnosis.">Seleccione todos los que apliquen. Cuantos más marque, más preciso será su diagnóstico.</p>
+    <div class="pl">
+      <div class="pain" onclick="togPain(this)" data-v="finanzas"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="No tengo visibilidad real de mis finanzas" data-en="No real financial visibility">No tengo visibilidad real de mis finanzas</strong><span data-es="El flujo de caja, rentabilidad y gastos no están claros en tiempo real. Dependemos de Excel o reportes manuales." data-en="Cash flow, profitability and expenses not clear in real time. We depend on Excel or manual reports.">El flujo de caja, rentabilidad y gastos no están claros en tiempo real. Dependemos de Excel o reportes manuales.</span></div><span class="ptag tag-e">ERP</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="procesos"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="Mis procesos viven en papel, Excel o en la cabeza de alguien" data-en="Processes live in paper, Excel or someone's head">Mis procesos viven en papel, Excel o en la cabeza de alguien</strong><span data-es="Sin estandarización. Cuando una persona clave se va, la operación se compromete. Los errores se repiten." data-en="No standardization. When a key person leaves, operations are compromised. Errors repeat.">Sin estandarización. Cuando una persona clave se va, la operación se compromete.</span></div><span class="ptag tag-e">BPM</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="cumplimiento"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="El cumplimiento normativo me consume tiempo y recursos" data-en="Compliance consumes my time and resources">El cumplimiento normativo me consume tiempo y recursos</strong><span data-es="Auditorías, ISO, reguladores sectoriales. Evidencias preparadas manualmente, con riesgo de error y multas." data-en="Audits, ISO, sector regulators. Evidence prepared manually, with risk of errors and fines.">Auditorías, ISO, reguladores sectoriales. Evidencias preparadas manualmente, con riesgo de error y multas.</span></div><span class="ptag tag-g">GRC</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="riesgo"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="No sé qué tan expuesta está mi empresa a riesgos" data-en="I don't know my company's risk exposure">No sé qué tan expuesta está mi empresa a riesgos</strong><span data-es="Proveedores sin verificar, contratos sin gestionar, activos sin control. El riesgo crece silenciosamente." data-en="Unverified vendors, unmanaged contracts, untracked assets. Risk grows silently.">Proveedores sin verificar, contratos sin gestionar, activos sin control. El riesgo crece silenciosamente.</span></div><span class="ptag tag-g">Riesgo</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="datos"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="Tengo datos pero no puedo convertirlos en decisiones" data-en="I have data but can't convert it into decisions">Tengo datos pero no puedo convertirlos en decisiones</strong><span data-es="La información existe pero está dispersa entre sistemas. No hay un dashboard único de indicadores clave." data-en="Information exists but scattered across systems. No single KPI dashboard.">La información existe pero dispersa entre sistemas. No hay un dashboard único de indicadores clave.</span></div><span class="ptag tag-a">BI / IA</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="software"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="Mi software no se adapta a cómo trabajo" data-en="My software doesn't adapt to how I work">Mi software no se adapta a cómo trabajo</strong><span data-es="Un ERP genérico que me obliga a cambiar mis procesos para encajar en el software — no al revés." data-en="A generic ERP forcing you to change your processes to fit the software — not the other way around.">Un ERP genérico que me obliga a cambiar mis procesos para encajar en el software — no al revés.</span></div><span class="ptag tag-e">ERP</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="mejora"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="Tengo algo funcionando, pero puede rendir más" data-en="I have something working but it can perform better">Tengo algo funcionando, pero puede rendir más</strong><span data-es="No quiero cambiar todo. Quiero que un experto evalúe lo que tengo y me diga cómo sacarle más partido." data-en="I don't want to change everything. I want an expert to evaluate what I have and tell me how to get more out of it.">No quiero cambiar todo. Quiero que un experto evalúe lo que tengo y me diga cómo sacarle más partido.</span></div><span class="ptag tag-e">Optimizar</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="ia"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="Quiero usar IA pero no sé por dónde empezar" data-en="I want to use AI but don't know where to start">Quiero usar IA pero no sé por dónde empezar</strong><span data-es="Quiero aplicaciones de IA con ROI real, sin exponer mis datos a plataformas externas." data-en="I want AI applications with real ROI, without exposing my data to external platforms.">Quiero aplicaciones de IA con ROI real, sin exponer mis datos a plataformas externas.</span></div><span class="ptag tag-a">IA Local</span></div>
+      <div class="pain" onclick="togPain(this)" data-v="web"><div class="pcb"><svg><use href="#I-ok"/></svg></div><div class="pt"><strong data-es="Mi presencia digital no refleja la calidad de mi empresa" data-en="My digital presence doesn't reflect my company's quality">Mi presencia digital no refleja la calidad de mi empresa</strong><span data-es="El sitio web es viejo, lento o inexistente. Los clientes no encuentran información clara." data-en="The website is old, slow or non-existent. Customers can't find clear information.">El sitio web es viejo, lento o inexistente. Los clientes no encuentran información clara.</span></div><span class="ptag tag-w">Web</span></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="goTo(1)">← <span data-es="Atrás" data-en="Back">Atrás</span></button>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="ctr" id="painCtr"><span data-es="Seleccione al menos uno" data-en="Select at least one">Seleccione al menos uno</span></span>
+        <button class="btn btn-dark" id="b2" onclick="goTo(3)" disabled><span data-es="Continuar" data-en="Continue">Continuar</span><svg width="13" height="13"><use href="#I-ar"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="card" id="p3" style="display:none">
+    <div class="eyebrow" data-es="Paso 3 de 5" data-en="Step 3 of 5">Paso 3 de 5</div>
+    <h2 class="t" data-es="¿Qué tipo de solución busca?" data-en="What type of solution are you looking for?">¿Qué tipo de solución busca?</h2>
+    <p class="sub" data-es="Puede seleccionar varios. Si no está seguro, elija lo que más le llame la atención." data-en="You can select several. If unsure, pick what catches your attention.">Puede seleccionar varios. Si no está seguro, elija lo que más le llame la atención.</p>
+    <div class="mg">
+      <div class="mc" onclick="togMod(this)" data-v="erp"><div class="mc-ico"><svg><use href="#I-db"/></svg></div><div class="mc-b"><strong data-es="ERP a Medida" data-en="Custom ERP">ERP a Medida</strong><span data-es="Sistema central que conecta finanzas, inventario, clientes y operaciones. Se adapta a sus procesos, no al revés." data-en="Central system connecting finance, inventory, clients and operations. Adapts to your processes, not the other way around.">Sistema central que conecta finanzas, inventario, clientes y operaciones. Se adapta a sus procesos, no al revés.</span></div><span class="mbadge mb-p" data-es="Popular" data-en="Popular">Popular</span></div>
+      <div class="mc" onclick="togMod(this)" data-v="grc"><div class="mc-ico"><svg><use href="#I-sh"/></svg></div><div class="mc-b"><strong data-es="GRC — Gobernanza, Riesgo y Cumplimiento" data-en="GRC — Governance, Risk, Compliance">GRC — Gobernanza, Riesgo y Cumplimiento</strong><span data-es="Auditorías automáticas, gestión de riesgos y cumplimiento normativo. Evidencias digitales sin trabajo manual." data-en="Automatic audits, risk management and regulatory compliance. Digital evidence without manual work.">Auditorías automáticas, gestión de riesgos y cumplimiento normativo. Evidencias digitales sin trabajo manual.</span></div><span class="mbadge mb-p" data-es="Clave" data-en="Key">Clave</span></div>
+      <div class="mc" onclick="togMod(this)" data-v="ia"><div class="mc-ico"><svg><use href="#I-cpu"/></svg></div><div class="mc-b"><strong data-es="IA Local y Agentes" data-en="Local AI & Agents">IA Local y Agentes</strong><span data-es="IA en su infraestructura. Datos que nunca salen de su empresa. Agentes especializados con ROI medible." data-en="AI on your infrastructure. Data that never leaves your company. Specialized agents with measurable ROI.">IA en su infraestructura. Datos que nunca salen de su empresa. Agentes especializados con ROI medible.</span></div><span class="mbadge mb-n" data-es="Nuevo" data-en="New">Nuevo</span></div>
+      <div class="mc" onclick="togMod(this)" data-v="claris"><div class="mc-ico"><svg><use href="#I-lay"/></svg></div><div class="mc-b"><strong data-es="Claris FileMaker" data-en="Claris FileMaker">Claris FileMaker</strong><span data-es="Plataforma empresarial de Apple. Mac, iPad, iPhone y Web. Ideal para reemplazar Excel o sistemas genéricos rígidos." data-en="Apple's enterprise platform. Mac, iPad, iPhone and Web. Ideal to replace Excel or rigid generic systems.">Plataforma empresarial de Apple. Mac, iPad, iPhone y Web. Ideal para reemplazar Excel o sistemas genéricos.</span></div></div>
+      <div class="mc" onclick="togMod(this)" data-v="web"><div class="mc-ico"><svg><use href="#I-gl"/></svg></div><div class="mc-b"><strong data-es="Desarrollo Web y Portales" data-en="Web Development & Portals">Desarrollo Web y Portales</strong><span data-es="Sitio corporativo o portal integrado con su sistema. Stack moderno en AWS — rápido, seguro y escalable." data-en="Corporate site or portal integrated with your system. Modern stack on AWS — fast, secure and scalable.">Sitio corporativo o portal integrado con su sistema. Stack moderno en AWS — rápido, seguro y escalable.</span></div></div>
+      <div class="mc" onclick="togMod(this)" data-v="consultoria"><div class="mc-ico"><svg><use href="#I-lb"/></svg></div><div class="mc-b"><strong data-es="Consultoría + Mejora de lo Existente" data-en="Consulting + Improve What You Have">Consultoría + Mejora de lo Existente</strong><span data-es="Algo funciona pero puede rendir más. Un experto evalúa lo que tengo y solo propone cambiar lo que realmente vale." data-en="Something works but can perform better. An expert evaluates what I have and only proposes changing what's truly worth it.">Algo funciona pero puede rendir más. Un experto evalúa lo que tengo y solo propone cambiar lo que realmente vale.</span></div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="goTo(2)">← <span data-es="Atrás" data-en="Back">Atrás</span></button>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="ctr" id="modCtr"><span data-es="Seleccione al menos uno" data-en="Select at least one">Seleccione al menos uno</span></span>
+        <button class="btn btn-dark" id="b3" onclick="goTo(4)" disabled><span data-es="Continuar" data-en="Continue">Continuar</span><svg width="13" height="13"><use href="#I-ar"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="card" id="p4" style="display:none">
+    <div class="eyebrow" data-es="Paso 4 de 5" data-en="Step 4 of 5">Paso 4 de 5</div>
+    <h2 class="t" data-es="¿A quién le enviamos su diagnóstico?" data-en="Who should we send your diagnosis to?">¿A quién le enviamos su diagnóstico?</h2>
+    <p class="sub" data-es="Ingrese sus datos para recibir el diagnóstico completo y que podamos preparar una propuesta específica." data-en="Enter your details to receive the complete diagnosis and allow us to prepare a specific proposal.">Ingrese sus datos para recibir el diagnóstico completo.</p>
+    <div class="fg">
+      <div class="field"><label data-es="Nombre completo *" data-en="Full name *">Nombre completo *</label><input type="text" id="fn" placeholder="Juan Pérez"></div>
+      <div class="field"><label data-es="Empresa *" data-en="Company *">Empresa *</label><input type="text" id="fc" placeholder="Mi Empresa S.A.S"></div>
+      <div class="field"><label data-es="Correo electrónico *" data-en="Email *">Correo electrónico *</label><input type="email" id="fe" placeholder="juan@empresa.com" oninput="valEmail()"></div>
+      <div class="field"><label data-es="WhatsApp (opcional)" data-en="WhatsApp (optional)">WhatsApp (opcional)</label><input type="tel" id="fp" placeholder="+57 300 000 0000"></div>
+      <div class="field ff"><label data-es="Número de empleados" data-en="Employees">Número de empleados</label><select id="fs"><option value="" data-es="Seleccionar..." data-en="Select...">Seleccionar...</option><option>1 – 10</option><option>11 – 50</option><option>51 – 200</option><option>200+</option></select></div>
+      <div class="field ff"><label data-es="Contexto adicional (opcional)" data-en="Additional context (optional)">Contexto adicional (opcional)</label><textarea id="fno" placeholder="Urgencia, proyectos en mente, situación actual..."></textarea></div>
+    </div>
+    <div class="priv"><svg width="13" height="13" style="flex-shrink:0;margin-top:1px"><use href="#I-sh"/></svg><span data-es="Sus datos se almacenan de forma encriptada. Nunca se comparten con terceros. Solo el equipo de StackSolver accede a esta información para preparar su diagnóstico." data-en="Your data is stored encrypted. Never shared with third parties. Only the StackSolver team accesses this information to prepare your diagnosis.">Sus datos se almacenan de forma encriptada. Nunca se comparten con terceros. Solo el equipo de StackSolver accede a esta información para preparar su diagnóstico.</span></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="goTo(3)">← <span data-es="Atrás" data-en="Back">Atrás</span></button>
+      <button class="btn btn-dark" id="b4" onclick="doSubmit()" disabled>✦ <span data-es="Ver mi diagnóstico" data-en="See my diagnosis">Ver mi diagnóstico</span></button>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="card" id="p5" style="display:none">
+    <div class="rt">
+      <div class="sr"><span class="sn" id="scoreN">87</span><span class="sl">MATCH</span></div>
+      <h2 class="t" data-es="Su diagnóstico está listo." data-en="Your diagnosis is ready.">Su diagnóstico está listo.</h2>
+      <p class="sub" style="margin-bottom:0"><span data-es="Basado en sus respuestas, identificamos <strong>áreas de oportunidad inmediata</strong> y el camino más eficiente para su empresa." data-en="Based on your answers, we identified <strong>areas of immediate opportunity</strong> and the most efficient path for your company.">Basado en sus respuestas, identificamos <strong>áreas de oportunidad inmediata</strong> y el camino más eficiente para su empresa.</span></p>
+    </div>
+    <div class="rg">
+      <div class="rc pri"><div class="rcp" data-es="PRIORIDAD 1 · COMENZAR AQUÍ" data-en="PRIORITY 1 · START HERE">PRIORIDAD 1 · COMENZAR AQUÍ</div><div class="rct" data-es="ERP + Control Financiero" data-en="ERP + Financial Control">ERP + Control Financiero</div><div class="rcd" data-es="Visibilidad financiera inmediata. Sistema adaptado a sus procesos — tesorería, clientes e inventario en un solo lugar." data-en="Immediate financial visibility. System adapted to your processes — treasury, clients and inventory in one place.">Visibilidad financiera inmediata. Sistema adaptado a sus procesos — tesorería, clientes e inventario en un solo lugar.</div><div class="rcl"><span data-es="8–12 semanas" data-en="8–12 weeks">8–12 semanas</span><div class="tb"><div class="tf" style="--w:70%"></div></div></div></div>
+      <div class="rc"><div class="rcp" data-es="PRIORIDAD 2 · SIGUIENTE FASE" data-en="PRIORITY 2 · NEXT PHASE">PRIORIDAD 2 · SIGUIENTE FASE</div><div class="rct" data-es="GRC y Cumplimiento" data-en="GRC & Compliance">GRC y Cumplimiento</div><div class="rcd" data-es="Auditorías automáticas y cumplimiento normativo. Se integra al ERP — misma plataforma, cero duplicidad." data-en="Automatic audits and compliance. Integrates with the ERP — same platform, zero duplication.">Auditorías automáticas y cumplimiento normativo. Se integra al ERP — misma plataforma, cero duplicidad.</div><div class="rcl"><span data-es="6–8 semanas" data-en="6–8 weeks">6–8 semanas</span><div class="tb"><div class="tf" style="--w:45%"></div></div></div></div>
+    </div>
+    <div class="ib"><svg width="13" height="13" style="flex-shrink:0;margin-top:1px"><use href="#I-ok"/></svg><span id="confEmail" data-es="Resumen enviado a su correo." data-en="Summary sent to your email.">Resumen enviado a su correo.</span></div>
+    <div class="ract">
+      <button class="btn btn-green" onclick="alert('Versión final: Calendly con StackSolver')"><svg width="13" height="13"><use href="#I-ok"/></svg><span data-es="Agendar reunión gratuita" data-en="Schedule free meeting">Agendar reunión gratuita</span></button>
+      <button class="btn btn-out" onclick="window.print()"><svg width="13" height="13"><use href="#I-ar"/></svg><span data-es="Descargar diagnóstico" data-en="Download diagnosis">Descargar diagnóstico</span></button>
+      <button class="btn btn-ghost" onclick="goTo(0);resetAll()">↺ <span data-es="Nuevo diagnóstico" data-en="New diagnosis">Nuevo diagnóstico</span></button>
+    </div>
+  </div>
+</div>
+
+<script>
+const S={lang:'es',theme:'light',ind:null,pains:[],mods:[],cur:0};
+function toggleTheme(){
+  S.theme=S.theme==='light'?'dark':'light';
+  document.body.classList.toggle('dark',S.theme==='dark');
+  document.getElementById('themeBtn').innerHTML=S.theme==='dark'?'<svg width="15" height="15"><use href="#I-sun"/></svg>':'<svg width="15" height="15"><use href="#I-moon"/></svg>';
+}
+function setLang(l){
+  S.lang=l;
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));
+  document.querySelectorAll('[data-es],[data-en]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});
+}
+function showTab(i){
+  document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('on',i===j));
+  document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('on',i===j));
+}
+function togFaq(btn){
+  const item=btn.parentElement,was=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+  if(!was)item.classList.add('open');
+}
+function goTo(n){
+  document.getElementById('p'+S.cur).style.display='none';
+  for(let i=0;i<6;i++){const d=document.getElementById('s'+i);d.classList.remove('on','done');if(i<n)d.classList.add('done');}
+  document.getElementById('s'+n).classList.add('on');
+  S.cur=n;
+  document.getElementById('p'+n).style.display='block';
+  window.scrollTo({top:60,behavior:'smooth'});
+  if(n===5)buildResult();
+}
+function pickInd(el){
+  document.querySelectorAll('#indGrid .opt').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');S.ind=el.dataset.v;
+  document.getElementById('b1').disabled=false;
+  document.getElementById('indCtr').innerHTML='<b>✓</b> '+el.querySelector('strong').textContent;
+}
+function togPain(el){
+  el.classList.toggle('sel');const v=el.dataset.v;
+  if(el.classList.contains('sel')){if(!S.pains.includes(v))S.pains.push(v);}else S.pains=S.pains.filter(x=>x!==v);
+  const n=S.pains.length;
+  document.getElementById('painCtr').innerHTML=n>0?'<b>'+n+'</b> '+(S.lang==='es'?'seleccionado'+(n>1?'s':''):'selected'):(S.lang==='es'?'Seleccione al menos uno':'Select at least one');
+  document.getElementById('b2').disabled=n===0;
+}
+function togMod(el){
+  el.classList.toggle('sel');const v=el.dataset.v;
+  if(el.classList.contains('sel')){if(!S.mods.includes(v))S.mods.push(v);}else S.mods=S.mods.filter(x=>x!==v);
+  const n=S.mods.length;
+  document.getElementById('modCtr').innerHTML=n>0?'<b>'+n+'</b> '+(S.lang==='es'?'seleccionado'+(n>1?'s':''):'selected'):(S.lang==='es'?'Seleccione al menos uno':'Select at least one');
+  document.getElementById('b3').disabled=n===0;
+}
+function valEmail(){document.getElementById('b4').disabled=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('fe').value);}
+function doSubmit(){
+  const em=document.getElementById('fe').value;
+  document.getElementById('confEmail').innerHTML=S.lang==='es'?'Resumen enviado a <strong>'+em+'</strong>. El equipo de StackSolver le contactará en menos de 24 horas hábiles.':'Summary sent to <strong>'+em+'</strong>. The StackSolver team will contact you within 24 business hours.';
+  goTo(5);
+}
+function buildResult(){document.getElementById('scoreN').textContent=Math.min(68+S.pains.length*3+S.mods.length*2,99);}
+function resetAll(){S.ind=null;S.pains=[];S.mods=[];document.querySelectorAll('.opt,.pain,.mc').forEach(e=>e.classList.remove('sel'));['b1','b2','b3','b4'].forEach(id=>document.getElementById(id).disabled=true);}
+document.getElementById('s0').classList.add('on');
+</script>
+
+<footer>
+  <div class="logo" style="font-size:14px;font-weight:700;letter-spacing:-.3px">Stack<em style="color:var(--indigo);font-style:normal">Solver</em></div>
+  <div class="fc"><svg><use href="#I-mail"/></svg><a href="mailto:info@stacksolver.tech">info@stacksolver.tech</a></div>
+  <span style="font-size:12px;color:var(--text3)">© 2026 StackSolver</span>
+</footer>
+</body>
+</html>

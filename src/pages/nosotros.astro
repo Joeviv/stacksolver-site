@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nosotros — StackSolver</title>
+<title>Sobre StackSolver — Johann Vivas, Claris FileMaker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -101,14 +101,26 @@ footer{border-top:1px solid var(--border);padding:20px 24px;display:flex;align-i
   .steps-grid::before{display:none}
   h1.t{font-size:26px}
 }
+/* HAMBURGER NAV */
+.hamburger{display:none;width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;align-items:center;justify-content:center;color:var(--text2);transition:all .15s;flex-shrink:0}
+.mob-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:12px 16px 16px;flex-direction:column;gap:2px;z-index:199;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mob-menu.open{display:flex}
+.mob-link{font-size:15px;font-weight:500;color:var(--text2);padding:10px 12px;border-radius:var(--r);transition:all .15s;text-decoration:none;display:block}
+.mob-link:hover,.mob-link.on{color:var(--text);background:var(--accent-sub)}
+@media(max-width:768px){
+  .nav-links{display:none!important}
+  .hamburger{display:flex}
+}
 </style>
 
   <!-- SEO 2026 -->
-  <meta name="description" content="StackSolver — Quiénes somos. Partner Oficial Claris FileMaker para Colombia. Johann Vivas, especialista en ERP, GRC e IA Local. Operamos en Latinoamérica, USA, Canadá y Europa. Español e inglés.">
+  <meta name="description" content="StackSolver — Partner Oficial Claris FileMaker en Colombia. Johann Vivas, especialista en ERP, GRC e IA Local. Proyectos en Latinoamérica, USA y Europa.">
   <meta name="keywords" content="StackSolver empresa Colombia, Johann Vivas FileMaker, partner Claris Colombia, consultora ERP GRC, tecnología empresas Colombia, Claris FileMaker especialista, ISO 27001 consultor Colombia">
   <meta name="robots" content="index, follow">
   <meta name="author" content="StackSolver — Johann Vivas">
   <link rel="canonical" href="https://www.stacksolver.tech/nosotros">
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.stacksolver.tech/nosotros">
   <meta property="og:title" content="Nosotros — StackSolver · Partner Claris FileMaker Colombia">
@@ -167,8 +179,15 @@ footer{border-top:1px solid var(--border);padding:20px 24px;display:flex;align-i
       <button class="lb on" onclick="setLang('es')">ES</button>
       <button class="lb" onclick="setLang('en')">EN</button>
     </div>
+    <button class="hamburger" id="hambBtn" onclick="toggleMobileMenu()" aria-label="Menu"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
   </div>
 </nav>
+<div class="mob-menu" id="mobMenu">
+  <a class="mob-link" href="/" data-es="Inicio" data-en="Home">Inicio</a>
+  <a class="mob-link" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+  <a class="mob-link" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+  <a class="mob-link on" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+</div>
 
 <div class="wrap">
 
@@ -354,6 +373,22 @@ function sendContact(){
   const c=document.getElementById('cConfirm');
   c.style.display='flex';
 }
+// ── MOBILE MENU ──
+function toggleMobileMenu(){
+  const m=document.getElementById('mobMenu');
+  const open=m.classList.toggle('open');
+  document.getElementById('hambBtn').innerHTML=open
+    ?'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+    :'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+}
+document.addEventListener('click',function(e){
+  const m=document.getElementById('mobMenu');
+  const b=document.getElementById('hambBtn');
+  if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){
+    m.classList.remove('open');
+    b.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+  }
+});
 </script>
 </body>
 </html>

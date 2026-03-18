@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diagnóstico — StackSolver</title>
+<title>Diagnóstico ERP, GRC e IA Local — StackSolver</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -202,6 +202,17 @@ body.dark .priv{border-color:var(--green-sub)}
 .ib{display:flex;gap:8px;padding:12px 14px;border-radius:var(--r);background:var(--accent-subtle);border:1px solid var(--border);font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:16px}
 .ctr{font-size:12px;color:var(--text3)}
 .ctr b{color:var(--indigo)}
+/* HAMBURGER NAV */
+.hamburger{display:none;width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;align-items:center;justify-content:center;color:var(--text2);transition:all .15s;flex-shrink:0}
+.mob-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:12px 16px 16px;flex-direction:column;gap:2px;z-index:199;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mob-menu.open{display:flex}
+.mob-link{font-size:15px;font-weight:500;color:var(--text2);padding:10px 12px;border-radius:var(--r);transition:all .15s;text-decoration:none;display:block}
+.mob-link:hover,.mob-link.on{color:var(--text);background:var(--accent-subtle)}
+@media(max-width:768px){
+  .nav-desktop a:not(.logo){display:none!important}
+  .hamburger{display:flex}
+}
 @media(max-width:600px){
   .og{grid-template-columns:1fr 1fr}
   .mg{grid-template-columns:1fr}
@@ -223,11 +234,12 @@ footer{border-top:1px solid var(--border);padding:18px 24px;display:flex;align-i
 </style>
 
   <!-- SEO 2026 -->
-  <meta name="description" content="Diagnóstico gratuito de sistemas ERP y GRC. Responde 6 preguntas y recibe una evaluación personalizada de tus necesidades tecnológicas. StackSolver — Partner Claris FileMaker Colombia.">
+  <meta name="description" content="Diagnóstico gratuito de sistemas ERP y GRC. Responde 5 preguntas y recibe una evaluación tecnológica personalizada para su empresa. StackSolver — Colombia.">
   <meta name="keywords" content="diagnóstico ERP gratis, evaluación sistema empresarial, consultoría FileMaker Colombia, asesoría GRC, diagnóstico tecnológico empresa, ERP a medida Colombia">
   <meta name="robots" content="index, follow">
   <meta name="author" content="StackSolver — Johann Vivas">
   <link rel="canonical" href="https://www.stacksolver.tech/diagnostico">
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.stacksolver.tech/diagnostico">
   <meta property="og:title" content="Diagnóstico ERP & GRC — StackSolver">
@@ -290,7 +302,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;display:flex;align-i
 </svg>
 
 <nav>
-  <div style="display:flex;align-items:center;gap:20px">
+  <div class="nav-desktop" style="display:flex;align-items:center;gap:20px">
     <a href="/" class="logo" style="text-decoration:none">Stack<em>Solver</em></a>
     <a style="font-size:13px;color:var(--text2);font-family:var(--font);text-decoration:none;transition:color .15s" href="/" data-es="Inicio" data-en="Home">Inicio</a>
     <a style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--font)" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
@@ -303,8 +315,15 @@ footer{border-top:1px solid var(--border);padding:18px 24px;display:flex;align-i
       <button class="lb on" onclick="setLang('es')">ES</button>
       <button class="lb" onclick="setLang('en')">EN</button>
     </div>
+    <button class="hamburger" id="hambBtn" onclick="toggleMobileMenu()" aria-label="Menu"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
   </div>
 </nav>
+<div class="mob-menu" id="mobMenu">
+  <a class="mob-link" href="/" data-es="Inicio" data-en="Home">Inicio</a>
+  <a class="mob-link on" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+  <a class="mob-link" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+  <a class="mob-link" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+</div>
 
 <div class="wrap">
   <div class="steps" id="stepsBar">
@@ -561,6 +580,22 @@ function doSubmit(){
 function buildResult(){document.getElementById('scoreN').textContent=Math.min(68+S.pains.length*3+S.mods.length*2,99);}
 function resetAll(){S.ind=null;S.pains=[];S.mods=[];document.querySelectorAll('.opt,.pain,.mc').forEach(e=>e.classList.remove('sel'));['b1','b2','b3','b4'].forEach(id=>document.getElementById(id).disabled=true);}
 document.getElementById('s0').classList.add('on');
+// ── MOBILE MENU ──
+function toggleMobileMenu(){
+  const m=document.getElementById('mobMenu');
+  const open=m.classList.toggle('open');
+  document.getElementById('hambBtn').innerHTML=open
+    ?'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+    :'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+}
+document.addEventListener('click',function(e){
+  const m=document.getElementById('mobMenu');
+  const b=document.getElementById('hambBtn');
+  if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){
+    m.classList.remove('open');
+    b.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+  }
+});
 </script>
 
 <footer>

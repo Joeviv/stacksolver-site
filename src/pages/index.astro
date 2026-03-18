@@ -269,7 +269,7 @@ footer{border-top:1px solid var(--border);padding:24px 28px;display:flex;align-i
 
 <nav>
   <div style="display:flex;align-items:center;gap:4px">
-    <div class="logo">Stack<em>Solver</em></div>
+    <a href="/" class="logo" style="text-decoration:none">Stack<em>Solver</em></a>
     <div class="nav-links" style="margin-left:16px">
       <a class="nl on" href="/" data-es="Inicio" data-en="Home">Inicio</a>
       <a class="nl" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
@@ -504,7 +504,7 @@ footer{border-top:1px solid var(--border);padding:24px 28px;display:flex;align-i
   <span style="font-size:12px;color:var(--text3)">© 2026 StackSolver · Partner Oficial Claris Colombia</span>
 </footer>
 
-<script>
+<script is:inline>
 // ── THEME ──
 function toggleTheme(){
   document.body.classList.toggle('dark');

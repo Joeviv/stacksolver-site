@@ -291,7 +291,8 @@ footer{border-top:1px solid var(--border);padding:18px 24px;display:flex;align-i
 
 <nav>
   <div style="display:flex;align-items:center;gap:20px">
-    <div class="logo">Stack<em>Solver</em></div>
+    <a href="/" class="logo" style="text-decoration:none">Stack<em>Solver</em></a>
+    <a style="font-size:13px;color:var(--text2);font-family:var(--font);text-decoration:none;transition:color .15s" href="/" data-es="Inicio" data-en="Home">Inicio</a>
     <a style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--font)" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
     <a style="font-size:13px;color:var(--text2);font-family:var(--font);text-decoration:none;transition:color .15s" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
     <a style="font-size:13px;color:var(--text2);font-family:var(--font);text-decoration:none;transition:color .15s" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
@@ -501,7 +502,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;display:flex;align-i
   </div>
 </div>
 
-<script>
+<script is:inline>
 const S={lang:'es',theme:'light',ind:null,pains:[],mods:[],cur:0};
 function toggleTheme(){
   S.theme=S.theme==='light'?'dark':'light';

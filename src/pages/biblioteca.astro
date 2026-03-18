@@ -198,7 +198,8 @@ footer{border-top:1px solid var(--border);padding:20px 24px;display:flex;align-i
 
 <nav>
   <div style="display:flex;align-items:center;gap:24px">
-    <div class="logo">Stack<em>Solver</em></div>
+    <a href="/" class="logo" style="text-decoration:none">Stack<em>Solver</em></a>
+    <a class="nav-link" href="/" data-es="Inicio" data-en="Home">Inicio</a>
     <a class="nav-link" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
     <a class="nav-link on" data-es="Biblioteca" data-en="Library">Biblioteca</a>
     <a class="nav-link" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
@@ -256,7 +257,7 @@ footer{border-top:1px solid var(--border);padding:20px 24px;display:flex;align-i
   </main>
 </div>
 
-<script>
+<script is:inline>
 const lang = () => document.documentElement.lang || 'es';
 
 const PAGES = {

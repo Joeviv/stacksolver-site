@@ -156,7 +156,7 @@ body.dark .conf-banner{background:var(--orange-sub);color:var(--orange)}
 </svg>
 
 <nav>
-  <div class="logo">Stack<em>Solver</em></div>
+  <a href="/" class="logo" style="text-decoration:none">Stack<em>Solver</em></a>
   <div class="nav-r">
     <button class="icon-btn" id="themeBtn" onclick="toggleTheme()"><svg width="14" height="14"><use href="#V-moon"/></svg></button>
     <div class="lang-wrap">
@@ -415,7 +415,7 @@ body.dark .conf-banner{background:var(--orange-sub);color:var(--orange)}
   <span class="footer-p" data-es="Documento confidencial — preparado para tu equipo" data-en="Confidential document — prepared for your team">Documento confidencial — preparado para tu equipo</span>
 </footer>
 
-<script>
+<script is:inline>
 function toggleTheme(){
   document.body.classList.toggle('dark');
   const isDark=document.body.classList.contains('dark');

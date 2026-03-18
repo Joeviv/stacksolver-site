@@ -209,9 +209,12 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .mob-menu.open{display:flex}
 .mob-link{font-size:15px;font-weight:500;color:var(--text2);padding:10px 12px;border-radius:var(--r);transition:all .15s;text-decoration:none;display:block}
 .mob-link:hover,.mob-link.on{color:var(--text);background:var(--accent-subtle)}
+.mob-lang-row{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 2px}
+.mob-lang-lbl{font-size:12px;color:var(--text3)}
 @media(max-width:768px){
   .nav-desktop a:not(.logo){display:none!important}
   .hamburger{display:flex}
+  .lang-wrap{display:none}
 }
 @media(max-width:600px){
   .og{grid-template-columns:1fr 1fr}
@@ -323,6 +326,11 @@ footer{border-top:1px solid var(--border);padding:18px 24px;display:flex;align-i
   <a class="mob-link on" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
   <a class="mob-link" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
   <a class="mob-link" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+  <div style="height:1px;background:var(--border);margin:6px 0"></div>
+  <div class="mob-lang-row">
+    <span class="mob-lang-lbl" data-es="Idioma" data-en="Language">Idioma</span>
+    <div class="lang-wrap"><button class="lb on" onclick="setLang('es')">ES</button><button class="lb" onclick="setLang('en')">EN</button></div>
+  </div>
 </div>
 
 <div class="wrap">

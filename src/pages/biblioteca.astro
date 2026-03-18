@@ -85,18 +85,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav);display:fl
 .def-box strong{color:var(--text)}
 
 /* ACCORDION */
-.acc-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
-.acc-item{border-bottom:1px solid var(--border)}
-.acc-item:last-child{border-bottom:none}
-.acc-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:none;border:none;font-family:var(--font);font-size:14px;font-weight:500;color:var(--text);cursor:pointer;text-align:left;transition:background .1s}
-.acc-q:hover{background:var(--bg)}
-.acc-q svg{flex-shrink:0;width:15px;height:15px;color:var(--text3);transition:transform .2s}
-.acc-item.open .acc-q svg{transform:rotate(180deg)}
-.acc-a{display:none;padding:0 20px 16px;font-size:13px;color:var(--text2);line-height:1.7}
+.acc-wrap{display:flex;flex-direction:column;gap:6px;margin-bottom:32px}
+.acc-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .15s}
+.acc-item:hover{border-color:var(--text3)}
+.acc-item.open{border-color:var(--indigo)}
+.acc-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;background:none;border:none;font-family:var(--font);font-size:14px;font-weight:500;color:var(--text);cursor:pointer;text-align:left;transition:background .1s}
+.acc-q:hover{background:var(--accent-sub)}
+.acc-item.open .acc-q{background:var(--accent-sub)}
+.acc-q-left{display:flex;align-items:center;gap:10px}
+.acc-q-num{font-size:10px;font-weight:700;color:var(--indigo);background:var(--indigo-sub);border:1px solid #c7d2fe;padding:2px 6px;border-radius:4px;flex-shrink:0;min-width:24px;text-align:center;letter-spacing:.3px}
+body.dark .acc-q-num{border-color:var(--indigo-sub)}
+.acc-toggle{width:20px;height:20px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;color:var(--text3)}
+.acc-item.open .acc-toggle{background:var(--indigo);border-color:var(--indigo);color:#fff;transform:rotate(45deg)}
+.acc-a{display:none;font-size:14px;color:var(--text2);line-height:1.75;border-top:1px solid var(--border);padding:16px 18px 20px}
 .acc-item.open .acc-a{display:block}
-.acc-a ul{padding-left:16px;margin-top:6px}
-.acc-a li{margin-bottom:4px}
+.acc-a ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.acc-a li{padding-left:14px;border-left:2px solid var(--indigo-sub)}
+body.dark .acc-a li{border-left-color:var(--indigo-sub)}
 .acc-a strong{color:var(--text)}
+/* CONCEPTS HEADER */
+.acc-section-head{font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px;letter-spacing:-.1px}
+/* VIDEO COMING SOON BADGE */
+.video-coming{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:20px;background:var(--accent-sub);border:1px solid var(--border);font-size:12px;font-weight:500;color:var(--text3);margin-bottom:28px}
 
 /* TAGS */
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
@@ -822,11 +832,16 @@ function renderPage(id) {
   const l = document.documentElement.lang === 'en' ? 'en' : 'es';
   const d = PAGES[id][l] || PAGES[id]['es'];
   const tagsHtml = d.tags.map(([t,c]) => `<span class="tag ${c}">${t}</span>`).join('');
-  const accHtml = d.acc.map(([q,a]) => `
+  const accHtml = d.acc.map(([q,a], i) => `
     <div class="acc-item">
       <button class="acc-q" onclick="togAcc(this)">
-        <span>${q}</span>
-        <svg width="15" height="15"><use href="#V-ch"/></svg>
+        <div class="acc-q-left">
+          <span class="acc-q-num">${String(i+1).padStart(2,'0')}</span>
+          <span>${q}</span>
+        </div>
+        <div class="acc-toggle">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
       </button>
       <div class="acc-a">${a}</div>
     </div>`).join('');
@@ -836,21 +851,17 @@ function renderPage(id) {
     ? `<div class="partner-badge"><svg width="12" height="12"><use href="#V-ok"/></svg>Partner Oficial de Claris para Colombia</div>`
     : '';
 
-  // Video block — real Vimeo player or placeholder
+  // Video block — real Vimeo player or subtle coming-soon badge
   const vimeoId = PAGES[id].vimeo;
   const videoBlock = vimeoId
-    ? `<div class="sec-label">VIDEO</div>
-       <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:32px">
+    ? `<div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:28px">
          <iframe src="https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479"
            frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
            style="position:absolute;top:0;left:0;width:100%;height:100%" title=""></iframe>
        </div>`
-    : `<div class="sec-label">VIDEO</div>
-       <div class="video-wrap">
-         <span class="video-badge">PRÓXIMAMENTE</span>
-         <div class="video-icon"><svg width="18" height="18"><use href="#V-play"/></svg></div>
-         <span class="video-label">Video explicativo disponible pronto</span>
-       </div>`;
+    : `<div class="video-coming"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg><span data-es="Video explicativo próximamente" data-en="Explainer video coming soon">Video explicativo próximamente</span></div>`;
+
+  const conceptsLabel = l === 'en' ? 'Key concepts' : 'Conceptos clave';
 
   return `
     <div class="breadcrumb"><span>StackSolver</span> / <span>${d.crumb}</span></div>
@@ -860,7 +871,7 @@ function renderPage(id) {
     ${partnerBadge}
     ${videoBlock}
     <div class="divider-h"></div>
-    <div class="sec-label">CONCEPTOS</div>
+    <div class="acc-section-head">${conceptsLabel}</div>
     <div class="acc-wrap">${accHtml}</div>
   `;
 }

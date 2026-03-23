@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Sandyport Management — StackSolver Engagement Summary</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens — aligned with stacksolver.tech ── */
+    :root {
+      --white:      #ffffff;
+      --black:      #18181b;
+      --zinc-50:    #fafafa;
+      --zinc-100:   #f4f4f5;
+      --zinc-200:   #e4e4e7;
+      --zinc-300:   #d4d4d8;
+      --zinc-400:   #a1a1aa;
+      --zinc-600:   #52525b;
+      --zinc-800:   #27272a;
+      --zinc-900:   #18181b;
+      --blue:       #3b82f6;
+      --blue-50:    #eff6ff;
+      --blue-100:   #dbeafe;
+      --blue-200:   #bfdbfe;
+      --blue-700:   #1d4ed8;
+      --green:      #16a34a;
+      --green-bg:   #f0fdf4;
+      --green-border:#bbf7d0;
+      --amber:      #d97706;
+      --amber-bg:   #fffbeb;
+      --amber-border:#fde68a;
+      --font:       'Inter', system-ui, -apple-system, sans-serif;
+      --radius:     8px;
+      --radius-xl:  12px;
+      --max-w:      760px;
+    }
+
+    /* ── Base ── */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--zinc-800);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ── */
+    h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--zinc-900); }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--zinc-900); }
+    h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.4; color: var(--zinc-900); }
+    p  { color: var(--zinc-600); line-height: 1.7; }
+    a  { color: inherit; text-decoration: none; }
+
+    /* ── Layout ── */
+    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section--alt { background: var(--zinc-50); border-top: 1px solid var(--zinc-200); border-bottom: 1px solid var(--zinc-200); }
+
+    /* ── Divider ── */
+    .divider { width: 40px; height: 3px; background: var(--blue); margin: 12px 0 28px; border-radius: 2px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--zinc-200);
+    }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 700; color: var(--zinc-900); letter-spacing: -0.02em; }
+    .nav-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--blue); display: flex; align-items: center; justify-content: center; }
+    .nav-icon svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-badge { font-size: 0.75rem; font-weight: 500; color: var(--zinc-600); background: var(--zinc-100); border: 1px solid var(--zinc-200); padding: 5px 12px; border-radius: 20px; }
+
+    /* ── Hero ── */
+    .hero { padding: 80px 0 64px; border-bottom: 1px solid var(--zinc-200); }
+    .hero-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--blue); background: var(--blue-50);
+      border: 1px solid var(--blue-200);
+      padding: 5px 12px; border-radius: 20px; margin-bottom: 24px;
+    }
+    .hero h1 { max-width: 620px; }
+    .hero-sub { margin-top: 20px; font-size: 1.05rem; color: var(--zinc-600); max-width: 560px; line-height: 1.7; }
+
+    /* ── Section label ── */
+    .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--zinc-400); }
+
+    /* ── Status cards ── */
+    .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 32px; }
+    .status-card { border-radius: var(--radius-xl); padding: 20px; }
+    .status-card--resolved { background: var(--green-bg); border: 1px solid var(--green-border); }
+    .status-card--pending { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+    .status-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+    .status-label--resolved { color: var(--green); }
+    .status-label--pending { color: var(--amber); }
+    .status-card h3 { font-size: 0.92rem; }
+    .status-card p { font-size: 0.82rem; margin-top: 4px; }
+
+    /* ── Step list ── */
+    .step-list { list-style: none; margin-top: 32px; }
+    .step-item { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--zinc-100); }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+      background: var(--blue); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; font-weight: 600;
+    }
+    .step-content h3 { margin-bottom: 4px; }
+    .step-content p { font-size: 0.88rem; }
+    .step-tag {
+      display: inline-block; font-size: 0.72rem; font-weight: 500;
+      color: var(--blue); background: var(--blue-50);
+      border: 1px solid var(--blue-200);
+      padding: 3px 10px; border-radius: 20px; margin-top: 10px;
+    }
+
+    /* ── Pricing ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 36px; }
+    .pricing-card { border: 1px solid var(--zinc-200); border-radius: var(--radius-xl); padding: 32px 28px; position: relative; background: var(--white); }
+    .pricing-card--featured { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue), 0 4px 24px rgba(59,130,246,0.08); }
+    .pricing-badge {
+      position: absolute; top: -10px; left: 24px;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      background: var(--blue); color: var(--white);
+      padding: 3px 12px; border-radius: 20px;
+    }
+    .pricing-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--zinc-400); }
+    .pricing-rate { font-size: 2.4rem; font-weight: 800; color: var(--zinc-900); line-height: 1.1; margin: 8px 0; letter-spacing: -0.03em; }
+    .pricing-rate span { font-size: 0.9rem; font-weight: 400; color: var(--zinc-400); letter-spacing: 0; }
+    .pricing-desc { font-size: 0.88rem; color: var(--zinc-600); margin-bottom: 16px; }
+    .pricing-list { list-style: none; }
+    .pricing-list li {
+      font-size: 0.85rem; color: var(--zinc-600);
+      padding: 7px 0; border-bottom: 1px solid var(--zinc-100);
+      display: flex; gap: 10px; align-items: baseline;
+    }
+    .pricing-list li:last-child { border-bottom: none; }
+    .pricing-list li::before { content: "\2713"; color: var(--blue); flex-shrink: 0; font-weight: 700; font-size: 0.8rem; }
+    .pricing-compare { margin-top: 28px; padding: 20px 24px; background: var(--zinc-50); border-radius: var(--radius-xl); border: 1px solid var(--zinc-200); }
+    .pricing-compare p { font-size: 0.84rem; }
+    .pricing-compare strong { color: var(--zinc-900); }
+
+    /* ── About ── */
+    .about-grid { display: grid; grid-template-columns: 80px 1fr; gap: 28px; align-items: start; }
+    .avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--blue); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 700; flex-shrink: 0;
+    }
+    .about-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag {
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--zinc-600); background: var(--white);
+      border: 1px solid var(--zinc-200);
+      padding: 4px 12px; border-radius: 20px;
+    }
+
+    /* ── CTA ── */
+    .section--cta { background: var(--zinc-900); color: var(--white); }
+    .cta-inner { text-align: center; max-width: 520px; margin: 0 auto; }
+    .cta-inner h2 { color: var(--white); }
+    .cta-inner p { color: var(--zinc-400); margin-top: 12px; }
+    .cta-actions { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--radius-xl);
+      font-size: 0.875rem; font-weight: 500; cursor: pointer;
+      transition: all 0.2s ease; border: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--white); color: var(--zinc-900); }
+    .btn-primary:hover { background: var(--zinc-100); }
+    .btn-outline { background: transparent; color: var(--white); border: 1px solid var(--zinc-600); }
+    .btn-outline:hover { border-color: var(--zinc-400); background: rgba(255,255,255,0.05); }
+
+    /* ── Footer ── */
+    footer { background: var(--zinc-900); border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 0; }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-inner p { font-size: 0.78rem; color: var(--zinc-600); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .avatar { display: none; }
+      .section { padding: 56px 0; }
+      .hero { padding: 56px 0 48px; }
+      .status-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        </div>
+        StackSolver
+      </div>
+      <span class="nav-badge">Prepared for Sandyport Management</span>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">Engagement Summary &middot; March 2026</div>
+      <h1>We Already Know Your System. Let's Build a Plan Together.</h1>
+      <p class="hero-sub">
+        On March 19, we reviewed your FileMaker application, identified two issues, and fixed them on the spot.
+        Here's where we are and what we recommend next.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── What We Found ── -->
+  <section class="section" id="findings">
+    <div class="container">
+      <p class="section-label">March 19 Session</p>
+      <div class="divider"></div>
+      <h2>What We Found &amp; Fixed</h2>
+      <p style="margin-top:10px;margin-bottom:24px;">During our first technical session, we reviewed the "Sandyport Management Property" application and addressed two issues immediately.</p>
+
+      <div class="status-grid">
+        <div class="status-card status-card--resolved">
+          <div class="status-label status-label--resolved">Resolved</div>
+          <h3>Portal Filter Bug</h3>
+          <p>The Active and Expired tabs were showing opposite results. The filter formulas were swapped. Fixed and verified across multiple records.</p>
+        </div>
+
+        <div class="status-card status-card--resolved">
+          <div class="status-label status-label--resolved">Identified</div>
+          <h3>Reversed Date Entries</h3>
+          <p>Multiple records have Valid From and Valid To dates entered backwards. This is a data entry issue, not a system bug. An audit of all 515 records is recommended.</p>
+        </div>
+
+        <div class="status-card status-card--pending">
+          <div class="status-label status-label--pending">Pending</div>
+          <h3>Validation Rule</h3>
+          <p>A validation rule to prevent future reversed dates was agreed upon. Ready to implement in the next session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why an Audit Matters ── -->
+  <section class="section section--alt" id="audit">
+    <div class="container">
+      <p class="section-label">Recommended First Step</p>
+      <div class="divider"></div>
+      <h2>Your System Covers a Lot of Ground</h2>
+      <p style="margin-top:10px;margin-bottom:16px;">
+        Property management, water metering, ownership transfers, maintenance scheduling, ID cards, document storage —
+        your FileMaker application supports multiple areas of your operation.
+        Before I make any changes, I need to understand how everything connects so nothing breaks.
+      </p>
+      <p style="margin-bottom:32px;">
+        A structured audit gives us both a clear picture: what's working well, what needs attention,
+        and where there's room to improve. The result is a plain-English report and a prioritized action plan — no jargon, no guesswork.
+      </p>
+
+      <ol class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Full System Audit</h3>
+            <p>Review every table, relationship, script, and layout. Document what exists, what's working, and what's at risk. You receive a plain-English report — no jargon.</p>
+            <span class="step-tag">Estimated: 6–10 hours</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Data Integrity Review</h3>
+            <p>Audit the 515 property records for reversed dates and other inconsistencies. Implement the validation rule to prevent future data entry errors.</p>
+            <span class="step-tag">Estimated: 3–5 hours</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Claris Cloud Environment Review</h3>
+            <p>Assess your Claris Cloud console setup — user accounts, permissions, license tier, and security configuration. Ensure you have full control of your own environment.</p>
+            <span class="step-tag">Requires console access</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Roadmap &amp; Recommendations</h3>
+            <p>Based on the audit findings, we'll build a prioritized action plan — what to fix first, what to improve, and what new capabilities are possible. You decide the pace.</p>
+            <span class="step-tag">Delivered as a written document</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── How We Work Together ── -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <p class="section-label">Engagement Options</p>
+      <div class="divider"></div>
+      <h2>Two Ways to Work Together</h2>
+      <p style="margin-top:10px;margin-bottom:12px;">Both options start with the system audit. You choose what fits your operation after that.</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-label">Option A &middot; Ad-Hoc</div>
+          <div class="pricing-rate">$82 <span>USD / hour</span></div>
+          <p class="pricing-desc">Pay as you go. Best for one-time fixes, specific features, or project-based work with a defined scope.</p>
+          <ul class="pricing-list">
+            <li>No monthly commitment</li>
+            <li>Scoped and quoted upfront</li>
+            <li>Ideal for defined projects</li>
+            <li>Standard response time</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card pricing-card--featured">
+          <div class="pricing-badge">Recommended</div>
+          <div class="pricing-label">Option B &middot; Monthly Partner</div>
+          <div class="pricing-rate">$55 <span>USD / hour</span></div>
+          <p class="pricing-desc">A dedicated block of hours each month. Your FileMaker system gets continuous attention, not just emergency fixes.</p>
+          <ul class="pricing-list">
+            <li>33% lower rate than ad-hoc</li>
+            <li>Guaranteed response time on requests</li>
+            <li>Monthly hours for improvements &amp; new features</li>
+            <li>Ongoing system monitoring &amp; maintenance</li>
+            <li>Priority support when something breaks</li>
+            <li>Your system evolves with your business</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pricing-compare">
+        <p>
+          <strong>For context:</strong> The average rate for a Claris FileMaker consultant in the US market is $150–$250/hr.
+          Caribbean-based companies typically contract US or UK partners at $125–$200/hr.
+          Our rates reflect direct partnership — no agency overhead, no middlemen, and a developer who already knows your system.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="section section--alt" id="about">
+    <div class="container">
+      <p class="section-label">Your Partner</p>
+      <div class="divider"></div>
+      <div class="about-grid">
+        <div class="avatar">JV</div>
+        <div>
+          <h2>Johann Vivas</h2>
+          <p style="margin-top:12px;">
+            Claris FileMaker developer and technology consultant. I specialize in taking ownership of existing
+            systems — understanding what's there, fixing what's broken, and building what's next. No ramp-up chaos.
+          </p>
+          <p style="margin-top:12px;">
+            Most recently, I completed a 2-year contract with <strong>Eraneos Group (UK)</strong> — building their
+            operational ERP system covering project management, contracts, multi-currency financials, and ISO 27001/42001
+            compliance. All delivered in English, across multiple countries and currencies.
+          </p>
+          <p style="margin-top:12px;">
+            I also train FileMaker developers through <strong>Viovelt</strong> — which means I can help your team understand
+            your own system, reducing dependency on any single external partner, including me.
+          </p>
+          <div class="about-meta">
+            <span class="tag">Claris FileMaker</span>
+            <span class="tag">Claris Cloud</span>
+            <span class="tag">ERP Systems</span>
+            <span class="tag">Property Management</span>
+            <span class="tag">Claris Trainer</span>
+            <span class="tag">ISO 27001 / 42001</span>
+            <span class="tag">English &middot; Spanish</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="section section--cta" id="next">
+    <div class="container">
+      <div class="cta-inner">
+        <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);">Next Step</p>
+        <div class="divider" style="margin:12px auto 24px;background:var(--blue);"></div>
+        <h2>Let's Start With the Audit</h2>
+        <p>
+          The audit gives us both a clear picture of where your system stands today.
+          From there, we build a plan that fits your priorities and your budget. No pressure, no surprises.
+        </p>
+        <div class="cta-actions">
+          <a href="mailto:johann@stacksolver.tech" class="btn btn-primary">Email Johann</a>
+          <a href="https://stacksolver.tech" class="btn btn-outline" target="_blank">stacksolver.tech</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; 2026 StackSolver &middot; Johann Vivas &middot; Claris FileMaker Partner</p>
+      <p>Prepared for Sandyport Management &middot; Confidential</p>
+    </div>
+  </footer>
+
+</body>
+</html>

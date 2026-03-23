@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /s4ndyp0rt/
+Disallow: /cli3nt_propos4l.html
 
 # Sitemap location
 Sitemap: https://www.stacksolver.tech/sitemap-index.xml

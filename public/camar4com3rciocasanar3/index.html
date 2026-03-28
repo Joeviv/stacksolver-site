@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Programa Saskia Impulsa Regi&oacute;n &mdash; StackSolver &middot; Claris FileMaker</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff;--black:#18181b;--zinc-50:#fafafa;--zinc-100:#f4f4f5;--zinc-200:#e4e4e7;
+      --zinc-300:#d4d4d8;--zinc-400:#a1a1aa;--zinc-600:#52525b;--zinc-800:#27272a;--zinc-900:#18181b;
+      --blue:#3b82f6;--blue-50:#eff6ff;--blue-100:#dbeafe;--blue-200:#bfdbfe;--blue-700:#1d4ed8;
+      --green:#16a34a;--green-bg:#f0fdf4;--green-border:#bbf7d0;
+      --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;
+      --font:'Inter',system-ui,-apple-system,sans-serif;--radius:8px;--radius-xl:12px;--max-w:760px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);font-size:16px;line-height:1.65;color:var(--zinc-800);background:var(--white);-webkit-font-smoothing:antialiased}
+    h1{font-size:clamp(2rem,5vw,2.8rem);font-weight:800;line-height:1.08;letter-spacing:-0.03em;color:var(--zinc-900)}
+    h2{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:var(--zinc-900)}
+    h3{font-size:1.05rem;font-weight:600;line-height:1.4;color:var(--zinc-900)}
+    p{color:var(--zinc-600);line-height:1.7}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 24px}
+    .section{padding:80px 0}
+    .section--alt{background:var(--zinc-50);border-top:1px solid var(--zinc-200);border-bottom:1px solid var(--zinc-200)}
+    .divider{width:40px;height:3px;background:var(--blue);margin:12px 0 28px;border-radius:2px}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--zinc-200)}
+    .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-size:0.95rem;font-weight:700;color:var(--zinc-900);letter-spacing:-0.02em}
+    .nav-icon{width:32px;height:32px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center}
+    .nav-icon svg{width:18px;height:18px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .nav-badge{font-size:0.75rem;font-weight:500;color:var(--zinc-600);background:var(--zinc-100);border:1px solid var(--zinc-200);padding:5px 12px;border-radius:20px}
+    .hero{padding:80px 0 64px;border-bottom:1px solid var(--zinc-200)}
+    .hero-tag{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:var(--blue-50);border:1px solid var(--blue-200);padding:5px 12px;border-radius:20px;margin-bottom:24px}
+    .hero h1{max-width:620px}
+    .hero-sub{margin-top:20px;font-size:1.05rem;color:var(--zinc-600);max-width:560px;line-height:1.7}
+    .section-label{font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--zinc-400)}
+    .status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:32px}
+    .status-card{border-radius:var(--radius-xl);padding:20px}
+    .status-card--blue{background:var(--blue-50);border:1px solid var(--blue-200)}
+    .status-card--white{background:var(--white);border:1px solid var(--zinc-200)}
+    .status-card--green{background:var(--green-bg);border:1px solid var(--green-border)}
+    .status-label{font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;color:var(--blue)}
+    .status-label--green{color:var(--green)}
+    .status-card h3{font-size:0.92rem}
+    .status-card p{font-size:0.82rem;margin-top:4px}
+    .step-list{list-style:none;margin-top:32px}
+    .step-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--zinc-100)}
+    .step-item:last-child{border-bottom:none}
+    .step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:600}
+    .step-content h3{margin-bottom:4px}
+    .step-content p{font-size:0.88rem}
+    .step-tag{display:inline-block;font-size:0.72rem;font-weight:500;color:var(--blue);background:var(--blue-50);border:1px solid var(--blue-200);padding:3px 10px;border-radius:20px;margin-top:10px}
+    .feature-card{border:1px solid var(--zinc-200);border-radius:var(--radius-xl);padding:28px;background:var(--white)}
+    .feature-card--highlight{border-color:var(--blue-200);background:var(--blue-50)}
+    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:16px}
+    .feature-mini{padding:14px;background:var(--white);border-radius:8px;border:1px solid var(--blue-200)}
+    .feature-mini h3{font-size:0.88rem}
+    .feature-mini p{font-size:0.78rem;margin-top:2px}
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:32px}
+    .video-card{border:1px solid var(--zinc-200);border-radius:var(--radius-xl);overflow:hidden;background:var(--white)}
+    .video-card .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+    .video-card .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+    .video-card .video-info{padding:16px 20px}
+    .video-card .video-info h3{font-size:0.92rem;margin-bottom:4px}
+    .video-card .video-info p{font-size:0.78rem}
+    .about-grid{display:grid;grid-template-columns:80px 1fr;gap:28px;align-items:start}
+    .avatar{width:80px;height:80px;border-radius:50%;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;flex-shrink:0}
+    .about-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .tag{font-size:0.75rem;font-weight:500;color:var(--zinc-600);background:var(--white);border:1px solid var(--zinc-200);padding:4px 12px;border-radius:20px}
+    .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:24px}
+    .stat-card{text-align:center;padding:20px 16px;border:1px solid var(--zinc-200);border-radius:var(--radius-xl);background:var(--white)}
+    .stat-num{font-size:1.6rem;font-weight:800;color:var(--blue);letter-spacing:-0.03em}
+    .stat-label{font-size:0.75rem;color:var(--zinc-600);margin-top:4px}
+    .section--cta{background:var(--zinc-900);color:var(--white)}
+    .cta-inner{text-align:center;max-width:520px;margin:0 auto}
+    .cta-inner h2{color:var(--white)}
+    .cta-inner p{color:var(--zinc-400);margin-top:12px}
+    .cta-actions{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius-xl);font-size:0.875rem;font-weight:500;cursor:pointer;transition:all 0.2s ease;border:none}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--white);color:var(--zinc-900)}
+    .btn-primary:hover{background:var(--zinc-100)}
+    .btn-outline{background:transparent;color:var(--white);border:1px solid var(--zinc-600)}
+    .btn-outline:hover{border-color:var(--zinc-400);background:rgba(255,255,255,0.05)}
+    footer{background:var(--zinc-900);border-top:1px solid rgba(255,255,255,0.06);padding:28px 0}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .footer-inner p{font-size:0.78rem;color:var(--zinc-600)}
+    @media(max-width:600px){
+      .about-grid{grid-template-columns:1fr}.avatar{display:none}.section{padding:56px 0}.hero{padding:56px 0 48px}
+      .status-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.video-grid{grid-template-columns:1fr}
+      .stat-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+        StackSolver
+      </div>
+      <span class="nav-badge">Programa Saskia &middot; Impulsa Regi&oacute;n Casanare</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">Presentaci&oacute;n de Capacidades &middot; Abril 2026</div>
+      <h1>Tecnolog&iacute;a que Transforma Empresas. Sin C&oacute;digo Complejo.</h1>
+      <p class="hero-sub">
+        Claris FileMaker permite que cualquier persona &mdash; sin ser programador &mdash; construya aplicaciones empresariales a medida.
+        Inventarios, flotas, compras, trazabilidad: todo en una sola plataforma, en espa&ntilde;ol, y con acompa&ntilde;amiento local.
+      </p>
+    </div>
+  </section>
+
+  <!-- Que es FileMaker -->
+  <section class="section" id="que-es">
+    <div class="container">
+      <p class="section-label">La Plataforma</p>
+      <div class="divider"></div>
+      <h2>&iquest;Qu&eacute; es Claris FileMaker?</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        FileMaker es una plataforma de desarrollo low-code creada por una subsidiaria de Apple.
+        Permite crear aplicaciones empresariales personalizadas sin necesidad de programaci&oacute;n tradicional.
+        Lleva m&aacute;s de 35 a&ntilde;os en el mercado y es utilizada por m&aacute;s de 50,000 empresas en el mundo.
+      </p>
+      <div class="status-grid">
+        <div class="status-card status-card--blue">
+          <div class="status-label">Low-Code</div>
+          <h3>Cualquier persona puede desarrollar</h3>
+          <p>No se necesita ser ingeniero de sistemas. Con entrenamiento b&aacute;sico, cualquier persona puede crear y modificar sus propias aplicaciones.</p>
+        </div>
+        <div class="status-card status-card--blue">
+          <div class="status-label">Multiplataforma</div>
+          <h3>Funciona en cualquier dispositivo</h3>
+          <p>Computador, tablet, celular o navegador web. La misma aplicaci&oacute;n funciona en todas partes, con datos sincronizados en tiempo real.</p>
+        </div>
+        <div class="status-card status-card--blue">
+          <div class="status-label">Integrable</div>
+          <h3>Se conecta con lo que ya tienen</h3>
+          <p>FileMaker puede conectarse con ERPs existentes, hojas de c&aacute;lculo, servicios web, GPS y otras plataformas que las empresas ya utilicen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="section section--alt" id="casos">
+    <div class="container">
+      <p class="section-label">Casos de Uso Reales</p>
+      <div class="divider"></div>
+      <h2>Soluciones Para las Empresas de Casanare</h2>
+      <p style="margin-top:10px;margin-bottom:32px;">
+        Estos son ejemplos concretos de lo que una empresa puede construir con FileMaker.
+        Cada soluci&oacute;n se adapta al negocio espec&iacute;fico &mdash; no es software gen&eacute;rico.
+      </p>
+      <div class="status-grid" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr));">
+        <div class="status-card status-card--white">
+          <div class="status-label">Transporte</div>
+          <h3>Control de Flotas y Veh&iacute;culos</h3>
+          <p>Dashboard con placa, kil&oacute;metros recorridos, consumo de combustible, GPS integrado. Ideal para empresas con 10, 30 o 60 veh&iacute;culos.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <div class="status-label">Comercio</div>
+          <h3>Sistema de Inventario</h3>
+          <p>Control de existencias, alertas de stock m&iacute;nimo, entradas y salidas. La empresa sabe en todo momento qu&eacute; tiene y d&oacute;nde est&aacute;.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <div class="status-label">Compras</div>
+          <h3>&Oacute;rdenes de Compra</h3>
+          <p>Generar, aprobar y hacer seguimiento de &oacute;rdenes de compra. Sin papel, sin Excel, con trazabilidad completa.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <div class="status-label">Servicios</div>
+          <h3>Trazabilidad de Maquinaria</h3>
+          <p>Registro de equipos, ubicaci&oacute;n actual, historial de mantenimiento, pr&oacute;ximas revisiones.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <div class="status-label">Eventos</div>
+          <h3>Gesti&oacute;n de Eventos</h3>
+          <p>Planificaci&oacute;n, asignaci&oacute;n de recursos, listas de invitados, presupuestos. Todo centralizado.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <div class="status-label">KPIs</div>
+          <h3>Tableros de Indicadores</h3>
+          <p>Dashboards visuales que muestran el estado del negocio en tiempo real: ventas, gastos, productividad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos / Demos -->
+  <section class="section" id="demos">
+    <div class="container">
+      <p class="section-label">V&eacute;alo en Acci&oacute;n</p>
+      <div class="divider"></div>
+      <h2>Demostraciones Reales en Espa&ntilde;ol</h2>
+      <p style="margin-top:10px;margin-bottom:12px;">
+        Estos videos muestran soluciones reales construidas en FileMaker &mdash; desde lo b&aacute;sico hasta sistemas maduros de gesti&oacute;n.
+        Todo el contenido est&aacute; en espa&ntilde;ol y es parte de nuestro programa de capacitaci&oacute;n con m&aacute;s de 18 a&ntilde;os de trayectoria.
+      </p>
+
+      <div class="video-grid">
+
+        <div class="video-card">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/RaUVIErxyr0" title="FileMaker - Uso general" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <div class="status-label" style="color:var(--blue);margin-bottom:4px;">Introducci&oacute;n</div>
+            <h3>&iquest;Qu&eacute; se puede hacer con FileMaker?</h3>
+            <p>Visi&oacute;n general de la plataforma y sus capacidades. M&aacute;s de 45,000 vistas.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/dkd2cGRreXA" title="FileMaker - Primeros pasos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <div class="status-label" style="color:var(--blue);margin-bottom:4px;">Primeros Pasos</div>
+            <h3>C&oacute;mo Empezar desde Cero</h3>
+            <p>Tutorial b&aacute;sico para iniciar con FileMaker sin conocimientos previos.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/Oxc9wQys_W4" title="FileMaker - Inventario" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <div class="status-label" style="color:var(--green);margin-bottom:4px;">Caso Pr&aacute;ctico</div>
+            <h3>Sistema de Inventario</h3>
+            <p>C&oacute;mo construir un control de inventario funcional paso a paso.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/AeKlgL50li0" title="FileMaker - Password Manager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <div class="status-label" style="color:var(--green);margin-bottom:4px;">Caso Pr&aacute;ctico</div>
+            <h3>Administrador de Contrase&ntilde;as</h3>
+            <p>Ejemplo de aplicaci&oacute;n utilitaria construida r&aacute;pidamente con FileMaker.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Vimeo: Sistemas maduros -->
+      <h3 style="margin-top:48px;margin-bottom:8px;">Sistemas Maduros de Gesti&oacute;n</h3>
+      <p style="margin-bottom:24px;font-size:0.88rem;">
+        Estos videos muestran soluciones avanzadas ya en producci&oacute;n &mdash; el tipo de sistema al que una empresa puede llegar
+        despu&eacute;s de dominar los fundamentos.
+      </p>
+
+      <div class="video-grid">
+
+        <div class="video-card">
+          <div class="video-wrap">
+            <iframe src="https://player.vimeo.com/video/1134880571" title="Gestion de Proyectos" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <div class="status-label" style="color:var(--amber);margin-bottom:4px;">Sistema Avanzado</div>
+            <h3>Gesti&oacute;n de Proyectos</h3>
+            <p>Sistema maduro para administrar proyectos, tareas, equipos y entregables.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-wrap">
+            <iframe src="https://player.vimeo.com/video/1134880582" title="Modulo de Biblioteca" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <div class="status-label" style="color:var(--amber);margin-bottom:4px;">Sistema Avanzado</div>
+            <h3>M&oacute;dulo de Biblioteca</h3>
+            <p>Gesti&oacute;n documental y de recursos de conocimiento dentro de una soluci&oacute;n empresarial.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-wrap">
+            <iframe src="https://player.vimeo.com/video/1134880540" title="Claris Connect" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <div class="status-label" style="color:var(--amber);margin-bottom:4px;">Automatizaci&oacute;n</div>
+            <h3>Claris Connect en Acci&oacute;n</h3>
+            <p>C&oacute;mo conectar FileMaker con otras herramientas y automatizar procesos.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Que se logra en 3-4 horas -->
+  <section class="section section--alt" id="programa">
+    <div class="container">
+      <p class="section-label">El Programa de Acompa&ntilde;amiento</p>
+      <div class="divider"></div>
+      <h2>&iquest;Qu&eacute; Puede Lograr una Empresa en 3&ndash;4 Horas?</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        El acompa&ntilde;amiento est&aacute; dise&ntilde;ado como una sesi&oacute;n intensiva y pr&aacute;ctica.
+        No se trata de hacer una aplicaci&oacute;n completa &mdash; se trata de que la persona salga con los fundamentos
+        para construirla por su cuenta, a su ritmo.
+      </p>
+
+      <ol class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Entender la plataforma</h3>
+            <p>Qu&eacute; es FileMaker, c&oacute;mo se estructura una soluci&oacute;n, c&oacute;mo se navega. El participante entiende el entorno antes de crear nada.</p>
+            <span class="step-tag">~30 minutos</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Crear su primera tabla y formulario</h3>
+            <p>Definir campos, tipos de datos, y construir un formulario funcional para ingresar informaci&oacute;n. El participante ve resultados inmediatos.</p>
+            <span class="step-tag">~45 minutos</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Relacionar datos y construir vistas</h3>
+            <p>Conectar tablas entre s&iacute; (ej: productos con proveedores), crear listados y b&uacute;squedas. Aqu&iacute; la soluci&oacute;n empieza a tomar forma real.</p>
+            <span class="step-tag">~60 minutos</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Dise&ntilde;ar pantallas y reportes b&aacute;sicos</h3>
+            <p>Organizar la informaci&oacute;n visualmente, crear un reporte simple y entender c&oacute;mo imprimir o exportar datos.</p>
+            <span class="step-tag">~45 minutos</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h3>Hoja de ruta y recursos para seguir aprendiendo</h3>
+            <p>Plan de acci&oacute;n personalizado: qu&eacute; construir primero, qu&eacute; videos revisar, y c&oacute;mo escalar la soluci&oacute;n. Acceso a biblioteca de recursos en espa&ntilde;ol.</p>
+            <span class="step-tag">~30 minutos</span>
+          </div>
+        </li>
+      </ol>
+
+      <div style="margin-top:28px;padding:20px 24px;background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--zinc-200);">
+        <p style="font-size:0.84rem;">
+          <strong>Al finalizar la sesi&oacute;n,</strong> el participante tiene: una aplicaci&oacute;n funcional b&aacute;sica con su caso de negocio,
+          conocimiento para seguir construyendo por su cuenta, y acceso a videos y gu&iacute;as en espa&ntilde;ol para profundizar.
+        </p>
+      </div>
+
+      <div style="margin-top:16px;padding:20px 24px;background:var(--blue-50);border-radius:var(--radius-xl);border:1px solid var(--blue-200);">
+        <p style="font-size:0.84rem;">
+          <strong>Para los consultores del programa:</strong> Ustedes tambi&eacute;n reciben el entrenamiento durante las mismas sesiones con las empresas.
+          As&iacute; pueden dar soporte b&aacute;sico a los empresarios cuando tengan dudas, sin depender de un tercero.
+        </p>
+      </div>
+
+      <!-- Recursos en espanol -->
+      <h3 style="margin-top:40px;margin-bottom:8px;">Recursos Adicionales en Espa&ntilde;ol</h3>
+      <p style="margin-bottom:20px;font-size:0.88rem;">
+        Porque los recursos oficiales en ingl&eacute;s no deber&iacute;an ser una barrera.
+        Cada empresa recibe acceso a materiales complementarios para seguir aprendiendo despu&eacute;s de la sesi&oacute;n.
+      </p>
+      <div class="status-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));">
+        <div class="status-card status-card--white">
+          <h3 style="font-size:0.88rem;">Videos en Espa&ntilde;ol</h3>
+          <p>Biblioteca de tutoriales en YouTube con m&aacute;s de 18 a&ntilde;os de contenido acumulado.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <h3 style="font-size:0.88rem;">Gu&iacute;as R&aacute;pidas</h3>
+          <p>Documentos PDF paso a paso para las operaciones m&aacute;s comunes.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <h3 style="font-size:0.88rem;">Soporte del Consultor</h3>
+          <p>Los asesores del programa pueden resolver dudas b&aacute;sicas gracias a su propio entrenamiento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capacidades de la Plataforma -->
+  <section class="section" id="capacidades">
+    <div class="container">
+      <p class="section-label">Capacidades Incluidas en la Licencia</p>
+      <div class="divider"></div>
+      <h2>M&aacute;s All&aacute; de lo B&aacute;sico</h2>
+      <p style="margin-top:10px;margin-bottom:16px;">
+        La licencia de FileMaker incluye herramientas que las empresas pueden ir descubriendo y aprovechando
+        conforme crecen y maduran su soluci&oacute;n.
+      </p>
+      <div style="display:grid;gap:20px;margin-top:32px;">
+        <div class="feature-card">
+          <p class="section-label" style="margin-bottom:6px;color:var(--blue);">Acceso M&oacute;vil</p>
+          <h3 style="font-size:1.1rem;margin-bottom:8px;">Desde el Celular o Tablet &mdash; Sin Costo Adicional</h3>
+          <p style="font-size:0.88rem;">
+            FileMaker Go es una app gratuita para iPhone y iPad. El t&eacute;cnico en campo registra datos,
+            toma fotos y actualiza el estado &mdash; todo se sincroniza al instante.
+          </p>
+        </div>
+        <div class="feature-card feature-card--highlight">
+          <p class="section-label" style="margin-bottom:6px;color:var(--blue);">Incluido en la Licencia</p>
+          <h3 style="font-size:1.1rem;margin-bottom:8px;">Claris Studio &mdash; Dashboards, Reportes y Formularios Web</h3>
+          <p style="font-size:0.88rem;">
+            Tableros visuales, reportes ejecutivos y formularios web accesibles desde cualquier navegador.
+          </p>
+          <div class="feature-grid">
+            <div class="feature-mini">
+              <h3>Dashboards en Vivo</h3>
+              <p>Gr&aacute;ficos y KPIs actualizados en tiempo real para la gerencia.</p>
+            </div>
+            <div class="feature-mini">
+              <h3>Formularios Web</h3>
+              <p>Clientes o proveedores env&iacute;an datos desde un enlace, sin app.</p>
+            </div>
+            <div class="feature-mini">
+              <h3>Tableros de Tareas</h3>
+              <p>Seguimiento visual de procesos: de "Pendiente" a "Completado".</p>
+            </div>
+            <div class="feature-mini">
+              <h3>Reportes Ejecutivos</h3>
+              <p>Informes accesibles desde el navegador para directivos.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <p class="section-label" style="margin-bottom:6px;color:var(--blue);">Automatizaci&oacute;n</p>
+          <h3 style="font-size:1.1rem;margin-bottom:8px;">Claris Connect &mdash; Integrar y Automatizar</h3>
+          <p style="font-size:0.88rem;">
+            Conectar FileMaker con correo, calendarios, mensajer&iacute;a y m&aacute;s. Notificaciones autom&aacute;ticas,
+            sincronizaci&oacute;n de datos y alertas sin intervenci&oacute;n manual.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRC / SARLAFT -->
+  <section class="section section--alt" id="grc">
+    <div class="container">
+      <p class="section-label">Cumplimiento Normativo</p>
+      <div class="divider"></div>
+      <h2>GRC: Gobernanza, Riesgo y Cumplimiento</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        Muchas empresas de la regi&oacute;n, especialmente en transporte, deben cumplir con normativas como SARLAFT.
+        FileMaker puede ser la base para construir sistemas de cumplimiento a medida.
+      </p>
+      <div class="status-grid" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr));">
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">SARLAFT</div>
+          <h3>Prevenci&oacute;n de Lavado de Activos</h3>
+          <p>Registro de clientes, matrices de riesgo, alertas autom&aacute;ticas y reportes para la normativa colombiana.</p>
+        </div>
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">Procesos</div>
+          <h3>Gesti&oacute;n de Riesgos Operativos</h3>
+          <p>Identificar, evaluar y mitigar riesgos. Documentar controles y generar evidencia de cumplimiento.</p>
+        </div>
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">Reportes</div>
+          <h3>Trazabilidad y Auditor&iacute;a</h3>
+          <p>Historial completo de acciones y decisiones. Listo para auditor&iacute;as o requerimientos regulatorios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="nosotros">
+    <div class="container">
+      <p class="section-label">Su Aliado Tecnol&oacute;gico</p>
+      <div class="divider"></div>
+      <div class="about-grid">
+        <div class="avatar">JV</div>
+        <div>
+          <h2>Johann Vivas</h2>
+          <p style="margin-top:4px;font-size:0.88rem;color:var(--blue);font-weight:500;">StackSolver &middot; Partner Oficial Claris FileMaker</p>
+          <p style="margin-top:12px;">
+            Consultor, desarrollador y capacitador especializado en Claris FileMaker con <strong>m&aacute;s de 18 a&ntilde;os</strong> de experiencia
+            formando personas en el uso de la plataforma. Partner oficial de Claris en Colombia.
+          </p>
+          <p style="margin-top:12px;">
+            Fundador de <strong><a href="https://viovelt.com" target="_blank" style="color:var(--blue);text-decoration:underline;">Viovelt</a></strong>,
+            programa de capacitaci&oacute;n con un canal de YouTube de <strong>4,800+ suscriptores</strong> que ha formado personas
+            en Portugal, Estados Unidos, Centroam&eacute;rica y Suram&eacute;rica. Toda la formaci&oacute;n es en espa&ntilde;ol.
+          </p>
+          <p style="margin-top:12px;">
+            Recientemente complet&oacute; un contrato de 2 a&ntilde;os con <strong>Eraneos Group (Reino Unido)</strong> &mdash;
+            construyendo un ERP operativo con gesti&oacute;n de proyectos, finanzas multimoneda y cumplimiento ISO 27001/42001.
+          </p>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">18+</div>
+          <div class="stat-label">A&ntilde;os capacitando</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4,800+</div>
+          <div class="stat-label">Suscriptores YouTube</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">45K+</div>
+          <div class="stat-label">Vistas en videos clave</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Pa&iacute;ses alcanzados</div>
+        </div>
+      </div>
+
+      <div class="about-meta" style="margin-top:20px;">
+        <span class="tag">Claris FileMaker</span>
+        <span class="tag">Partner Oficial</span>
+        <span class="tag">Capacitador &middot; Viovelt</span>
+        <span class="tag">Sistemas ERP</span>
+        <span class="tag">GRC / Cumplimiento</span>
+        <span class="tag">Espa&ntilde;ol &middot; Ingl&eacute;s</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cta" id="contacto">
+    <div class="container">
+      <div class="cta-inner">
+        <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);">Siguiente Paso</p>
+        <div class="divider" style="margin:12px auto 24px;background:var(--blue);"></div>
+        <h2>Empecemos a Transformar Empresas</h2>
+        <p>
+          El primer grupo de empresas ya est&aacute; listo. Nosotros tambi&eacute;n.
+          Coord&iacute;nemos el inicio del programa y pongamos la tecnolog&iacute;a a trabajar para Casanare.
+        </p>
+        <div class="cta-actions">
+          <a href="mailto:santiago@stacksolver.tech" class="btn btn-primary">Contactar a Santiago</a>
+          <a href="https://stacksolver.tech" class="btn btn-outline" target="_blank">stacksolver.tech</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; 2026 StackSolver &middot; Partner Oficial Claris FileMaker</p>
+      <p>Preparado para C&aacute;mara de Comercio de Casanare &middot; Confidencial</p>
+    </div>
+  </footer>
+
+</body>
+</html>

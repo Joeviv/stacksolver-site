@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Propuesta Tecnol&oacute;gica &mdash; Programa Zasca &middot; StackSolver</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff;--black:#18181b;--zinc-50:#fafafa;--zinc-100:#f4f4f5;--zinc-200:#e4e4e7;
+      --zinc-300:#d4d4d8;--zinc-400:#a1a1aa;--zinc-600:#52525b;--zinc-800:#27272a;--zinc-900:#18181b;
+      --blue:#3b82f6;--blue-50:#eff6ff;--blue-100:#dbeafe;--blue-200:#bfdbfe;--blue-700:#1d4ed8;
+      --green:#16a34a;--green-bg:#f0fdf4;--green-border:#bbf7d0;
+      --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;
+      --font:'Inter',system-ui,-apple-system,sans-serif;--radius:8px;--radius-xl:12px;--max-w:760px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);font-size:16px;line-height:1.65;color:var(--zinc-800);background:var(--white);-webkit-font-smoothing:antialiased}
+    h1{font-size:clamp(2rem,5vw,2.8rem);font-weight:800;line-height:1.08;letter-spacing:-0.03em;color:var(--zinc-900)}
+    h2{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:var(--zinc-900)}
+    h3{font-size:1.05rem;font-weight:600;line-height:1.4;color:var(--zinc-900)}
+    p{color:var(--zinc-600);line-height:1.7}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 24px}
+    .section{padding:80px 0}
+    .section--alt{background:var(--zinc-50);border-top:1px solid var(--zinc-200);border-bottom:1px solid var(--zinc-200)}
+    .divider{width:40px;height:3px;background:var(--blue);margin:12px 0 28px;border-radius:2px}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--zinc-200)}
+    .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-size:0.95rem;font-weight:700;color:var(--zinc-900);letter-spacing:-0.02em}
+    .nav-icon{width:32px;height:32px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center}
+    .nav-icon svg{width:18px;height:18px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .nav-badge{font-size:0.75rem;font-weight:500;color:var(--zinc-600);background:var(--zinc-100);border:1px solid var(--zinc-200);padding:5px 12px;border-radius:20px}
+    .hero{padding:80px 0 64px;border-bottom:1px solid var(--zinc-200)}
+    .hero-tag{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:var(--blue-50);border:1px solid var(--blue-200);padding:5px 12px;border-radius:20px;margin-bottom:24px}
+    .hero h1{max-width:620px}
+    .hero-sub{margin-top:20px;font-size:1.05rem;color:var(--zinc-600);max-width:560px;line-height:1.7}
+    .section-label{font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--zinc-400)}
+    .status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:32px}
+    .status-card{border-radius:var(--radius-xl);padding:20px}
+    .status-card--blue{background:var(--blue-50);border:1px solid var(--blue-200)}
+    .status-card--white{background:var(--white);border:1px solid var(--zinc-200)}
+    .status-card--green{background:var(--green-bg);border:1px solid var(--green-border)}
+    .status-card--amber{background:var(--amber-bg);border:1px solid var(--amber-border)}
+    .status-label{font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;color:var(--blue)}
+    .status-label--green{color:var(--green)}
+    .status-label--amber{color:var(--amber)}
+    .status-card h3{font-size:0.92rem}
+    .status-card p{font-size:0.82rem;margin-top:4px}
+    .step-list{list-style:none;margin-top:32px}
+    .step-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--zinc-100)}
+    .step-item:last-child{border-bottom:none}
+    .step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--blue);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:600}
+    .step-num--green{background:var(--green)}
+    .step-num--amber{background:var(--amber)}
+    .step-content h3{margin-bottom:4px}
+    .step-content p{font-size:0.88rem}
+    .step-tag{display:inline-block;font-size:0.72rem;font-weight:500;color:var(--blue);background:var(--blue-50);border:1px solid var(--blue-200);padding:3px 10px;border-radius:20px;margin-top:10px}
+    .step-tag--green{color:var(--green);background:var(--green-bg);border-color:var(--green-border)}
+    .step-tag--amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-border)}
+    .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:24px}
+    .stat-card{text-align:center;padding:20px 16px;border:1px solid var(--zinc-200);border-radius:var(--radius-xl);background:var(--white)}
+    .stat-num{font-size:1.6rem;font-weight:800;color:var(--blue);letter-spacing:-0.03em}
+    .stat-num--green{color:var(--green)}
+    .stat-label{font-size:0.75rem;color:var(--zinc-600);margin-top:4px}
+    .tag{font-size:0.75rem;font-weight:500;color:var(--zinc-600);background:var(--white);border:1px solid var(--zinc-200);padding:4px 12px;border-radius:20px}
+    .table-wrap{overflow-x:auto;margin-top:24px}
+    table{width:100%;border-collapse:collapse;font-size:0.88rem}
+    th{text-align:left;font-weight:600;color:var(--zinc-900);padding:12px 16px;border-bottom:2px solid var(--zinc-200);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.04em}
+    td{padding:12px 16px;border-bottom:1px solid var(--zinc-100);color:var(--zinc-600)}
+    tr:last-child td{border-bottom:none}
+    .td-highlight{font-weight:700;color:var(--zinc-900)}
+    .td-blue{color:var(--blue);font-weight:600}
+    .td-green{color:var(--green);font-weight:600}
+    .section--cta{background:var(--zinc-900);color:var(--white)}
+    .cta-inner{text-align:center;max-width:520px;margin:0 auto}
+    .cta-inner h2{color:var(--white)}
+    .cta-inner p{color:var(--zinc-400);margin-top:12px}
+    .cta-actions{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius-xl);font-size:0.875rem;font-weight:500;cursor:pointer;transition:all 0.2s ease;border:none}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--white);color:var(--zinc-900)}
+    .btn-primary:hover{background:var(--zinc-100)}
+    .btn-outline{background:transparent;color:var(--white);border:1px solid var(--zinc-600)}
+    .btn-outline:hover{border-color:var(--zinc-400);background:rgba(255,255,255,0.05)}
+    .timeline{position:relative;margin-top:32px;padding-left:24px}
+    .timeline::before{content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--zinc-200)}
+    .tl-item{position:relative;padding:0 0 32px 28px}
+    .tl-item:last-child{padding-bottom:0}
+    .tl-dot{position:absolute;left:-13px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--blue);background:var(--white)}
+    .tl-dot--active{background:var(--blue);border-color:var(--blue)}
+    .tl-dot--green{border-color:var(--green);background:var(--green)}
+    .tl-dot--amber{border-color:var(--amber);background:var(--amber)}
+    .tl-label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--zinc-400);margin-bottom:4px}
+    .tl-title{font-size:0.95rem;font-weight:600;color:var(--zinc-900)}
+    .tl-desc{font-size:0.82rem;color:var(--zinc-600);margin-top:4px}
+    .callout{padding:20px 24px;border-radius:var(--radius-xl);margin-top:20px}
+    .callout--blue{background:var(--blue-50);border:1px solid var(--blue-200)}
+    .callout--green{background:var(--green-bg);border:1px solid var(--green-border)}
+    .callout--amber{background:var(--amber-bg);border:1px solid var(--amber-border)}
+    .callout p{font-size:0.84rem}
+    footer{background:var(--zinc-900);border-top:1px solid rgba(255,255,255,0.06);padding:28px 0}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .footer-inner p{font-size:0.78rem;color:var(--zinc-600)}
+    @media(max-width:600px){
+      .section{padding:56px 0}.hero{padding:56px 0 48px}
+      .status-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,1fr)}
+      table{font-size:0.78rem}th,td{padding:8px 10px}
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+        StackSolver
+      </div>
+      <span class="nav-badge">Propuesta &middot; Programa Zasca</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">Propuesta Comercial &middot; Abril 2026</div>
+      <h1>Propuesta de Acompa&ntilde;amiento Tecnol&oacute;gico</h1>
+      <p class="hero-sub">
+        Modelo de intervenci&oacute;n por empresa para el Programa Zasca Impulsa Regi&oacute;n Casanare.
+        Prueba gratuita de 45 d&iacute;as + acompa&ntilde;amiento + licencia Cloud con subsidio de la C&aacute;mara.
+      </p>
+    </div>
+  </section>
+
+  <!-- Modelo Propuesto -->
+  <section class="section" id="modelo">
+    <div class="container">
+      <p class="section-label">El Modelo</p>
+      <div class="divider"></div>
+      <h2>Prueba Primero, Decide Despu&eacute;s</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        Cada empresa inicia con una prueba gratuita y completa de FileMaker durante 45 d&iacute;as.
+        Solo las empresas que decidan continuar activan su licencia Cloud &mdash; con subsidio parcial de la C&aacute;mara.
+      </p>
+
+      <ol class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Activaci&oacute;n del Trial Gratuito</h3>
+            <p>La empresa recibe una licencia de prueba completa de Claris FileMaker por 45 d&iacute;as. Sin costo. Funcionalidad completa.</p>
+            <span class="step-tag">D&iacute;a 1</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Sesiones de Entrenamiento con StackSolver</h3>
+            <p>Durante los 45 d&iacute;as, la empresa recibe sesiones de entrenamiento pr&aacute;ctico donde aprende a construir su propia soluci&oacute;n. Todo en espa&ntilde;ol, con acompa&ntilde;amiento directo.</p>
+            <span class="step-tag">Semanas 1&ndash;6</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num step-num--amber">3</div>
+          <div class="step-content">
+            <h3>Decisi&oacute;n del Empresario</h3>
+            <p>Al finalizar los 45 d&iacute;as, el empresario decide: &iquest;quiere continuar con FileMaker? Si la respuesta es s&iacute;, se activa su licencia Cloud con subsidio de la C&aacute;mara.</p>
+            <span class="step-tag step-tag--amber">D&iacute;a 45 &mdash; Punto de Decisi&oacute;n</span>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num step-num--green">4</div>
+          <div class="step-content">
+            <h3>Licencia Cloud Activa por 1 A&ntilde;o</h3>
+            <p>La empresa queda con su soluci&oacute;n en la nube de Claris: accesible desde cualquier dispositivo, con datos seguros y sincronizados. Incluye FileMaker, Claris Connect y Claris Studio.</p>
+            <span class="step-tag step-tag--green">12 meses de licencia</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Que Incluye -->
+  <section class="section section--alt" id="incluye">
+    <div class="container">
+      <p class="section-label">Qu&eacute; Recibe Cada Empresa</p>
+      <div class="divider"></div>
+      <h2>Todo lo Necesario para Arrancar</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        Cada empresa intervenida por el programa recibe un paquete completo de tecnolog&iacute;a, formaci&oacute;n y acompa&ntilde;amiento.
+      </p>
+
+      <div class="status-grid">
+        <div class="status-card status-card--blue">
+          <div class="status-label">Prueba</div>
+          <h3>45 D&iacute;as de Trial Gratuito</h3>
+          <p>Acceso completo a Claris FileMaker Pro. La empresa explora la plataforma sin compromiso y sin costo.</p>
+        </div>
+        <div class="status-card status-card--blue">
+          <div class="status-label">Entrenamiento</div>
+          <h3>Sesiones Pr&aacute;cticas con StackSolver</h3>
+          <p>Formaci&oacute;n directa en espa&ntilde;ol. El empresario aprende a construir su propia soluci&oacute;n adaptada a su negocio.</p>
+        </div>
+        <div class="status-card status-card--blue">
+          <div class="status-label">Recursos</div>
+          <h3>Biblioteca en Espa&ntilde;ol</h3>
+          <p>Videos, gu&iacute;as r&aacute;pidas y tutoriales paso a paso. M&aacute;s de 18 a&ntilde;os de contenido acumulado en espa&ntilde;ol.</p>
+        </div>
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">Licencia</div>
+          <h3>Claris FileMaker Cloud (1 A&ntilde;o)</h3>
+          <p>Para las empresas que contin&uacute;an: licencia Cloud con subsidio parcial de la C&aacute;mara. Incluye FileMaker + Claris Connect + Claris Studio.</p>
+        </div>
+      </div>
+
+      <div class="callout callout--blue" style="margin-top:24px;">
+        <p>
+          <strong>Para los asesores del programa:</strong> Los consultores tambi&eacute;n participan de las sesiones de entrenamiento.
+          Esto les permite dar soporte b&aacute;sico a los empresarios cuando tengan dudas, sin depender de un tercero.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inversion -->
+  <section class="section" id="inversion">
+    <div class="container">
+      <p class="section-label">Inversi&oacute;n por Empresa</p>
+      <div class="divider"></div>
+      <h2>Desglose del Presupuesto</h2>
+      <p style="margin-top:10px;margin-bottom:12px;">
+        El presupuesto de <strong>$2.200.000 COP</strong> por empresa se distribuye entre entrenamiento y subsidio de licencia.
+        Solo se activa el costo de licencia si la empresa decide continuar despu&eacute;s del trial.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Valor (COP)</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-highlight">Presupuesto total por empresa</td>
+              <td class="td-highlight">$2.200.000</td>
+              <td>Aporte de la C&aacute;mara de Comercio (IVA exento)</td>
+            </tr>
+            <tr>
+              <td>Trial FileMaker (45 d&iacute;as)</td>
+              <td class="td-green">$0</td>
+              <td>Prueba gratuita &mdash; sin costo para nadie</td>
+            </tr>
+            <tr>
+              <td>Entrenamiento StackSolver</td>
+              <td class="td-blue">$1.650.000</td>
+              <td>Sesiones pr&aacute;cticas + acompa&ntilde;amiento + recursos</td>
+            </tr>
+            <tr>
+              <td>Subsidio licencia Cloud (aporte C&aacute;mara)</td>
+              <td>$550.000</td>
+              <td>~50% de 1 licencia anual &mdash; solo si la empresa contin&uacute;a</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--amber" style="margin-top:24px;">
+        <p>
+          <strong>Licencia post-trial &mdash; Modelo mixto:</strong> La C&aacute;mara subsidia aproximadamente el 50% de la licencia Cloud anual.
+          La empresa aporta la otra mitad (~$559.000 COP). Este modelo asegura compromiso real del empresario.
+        </p>
+      </div>
+
+      <h3 style="margin-top:36px;margin-bottom:8px;">Costo de la Licencia Cloud</h3>
+      <p style="margin-bottom:16px;font-size:0.88rem;">
+        Referencia: Claris FileMaker Cloud, plan Starter, precio de lista.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>USD</th>
+              <th>COP (TRM $4.200)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Licencia Cloud Starter (1 usuario/mes)</td>
+              <td>$22,00</td>
+              <td>$92.400</td>
+            </tr>
+            <tr>
+              <td class="td-highlight">Licencia Cloud Starter (1 usuario/a&ntilde;o)</td>
+              <td class="td-highlight">$264,00</td>
+              <td class="td-highlight">$1.108.800</td>
+            </tr>
+            <tr>
+              <td>Subsidio C&aacute;mara (~50%)</td>
+              <td class="td-green">&ndash;$131,00</td>
+              <td class="td-green">&ndash;$550.000</td>
+            </tr>
+            <tr>
+              <td>Aporte empresa (~50%)</td>
+              <td>$133,00</td>
+              <td>$558.800</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--green" style="margin-top:24px;">
+        <p>
+          <strong>Si la empresa NO contin&uacute;a</strong> despu&eacute;s del trial, los $550.000 de subsidio de licencia no se gastan.
+          Ese presupuesto se puede reasignar a otras empresas del programa. Cero desperdicio.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ventajas del Modelo -->
+  <section class="section section--alt" id="ventajas">
+    <div class="container">
+      <p class="section-label">Por Qu&eacute; Este Modelo</p>
+      <div class="divider"></div>
+      <h2>Ventajas para el Programa</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        Este modelo optimiza el presupuesto y asegura que los recursos se destinen a empresas realmente comprometidas.
+      </p>
+
+      <div class="status-grid">
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">Eficiencia</div>
+          <h3>Cero Licencias Desperdiciadas</h3>
+          <p>Solo se paga licencia por las empresas que demuestran inter&eacute;s real. El trial gratuito elimina el riesgo de invertir en empresas que no contin&uacute;an.</p>
+        </div>
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">Filtro Natural</div>
+          <h3>Compromiso Real del Empresario</h3>
+          <p>Los 45 d&iacute;as de prueba sirven como filtro. Las empresas que contin&uacute;an ya conocen la herramienta y est&aacute;n motivadas a usarla.</p>
+        </div>
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">M&aacute;s Valor</div>
+          <h3>M&aacute;s Horas de Entrenamiento</h3>
+          <p>Al no comprometer presupuesto en licencias desde el d&iacute;a 1, se liberan recursos para m&aacute;s horas de acompa&ntilde;amiento real con cada empresa.</p>
+        </div>
+        <div class="status-card status-card--green">
+          <div class="status-label status-label--green">Escalable</div>
+          <h3>Presupuesto Flexible</h3>
+          <p>Si una empresa no convierte, su subsidio de licencia se reasigna. El programa puede atender m&aacute;s empresas con el mismo presupuesto global.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section" id="timeline">
+    <div class="container">
+      <p class="section-label">Cronograma</p>
+      <div class="divider"></div>
+      <h2>L&iacute;nea de Tiempo del Programa</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        El programa opera dentro de un marco de 4 meses por grupo de empresas.
+        El trial de 45 d&iacute;as encaja naturalmente en la primera mitad.
+      </p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--active"></div>
+          <div class="tl-label">Semana 1</div>
+          <div class="tl-title">Activaci&oacute;n del Trial + Primera Sesi&oacute;n</div>
+          <div class="tl-desc">Se activa la prueba gratuita de FileMaker. Primera sesi&oacute;n de entrenamiento: entender la plataforma y crear la primera tabla.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--active"></div>
+          <div class="tl-label">Semanas 2&ndash;3</div>
+          <div class="tl-title">Sesiones de Construcci&oacute;n</div>
+          <div class="tl-desc">El empresario construye su soluci&oacute;n con acompa&ntilde;amiento. Relacionar datos, crear vistas y formularios.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--active"></div>
+          <div class="tl-label">Semanas 4&ndash;5</div>
+          <div class="tl-title">Pr&aacute;ctica Aut&oacute;noma + Soporte</div>
+          <div class="tl-desc">La empresa trabaja de forma aut&oacute;noma con soporte puntual. Refinamiento de la soluci&oacute;n y resoluci&oacute;n de dudas.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--amber"></div>
+          <div class="tl-label">Semana 6 &mdash; D&iacute;a 45</div>
+          <div class="tl-title">Punto de Decisi&oacute;n</div>
+          <div class="tl-desc">El trial expira. El empresario decide si contin&uacute;a. Si s&iacute;: se activa la licencia Cloud con subsidio. Si no: sin costo adicional.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--green"></div>
+          <div class="tl-label">Meses 2&ndash;4</div>
+          <div class="tl-title">Operaci&oacute;n con Licencia Cloud</div>
+          <div class="tl-desc">La empresa opera su soluci&oacute;n en la nube. Datos accesibles desde cualquier dispositivo. Acompa&ntilde;amiento disponible durante el resto del programa.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Mes 12+</div>
+          <div class="tl-title">Renovaci&oacute;n de Licencia</div>
+          <div class="tl-desc">Al cumplir el a&ntilde;o, la empresa decide si renueva su licencia Cloud de forma independiente, o si necesita servicios adicionales de desarrollo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Licencia Cloud -->
+  <section class="section section--alt" id="plataforma">
+    <div class="container">
+      <p class="section-label">La Plataforma</p>
+      <div class="divider"></div>
+      <h2>Qu&eacute; Incluye la Licencia Cloud</h2>
+      <p style="margin-top:10px;margin-bottom:28px;">
+        Cada licencia de Claris FileMaker Cloud incluye acceso completo a tres herramientas integradas.
+      </p>
+
+      <div class="status-grid" style="grid-template-columns:1fr;">
+        <div class="status-card status-card--blue" style="padding:28px;">
+          <div class="status-label">Herramienta Principal</div>
+          <h3 style="font-size:1.1rem;">Claris FileMaker</h3>
+          <p style="margin-top:8px;">Plataforma low-code para crear aplicaciones empresariales. Inventarios, flotas, compras, trazabilidad &mdash; todo personalizado al negocio. Acceso desde computador, tablet, celular y navegador web.</p>
+        </div>
+      </div>
+
+      <div class="status-grid" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:14px;">
+        <div class="status-card status-card--white">
+          <div class="status-label">Incluido</div>
+          <h3>Claris Connect</h3>
+          <p>Automatizaci&oacute;n: conectar FileMaker con correo, calendarios, mensajer&iacute;a y otros servicios. Notificaciones y sincronizaci&oacute;n autom&aacute;tica.</p>
+        </div>
+        <div class="status-card status-card--white">
+          <div class="status-label">Incluido</div>
+          <h3>Claris Studio</h3>
+          <p>Dashboards, reportes ejecutivos y formularios web accesibles desde cualquier navegador. Ideal para gerencia y KPIs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resumen en Numeros -->
+  <section class="section" id="numeros">
+    <div class="container">
+      <p class="section-label">Resumen</p>
+      <div class="divider"></div>
+      <h2>El Programa en N&uacute;meros</h2>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">45</div>
+          <div class="stat-label">D&iacute;as de prueba gratuita</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">$2,2M</div>
+          <div class="stat-label">Presupuesto por empresa (COP)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num stat-num--green">$0</div>
+          <div class="stat-label">Costo licencia durante trial</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">50%</div>
+          <div class="stat-label">Subsidio licencia post-trial</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cta" id="contacto">
+    <div class="container">
+      <div class="cta-inner">
+        <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);">Siguiente Paso</p>
+        <div class="divider" style="margin:12px auto 24px;background:var(--blue);"></div>
+        <h2>Coordinemos el Inicio</h2>
+        <p>
+          Definamos el primer grupo de empresas para activar los trials y programar las sesiones de entrenamiento.
+          Estamos listos para arrancar.
+        </p>
+        <div class="cta-actions">
+          <a href="mailto:santiago@stacksolver.tech" class="btn btn-primary">Contactar a Santiago</a>
+          <a href="https://stacksolver.tech" class="btn btn-outline" target="_blank">stacksolver.tech</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; 2026 StackSolver &middot; Partner Oficial Claris FileMaker</p>
+      <p>Propuesta para C&aacute;mara de Comercio de Casanare &middot; Confidencial</p>
+    </div>
+  </footer>
+
+</body>
+</html>

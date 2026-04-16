@@ -11,7 +11,7 @@
 
 StackSolver nace en 2020 para resolver un problema comun: las empresas medianas invierten en software genérico que las obliga a cambiar su forma de operar. Nuestra tesis es la opuesta — **la tecnologia debe adaptarse al negocio**. Construimos sistemas ERP, marcos GRC e implementaciones de IA Local que reflejan exactamente como opera cada cliente.
 
-- **Fundador:** Johann Vivas (ingeniero, CPE Cambridge C2, +10 anos en Claris FileMaker)
+- **Fundador:** Johann Vivas (ingeniero, CPE Cambridge C2, +18 anos en Claris FileMaker — desde 2008)
 - **Socio:** Santiago Aguilar
 - **Idiomas operativos:** Espanol (nativo) · Ingles (C2)
 - **Modelo:** Remoto en cualquier zona horaria, presencial cuando el proyecto lo requiere

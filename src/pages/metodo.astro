@@ -265,11 +265,13 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
 <blockquote><p>"Llevamos meses usando IA en el negocio. Arrancamos con energía. Hoy la usamos a medias, los resultados cambian según quién haga la consulta, y cada vez que sale un modelo nuevo sentimos que toca empezar de cero."</p></blockquote>
 
-<p>Es la frase que mas escucho en mesas de directivos este año.</p>
+<p>Es la frase que más escucho en mesas de trabajo este año.</p>
 
-<p>Este problema no es culpa de la IA. Tampoco del equipo. El problema es <strong>estructural</strong>.</p>
+<p><strong>La realidad en números.</strong> Entre el 70 y el 80% de los proyectos de IA empresarial no alcanzan los objetivos que se plantearon — lo confirman Gartner, McKinsey y los análisis independientes recientes. La IA no fracasa por falta de capacidad. Fracasa por <strong>mala implementación</strong>.</p>
 
-<p>La mayoría adopta IA como si fuera una app de chat. Un lugar donde uno va a preguntar cosas. Pero una IA que sirve para operar un negocio <strong>no es un chat. Es un sistema operativo.</strong> Y todo sistema operativo necesita arquitectura.</p>
+<p>Esto no es culpa de la IA. Tampoco del equipo. El problema es <strong>estructural</strong>.</p>
+
+<p>La mayoría adopta IA como si fuera una app de chat — un lugar donde uno va a preguntar cosas. Pero una IA que sirve para operar un negocio <strong>no es un chat. Es un sistema operativo organizacional.</strong> Y todo sistema operativo necesita arquitectura.</p>
 
 <p>Sin esa arquitectura, aparece el síntoma clásico: 6 meses después, tu equipo usa IA al 20% de su potencial, mientras los competidores que diseñaron mejor siguen sacando distancia.</p>
 
@@ -282,6 +284,30 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 <p>Este artículo explica esa arquitectura. La llamo <strong>The StackSolver Method</strong>. Llevo más de un año operando así, con clientes en Latinoamérica, Reino Unido y otros mercados. En ese tiempo absorbí 3 versiones nuevas de modelos sin reescribir un solo proceso.</p>
 
 <p>No es magia. No es compleja. Pero requiere pensar en IA como se piensa la contabilidad de una empresa: con estructura, no con improvisación.</p>
+
+<hr>
+
+<h2>¿Cómo se ve cuando el sistema funciona?</h2>
+
+<p>Antes de entrar en qué está mal, déjame mostrar qué se siente cuando está bien. Un martes cualquiera:</p>
+
+<p>Son las 7:30 AM. Abres el sistema y escribes: <em>"Inicia sesión con el cliente X"</em>. En quince segundos recibes esta respuesta:</p>
+
+<blockquote>
+<p>"Cliente X en línea. Resumen rápido:</p>
+<p>→ La bitácora cerró ayer con la propuesta comercial aprobada. Hoy toca enviar el contrato.<br>
+→ Revisé los 12 correos que llegaron del dominio de este cliente durante la noche. Uno requiere atención — confirman la fecha de kickoff para el 22 de abril.<br>
+→ En WhatsApp te escribieron anoche a las 10 PM preguntando si pueden agregar 2 usuarios al alcance. Aún no respondiste.<br>
+→ El reporte matinal de las 3:30 AM detectó un cambio regulatorio que podría afectarlos. Ya tengo un brief de 3 párrafos listo.<br>
+→ Recordatorio: reunión quincenal con su CFO el jueves.</p>
+<p>¿Por dónde quieres empezar?"</p>
+</blockquote>
+
+<p>Eso no es magia. Es arquitectura. El sistema no "recordó" — consultó los archivos del cliente, procesó los correos y mensajes de la noche, cruzó con la bitácora de ayer, verificó el reporte matinal y compuso una respuesta con contexto completo. En paralelo, mientras lees esto, el asistente legal prepara el borrador del contrato, el de mercadeo avanza en el landing de la nueva campaña, y el de recursos humanos procesa una solicitud de vacaciones que llegó al correo esta mañana.</p>
+
+<p>A las 11 AM un cliente distinto llama. Cambias: <em>"Carga cliente Y"</em>. Diez segundos después estás en contexto — la sesión con X queda guardada exactamente donde la dejaste, esperando tu regreso. Al cierre del día le pides al sistema: <em>"Actualiza estado y bitácora"</em>. Cualquier colega que tome la sesión mañana arranca donde tú la dejaste.</p>
+
+<p>Este artículo explica cómo llegar ahí.</p>
 
 <hr>
 
@@ -318,38 +344,53 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
 <hr>
 
-<h2>Lo que vas a tener cuando termines</h2>
+<h2>Lo que tu empresa va a tener cuando termine</h2>
 
-<p>Antes de entrar al detalle del método, visualiza el resultado. Esto es lo que una empresa que opera con The StackSolver Method tiene a las pocas semanas de empezar:</p>
+<p>Antes de entrar al detalle del método, visualiza el resultado. Esto es lo que una empresa que opera con The StackSolver Method tiene después de implementarlo. No es IA <em>personal</em> — es <strong>IA organizacional</strong>. No es una herramienta que usa una persona en el chat. Es infraestructura que usa toda la empresa:</p>
 
 <ul>
-<li><strong>Una IA que conoce tu negocio</strong> — que recuerda quién es cada cliente, cuáles son las políticas de la empresa, qué decisiones se tomaron la semana pasada y en qué proyectos está el equipo. Sin que tengas que repetir contexto.</li>
-<li><strong>Cambio de contexto entre clientes en 10 segundos</strong> — un solo comando carga el universo del cliente que necesitas: su historial, su tono, sus documentos, sus pendientes. Sin mezclar datos ni perder concentración.</li>
-<li><strong>Reportes automáticos que llegan al correo antes del primer café</strong> — cada mañana, tu equipo abre el correo y encuentra un brief ejecutivo con novedades relevantes, alertas del día, lo que requiere atención urgente y un resumen de lo que avanzó mientras dormían.</li>
-<li><strong>Un equipo de asistentes, no un asistente solo</strong> — para tareas legales responde el especialista legal, para tareas financieras el financiero, para estrategia el planeador. Cada uno con su oficio, coordinados por un arquitecto que decide quién toma cada tarea.</li>
-<li><strong>Memoria que te pertenece</strong> — si mañana cambias de plataforma (o si la plataforma que usas hoy desaparece), tu conocimiento organizacional viaja contigo sin ningún esfuerzo de migración.</li>
-<li><strong>Auditoría semanal automática</strong> — un proceso revisa el estado de tu sistema cada lunes y reporta qué se está deteriorando, qué quedó sin atender, qué cliente lleva semanas sin movimiento. Tu sistema se cuida solo.</li>
-<li><strong>Continuidad si cambias de computador</strong> — si pierdes tu equipo, si lo roban, si se daña, en 15 minutos estás operando desde uno nuevo con la misma memoria y los mismos procesos.</li>
-<li><strong>Inmunidad a cambios de modelo</strong> — cuando salga el próximo Claude, GPT o Gemini, tu sistema lo adopta cambiando una línea de configuración. Sin reescribir procesos, sin reentrenar al equipo, sin trauma.</li>
+<li><strong>Correos y WhatsApp que se auto-organizan.</strong> Los correos del dominio empresarial y los chats de WhatsApp de clientes se procesan automáticamente cada día, se clasifican, y los datos relevantes quedan guardados en el contexto del cliente correspondiente. Cuando alguien del equipo abre la conversación con ese cliente, la IA ya conoce lo que escribió ayer — sin que nadie lo haya copiado a mano.</li>
+<li><strong>Asistentes por área, coordinados por un arquitecto.</strong> Legal, financiero, comercial, técnico, mercadeo, recursos humanos — cada área tiene un asistente especializado con su propio contexto y políticas. Un arquitecto central decide qué asistente toma cada tarea según el tipo y la urgencia.</li>
+<li><strong>Cambio de contexto entre clientes en segundos.</strong> Un solo comando carga el universo del cliente que necesitas: su historial, sus correos recientes, sus documentos, sus pendientes. Sin mezclar datos entre clientes ni perder concentración.</li>
+<li><strong>Reportes automáticos antes del primer café.</strong> Cada mañana, el equipo abre el correo y encuentra un brief con novedades, alertas, lo que requiere atención urgente y un resumen de lo que avanzó mientras dormían.</li>
+<li><strong>Operación centralizada de toda la empresa.</strong> Desde la infraestructura tecnológica (servidores, redes, seguridad) hasta mercadeo (sitios web, campañas, landings), pasando por solicitudes internas entre áreas, procesos documentados vivos y gestión completa de recursos humanos — todo vive en el mismo sistema, con las mismas reglas.</li>
+<li><strong>Servidor local opcional para soberanía total.</strong> Si tu empresa maneja información sensible (datos médicos, financieros, legales), puedes conectar un computador local que actúa como "cerebro central" del sistema. La IA corre en tu infraestructura — los datos no salen de tu red.</li>
+<li><strong>Sincronización automática entre dispositivos.</strong> Cada miembro del equipo puede operar desde su Mac, su iPad o un equipo prestado. El sistema se sincroniza solo. Si alguien pierde un equipo, en 15 minutos está operando desde otro sin perder ni un archivo.</li>
+<li><strong>Memoria que te pertenece.</strong> Si mañana cambias de plataforma (o si la plataforma que usas hoy desaparece), el conocimiento organizacional viaja contigo sin migración.</li>
+<li><strong>Auditoría semanal automática.</strong> Un proceso revisa cada lunes el estado del sistema y reporta: qué se está deteriorando, qué quedó sin atender, qué cliente lleva semanas sin movimiento, qué documento no se actualiza. La salud del sistema es visible, no inferida.</li>
+<li><strong>Inmunidad a cambios de modelo.</strong> Cuando salga el próximo Claude, GPT, Gemini o Mythos, el sistema lo adopta cambiando una línea de configuración. Sin reescribir procesos, sin reentrenar al equipo.</li>
 </ul>
 
-<h3>Cómo se ve un martes cualquiera</h3>
-
-<p>Son las 7:30 AM. Abres tu IA y escribes: <em>"Inicia sesión con el cliente X"</em>. En quince segundos te responde:</p>
-
-<blockquote><p>"Cliente X en línea. La última sesión cerró la propuesta comercial. Hoy toca enviarla. Tengo además 3 novedades del cliente esta semana y 1 alerta del reporte matinal sobre un cambio regulatorio que podría afectarlos. ¿Empezamos por la propuesta o revisas primero la alerta?"</p></blockquote>
-
-<p>Eso no es magia. Es arquitectura. La IA no "recordó" — consultó los archivos de ese cliente en tu computador, cruzó con la bitácora de ayer, verificó el reporte matinal de las 3:30 AM y compuso una respuesta que ya tiene contexto completo.</p>
-
-<p>Mientras trabajas en la propuesta, el asistente legal revisa los términos en paralelo. A las 11 AM un cliente distinto te llama con una duda técnica. Cambias de contexto: <em>"Carga cliente Y"</em>. Diez segundos después estás en modo técnico sin perder el hilo del otro cliente — la sesión con X queda guardada exactamente donde la dejaste, esperando tu regreso.</p>
-
-<p>Al cerrar el día le pides: <em>"Actualiza estado y bitácora"</em>. La IA registra lo que avanzaron, lo que quedó pendiente, qué decisiones se tomaron. Mañana cualquier miembro del equipo que tome la sesión arranca exactamente donde tú la dejaste.</p>
-
-<p>Ahora sí — los 9 componentes que hacen posible esto:</p>
+<div class="callout">
+<strong>Importante</strong>
+<p>Lo anterior <strong>no es personal</strong>. No es "Johann tiene una IA ordenada". Es la infraestructura con la que opera una empresa entera — con clientes, empleados, áreas, proveedores y procesos. Igual que el ERP no es personal, igual que la contabilidad no es personal. Es infraestructura corporativa.</p>
+</div>
 
 <hr>
 
-<h2>The StackSolver Method — los 9 componentes</h2>
+<h2>El alcance del sistema</h2>
+
+<p>Una objeción que escucho seguido: <em>"¿Esto sirve solo para atender clientes?"</em></p>
+
+<p>No. El método cubre toda la operación. Lo implementamos por áreas, en el orden que tenga más sentido para la empresa. Estas son las áreas típicas:</p>
+
+<ul>
+<li><strong>Clientes y proyectos</strong> — historial, bitácoras, documentos, comunicaciones, estados de cada cliente activo</li>
+<li><strong>Comunicaciones</strong> — correos del dominio empresarial y WhatsApp de clientes procesados automáticamente y enrutados al contexto correcto</li>
+<li><strong>Recursos humanos</strong> — nómina, procesos de selección, evaluaciones, políticas internas, manejo de ausencias</li>
+<li><strong>Finanzas y contabilidad</strong> — facturación, cartera, tesorería, cierre mensual, obligaciones tributarias</li>
+<li><strong>Legal y compliance</strong> — contratos, políticas, cumplimiento normativo, gestión de riesgos</li>
+<li><strong>Infraestructura tecnológica</strong> — servidores, redes, seguridad, inventario de activos de hardware y software</li>
+<li><strong>Mercadeo y presencia digital</strong> — sitios web, campañas, contenido publicado, métricas</li>
+<li><strong>Procesos internos</strong> — solicitudes entre áreas (legal pide a finanzas, operaciones pide a RRHH, etc.), todas trazables en un mismo sistema</li>
+<li><strong>Conocimiento reutilizable</strong> — templates, manuales, referencias técnicas, lecciones aprendidas de proyectos anteriores</li>
+</ul>
+
+<p>No hace falta cubrir todas desde el día uno. Empezamos por las dos o tres áreas de mayor dolor y el sistema crece desde ahí.</p>
+
+<hr>
+
+<h2>The StackSolver Method — los 10 componentes</h2>
 
 <p>Este es el método. Nueve componentes, en orden. Cada uno se apoya en el anterior.</p>
 
@@ -371,9 +412,9 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
 <pre>/mi-empresa/
     01_Arquitectura/
-        QUIEN_SOMOS.txt
-        BITACORA.txt
-        ESTADO_ACTUAL.txt
+        QUIEN_SOMOS.md
+        BITACORA.md
+        ESTADO_ACTUAL.md
     02_Clientes/
     03_Biblioteca/</pre>
 
@@ -482,9 +523,9 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
 <p>Lo uso para due diligence de proveedores nuevos, interpretar normativa reciente, analizar competidores, y mantener las bitácoras del punto 5 siempre actualizadas.</p>
 
-<h3>8. Portabilidad entre dispositivos</h3>
+<h3>8. Portabilidad entre dispositivos (con opción de servidor local)</h3>
 
-<p><strong>Idea:</strong> tu sistema debe ser tuyo. Debe arrancar en cualquier equipo que te toque usar.</p>
+<p><strong>Idea:</strong> tu sistema debe ser tuyo. Debe arrancar en cualquier equipo que te toque usar. Y si tu empresa maneja información sensible, debe poder correr en tu propia red.</p>
 
 <p>Configuración básica:</p>
 
@@ -494,9 +535,11 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 <li>Al cerrar la sesión, hay una copia automática</li>
 </ul>
 
-<p><strong>Resultado:</strong> si tu equipo principal se daña hoy, en uno nuevo mañana recuperas todo en minutos. No pierdes ni un archivo de memoria. Tampoco pierdes el trabajo del día anterior.</p>
+<p><strong>Servidor local opcional (para empresas con datos sensibles).</strong> Puedes montar un computador dedicado en tu oficina que actúa como "cerebro central" — el sistema de IA corre ahí, los archivos viven ahí, los reportes automáticos se generan ahí. Nadie fuera de tu red tiene acceso. Es ideal para empresas que manejan datos médicos, financieros, legales o simplemente información estratégica que no debería vivir en la nube de un tercero.</p>
 
-<p>En 2026, la continuidad operativa de un profesional depende de cuán portable sea su sistema. El mío es 100% portable.</p>
+<p><strong>Resultado:</strong> si un equipo personal se daña hoy, mañana cualquier miembro del equipo arranca en uno nuevo y recupera todo en minutos. Si además hay servidor local, los datos nunca salieron de la empresa.</p>
+
+<p>En 2026, la continuidad operativa de una empresa depende de cuán portable sea su sistema — y de cuánto control tenga sobre dónde viven sus datos.</p>
 
 <h3>9. Auditoría continua del sistema</h3>
 
@@ -514,27 +557,58 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
 <p>Llega al correo como parte del reporte semanal. Es el mismo principio que aplicamos a clientes cuando les construimos un sistema: <strong>la auditoría integrada en cada proceso, no una auditoría única cada 12 meses</strong>.</p>
 
+<h3>10. Ingesta automática de comunicaciones</h3>
+
+<p><strong>Idea:</strong> los correos y mensajes de WhatsApp son donde vive el 70% de la operación real. Si la IA no los ve, opera a ciegas.</p>
+
+<p>Cada día, un proceso automático:</p>
+
+<ul>
+<li>Revisa las cuentas de correo corporativas (las que usa tu empresa para clientes, proveedores, facturación, etc.)</li>
+<li>Lee los mensajes nuevos de WhatsApp Business de los clientes</li>
+<li>Clasifica cada mensaje: ¿a qué cliente pertenece? ¿de qué área es? ¿requiere respuesta urgente?</li>
+<li>Extrae los datos relevantes (fechas, montos, compromisos, preguntas pendientes)</li>
+<li>Guarda todo en el contexto del cliente o área correspondiente</li>
+<li>Mueve los correos procesados a su carpeta de archivo</li>
+</ul>
+
+<p>Cuando por la mañana cargas un cliente, la IA ya sabe qué te escribieron durante la noche — no porque lo recordó, sino porque estaba en su carpeta de contexto desde las 5 AM.</p>
+
+<p>Este es el componente que hace que el sistema <strong>deje de ser reactivo y empiece a ser proactivo</strong>. La IA ya no espera a que le cuentes — ella te resume lo que pasó.</p>
+
 <hr>
 
-<h2>Cómo se ve un día en esta arquitectura</h2>
+<h2>Cómo se ve un día completo en esta arquitectura</h2>
 
-<p>Así opera un día típico:</p>
+<p>Arriba vimos un momento de un martes. Ahora, un día completo de la empresa entera:</p>
 
-<p><strong>3:30 AM.</strong> Mientras duermes, un proceso automático genera el reporte de la mañana. Cuando abres el correo, ya tienes: novedades del día, alertas, tareas sugeridas.</p>
+<p><strong>3:30 AM — trabajo invisible.</strong> Mientras todo el equipo duerme, procesos automáticos procesan todos los correos del dominio empresarial de las últimas 24 horas, revisan los WhatsApp de clientes de la noche, actualizan los contextos correspondientes, generan el reporte matinal del día y verifican el estado de salud del sistema.</p>
 
-<p><strong>7:30 AM.</strong> Abres la IA y escribes: <em>"Inicia sesión con el cliente X"</em>. En 15 segundos tiene el contexto completo cargado. La IA responde: <em>"Bitácora dice que ayer cerramos la propuesta. Hoy toca enviar el contrato. ¿Continuamos?"</em></p>
+<p><strong>6:45 AM — los reportes llegan.</strong> En los correos del equipo aparecen: el brief ejecutivo del día, las alertas de clientes que requieren atención, lo que cambió en la legislación o el ecosistema técnico, y los pendientes sugeridos por prioridad.</p>
 
-<p><strong>8:00 AM.</strong> Trabajas en el contrato con el asistente legal especializado. La IA redacta, tú revisas, apruebas, ejecutas. Los archivos quedan guardados en tu computador. Todo queda versionado.</p>
+<p><strong>7:30 AM — tú arrancas.</strong> Abres el sistema: <em>"Inicia sesión con el cliente X"</em>. En 15 segundos tienes contexto completo con lo que te escribieron en la noche y lo que toca hoy.</p>
 
-<p><strong>11:00 AM.</strong> Un cliente te llama con una duda técnica. Cambias de contexto: <em>"Carga cliente Y"</em>. Nuevo asistente especializado para ese dominio. En 10 segundos estás en modo técnico sin perder el hilo del cliente anterior.</p>
+<p><strong>8:00 AM — operación paralela.</strong> Mientras tú trabajas el contrato del cliente X con el asistente legal, en paralelo:</p>
 
-<p><strong>2:00 PM.</strong> Necesitas investigar un proveedor nuevo. Lanzas la investigación automática. Mientras atiendes una reunión, la IA corre 4 ciclos de búsqueda, compara 3 proveedores, y genera una tabla comparativa con fuentes. Al salir de la reunión, la decisión está lista.</p>
+<ul>
+<li>El <strong>asistente de mercadeo</strong> está avanzando en el copy de la landing para la campaña del próximo trimestre, con los datos de la última investigación de mercado ya incorporados</li>
+<li>El <strong>asistente de recursos humanos</strong> procesó la solicitud de vacaciones que llegó al correo de RRHH esta mañana, validó el saldo disponible y preparó la respuesta</li>
+<li>El <strong>asistente de infraestructura</strong> detectó que una herramienta del stack tiene una vulnerabilidad nueva y ya dejó un plan de actualización en la bitácora correspondiente</li>
+</ul>
 
-<p><strong>5:00 PM.</strong> Cierras el día. Antes de apagar, le pides a la IA: <em>"Actualiza estado y bitácora"</em>. Copia de seguridad automática.</p>
+<p>Ninguno de ellos requirió tu atención — tú los revisas cuando toca.</p>
 
-<p><strong>9:00 PM.</strong> En el celular, si pasa algo, lo anotas en un archivo simple. El sistema lo absorbe al día siguiente.</p>
+<p><strong>11:00 AM — cambio de contexto.</strong> Un cliente diferente llama con duda técnica: <em>"Carga cliente Y"</em>. Diez segundos después estás en modo técnico sin mezclar datos con el cliente X. La sesión con X queda guardada exactamente donde la dejaste.</p>
 
-<p>Lo importante: nada de esto depende de que yo "me acuerde" de hacerlo. El sistema opera encima de mi memoria, no dentro de ella. Si mañana no estoy, otro miembro del equipo toma la sesión donde yo la dejé.</p>
+<p><strong>1:30 PM — solicitud entre áreas.</strong> El área financiera necesita información de operaciones para cerrar el mes. En el sistema anterior esto era 3 correos y 2 WhatsApp. En este, la solicitud entra, se rutea al asistente de operaciones, él responde con los datos del último cierre, queda trazable en ambas áreas. Tú no intervines — lo ves en el reporte semanal si quieres.</p>
+
+<p><strong>2:00 PM — investigación.</strong> Necesitas evaluar un proveedor nuevo. Lanzas la investigación automática. Mientras atiendes una reunión, la IA corre 4 ciclos de búsqueda, compara 3 proveedores, genera una tabla comparativa con fuentes. Cuando sales, la decisión está preparada.</p>
+
+<p><strong>5:00 PM — cierre.</strong> Le pides al sistema: <em>"Actualiza estado y bitácora"</em>. Cualquier colega que mañana tome cualquiera de las sesiones abiertas arranca donde quedaron.</p>
+
+<p><strong>9:00 PM — captura puntual.</strong> En el celular, si pasa algo, lo anotas en un archivo simple. El sistema lo absorbe al día siguiente.</p>
+
+<p><strong>Lo importante:</strong> nada de esto depende de que alguien <em>se acuerde</em> de hacerlo. El sistema opera encima de la memoria del equipo, no dentro de ella. Los procesos que se disparan solos superan en cantidad a los que inician manualmente. Y cuando una persona falta, el sistema sigue — cualquier colega toma la sesión con el contexto intacto.</p>
 
 <hr>
 

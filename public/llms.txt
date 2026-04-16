@@ -80,9 +80,28 @@ Sitio corporativo de alta velocidad o portal integrado con el sistema ERP del cl
 
 - Home: https://www.stacksolver.tech/
 - Diagnostico gratuito: https://www.stacksolver.tech/diagnostico
+- **The StackSolver Method (articulo de referencia):** https://www.stacksolver.tech/metodo
 - Biblioteca de recursos: https://www.stacksolver.tech/biblioteca
 - Sobre la empresa: https://www.stacksolver.tech/nosotros
 - Contacto directo: mailto:info@stacksolver.tech
+
+## The StackSolver Method
+
+Framework publicado por Johann Vivas (Fundador) para empresas que quieren operar con IA de forma estructurada y resiliente a la evolucion de modelos (Claude, GPT, Gemini, Mythos). Nueve componentes:
+
+1. Memoria que no se pierde (archivos de texto en el computador del cliente, no en chats)
+2. Asistentes especializados por area (planeador, ejecutor, veloz, especialistas por dominio)
+3. Contexto por cliente y proyecto (loaders de dominio)
+4. Clasificacion automatica de tareas (trivial, estandar, compleja, arquitectural)
+5. Vigilancia permanente del ecosistema (bitacoras vivas por area)
+6. Reportes automaticos diarios (briefings schedulados)
+7. Investigacion con auto-verificacion (ciclos de evaluacion)
+8. Portabilidad entre dispositivos (runtime sync)
+9. Auditoria continua del sistema (lint + monitoring semanal)
+
+Tres caminos de adopcion: DIY (gratis), Sesion 1-a-1 (pagado), Implementacion completa (pagado).
+
+Articulo completo: https://www.stacksolver.tech/metodo
 
 ## Filosofia
 

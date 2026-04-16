@@ -1,0 +1,657 @@
+---
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The StackSolver Method — Preparate para Mythos y lo que venga | StackSolver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- SEO -->
+<meta name="description" content="The StackSolver Method: una arquitectura operativa para empresas que quieren usar IA en serio. Nueve componentes simples que sobreviven cada nueva version de modelo. Preparate para Mythos, GPT-6 y lo que venga despues.">
+<meta name="keywords" content="IA empresarial, AI operaciones, Claude Mythos, arquitectura IA, sistema operativo IA, Claris FileMaker, StackSolver, GEO, operaciones AI-native">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Johann Vivas — StackSolver">
+<link rel="canonical" href="https://www.stacksolver.tech/metodo">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.stacksolver.tech/metodo">
+<meta property="og:title" content="The StackSolver Method — Preparate para Mythos y lo que venga">
+<meta property="og:description" content="Una arquitectura operativa para empresas que quieren usar IA en serio. Nueve componentes que sobreviven cada nueva version de modelo.">
+<meta property="og:image" content="https://www.stacksolver.tech/og-image.png">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The StackSolver Method — Preparate para Mythos y lo que venga">
+<meta name="twitter:description" content="Como construir una arquitectura de IA que no se rompe cuando sale un modelo nuevo. Nueve componentes simples.">
+<meta name="twitter:image" content="https://www.stacksolver.tech/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The StackSolver Method — Preparate para Mythos y lo que venga despues",
+  "author": {
+    "@type": "Person",
+    "name": "Johann Vivas",
+    "url": "https://www.linkedin.com/in/johann-vivas",
+    "jobTitle": "Founder at StackSolver",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "StackSolver"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "StackSolver",
+    "url": "https://www.stacksolver.tech",
+    "logo": "https://www.stacksolver.tech/favicon.svg"
+  },
+  "datePublished": "2026-04-16",
+  "dateModified": "2026-04-16",
+  "description": "Una arquitectura operativa para empresas que quieren usar IA en serio. Nueve componentes simples que sobreviven cada nueva version de modelo.",
+  "inLanguage": "es",
+  "mainEntityOfPage": "https://www.stacksolver.tech/metodo",
+  "image": "https://www.stacksolver.tech/og-image.png"
+}
+</script>
+
+<style>
+:root{
+  --bg:#fff;--surface:#fff;--border:#e4e4e7;--border-strong:#18181b;
+  --accent:#18181b;--accent-fg:#fff;--accent-sub:#f4f4f5;
+  --indigo:#6366f1;--indigo-sub:#eef2ff;--indigo-strong:#4f46e5;
+  --green:#16a34a;--green-sub:#f0fdf4;
+  --amber:#d97706;--amber-sub:#fffbeb;
+  --text:#18181b;--text2:#52525b;--text3:#a1a1aa;
+  --r:8px;--font:'Inter',-apple-system,sans-serif;
+}
+body.dark{
+  --bg:#030303;--surface:#0f0f0f;--border:#1f1f1f;--border-strong:#fafafa;
+  --accent:#fafafa;--accent-fg:#0a0a0a;--accent-sub:#141414;
+  --indigo:#818cf8;--indigo-sub:#1a1a2e;--indigo-strong:#a5b4fc;
+  --green:#4ade80;--green-sub:#042a12;
+  --amber:#f59e0b;--amber-sub:#1c1410;
+  --text:#fafafa;--text2:#a1a1aa;--text3:#52525b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .2s}
+body.dark nav{background:rgba(3,3,3,.85)}
+.logo{font-size:14px;font-weight:800;letter-spacing:-.4px;color:var(--text)}
+.logo em{color:var(--indigo);font-style:normal}
+.nav-links{display:flex;gap:2px}
+.nl{font-size:13px;color:var(--text2);padding:5px 11px;border-radius:var(--r);transition:all .15s;font-weight:500}
+.nl:hover{color:var(--text);background:var(--accent-sub)}
+.nl.on{color:var(--text)}
+.nav-r{display:flex;gap:6px;align-items:center}
+.icon-btn{width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .15s}
+.icon-btn:hover{border-color:var(--text3);color:var(--text)}
+.lang-wrap{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.lb{padding:3px 10px;font-size:12px;font-weight:600;border:none;background:none;color:var(--text2);cursor:pointer;font-family:var(--font)}
+.lb.on{background:var(--accent);color:var(--accent-fg)}
+.btn-nav{display:flex;align-items:center;gap:5px;padding:6px 14px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--font);transition:all .15s}
+.btn-nav:hover{background:var(--accent-sub)}
+
+/* HERO */
+.hero{padding:120px 28px 60px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.35;pointer-events:none}
+.hero::after{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(99,102,241,.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:880px;margin:0 auto;width:100%;position:relative;z-index:1;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--indigo);background:var(--indigo-sub);margin-bottom:24px}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-h1{font-size:clamp(36px,5vw,58px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:16px;color:var(--text)}
+.hero-sub{font-size:clamp(18px,2vw,22px);font-weight:500;color:var(--text2);line-height:1.4;max-width:620px;margin:0 auto 12px}
+.hero-sub .accent{color:var(--indigo);font-weight:700}
+.hero-meta{font-size:13px;color:var(--text3);margin-top:24px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.hero-meta span{display:inline-flex;align-items:center;gap:4px}
+.hero-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--text3)}
+
+/* ARTICLE */
+article{max-width:720px;margin:0 auto;padding:72px 28px 96px}
+article h2{font-size:clamp(26px,3vw,34px);font-weight:800;letter-spacing:-.7px;line-height:1.2;margin:64px 0 20px;color:var(--text);scroll-margin-top:80px}
+article h2:first-child{margin-top:0}
+article h3{font-size:clamp(19px,2vw,22px);font-weight:700;letter-spacing:-.3px;line-height:1.3;margin:40px 0 12px;color:var(--text)}
+article h3::before{content:'';display:inline-block;width:18px;height:2px;background:var(--indigo);margin-right:10px;vertical-align:middle;margin-bottom:4px}
+article p{font-size:17px;line-height:1.75;color:var(--text);margin-bottom:18px;font-weight:400}
+article p strong{color:var(--text);font-weight:700}
+article em{color:var(--text2);font-style:italic}
+article ul,article ol{margin:0 0 24px 0;padding-left:0;list-style:none}
+article ul li,article ol li{position:relative;padding-left:22px;margin-bottom:10px;font-size:16.5px;line-height:1.7;color:var(--text)}
+article ul li::before{content:'';position:absolute;left:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--indigo)}
+article ol{counter-reset:oli}
+article ol li{counter-increment:oli;padding-left:32px}
+article ol li::before{content:counter(oli) ".";position:absolute;left:0;top:0;font-weight:700;color:var(--indigo);font-size:16.5px}
+article blockquote{border-left:3px solid var(--indigo);padding:14px 20px;margin:24px 0;background:var(--indigo-sub);border-radius:0 var(--r) var(--r) 0;font-size:16.5px;line-height:1.7;color:var(--text);font-style:italic}
+article blockquote p{font-size:16.5px;margin-bottom:0;font-style:italic;font-weight:500}
+article pre{background:var(--accent-sub);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;overflow-x:auto;margin:20px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:1.6;color:var(--text)}
+article a{color:var(--indigo);border-bottom:1px solid transparent;transition:border-color .15s}
+article a:hover{border-bottom-color:var(--indigo)}
+article hr{border:none;border-top:1px solid var(--border);margin:56px 0}
+.callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--indigo);border-radius:var(--r);padding:22px 24px;margin:28px 0}
+.callout strong{display:block;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--indigo);margin-bottom:8px}
+.callout p{font-size:16px;margin-bottom:0}
+
+/* TIER CARDS (3 paths) */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+.tier{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;transition:all .2s}
+.tier:hover{border-color:var(--text3);transform:translateY(-2px)}
+.tier.featured{border-color:var(--indigo);background:var(--indigo-sub)}
+.tier-num{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.tier.featured .tier-num{color:var(--indigo)}
+.tier-name{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px;color:var(--text)}
+.tier-price{font-size:12px;color:var(--text3);margin-bottom:14px;font-weight:500}
+.tier-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:14px}
+.tier-ideal{font-size:13px;color:var(--text);font-weight:500;line-height:1.55;padding-top:12px;border-top:1px solid var(--border)}
+.tier.featured .tier-ideal{border-top-color:rgba(99,102,241,.3)}
+
+/* CTA FINAL */
+.cta-final{background:var(--accent);color:var(--accent-fg);border-radius:14px;padding:40px 36px;margin:48px 0 24px;text-align:center}
+.cta-final h3{color:var(--accent-fg);font-size:24px;margin-bottom:8px;margin-top:0}
+.cta-final h3::before{display:none}
+.cta-final p{color:var(--accent-fg);opacity:.85;margin-bottom:20px;font-size:15px}
+.cta-final .btn-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--accent-fg);color:var(--accent);border-radius:var(--r);font-weight:700;font-size:15px;transition:transform .15s}
+.cta-final .btn-cta:hover{transform:translateY(-1px)}
+
+/* AUTHOR BOX */
+.author{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;margin-top:56px}
+.author-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--indigo) 0%,var(--indigo-strong) 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;letter-spacing:-.5px;flex-shrink:0}
+.author-name{font-size:17px;font-weight:700;letter-spacing:-.2px;color:var(--text)}
+.author-role{font-size:13px;color:var(--text2);margin-top:2px}
+.author p{font-size:14.5px;line-height:1.7;color:var(--text2);margin-bottom:14px}
+.author-links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.author-links a{color:var(--indigo);font-weight:500}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:100%}
+.footer-left{display:flex;align-items:center;gap:20px}
+.footer-link{font-size:12px;color:var(--text3);transition:color .15s}
+.footer-link:hover{color:var(--text2)}
+.fc{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--text2)}
+.fc a{color:var(--text2);transition:color .15s}
+.fc a:hover{color:var(--text)}
+
+/* Hamburger */
+.hamburger{display:none;width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;align-items:center;justify-content:center;color:var(--text2);transition:all .15s;flex-shrink:0}
+.mob-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:12px 16px 16px;flex-direction:column;gap:2px;z-index:199;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mob-menu.open{display:flex}
+.mob-link{font-size:15px;font-weight:500;color:var(--text2);padding:10px 12px;border-radius:var(--r);display:block}
+.mob-link:hover,.mob-link.on{color:var(--text);background:var(--accent-sub)}
+.mob-divider{height:1px;background:var(--border);margin:6px 0}
+.mob-cta{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border-radius:var(--r);font-size:14px;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--text);margin-top:4px}
+.mob-lang-row{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 2px}
+.mob-lang-lbl{font-size:12px;color:var(--text3)}
+
+@media(max-width:900px){
+  .tiers{grid-template-columns:1fr}
+  article{padding:48px 24px 64px}
+  .hero{padding:96px 24px 48px}
+  .cta-final{padding:32px 24px}
+}
+@media(max-width:768px){
+  .nav-links,.btn-nav{display:none!important}
+  .hamburger{display:flex}
+  .lang-wrap{display:none}
+}
+</style>
+</head>
+<body>
+
+<svg style="display:none">
+  <symbol id="M-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></symbol>
+  <symbol id="M-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M18.66 5.34l-1.41 1.41"/></symbol>
+  <symbol id="M-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-5-7l7 7-7 7"/></symbol>
+  <symbol id="M-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+</svg>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:4px">
+    <a href="/" class="logo" style="text-decoration:none">Stack<em>Solver</em></a>
+    <div class="nav-links" style="margin-left:16px">
+      <a class="nl" href="/" data-es="Inicio" data-en="Home">Inicio</a>
+      <a class="nl" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+      <a class="nl on" href="/metodo" data-es="Método" data-en="Method">Método</a>
+      <a class="nl" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+      <a class="nl" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+    </div>
+  </div>
+  <div class="nav-r">
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()"><svg width="14" height="14"><use href="#M-moon"/></svg></button>
+    <div class="lang-wrap">
+      <button class="lb on" onclick="setLang('es')">ES</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="/diagnostico" class="btn-nav"><span data-es="Iniciar diagnóstico" data-en="Start diagnosis">Iniciar diagnóstico</span><svg width="12" height="12"><use href="#M-ar"/></svg></a>
+    <button class="hamburger" id="hambBtn" onclick="toggleMobileMenu()" aria-label="Menu"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+  </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a class="mob-link" href="/">Inicio</a>
+  <a class="mob-link" href="/diagnostico">Diagnóstico</a>
+  <a class="mob-link on" href="/metodo">Método</a>
+  <a class="mob-link" href="/biblioteca">Biblioteca</a>
+  <a class="mob-link" href="/nosotros">Nosotros</a>
+  <div class="mob-divider"></div>
+  <a class="mob-cta" href="/diagnostico">Iniciar diagnóstico →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>The StackSolver Method</span></div>
+    <h1 class="hero-h1">Prepárate para <span style="color:var(--indigo)">Mythos</span> y para lo que venga después.</h1>
+    <p class="hero-sub">Una arquitectura operativa para empresas que quieren usar IA <span class="accent">en serio</span> — no como un chat más.</p>
+    <div class="hero-meta">
+      <span>Johann Vivas</span>
+      <span class="dot"></span>
+      <span>16 abril 2026</span>
+      <span class="dot"></span>
+      <span>Lectura ~15 min</span>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article>
+
+<h2>El problema que nadie está diciendo en voz alta</h2>
+
+<p>Cada semana hablo con fundadores y gerentes que me cuentan la misma historia. La versión corta:</p>
+
+<blockquote><p>"Llevamos meses usando IA en el negocio. Arrancamos con energía. Hoy la usamos a medias, los resultados cambian según quién haga la consulta, y cada vez que sale un modelo nuevo sentimos que toca empezar de cero."</p></blockquote>
+
+<p>Este problema no es culpa de la IA. Tampoco del equipo. El problema es <strong>estructural</strong>.</p>
+
+<p>La mayoría adopta IA como si fuera una app de chat. Un lugar donde uno va a preguntar cosas. Pero una IA que sirve para operar un negocio <strong>no es un chat. Es un sistema operativo.</strong> Y todo sistema operativo necesita arquitectura.</p>
+
+<p>Sin esa arquitectura, aparece el síntoma clásico: 6 meses después, tu equipo usa IA al 20% de su potencial, mientras los competidores que diseñaron mejor siguen sacando distancia.</p>
+
+<p>Esta semana Anthropic anunció <strong>Claude Mythos</strong> — un modelo nuevo, más capaz que todo lo anterior. Pronto OpenAI responderá con algo equivalente. Google lo mismo. En 12 meses tendremos 3 o 4 modelos nuevos, todos mejores que los de hoy.</p>
+
+<p>Cada uno de esos lanzamientos va a disparar la misma pregunta en tu empresa: <em>"¿tenemos que cambiar todo de nuevo?"</em></p>
+
+<p><strong>Con la arquitectura correcta, la respuesta es no.</strong></p>
+
+<p>Este artículo explica esa arquitectura. La llamo <strong>The StackSolver Method</strong>. Llevo más de un año operando así, con clientes en Latinoamérica, Reino Unido y otros mercados. En ese tiempo absorbí 3 versiones nuevas de modelos sin reescribir un solo proceso.</p>
+
+<p>No es magia. No es compleja. Pero requiere pensar en IA como se piensa la contabilidad de una empresa: con estructura, no con improvisación.</p>
+
+<hr>
+
+<h2>Los 3 errores que veo en casi todos los negocios</h2>
+
+<p>Antes del método, las trampas más comunes.</p>
+
+<h3>Error 1 — Tratar el chat como si fuera memoria</h3>
+
+<p>Cada conversación con la IA arranca de cero. El equipo repite el contexto. Explica quiénes son los clientes clave. Describe el proyecto otra vez. Menciona el tono de marca. Otra vez.</p>
+
+<p>El resultado: la IA nunca aprende a operar <strong>tu</strong> negocio. Aprende a responder preguntas genéricas. Los resultados dependen de la memoria del humano que hace la consulta ese día.</p>
+
+<p>El chat es volátil por diseño. Es perfecto para explorar. Es pésimo para operar.</p>
+
+<h3>Error 2 — Mezclar todos los contextos en un solo lugar</h3>
+
+<p>Le piden a la misma IA que ayude con la estrategia comercial, con la propuesta del lunes, con un tema legal del contrato del cliente nuevo, y con una consulta puntual — todo en la misma conversación.</p>
+
+<p>La IA no sabe qué "voz" usar. Cuando le pides decisiones comerciales, te trae sugerencias genéricas. Cuando le pides un email profesional, se pone coloquial. Cuando le pides revisión legal, no sabe si debe ser formal o relajado.</p>
+
+<p>Un profesional serio no usa el mismo sistema para atender al cliente que para su agenda del día. La IA merece el mismo cuidado.</p>
+
+<h3>Error 3 — No guardar el conocimiento en un lugar que tú controles</h3>
+
+<p>La "memoria" de la IA vive dentro de la plataforma que uses (ChatGPT, Claude, Gemini). Si cambias de plataforma, la pierdes. Si la plataforma cambia su formato, se te rompe. Si pierdes acceso a tu cuenta, desaparece.</p>
+
+<p>El resultado: estás construyendo sobre arena. Cada cambio del proveedor te obliga a reconstruir.</p>
+
+<div class="callout">
+<strong>Resumen</strong>
+<p>Los 3 errores juntos explican por qué 8 de cada 10 empresas abandonan la IA o la usan a un nivel mediocre. No es culpa de la IA. Es que nunca se construyó un sistema.</p>
+</div>
+
+<hr>
+
+<h2>The StackSolver Method — los 9 componentes</h2>
+
+<p>Este es el método. Nueve componentes, en orden. Cada uno se apoya en el anterior.</p>
+
+<h3>1. Memoria que no se pierde</h3>
+
+<p><strong>Idea:</strong> todo lo que le enseñas a la IA y quieres conservar vive en <strong>archivos simples de texto en tu computador</strong>. No en chats de la plataforma.</p>
+
+<p>Un archivo de texto es:</p>
+
+<ul>
+<li>Legible por cualquier persona sin necesidad de ser técnica</li>
+<li>Editable en cualquier editor</li>
+<li>Respaldable automáticamente en iCloud, Google Drive, Dropbox</li>
+<li>Portable a cualquier computador, hoy o en 10 años</li>
+<li>Independiente de cualquier proveedor de IA</li>
+</ul>
+
+<p>Una estructura básica puede ser tan simple como:</p>
+
+<pre>/mi-empresa/
+    01_Arquitectura/
+        QUIEN_SOMOS.txt
+        BITACORA.txt
+        ESTADO_ACTUAL.txt
+    02_Clientes/
+    03_Biblioteca/</pre>
+
+<p>Al iniciar una sesión con la IA, le das como contexto los 3 archivos de Arquitectura. Al cerrar, le pides que actualice la Bitácora con lo que avanzaron.</p>
+
+<p><strong>Resultado:</strong> tu conocimiento te pertenece. No depende del chat.</p>
+
+<h3>2. Asistentes especializados por área</h3>
+
+<p><strong>Idea:</strong> no uses un solo asistente para todo. Define roles.</p>
+
+<p>Roles mínimos que uso:</p>
+
+<ul>
+<li>Un <strong>planeador</strong> para tareas complejas que requieren estrategia</li>
+<li>Un <strong>ejecutor</strong> para tareas operativas del día a día</li>
+<li>Un <strong>veloz</strong> para consultas rápidas de uno o dos pasos</li>
+<li><strong>Especialistas</strong> por área del negocio: uno financiero, uno legal, uno comercial, uno técnico</li>
+</ul>
+
+<p>Cuando aparece una tarea, primero la clasificas y después la ruteas al asistente correcto. El planeador es caro y lento — no lo uses para corregir un correo. El especialista es preciso y rápido — no le pidas estrategia global.</p>
+
+<p>El equipo deja de "hablar con una sola IA" y empieza a trabajar con un <strong>equipo de IAs</strong>. Cada una con su oficio.</p>
+
+<h3>3. Contexto por cliente y proyecto</h3>
+
+<p><strong>Idea:</strong> no cargues todo el contexto al empezar cada sesión. Carga solo lo que necesitas para la tarea de hoy.</p>
+
+<p>Yo tengo un archivo pequeño por cada cliente o proyecto, que le dice a la IA: <em>"para trabajar con este, lee esto, esto y esto. Y si la tarea menciona finanzas, lee también esto otro."</em></p>
+
+<p>Cuando arrancas, pasas ese archivo. En segundos tienes todo el contexto relevante para el cliente de hoy, sin saturar la conversación con información de otros.</p>
+
+<p>El efecto práctico: cambias de cliente en 10 segundos, sin que la IA mezcle datos, tonos o políticas.</p>
+
+<h3>4. Clasificación automática de tareas</h3>
+
+<p><strong>Idea:</strong> no todas las tareas merecen el mismo tiempo ni el mismo cuidado.</p>
+
+<p>Defino cuatro niveles:</p>
+
+<ul>
+<li><strong>Trivial</strong> — toca un solo archivo, sin riesgo. Ejemplo: corregir un typo, buscar una fecha.</li>
+<li><strong>Estándar</strong> — afecta a un área pequeña del sistema. Ejemplo: redactar un correo, hacer un análisis simple.</li>
+<li><strong>Compleja</strong> — toca varias partes del negocio, tiene impacto real. Ejemplo: armar una propuesta, una estrategia trimestral.</li>
+<li><strong>Arquitectural</strong> — afecta el núcleo del negocio. Ejemplo: cambio de política, rediseño de un proceso clave.</li>
+</ul>
+
+<p>La clasificación se hace automática al inicio de cada tarea. Lo trivial se ejecuta rápido. Lo arquitectural se pausa y espera aprobación humana antes de actuar.</p>
+
+<p><strong>Resultado:</strong> no gastas recursos premium en trivialidades y nunca te arrepientes de una decisión ejecutada a la ligera.</p>
+
+<h3>5. Vigilancia permanente del ecosistema</h3>
+
+<p><strong>Idea:</strong> los modelos, plataformas y amenazas cambian cada semana. Mantener <strong>bitácoras vivas</strong> de lo que está pasando.</p>
+
+<p>Yo mantengo bitácoras de:</p>
+
+<ul>
+<li>Novedades en los modelos que uso</li>
+<li>Herramientas nuevas que aparecen en mi stack</li>
+<li>Vulnerabilidades de seguridad relevantes</li>
+<li>Cambios regulatorios que afectan a los clientes</li>
+</ul>
+
+<p>Cada bitácora tiene el mismo formato simple: qué salió, desde cuándo, si lo uso, si no lo uso, por qué.</p>
+
+<p>Se actualizan automáticamente con reportes diarios (el siguiente componente).</p>
+
+<p>Cuando alguien me pregunta "¿Claude ya tiene esta función nueva?", respondo con la bitácora abierta — no con mi memoria, que es obsoleta desde hace dos semanas.</p>
+
+<h3>6. Reportes automáticos diarios</h3>
+
+<p><strong>Idea:</strong> mientras duermes, tu IA trabaja para ti.</p>
+
+<p>Todos los días a las 6:23 AM, un reporte aparece en mi correo:</p>
+
+<ul>
+<li>Novedades relevantes de los modelos que uso</li>
+<li>Alertas de seguridad del día</li>
+<li>Lo que se está deteriorando en mi sistema (ver componente 9)</li>
+<li>Próximos eventos importantes del calendario</li>
+</ul>
+
+<p>Los lunes el reporte es semanal y más profundo. Los primeros de mes, mensual.</p>
+
+<p>Llego al escritorio y en mi correo ya hay el equivalente a un informe que un analista humano junior tardaría 2 horas en preparar. Sin salario, sin rotación, sin olvidos.</p>
+
+<h3>7. Investigación con auto-verificación</h3>
+
+<p><strong>Idea:</strong> una investigación seria no es un "prompt" bien escrito. Es un proceso con criterios.</p>
+
+<p>Cuando le pido a la IA que investigue algo importante, sigue este ciclo:</p>
+
+<ol>
+<li>Formula la pregunta exacta</li>
+<li>Busca fuentes</li>
+<li>Estructura hallazgos</li>
+<li><strong>Evalúa si su propia respuesta cumple criterios de calidad</strong> (fuentes confiables, actualidad, cobertura completa)</li>
+<li>Si no cumple, repite con ajustes</li>
+</ol>
+
+<p>La diferencia es grande: con un prompt simple, la IA responde lo que le preguntó. Con este ciclo, la IA <strong>se auto-corrige</strong> antes de entregar.</p>
+
+<p>Lo uso para due diligence de proveedores nuevos, interpretar normativa reciente, analizar competidores, y mantener las bitácoras del punto 5 siempre actualizadas.</p>
+
+<h3>8. Portabilidad entre dispositivos</h3>
+
+<p><strong>Idea:</strong> tu sistema debe ser tuyo. Debe arrancar en cualquier equipo que te toque usar.</p>
+
+<p>Configuración básica:</p>
+
+<ul>
+<li>La fuente de verdad vive en una carpeta sincronizada (iCloud, Syncthing o equivalente)</li>
+<li>Cualquier configuración local se guarda en esa misma carpeta</li>
+<li>Al cerrar la sesión, hay una copia automática</li>
+</ul>
+
+<p><strong>Resultado:</strong> si tu equipo principal se daña hoy, en uno nuevo mañana recuperas todo en minutos. No pierdes ni un archivo de memoria. Tampoco pierdes el trabajo del día anterior.</p>
+
+<p>En 2026, la continuidad operativa de un profesional depende de cuán portable sea su sistema. El mío es 100% portable.</p>
+
+<h3>9. Auditoría continua del sistema</h3>
+
+<p><strong>Idea:</strong> si operas en serio, necesitas saber si tu sistema está sano. No esperes a fallar para enterarte.</p>
+
+<p>Todos los lunes, un proceso automático revisa:</p>
+
+<ul>
+<li>Clientes cuya bitácora no se actualizó en dos semanas (¿olvido o desinterés?)</li>
+<li>Archivos de estado sin actualizar</li>
+<li>Documentos huérfanos (no referenciados desde ningún índice)</li>
+<li>Vínculos rotos en los archivos de arquitectura</li>
+<li>Métricas verde/amarillo/rojo por área</li>
+</ul>
+
+<p>Llega al correo como parte del reporte semanal. Es el mismo principio que aplicamos a clientes cuando les construimos un sistema: <strong>la auditoría integrada en cada proceso, no una auditoría única cada 12 meses</strong>.</p>
+
+<hr>
+
+<h2>Cómo se ve un día en esta arquitectura</h2>
+
+<p>Así opera un día típico:</p>
+
+<p><strong>6:23 AM.</strong> Mientras duermes, un proceso automático genera el reporte de la mañana. Cuando abres el correo, ya tienes: novedades del día, alertas, tareas sugeridas.</p>
+
+<p><strong>7:30 AM.</strong> Abres la IA y escribes: <em>"Inicia sesión con el cliente X"</em>. En 15 segundos tiene el contexto completo cargado. La IA responde: <em>"Bitácora dice que ayer cerramos la propuesta. Hoy toca enviar el contrato. ¿Continuamos?"</em></p>
+
+<p><strong>8:00 AM.</strong> Trabajas en el contrato con el asistente legal especializado. La IA redacta, tú revisas, apruebas, ejecutas. Los archivos quedan guardados en tu computador. Todo queda versionado.</p>
+
+<p><strong>11:00 AM.</strong> Un cliente te llama con una duda técnica. Cambias de contexto: <em>"Carga cliente Y"</em>. Nuevo asistente especializado para ese dominio. En 10 segundos estás en modo técnico sin perder el hilo del cliente anterior.</p>
+
+<p><strong>2:00 PM.</strong> Necesitas investigar un proveedor nuevo. Lanzas la investigación automática. Mientras atiendes una reunión, la IA corre 4 ciclos de búsqueda, compara 3 proveedores, y genera una tabla comparativa con fuentes. Al salir de la reunión, la decisión está lista.</p>
+
+<p><strong>5:00 PM.</strong> Cierras el día. Antes de apagar, le pides a la IA: <em>"Actualiza estado y bitácora"</em>. Copia de seguridad automática.</p>
+
+<p><strong>9:00 PM.</strong> En el celular, si pasa algo, lo anotas en un archivo simple. El sistema lo absorbe al día siguiente.</p>
+
+<p>Lo importante: nada de esto depende de que yo "me acuerde" de hacerlo. El sistema opera encima de mi memoria, no dentro de ella. Si mañana no estoy, otro miembro del equipo toma la sesión donde yo la dejé.</p>
+
+<hr>
+
+<h2>Por qué esto sobrevive Mythos, GPT-6 y lo que venga</h2>
+
+<p>El argumento más fuerte del método no es lo que hace hoy. Es lo que <strong>no se rompe</strong> cuando cambian las piezas de abajo.</p>
+
+<p>Cuando Anthropic lanzó su modelo más reciente con memoria 5 veces más grande, mi sistema lo absorbió cambiando una línea en un archivo de configuración. Ningún proceso reescrito, ningún entrenamiento del equipo, ningún workflow roto.</p>
+
+<p>¿Por qué funciona así?</p>
+
+<ul>
+<li><strong>Los componentes son independientes del modelo.</strong> Las bitácoras, los contextos por cliente, la memoria en texto plano funcionan con cualquier IA. Hoy uso una. Mañana puedo usar otra — sin migración traumática.</li>
+<li><strong>Los asistentes son roles, no modelos.</strong> "Ejecutor" sigue siendo "ejecutor" aunque el modelo por debajo cambie.</li>
+<li><strong>Las bitácoras absorben el cambio.</strong> Cuando sale algo nuevo se documenta, se evalúa, se integra o se descarta.</li>
+<li><strong>La memoria es portable.</strong> Si mañana cualquier proveedor desaparece, cargo los mismos archivos en otra plataforma y sigo operando.</li>
+</ul>
+
+<div class="callout">
+<strong>Punto clave</strong>
+<p>Mythos está reservado para 50 organizaciones élite. No va a llegar a tu empresa en el corto plazo. Pero los modelos que le siguen, sí. Y para cuando lleguen, tú ya estarás operando. Sin refactorizar nada. El valor no está en tener el mejor modelo — está en tener la mejor orquestación.</p>
+</div>
+
+<hr>
+
+<h2>Para quién es este método (y para quién no)</h2>
+
+<p><strong>Ideal si:</strong></p>
+
+<ul>
+<li>Fundas o diriges una empresa de 2 a 50 personas con múltiples líneas de negocio</li>
+<li>Eres consultor independiente con más de 3 clientes activos</li>
+<li>Lideras operaciones de una empresa mediana que ya usa IA pero con resultados dispares</li>
+<li>Quieres que tu empresa tenga memoria organizacional, no solo memoria individual</li>
+</ul>
+
+<p><strong>No es para ti si:</strong></p>
+
+<ul>
+<li>Solo usas IA para tareas ocasionales — te queda grande</li>
+<li>Tu empresa es grande y ya tiene frameworks de governance establecidos — necesita adaptación fina, no adopción directa</li>
+<li>No tienes en el equipo a nadie dispuesto a mantener los archivos actualizados</li>
+</ul>
+
+<p><strong>Inversión inicial honesta:</strong> entre 4 y 6 horas para armar el esqueleto, y aproximadamente 30 minutos semanales para mantenerlo. Comparado con lo que tu equipo ya gasta peleando con IA inconsistente, el retorno es inmediato.</p>
+
+<hr>
+
+<h2>Tres caminos para empezar</h2>
+
+<div class="tiers">
+  <div class="tier">
+    <div class="tier-num">Camino 1</div>
+    <div class="tier-name">Hacerlo tú mismo</div>
+    <div class="tier-price">Gratis · 2-3 semanas iterativas</div>
+    <p class="tier-desc">Te llevas este artículo. Si tienes comodidad con herramientas digitales básicas, puedes implementar los 9 componentes solo.</p>
+    <div class="tier-ideal">Ideal si te gusta aprender haciendo y el tiempo de setup no es tu restricción.</div>
+  </div>
+  <div class="tier featured">
+    <div class="tier-num">Camino 2</div>
+    <div class="tier-name">Sesión 1-a-1</div>
+    <div class="tier-price">Pagado · 2-3 horas remotas</div>
+    <p class="tier-desc">Nos reunimos remoto. Revisamos tu operación actual, diseñamos la versión del método adaptada a tu realidad, armamos contigo la estructura inicial.</p>
+    <div class="tier-ideal">Ideal si tienes tiempo para operarlo pero no para diseñarlo bien desde cero.</div>
+  </div>
+  <div class="tier">
+    <div class="tier-num">Camino 3</div>
+    <div class="tier-name">Implementación completa</div>
+    <div class="tier-price">Pagado · proyecto cerrado</div>
+    <p class="tier-desc">StackSolver implementa el método en tu operación: configuración, integración con tus herramientas, entrenamiento del equipo, 30 días de acompañamiento.</p>
+    <div class="tier-ideal">Ideal si quieres los beneficios sin pasar por la curva de aprendizaje.</div>
+  </div>
+</div>
+
+<p style="text-align:center;color:var(--text2);font-size:15px;margin-top:32px">Para cualquiera de los caminos pagados, empieza con un diagnóstico gratuito de 5 minutos.</p>
+
+<div class="cta-final">
+  <h3>¿Listo para operar en serio con IA?</h3>
+  <p>Diagnóstico gratuito · 5 minutos · sin compromiso</p>
+  <a href="/diagnostico" class="btn-cta">Iniciar diagnóstico <svg width="14" height="14"><use href="#M-ar"/></svg></a>
+</div>
+
+<hr>
+
+<h2>Cierre</h2>
+
+<p>Los próximos 24 meses van a ser decisivos. La mayoría de las empresas va a pasar ese tiempo <strong>peleando con herramientas de IA que no encajan</strong> en su operación. Prompt tras prompt, chat tras chat, resultado tras resultado inconsistente.</p>
+
+<p>Una minoría va a invertir una semana en construir la arquitectura correcta, y los próximos 5 años va a operar con una ventaja estructural que los otros no pueden ver desde afuera.</p>
+
+<p>No es magia. Es decidir que la IA merece la misma seriedad que le das a tu contabilidad, a tu CRM, o a tu infraestructura de seguridad. Ni más, ni menos.</p>
+
+<p>Si algo en este artículo te resonó con un problema concreto que vives, hablemos.</p>
+
+<!-- AUTHOR BOX -->
+<div class="author">
+  <div class="author-head">
+    <div class="author-avatar">JV</div>
+    <div>
+      <div class="author-name">Johann Vivas</div>
+      <div class="author-role">Founder at StackSolver</div>
+    </div>
+  </div>
+  <p>Partner Oficial Claris FileMaker. Trabajo con Claris FileMaker desde 2008 y con arquitecturas de IA operativa desde 2024. Bilingüe español/inglés (CPE Cambridge C2), Middlesex University London. StackSolver opera desde Bogotá y Londres, con cobertura para Latinoamérica, Reino Unido, Estados Unidos y Europa.</p>
+  <div class="author-links">
+    <a href="https://www.linkedin.com/in/johann-vivas" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.stacksolver.tech">stacksolver.tech</a>
+    <a href="mailto:info@stacksolver.tech">info@stacksolver.tech</a>
+  </div>
+</div>
+
+</article>
+
+<footer>
+  <div class="footer-left">
+    <div class="logo">Stack<em>Solver</em></div>
+    <a class="footer-link" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+    <a class="footer-link" href="/metodo" data-es="Método" data-en="Method">Método</a>
+    <a class="footer-link" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+    <a class="footer-link" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+  </div>
+  <div class="fc"><svg width="13" height="13"><use href="#M-mail"/></svg><a href="mailto:info@stacksolver.tech">info@stacksolver.tech</a></div>
+  <span style="font-size:12px;color:var(--text3)">© 2026 StackSolver · Partner Oficial Claris Colombia</span>
+</footer>
+
+<script is:inline>
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  const d=document.body.classList.contains('dark');
+  document.getElementById('themeBtn').innerHTML=d?'<svg width="14" height="14"><use href="#M-sun"/></svg>':'<svg width="14" height="14"><use href="#M-moon"/></svg>';
+}
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));
+  document.querySelectorAll('[data-es],[data-en]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});
+}
+function toggleMobileMenu(){
+  const m=document.getElementById('mobMenu');
+  const open=m.classList.toggle('open');
+  document.getElementById('hambBtn').innerHTML=open
+    ?'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+    :'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+}
+document.addEventListener('click',function(e){
+  const m=document.getElementById('mobMenu');
+  const b=document.getElementById('hambBtn');
+  if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){
+    m.classList.remove('open');
+    b.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+  }
+});
+</script>
+</body>
+</html>

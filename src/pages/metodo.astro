@@ -137,6 +137,25 @@ article hr{border:none;border-top:1px solid var(--border);margin:56px 0}
 .callout strong{display:block;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--indigo);margin-bottom:8px}
 .callout p{font-size:16px;margin-bottom:0}
 
+/* Article h4 */
+article h4{font-size:17px;font-weight:700;letter-spacing:-.2px;line-height:1.35;margin:28px 0 12px;color:var(--text)}
+
+/* Memory layers table */
+.memory-layers{margin:20px 0 28px;overflow-x:auto}
+.mem-table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.mem-table th{text-align:left;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text3);background:var(--accent-sub);border-bottom:1px solid var(--border)}
+.mem-table td{padding:14px 16px;vertical-align:top;border-bottom:1px solid var(--border);line-height:1.55;color:var(--text)}
+.mem-table tr:last-child td{border-bottom:none}
+.mem-table td:first-child{white-space:nowrap;width:180px}
+.mem-table code{background:var(--accent-sub);padding:2px 7px;border-radius:4px;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--indigo-strong);font-weight:600}
+article code{background:var(--accent-sub);padding:1px 6px;border-radius:4px;font-size:14.5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--indigo-strong);font-weight:500}
+
+/* Figure with image */
+figure.fig{margin:28px 0;text-align:center}
+figure.fig img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:10px;display:block;margin:0 auto;background:var(--accent-sub)}
+figure.fig figcaption{margin-top:12px;font-size:13px;color:var(--text2);line-height:1.55;max-width:560px;margin-left:auto;margin-right:auto;font-style:italic}
+figure.fig figcaption strong{color:var(--text);font-weight:600;font-style:normal}
+
 /* TIER CARDS (3 paths) */
 .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
 .tier{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;transition:all .2s}
@@ -396,31 +415,65 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
 <h3>1. Memoria que no se pierde</h3>
 
-<p><strong>Idea:</strong> todo lo que le enseñas a la IA y quieres conservar vive en <strong>archivos simples de texto en tu computador</strong>. No en chats de la plataforma.</p>
+<p><strong>Principio:</strong> el chat es desechable. El disco es la memoria. Todo dato relevante (decisiones, estado, aprendizajes, contexto de cliente) vive en archivos de texto en tu computador — no dentro del chat de ninguna plataforma.</p>
 
-<p>Un archivo de texto es:</p>
+<p>Un archivo de texto plano es:</p>
 
 <ul>
 <li>Legible por cualquier persona sin necesidad de ser técnica</li>
 <li>Editable en cualquier editor</li>
-<li>Respaldable automáticamente en iCloud, Google Drive, Dropbox</li>
+<li>Respaldable automáticamente en iCloud, Google Drive o Dropbox</li>
 <li>Portable a cualquier computador, hoy o en 10 años</li>
 <li>Independiente de cualquier proveedor de IA</li>
 </ul>
 
-<p>Una estructura básica puede ser tan simple como:</p>
+<p>La estructura de carpetas sigue una convención simple por prefijos numéricos:</p>
 
 <pre>/mi-empresa/
-    01_Arquitectura/
-        QUIEN_SOMOS.md
-        BITACORA.md
-        ESTADO_ACTUAL.md
-    02_Clientes/
-    03_Biblioteca/</pre>
+├── README.md                   ← Arranque automático
+├── HOME.md                     ← Panel de control
+├── 00_Sistema/                 ← Configuración y reglas base
+├── 00_Loaders/                 ← Arranques por dominio
+├── 00_Tools/                   ← Scripts y utilidades
+├── 01_Clientes/                ← Clientes, leads, contextos
+├── 02_Biblioteca/              ← Conocimiento reutilizable
+├── 03_Proyectos/               ← Proyectos entre áreas
+└── _Archivo/                   ← Histórico y desechable</pre>
 
-<p>Al iniciar una sesión con la IA, le das como contexto los 3 archivos de Arquitectura. Al cerrar, le pides que actualice la Bitácora con lo que avanzaron.</p>
+<p>El orden numérico determina el ordenamiento en cualquier explorador de archivos — lo más importante arriba.</p>
 
-<p><strong>Resultado:</strong> tu conocimiento te pertenece. No depende del chat.</p>
+<h4>Las 4 capas de memoria</h4>
+
+<p>Dentro de cada dominio (un cliente, un área, un proyecto), la memoria se organiza en cuatro capas con propósito distinto:</p>
+
+<div class="memory-layers">
+<table class="mem-table">
+<thead>
+<tr><th>Capa</th><th>Propósito</th><th>Ejemplo de contenido</th></tr>
+</thead>
+<tbody>
+<tr><td><code>BOOTSTRAP.md</code></td><td>Reglas del ecosistema. Lo primero que la IA lee al arrancar.</td><td>Cómo identificarte, qué convenciones usar, reglas de escritura</td></tr>
+<tr><td><code>MASTER_PROMPT.md</code></td><td>Reglas de negocio por dominio. Define el "quién" y el "qué".</td><td>Políticas del cliente, scope del proyecto, stack técnico</td></tr>
+<tr><td><code>HOT_CACHE.md</code></td><td>Estado caliente. Máximo 500 palabras. Se reescribe en cada sesión.</td><td>Blocker actual, próximo paso, decisiones pendientes</td></tr>
+<tr><td><code>DEV_LOG.md</code></td><td>Bitácora histórica completa. Se acumula, no se borra.</td><td>Entradas fechadas, tareas cerradas, aprendizajes del proyecto</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>El flujo típico de una sesión</h4>
+
+<ol>
+<li><strong>Inicio:</strong> la IA lee el <code>HOT_CACHE.md</code> del dominio activo → entiende el estado sin necesidad de "recordar"</li>
+<li><strong>Durante:</strong> ejecuta las tareas del día, clasificadas por complejidad (ver componente 4)</li>
+<li><strong>Cierre:</strong> escribe una entrada nueva en el <code>DEV_LOG.md</code>, reescribe el <code>HOT_CACHE.md</code> con el nuevo estado, actualiza el calendario si aplica</li>
+</ol>
+
+<div class="callout">
+<strong>Por qué funciona</strong>
+<p><strong>Portable:</strong> otro computador, otra IA — mismo contexto. <strong>Auditable:</strong> cada decisión queda registrada con fecha y autor. <strong>Anti-olvido:</strong> el <code>HOT_CACHE</code> es el antídoto — es lo primero que se lee en cada sesión, así nada se pierde entre conversaciones.</p>
+</div>
+
+<p><strong>Dónde NUNCA vive la memoria:</strong> dentro del chat, en la memoria automática del modelo (que no existe entre sesiones), o en credenciales embebidas en archivos (las credenciales solo se referencian — viven en un gestor de contraseñas).</p>
 
 <h3>2. Asistentes especializados por área (con un arquitecto que orquesta)</h3>
 
@@ -487,6 +540,11 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 <p>Se actualizan automáticamente con reportes diarios (el siguiente componente).</p>
 
 <p>Cuando alguien me pregunta "¿Claude ya tiene esta función nueva?", respondo con la bitácora abierta — no con mi memoria, que es obsoleta desde hace dos semanas.</p>
+
+<figure class="fig" id="fig-ecosystem-graph">
+  <img src="/images/metodo/ecosystem-graph.png" alt="Vista grafica del ecosistema — red de archivos de conocimiento interconectados formando clusters tematicos">
+  <figcaption><strong>La red de conocimiento de un sistema en producción.</strong> Cada punto es un archivo; las líneas son referencias cruzadas. Así se ve una empresa mediana después de un año operando con The StackSolver Method. Los clusters representan áreas: clientes, biblioteca, infraestructura, procesos internos.</figcaption>
+</figure>
 
 <h3>6. Reportes automáticos diarios</h3>
 

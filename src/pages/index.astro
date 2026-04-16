@@ -84,6 +84,10 @@ body.dark nav{background:rgba(3,3,3,.85)}
 
 /* PRODUCT PREVIEW (hero right) */
 .preview-wrap{position:relative}
+/* Hero quote (above preview card) */
+.hero-quote{margin-bottom:18px;padding:12px 16px;border-left:2px solid var(--indigo);background:var(--indigo-sub);border-radius:0 var(--r) var(--r) 0}
+.hero-quote p{font-size:12.5px;line-height:1.5;color:var(--text);font-style:italic;font-weight:500;letter-spacing:-.15px;margin:0}
+.hero-quote p strong{color:var(--indigo);font-weight:700;font-style:normal}
 .preview-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--border),0 20px 60px rgba(0,0,0,.04)}
 .preview-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--accent-sub)}
 .pbar-dots{display:flex;gap:5px}
@@ -361,6 +365,9 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
     <!-- Product preview -->
     <div class="preview-wrap">
+      <div class="hero-quote">
+        <p data-es="No confíes solo en los datos que puedes ver. Escucha lo que está ausente — <strong>nosotros te ayudamos a encontrarlo.</strong>" data-en="Don't just trust the data you can see. Listen for what's absent — <strong>we'll help you find it.</strong>">No confíes solo en los datos que puedes ver. Escucha lo que está ausente — <strong>nosotros te ayudamos a encontrarlo.</strong></p>
+      </div>
       <div class="preview-card">
         <div class="preview-bar">
           <div class="pbar-dots"><div class="pd"></div><div class="pd"></div><div class="pd"></div></div>

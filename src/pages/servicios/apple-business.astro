@@ -1,0 +1,514 @@
+---
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Business — Implementación y soporte de ABM para empresas | StackSolver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- SEO -->
+<meta name="description" content="Implementación completa de Apple Business Manager para empresas globales. Cuentas corporativas, integración MDM (Jamf, Mosyle, Kandji), capacitación y soporte continuo. Proyecto cerrado + retainer mensual.">
+<meta name="keywords" content="Apple Business Manager, ABM, implementador ABM Colombia, Managed Apple IDs, MDM Jamf Mosyle Kandji, VPP, DEP, Apple empresas, StackSolver, fleet management Apple">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Johann Vivas — StackSolver">
+<link rel="canonical" href="https://www.stacksolver.tech/servicios/apple-business">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.stacksolver.tech/servicios/apple-business">
+<meta property="og:title" content="Apple Business — Implementación y soporte de ABM para empresas">
+<meta property="og:description" content="Implementación completa de Apple Business Manager. Cuentas corporativas, integración MDM, capacitación y soporte continuo. Para empresas con 10 a 500 dispositivos Apple.">
+<meta property="og:image" content="https://www.stacksolver.tech/og-image.png">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Apple Business — Implementación y soporte de ABM para empresas">
+<meta name="twitter:description" content="Implementación completa de Apple Business Manager para empresas con stack Apple. Cuentas corporativas, MDM, capacitación y soporte.">
+<meta name="twitter:image" content="https://www.stacksolver.tech/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Apple Business Manager Implementation & Support",
+  "provider": {
+    "@type": "Organization",
+    "name": "StackSolver",
+    "url": "https://www.stacksolver.tech"
+  },
+  "areaServed": ["CO", "US", "GB", "ES", "MX", "CL", "AR", "BS"],
+  "description": "Implementación completa de Apple Business Manager (ABM) para empresas: auditoría inicial, configuración del portal, Managed Apple IDs, integración MDM (Jamf/Mosyle/Kandji), VPP, DEP, capacitación del equipo y soporte continuo.",
+  "offers": [
+    {"@type": "Offer", "name": "Setup ABM", "description": "Proyecto cerrado de implementación con timeline definido"},
+    {"@type": "Offer", "name": "Soporte continuo ABM", "description": "Retainer mensual post-implementación"}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --bg:#fff;--surface:#fff;--border:#e4e4e7;--border-strong:#18181b;
+  --accent:#18181b;--accent-fg:#fff;--accent-sub:#f4f4f5;
+  --indigo:#6366f1;--indigo-sub:#eef2ff;--indigo-strong:#4f46e5;
+  --green:#16a34a;--green-sub:#f0fdf4;
+  --amber:#d97706;--amber-sub:#fffbeb;
+  --text:#18181b;--text2:#52525b;--text3:#a1a1aa;
+  --r:8px;--font:'Inter',-apple-system,sans-serif;
+}
+body.dark{
+  --bg:#030303;--surface:#0f0f0f;--border:#1f1f1f;--border-strong:#fafafa;
+  --accent:#fafafa;--accent-fg:#0a0a0a;--accent-sub:#141414;
+  --indigo:#818cf8;--indigo-sub:#1a1a2e;--indigo-strong:#a5b4fc;
+  --green:#4ade80;--green-sub:#042a12;
+  --amber:#f59e0b;--amber-sub:#1c1410;
+  --text:#fafafa;--text2:#a1a1aa;--text3:#52525b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .2s}
+body.dark nav{background:rgba(3,3,3,.85)}
+.logo{font-size:14px;font-weight:800;letter-spacing:-.4px;color:var(--text)}
+.logo em{color:var(--indigo);font-style:normal}
+.nav-links{display:flex;gap:2px}
+.nl{font-size:13px;color:var(--text2);padding:5px 11px;border-radius:var(--r);transition:all .15s;font-weight:500}
+.nl:hover{color:var(--text);background:var(--accent-sub)}
+.nl.on{color:var(--text)}
+.nav-r{display:flex;gap:6px;align-items:center}
+.icon-btn{width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .15s}
+.icon-btn:hover{border-color:var(--text3);color:var(--text)}
+.lang-wrap{display:flex;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.lb{padding:3px 10px;font-size:12px;font-weight:600;border:none;background:none;color:var(--text2);cursor:pointer;font-family:var(--font)}
+.lb.on{background:var(--accent);color:var(--accent-fg)}
+.btn-nav{display:flex;align-items:center;gap:5px;padding:6px 14px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--font);transition:all .15s}
+.btn-nav:hover{background:var(--accent-sub)}
+
+/* HERO */
+.hero{padding:120px 28px 60px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.35;pointer-events:none}
+.hero::after{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(99,102,241,.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:880px;margin:0 auto;width:100%;position:relative;z-index:1;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--indigo);background:var(--indigo-sub);margin-bottom:24px}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-h1{font-size:clamp(36px,5vw,58px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:16px;color:var(--text)}
+.hero-sub{font-size:clamp(17px,2vw,20px);font-weight:500;color:var(--text2);line-height:1.5;max-width:640px;margin:0 auto 12px}
+.hero-sub .accent{color:var(--indigo);font-weight:700}
+.hero-cta{margin-top:32px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;border-radius:var(--r);font-size:14px;font-weight:600;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);transition:all .15s}
+.btn-primary:hover{opacity:.88}
+.btn-secondary{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;border-radius:var(--r);font-size:14px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--text2);transition:all .15s}
+.btn-secondary:hover{border-color:var(--text3);color:var(--text)}
+
+/* ARTICLE / CONTENT */
+.section{max-width:860px;margin:0 auto;padding:64px 28px}
+.section-narrow{max-width:720px;margin:0 auto;padding:48px 28px}
+h2{font-size:clamp(26px,3vw,34px);font-weight:800;letter-spacing:-.7px;line-height:1.2;margin:0 0 20px;color:var(--text)}
+h3{font-size:clamp(18px,2vw,20px);font-weight:700;letter-spacing:-.3px;line-height:1.3;margin:32px 0 10px;color:var(--text)}
+p{font-size:17px;line-height:1.75;color:var(--text);margin-bottom:16px;font-weight:400}
+p strong{color:var(--text);font-weight:700}
+.section ul{margin:0 0 20px 0;padding-left:0;list-style:none}
+.section ul li{position:relative;padding-left:22px;margin-bottom:10px;font-size:16px;line-height:1.65;color:var(--text)}
+.section ul li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--indigo)}
+
+/* PROBLEM BLOCK */
+.problem{background:var(--accent-sub);border:1px solid var(--border);border-radius:14px;padding:36px 32px;margin:32px 0}
+.problem .problem-q{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:16px;color:var(--text);line-height:1.3}
+.problem p{font-size:16px;line-height:1.7;margin-bottom:12px;color:var(--text2)}
+.problem ul li{color:var(--text2)}
+
+/* FEATURES grid */
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0}
+.feat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;transition:border-color .15s}
+.feat:hover{border-color:var(--text3)}
+.feat-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.feat-num{width:24px;height:24px;border-radius:6px;background:var(--indigo-sub);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.feat h4{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.2px;margin:0}
+.feat p{font-size:14px;color:var(--text2);line-height:1.55;margin:0}
+
+/* PHASES */
+.phases{margin:28px 0}
+.phase{display:grid;grid-template-columns:90px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.phase:last-child{border-bottom:none}
+.phase-num{font-size:32px;font-weight:900;color:var(--indigo);letter-spacing:-1px;line-height:1}
+.phase-body h4{font-size:17px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.phase-body p{font-size:14.5px;line-height:1.65;color:var(--text2);margin-bottom:6px}
+.phase-time{font-size:12px;font-weight:600;color:var(--text3);letter-spacing:.4px;text-transform:uppercase}
+
+/* PACKAGES */
+.pkgs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0}
+.pkg{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px}
+.pkg.featured{border-color:var(--indigo);background:var(--indigo-sub)}
+.pkg-label{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.pkg.featured .pkg-label{color:var(--indigo)}
+.pkg-name{font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px;color:var(--text)}
+.pkg-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:16px}
+.pkg-list{list-style:none;padding:0;margin:0}
+.pkg-list li{font-size:13.5px;color:var(--text);line-height:1.55;padding:6px 0 6px 24px;position:relative}
+.pkg-list li::before{content:'✓';position:absolute;left:0;top:5px;color:var(--indigo);font-weight:700}
+
+/* FAQ */
+.faq-wrap{margin:28px 0;display:flex;flex-direction:column;gap:8px}
+.faq-item{border:1px solid var(--border);border-radius:10px;padding:0;overflow:hidden;background:var(--surface)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;font-size:15px;font-weight:600;color:var(--text);gap:12px}
+.faq-q::after{content:'+';font-size:18px;color:var(--text3);font-weight:400;transition:transform .2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg);color:var(--indigo)}
+.faq-a{display:none;padding:0 20px 18px;font-size:14.5px;color:var(--text2);line-height:1.7}
+.faq-item.open .faq-a{display:block}
+
+/* CTA FINAL */
+.cta-final{background:var(--accent);color:var(--accent-fg);border-radius:14px;padding:48px 36px;text-align:center;margin:48px auto;max-width:720px}
+.cta-final h3{color:var(--accent-fg);font-size:28px;margin:0 0 10px 0;font-weight:800;letter-spacing:-.5px}
+.cta-final p{color:var(--accent-fg);opacity:.85;margin-bottom:24px;font-size:16px}
+.cta-final .btn-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--accent-fg);color:var(--accent);border-radius:var(--r);font-weight:700;font-size:15px;transition:transform .15s;text-decoration:none}
+.cta-final .btn-cta:hover{transform:translateY(-1px)}
+
+/* DISCLAIMER */
+.disclaimer{max-width:720px;margin:48px auto 0;padding:24px 28px;background:var(--accent-sub);border:1px solid var(--border);border-radius:10px;font-size:12.5px;line-height:1.6;color:var(--text3)}
+.disclaimer strong{color:var(--text2)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.footer-left{display:flex;align-items:center;gap:20px}
+.footer-link{font-size:12px;color:var(--text3);transition:color .15s}
+.footer-link:hover{color:var(--text2)}
+.fc{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--text2)}
+.fc a{color:var(--text2);transition:color .15s}
+.fc a:hover{color:var(--text)}
+
+/* Hamburger */
+.hamburger{display:none;width:30px;height:30px;border-radius:var(--r);border:1px solid var(--border);background:none;cursor:pointer;align-items:center;justify-content:center;color:var(--text2);transition:all .15s;flex-shrink:0}
+.mob-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:12px 16px 16px;flex-direction:column;gap:2px;z-index:199;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mob-menu.open{display:flex}
+.mob-link{font-size:15px;font-weight:500;color:var(--text2);padding:10px 12px;border-radius:var(--r);display:block}
+.mob-link:hover,.mob-link.on{color:var(--text);background:var(--accent-sub)}
+.mob-divider{height:1px;background:var(--border);margin:6px 0}
+
+@media(max-width:900px){
+  .features, .pkgs{grid-template-columns:1fr}
+  .phase{grid-template-columns:70px 1fr;gap:16px}
+  .phase-num{font-size:26px}
+  .section{padding:48px 24px}
+  .hero{padding:96px 24px 48px}
+  .problem{padding:28px 24px}
+  .cta-final{padding:36px 24px}
+}
+@media(max-width:768px){
+  .nav-links,.btn-nav{display:none!important}
+  .hamburger{display:flex}
+  .lang-wrap{display:none}
+}
+</style>
+</head>
+<body>
+
+<svg style="display:none">
+  <symbol id="A-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></symbol>
+  <symbol id="A-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M18.66 5.34l-1.41 1.41"/></symbol>
+  <symbol id="A-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-5-7l7 7-7 7"/></symbol>
+  <symbol id="A-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+</svg>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:4px">
+    <a href="/" class="logo" style="text-decoration:none">Stack<em>Solver</em></a>
+    <div class="nav-links" style="margin-left:16px">
+      <a class="nl" href="/" data-es="Inicio" data-en="Home">Inicio</a>
+      <a class="nl" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+      <a class="nl" href="/metodo" data-es="Método" data-en="Method">Método</a>
+      <a class="nl" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+      <a class="nl" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+    </div>
+  </div>
+  <div class="nav-r">
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()"><svg width="14" height="14"><use href="#A-moon"/></svg></button>
+    <div class="lang-wrap">
+      <button class="lb on" onclick="setLang('es')">ES</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="/diagnostico" class="btn-nav"><span data-es="Iniciar diagnóstico" data-en="Start diagnosis">Iniciar diagnóstico</span><svg width="12" height="12"><use href="#A-ar"/></svg></a>
+    <button class="hamburger" id="hambBtn" onclick="toggleMobileMenu()" aria-label="Menu"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+  </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a class="mob-link" href="/">Inicio</a>
+  <a class="mob-link" href="/diagnostico">Diagnóstico</a>
+  <a class="mob-link" href="/metodo">Método</a>
+  <a class="mob-link" href="/biblioteca">Biblioteca</a>
+  <a class="mob-link" href="/nosotros">Nosotros</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span data-es="Servicios · Apple Business" data-en="Services · Apple Business">Servicios · Apple Business</span></div>
+    <h1 class="hero-h1" data-es="Apple Business, configurado para operar en serio." data-en="Apple Business, configured to operate seriously.">Apple Business, configurado para operar en serio.</h1>
+    <p class="hero-sub" data-es="Implementación completa de Apple Business Manager (ABM), integración MDM y soporte continuo para empresas que operan con Mac, iPhone y iPad como herramientas corporativas — no como regalos." data-en="Full implementation of Apple Business Manager (ABM), MDM integration and ongoing support for companies that operate Mac, iPhone and iPad as corporate tools — not as gifts.">Implementación completa de Apple Business Manager (ABM), integración MDM y soporte continuo para empresas que operan con Mac, iPhone y iPad como herramientas corporativas — no como regalos.</p>
+    <div class="hero-cta">
+      <a href="/diagnostico" class="btn-primary">
+        <span data-es="Diagnóstico gratuito" data-en="Free diagnosis">Diagnóstico gratuito</span>
+        <svg width="14" height="14"><use href="#A-ar"/></svg>
+      </a>
+      <a href="#packages" class="btn-secondary">
+        <span data-es="Ver paquetes" data-en="See packages">Ver paquetes</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section-narrow">
+  <div class="problem">
+    <p class="problem-q" data-es="Compraste 20 Mac y 15 iPhones. ¿Y ahora qué?" data-en="You bought 20 Macs and 15 iPhones. Now what?">Compraste 20 Mac y 15 iPhones. ¿Y ahora qué?</p>
+    <p data-es="Es el momento en que casi todas las empresas se dan cuenta tarde de algo: Apple vende hardware excepcional, pero la capa de gestión corporativa no viene por defecto. Sin ella, aparecen los dolores clásicos:" data-en="This is the moment when almost every company realizes something late: Apple sells exceptional hardware, but the corporate management layer does not come by default. Without it, the classic pain points appear:">Es el momento en que casi todas las empresas se dan cuenta tarde de algo: Apple vende hardware excepcional, pero la capa de gestión corporativa no viene por defecto. Sin ella, aparecen los dolores clásicos:</p>
+    <ul>
+      <li data-es="Empleados usan sus cuentas personales de iCloud en equipos corporativos — mezcla de datos, imposible separar al momento del offboarding" data-en="Employees use personal iCloud accounts on corporate devices — data mixing, impossible to separate at offboarding">Empleados usan sus cuentas personales de iCloud en equipos corporativos — mezcla de datos, imposible separar al momento del offboarding</li>
+      <li data-es="Un equipo se pierde o lo roban y no hay forma de bloquearlo remotamente, borrarlo o rastrearlo bajo política empresarial" data-en="A device is lost or stolen and there is no way to remotely lock, wipe or track it under corporate policy">Un equipo se pierde o lo roban y no hay forma de bloquearlo remotamente, borrarlo o rastrearlo bajo política empresarial</li>
+      <li data-es="Compras de apps fuera de VPP — la empresa no tiene visibilidad de lo que se instala en sus propios equipos" data-en="App purchases outside VPP — the company has no visibility of what is installed on its own devices">Compras de apps fuera de VPP — la empresa no tiene visibilidad de lo que se instala en sus propios equipos</li>
+      <li data-es="Al enrolar un empleado nuevo, horas de configuración manual por cada dispositivo" data-en="When onboarding a new employee, hours of manual configuration per device">Al enrolar un empleado nuevo, horas de configuración manual por cada dispositivo</li>
+      <li data-es="Al salir un empleado, el dispositivo sigue con datos, apps y cuentas enlazadas — no hay wipe limpio" data-en="When an employee leaves, the device still has data, apps and linked accounts — no clean wipe">Al salir un empleado, el dispositivo sigue con datos, apps y cuentas enlazadas — no hay wipe limpio</li>
+      <li data-es="Auditorías ISO 27001 o compliance fallan porque no hay control demostrable sobre identidades y dispositivos" data-en="ISO 27001 audits or compliance fail because there is no demonstrable control over identities and devices">Auditorías ISO 27001 o compliance fallan porque no hay control demostrable sobre identidades y dispositivos</li>
+    </ul>
+    <p data-es="La solución ya existe: Apple Business Manager. El problema es que su implementación correcta es un proyecto serio, no una configuración de tarde." data-en="The solution already exists: Apple Business Manager. The problem is that its correct implementation is a serious project, not an afternoon configuration.">La solución ya existe: Apple Business Manager. El problema es que su implementación correcta es un proyecto serio, no una configuración de tarde.</p>
+  </div>
+</section>
+
+<!-- WHAT WE DELIVER -->
+<section class="section">
+  <h2 data-es="Qué entregamos" data-en="What we deliver">Qué entregamos</h2>
+  <p data-es="Implementación completa, no solo la configuración del portal. Desde la auditoría inicial hasta el soporte continuo, en todas las fases:" data-en="Complete implementation, not just portal configuration. From initial audit to ongoing support, across all phases:">Implementación completa, no solo la configuración del portal. Desde la auditoría inicial hasta el soporte continuo, en todas las fases:</p>
+
+  <div class="features">
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">1</div><h4 data-es="Auditoría de dominio y cuentas" data-en="Domain and account audit">Auditoría de dominio y cuentas</h4></div>
+      <p data-es="Revisión DNS, detección de cuentas Apple no administradas en el dominio corporativo, plan de migración." data-en="DNS review, detection of unmanaged Apple accounts on the corporate domain, migration plan.">Revisión DNS, detección de cuentas Apple no administradas en el dominio corporativo, plan de migración.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">2</div><h4 data-es="Setup del portal ABM" data-en="ABM portal setup">Setup del portal ABM</h4></div>
+      <p data-es="Creación y verificación del portal empresarial en business.apple.com, configuración de roles administrativos y políticas base." data-en="Creation and verification of the enterprise portal at business.apple.com, configuration of administrative roles and base policies.">Creación y verificación del portal empresarial en business.apple.com, configuración de roles administrativos y políticas base.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">3</div><h4 data-es="Managed Apple IDs" data-en="Managed Apple IDs">Managed Apple IDs</h4></div>
+      <p data-es="Creación de cuentas corporativas bajo el dominio de la empresa, con política clara: 1:1 para usuarios nombrados, genéricas para dispositivos compartidos." data-en="Creation of corporate accounts under the company domain, with clear policy: 1:1 for named users, generic for shared devices.">Creación de cuentas corporativas bajo el dominio de la empresa, con política clara: 1:1 para usuarios nombrados, genéricas para dispositivos compartidos.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">4</div><h4 data-es="Integración MDM" data-en="MDM integration">Integración MDM</h4></div>
+      <p data-es="Conexión con el MDM existente del cliente (Jamf, Mosyle, Kandji, JumpCloud, Microsoft Intune) o recomendación y setup si aún no tiene. Agnósticos por diseño." data-en="Connection with the client's existing MDM (Jamf, Mosyle, Kandji, JumpCloud, Microsoft Intune) or recommendation and setup if none yet. Agnostic by design.">Conexión con el MDM existente del cliente (Jamf, Mosyle, Kandji, JumpCloud, Microsoft Intune) o recomendación y setup si aún no tiene. Agnósticos por diseño.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">5</div><h4 data-es="VPP — compras en volumen" data-en="VPP — volume purchases">VPP — compras en volumen</h4></div>
+      <p data-es="Configuración de Volume Purchase Program. La empresa compra apps y licencias una vez, las distribuye automáticamente a cualquier dispositivo corporativo." data-en="Volume Purchase Program configuration. The company buys apps and licenses once, distributes them automatically to any corporate device.">Configuración de Volume Purchase Program. La empresa compra apps y licencias una vez, las distribuye automáticamente a cualquier dispositivo corporativo.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">6</div><h4 data-es="DEP — inscripción automática" data-en="DEP — automated enrollment">DEP — inscripción automática</h4></div>
+      <p data-es="Device Enrollment Program. Un dispositivo nuevo se enciende y queda configurado automáticamente con las políticas y apps de la empresa — cero configuración manual." data-en="Device Enrollment Program. A new device turns on and is automatically configured with company policies and apps — zero manual setup.">Device Enrollment Program. Un dispositivo nuevo se enciende y queda configurado automáticamente con las políticas y apps de la empresa — cero configuración manual.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">7</div><h4 data-es="Manual personalizado + capacitación" data-en="Custom manual + training">Manual personalizado + capacitación</h4></div>
+      <p data-es="Manual escrito en el idioma del equipo del cliente, con su dominio y sus políticas. Sesiones de capacitación remotas para administradores y empleados." data-en="Manual written in the client's team language, with their domain and policies. Remote training sessions for administrators and employees.">Manual escrito en el idioma del equipo del cliente, con su dominio y sus políticas. Sesiones de capacitación remotas para administradores y empleados.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-head"><div class="feat-num">8</div><h4 data-es="Soporte continuo" data-en="Ongoing support">Soporte continuo</h4></div>
+      <p data-es="Retainer mensual post-implementación: resolución de incidentes, nuevas altas de empleados, offboarding limpio, actualización de políticas cuando Apple cambia el portal." data-en="Monthly retainer post-implementation: incident resolution, new employee onboarding, clean offboarding, policy updates when Apple changes the portal.">Retainer mensual post-implementación: resolución de incidentes, nuevas altas de empleados, offboarding limpio, actualización de políticas cuando Apple cambia el portal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY PHASES -->
+<section class="section">
+  <h2 data-es="Metodología en 5 fases" data-en="5-phase methodology">Metodología en 5 fases</h2>
+  <p data-es="Implementación estructurada con entregables claros en cada fase. Timeline típico para una empresa con 20-100 dispositivos:" data-en="Structured implementation with clear deliverables in each phase. Typical timeline for a company with 20-100 devices:">Implementación estructurada con entregables claros en cada fase. Timeline típico para una empresa con 20-100 dispositivos:</p>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-num">0</div>
+      <div class="phase-body">
+        <h4 data-es="Auditoría" data-en="Audit">Auditoría</h4>
+        <p data-es="Inventario completo de dispositivos, cuentas Apple existentes, estado DNS, MDM actual (si existe), políticas vigentes. Informe con brechas y plan de trabajo." data-en="Complete inventory of devices, existing Apple accounts, DNS status, current MDM (if any), existing policies. Report with gaps and work plan.">Inventario completo de dispositivos, cuentas Apple existentes, estado DNS, MDM actual (si existe), políticas vigentes. Informe con brechas y plan de trabajo.</p>
+        <p class="phase-time" data-es="Tiempo típico: 1 semana" data-en="Typical time: 1 week">Tiempo típico: 1 semana</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">1</div>
+      <div class="phase-body">
+        <h4 data-es="Setup del portal y dominio" data-en="Portal and domain setup">Setup del portal y dominio</h4>
+        <p data-es="Verificación del dominio corporativo, creación del portal ABM, configuración de roles administrativos, políticas de seguridad base." data-en="Corporate domain verification, ABM portal creation, administrative roles configuration, base security policies.">Verificación del dominio corporativo, creación del portal ABM, configuración de roles administrativos, políticas de seguridad base.</p>
+        <p class="phase-time" data-es="Tiempo típico: 1 semana" data-en="Typical time: 1 week">Tiempo típico: 1 semana</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">2</div>
+      <div class="phase-body">
+        <h4 data-es="Migración de cuentas" data-en="Account migration">Migración de cuentas</h4>
+        <p data-es="Creación de Managed Apple IDs para todos los empleados, comunicación del proceso al equipo, migración asistida de datos personales a cuentas personales donde aplique." data-en="Creation of Managed Apple IDs for all employees, process communication to the team, assisted migration of personal data to personal accounts where applicable.">Creación de Managed Apple IDs para todos los empleados, comunicación del proceso al equipo, migración asistida de datos personales a cuentas personales donde aplique.</p>
+        <p class="phase-time" data-es="Tiempo típico: 2 a 3 semanas" data-en="Typical time: 2 to 3 weeks">Tiempo típico: 2 a 3 semanas</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">3</div>
+      <div class="phase-body">
+        <h4 data-es="MDM, VPP y DEP" data-en="MDM, VPP and DEP">MDM, VPP y DEP</h4>
+        <p data-es="Integración con el MDM elegido, inscripción de dispositivos, setup de VPP y DEP, políticas de compliance (passcode, encryption, restricciones). Tests de alta, baja y reset remoto." data-en="Integration with chosen MDM, device enrollment, VPP and DEP setup, compliance policies (passcode, encryption, restrictions). Tests for onboarding, offboarding and remote reset.">Integración con el MDM elegido, inscripción de dispositivos, setup de VPP y DEP, políticas de compliance (passcode, encryption, restricciones). Tests de alta, baja y reset remoto.</p>
+        <p class="phase-time" data-es="Tiempo típico: 1 a 2 semanas" data-en="Typical time: 1 to 2 weeks">Tiempo típico: 1 a 2 semanas</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">4</div>
+      <div class="phase-body">
+        <h4 data-es="Capacitación + soporte" data-en="Training + support">Capacitación + soporte</h4>
+        <p data-es="Manual personalizado entregado, 2 a 3 sesiones de capacitación (administradores y empleados), resolución de dudas iniciales. Transición a soporte continuo." data-en="Custom manual delivered, 2 to 3 training sessions (administrators and employees), initial questions resolution. Transition to ongoing support.">Manual personalizado entregado, 2 a 3 sesiones de capacitación (administradores y empleados), resolución de dudas iniciales. Transición a soporte continuo.</p>
+        <p class="phase-time" data-es="Continuo desde el mes 2" data-en="Ongoing from month 2">Continuo desde el mes 2</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS IT FOR -->
+<section class="section-narrow">
+  <h2 data-es="Para quién es" data-en="Who it's for">Para quién es</h2>
+
+  <h3 data-es="Ideal si tu empresa..." data-en="Ideal if your company...">Ideal si tu empresa...</h3>
+  <ul>
+    <li data-es="Tiene entre 10 y 500 dispositivos Apple en uso corporativo" data-en="Has between 10 and 500 Apple devices in corporate use">Tiene entre 10 y 500 dispositivos Apple en uso corporativo</li>
+    <li data-es="Está en transición de BYOD (empleados con sus cuentas) a modelo corporativo" data-en="Is transitioning from BYOD (employees with their own accounts) to corporate model">Está en transición de BYOD (empleados con sus cuentas) a modelo corporativo</li>
+    <li data-es="Necesita cumplir ISO 27001, NIST, GDPR u otros marcos que exigen gestión de identidades y dispositivos" data-en="Needs to comply with ISO 27001, NIST, GDPR or other frameworks that require identity and device management">Necesita cumplir ISO 27001, NIST, GDPR u otros marcos que exigen gestión de identidades y dispositivos</li>
+    <li data-es="Tiene operación internacional y necesita políticas consistentes entre oficinas" data-en="Has international operations and needs consistent policies across offices">Tiene operación internacional y necesita políticas consistentes entre oficinas</li>
+    <li data-es="Ya intentó implementar ABM internamente y se atascó en la parte de dominio, migración o integración MDM" data-en="Already tried to implement ABM internally and got stuck on domain, migration or MDM integration">Ya intentó implementar ABM internamente y se atascó en la parte de dominio, migración o integración MDM</li>
+  </ul>
+
+  <h3 data-es="No es para ti si..." data-en="Not for you if...">No es para ti si...</h3>
+  <ul>
+    <li data-es="Tienes menos de 5 dispositivos — el overhead del setup no compensa" data-en="You have fewer than 5 devices — setup overhead doesn't justify it">Tienes menos de 5 dispositivos — el overhead del setup no compensa</li>
+    <li data-es="Tu empresa opera 100% en Windows y no prevé adoptar Apple" data-en="Your company runs 100% on Windows and does not plan to adopt Apple">Tu empresa opera 100% en Windows y no prevé adoptar Apple</li>
+    <li data-es="Buscas un Apple Authorized Reseller para compra de hardware — somos consultores de implementación, no distribuidores" data-en="You are looking for an Apple Authorized Reseller for hardware purchase — we are implementation consultants, not distributors">Buscas un Apple Authorized Reseller para compra de hardware — somos consultores de implementación, no distribuidores</li>
+  </ul>
+</section>
+
+<!-- PACKAGES -->
+<section class="section" id="packages">
+  <h2 data-es="Dos formatos de engagement" data-en="Two engagement formats">Dos formatos de engagement</h2>
+  <p data-es="Se pueden contratar por separado o combinados. La implementación es proyecto cerrado; el soporte es retainer mensual continuo." data-en="Can be contracted separately or combined. Implementation is a closed project; support is an ongoing monthly retainer.">Se pueden contratar por separado o combinados. La implementación es proyecto cerrado; el soporte es retainer mensual continuo.</p>
+
+  <div class="pkgs">
+    <div class="pkg featured">
+      <div class="pkg-label" data-es="Proyecto cerrado" data-en="Closed project">Proyecto cerrado</div>
+      <div class="pkg-name" data-es="Setup Apple Business" data-en="Apple Business Setup">Setup Apple Business</div>
+      <p class="pkg-desc" data-es="Implementación completa de principio a fin. Termina con el sistema en operación y el equipo capacitado." data-en="Full implementation from start to finish. Ends with the system in operation and the team trained.">Implementación completa de principio a fin. Termina con el sistema en operación y el equipo capacitado.</p>
+      <ul class="pkg-list">
+        <li data-es="Auditoría y plan de trabajo" data-en="Audit and work plan">Auditoría y plan de trabajo</li>
+        <li data-es="Setup del portal ABM y dominio" data-en="ABM portal and domain setup">Setup del portal ABM y dominio</li>
+        <li data-es="Creación de Managed Apple IDs" data-en="Managed Apple IDs creation">Creación de Managed Apple IDs</li>
+        <li data-es="Integración MDM (Jamf/Mosyle/Kandji/tu elección)" data-en="MDM integration (Jamf/Mosyle/Kandji/your choice)">Integración MDM (Jamf/Mosyle/Kandji/tu elección)</li>
+        <li data-es="VPP + DEP configurados" data-en="VPP + DEP configured">VPP + DEP configurados</li>
+        <li data-es="Manual personalizado + capacitación" data-en="Custom manual + training">Manual personalizado + capacitación</li>
+        <li data-es="Timeline típico: 5 a 8 semanas" data-en="Typical timeline: 5 to 8 weeks">Timeline típico: 5 a 8 semanas</li>
+      </ul>
+    </div>
+    <div class="pkg">
+      <div class="pkg-label" data-es="Retainer mensual" data-en="Monthly retainer">Retainer mensual</div>
+      <div class="pkg-name" data-es="Soporte continuo" data-en="Ongoing support">Soporte continuo</div>
+      <p class="pkg-desc" data-es="Acompañamiento post-implementación. Ideal para empresas que ya tienen ABM pero quieren garantizar operación limpia." data-en="Post-implementation accompaniment. Ideal for companies that already have ABM but want to ensure clean operation.">Acompañamiento post-implementación. Ideal para empresas que ya tienen ABM pero quieren garantizar operación limpia.</p>
+      <ul class="pkg-list">
+        <li data-es="Altas y bajas de empleados mensuales" data-en="Monthly employee onboarding and offboarding">Altas y bajas de empleados mensuales</li>
+        <li data-es="Resolución de incidentes (SLA acordado)" data-en="Incident resolution (agreed SLA)">Resolución de incidentes (SLA acordado)</li>
+        <li data-es="Actualización de políticas cuando Apple cambia el portal" data-en="Policy updates when Apple changes the portal">Actualización de políticas cuando Apple cambia el portal</li>
+        <li data-es="Revisión trimestral de compliance" data-en="Quarterly compliance review">Revisión trimestral de compliance</li>
+        <li data-es="Soporte en español e inglés" data-en="Support in Spanish and English">Soporte en español e inglés</li>
+        <li data-es="Se puede combinar con Setup (recomendado)" data-en="Can be combined with Setup (recommended)">Se puede combinar con Setup (recomendado)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-narrow">
+  <h2 data-es="Preguntas frecuentes" data-en="Frequently asked questions">Preguntas frecuentes</h2>
+
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span data-es="¿StackSolver es Apple Authorized?" data-en="Is StackSolver Apple Authorized?">¿StackSolver es Apple Authorized?</span></button>
+      <div class="faq-a" data-es="No. Somos consultores de implementación independientes. Apple Business Manager es una plataforma pública que cualquier empresa puede usar; lo que aportamos es la experiencia de implementarla correctamente, la metodología y el acompañamiento. Si tu empresa necesita hardware directo de Apple, te referimos a un Apple Authorized Reseller local." data-en="No. We are independent implementation consultants. Apple Business Manager is a public platform that any company can use; what we bring is the experience of implementing it correctly, the methodology and the support. If your company needs hardware directly from Apple, we refer you to a local Apple Authorized Reseller.">No. Somos consultores de implementación independientes. Apple Business Manager es una plataforma pública que cualquier empresa puede usar; lo que aportamos es la experiencia de implementarla correctamente, la metodología y el acompañamiento. Si tu empresa necesita hardware directo de Apple, te referimos a un Apple Authorized Reseller local.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span data-es="¿Qué MDM recomiendan si no tenemos ninguno?" data-en="Which MDM do you recommend if we don't have one?">¿Qué MDM recomiendan si no tenemos ninguno?</span></button>
+      <div class="faq-a" data-es="Depende del volumen, presupuesto y tu stack existente. Para empresas 10 a 50 dispositivos: Mosyle Business (costo accesible, buena UX). Para 50 a 200: Kandji (UX moderna, fuerte en compliance) o Jamf Pro (estándar de la industria). Para empresas Windows-heavy que agregan Apple: Microsoft Intune. Somos agnósticos por diseño — analizamos y recomendamos." data-en="Depends on volume, budget and your existing stack. For 10 to 50 devices: Mosyle Business (affordable, good UX). For 50 to 200: Kandji (modern UX, strong compliance) or Jamf Pro (industry standard). For Windows-heavy companies adding Apple: Microsoft Intune. We are agnostic by design — we analyze and recommend.">Depende del volumen, presupuesto y tu stack existente. Para empresas 10 a 50 dispositivos: Mosyle Business (costo accesible, buena UX). Para 50 a 200: Kandji (UX moderna, fuerte en compliance) o Jamf Pro (estándar de la industria). Para empresas Windows-heavy que agregan Apple: Microsoft Intune. Somos agnósticos por diseño — analizamos y recomendamos.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span data-es="¿Qué pasa con los datos personales de los empleados al migrar a cuentas corporativas?" data-en="What happens to employees' personal data when migrating to corporate accounts?">¿Qué pasa con los datos personales de los empleados al migrar a cuentas corporativas?</span></button>
+      <div class="faq-a" data-es="Se respetan. La migración asistida separa claramente los datos personales (fotos, contactos personales, mensajes con familia) hacia una cuenta personal del empleado, y los datos corporativos hacia la cuenta corporativa. Se comunica el proceso al equipo antes de empezar y se documenta en el manual para evitar pérdidas o fricciones." data-en="They are respected. The assisted migration clearly separates personal data (photos, personal contacts, family messages) to an employee's personal account, and corporate data to the corporate account. The process is communicated to the team before starting and documented in the manual to avoid losses or friction.">Se respetan. La migración asistida separa claramente los datos personales (fotos, contactos personales, mensajes con familia) hacia una cuenta personal del empleado, y los datos corporativos hacia la cuenta corporativa. Se comunica el proceso al equipo antes de empezar y se documenta en el manual para evitar pérdidas o fricciones.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span data-es="¿Trabajan fuera de Colombia?" data-en="Do you work outside Colombia?">¿Trabajan fuera de Colombia?</span></button>
+      <div class="faq-a" data-es="Sí. StackSolver opera desde Colombia y Reino Unido, con cobertura para Latinoamérica, Estados Unidos, Canadá y Europa. El 100% del servicio puede ser remoto, con ajuste de horarios a la zona del cliente. En español o inglés." data-en="Yes. StackSolver operates from Colombia and the UK, with coverage for Latin America, USA, Canada and Europe. 100% of the service can be remote, with timezone adjustment to the client's zone. In Spanish or English.">Sí. StackSolver opera desde Colombia y Reino Unido, con cobertura para Latinoamérica, Estados Unidos, Canadá y Europa. El 100% del servicio puede ser remoto, con ajuste de horarios a la zona del cliente. En español o inglés.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span data-es="¿Cuánto cuesta una implementación típica?" data-en="How much does a typical implementation cost?">¿Cuánto cuesta una implementación típica?</span></button>
+      <div class="faq-a" data-es="Depende del tamaño de la flota, estado actual del dominio, MDM y complejidad de la migración. El diagnóstico gratuito de 30 minutos sirve para darte un rango concreto. Típicamente el proyecto de setup se cotiza como inversión única y el soporte como retainer mensual." data-en="Depends on fleet size, current domain status, MDM and migration complexity. The free 30-minute diagnosis serves to give you a concrete range. Typically the setup project is quoted as a one-time investment and support as a monthly retainer.">Depende del tamaño de la flota, estado actual del dominio, MDM y complejidad de la migración. El diagnóstico gratuito de 30 minutos sirve para darte un rango concreto. Típicamente el proyecto de setup se cotiza como inversión única y el soporte como retainer mensual.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-final">
+  <h3 data-es="¿Listo para operar Apple en serio?" data-en="Ready to operate Apple seriously?">¿Listo para operar Apple en serio?</h3>
+  <p data-es="Diagnóstico gratuito de 30 minutos. Revisamos el estado actual y te damos un plan concreto." data-en="Free 30-minute diagnosis. We review current state and give you a concrete plan.">Diagnóstico gratuito de 30 minutos. Revisamos el estado actual y te damos un plan concreto.</p>
+  <a href="/diagnostico" class="btn-cta">
+    <span data-es="Agendar diagnóstico" data-en="Schedule diagnosis">Agendar diagnóstico</span>
+    <svg width="14" height="14"><use href="#A-ar"/></svg>
+  </a>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <strong data-es="Aviso legal" data-en="Legal notice">Aviso legal</strong> · <span data-es="StackSolver no está afiliado, asociado ni respaldado por Apple Inc. «Apple», «Apple Business Manager», «Managed Apple ID», «iPhone», «iPad», «Mac» y otros son marcas registradas de Apple Inc. Los servicios de StackSolver son de consultoría e implementación independiente sobre las plataformas públicas de Apple para empresas. Jamf, Mosyle, Kandji, JumpCloud y Microsoft Intune son marcas de sus respectivos propietarios." data-en="StackSolver is not affiliated, associated or endorsed by Apple Inc. 'Apple', 'Apple Business Manager', 'Managed Apple ID', 'iPhone', 'iPad', 'Mac' and others are trademarks of Apple Inc. StackSolver services are independent consulting and implementation on Apple's public platforms for business. Jamf, Mosyle, Kandji, JumpCloud and Microsoft Intune are trademarks of their respective owners.">StackSolver no está afiliado, asociado ni respaldado por Apple Inc. «Apple», «Apple Business Manager», «Managed Apple ID», «iPhone», «iPad», «Mac» y otros son marcas registradas de Apple Inc. Los servicios de StackSolver son de consultoría e implementación independiente sobre las plataformas públicas de Apple para empresas. Jamf, Mosyle, Kandji, JumpCloud y Microsoft Intune son marcas de sus respectivos propietarios.</span>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <div class="logo">Stack<em>Solver</em></div>
+    <a class="footer-link" href="/" data-es="Inicio" data-en="Home">Inicio</a>
+    <a class="footer-link" href="/diagnostico" data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</a>
+    <a class="footer-link" href="/metodo" data-es="Método" data-en="Method">Método</a>
+    <a class="footer-link" href="/biblioteca" data-es="Biblioteca" data-en="Library">Biblioteca</a>
+    <a class="footer-link" href="/nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+  </div>
+  <div class="fc"><svg width="13" height="13"><use href="#A-mail"/></svg><a href="mailto:info@stacksolver.tech">info@stacksolver.tech</a></div>
+  <span style="font-size:12px;color:var(--text3)">© 2026 StackSolver</span>
+</footer>
+
+<script is:inline>
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  const d=document.body.classList.contains('dark');
+  document.getElementById('themeBtn').innerHTML=d?'<svg width="14" height="14"><use href="#A-sun"/></svg>':'<svg width="14" height="14"><use href="#A-moon"/></svg>';
+}
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));
+  document.querySelectorAll('[data-es],[data-en]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});
+}
+function toggleMobileMenu(){
+  const m=document.getElementById('mobMenu');
+  const open=m.classList.toggle('open');
+  document.getElementById('hambBtn').innerHTML=open
+    ?'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+    :'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+}
+function toggleFaq(btn){
+  btn.parentElement.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  const m=document.getElementById('mobMenu');
+  const b=document.getElementById('hambBtn');
+  if(m&&m.classList.contains('open')&&!m.contains(e.target)&&b&&!b.contains(e.target)){
+    m.classList.remove('open');
+    b.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+  }
+});
+</script>
+</body>
+</html>

@@ -41,6 +41,16 @@ Sitio corporativo de alta velocidad o portal integrado con el sistema ERP del cl
 - Stack: Astro 6 + React 19 + Tailwind 4 + AWS Amplify
 - Pagina: https://www.stacksolver.tech/#services
 
+### Apple Business (implementacion + soporte de Apple Business Manager)
+Implementacion completa de Apple Business Manager (ABM) para empresas que operan con Mac, iPhone y iPad como herramientas corporativas. Auditoria de dominio, Managed Apple IDs, integracion MDM, VPP, DEP, capacitacion y soporte continuo.
+- **NO somos Apple Authorized** — somos consultores de implementacion independientes sobre la plataforma publica ABM
+- Agnosticos de MDM: integramos con Jamf, Mosyle, Kandji, JumpCloud o Microsoft Intune segun el cliente. Si no tiene, recomendamos segun volumen
+- Publico objetivo: empresas con 10 a 500 dispositivos Apple, organizaciones en transicion BYOD -> corporativo, empresas con compliance ISO 27001/NIST/GDPR
+- Modelo comercial: (a) Setup como proyecto cerrado (5-8 semanas tipico); (b) Retainer mensual de soporte continuo. Se pueden combinar.
+- Pagina: https://www.stacksolver.tech/servicios/apple-business
+- Caso real: implementacion ABM + MDM en consultora internacional con operacion multi-pais (confidencial)
+- Diferenciador: Johann Vivas tiene experiencia directa implementando ABM en produccion, manual reusable, Postulados de No Repudio (1:1 vs compartidos) para gobernanza clara
+
 ## Metodologia (5 pasos)
 
 1. **Diagnostico** — entendemos lo que el cliente tiene y lo que necesita (gratis, 5 min inicial, extensible)
@@ -81,6 +91,7 @@ Sitio corporativo de alta velocidad o portal integrado con el sistema ERP del cl
 - Home: https://www.stacksolver.tech/
 - Diagnostico gratuito: https://www.stacksolver.tech/diagnostico
 - **The StackSolver Method (articulo de referencia):** https://www.stacksolver.tech/metodo
+- **Apple Business (implementacion ABM):** https://www.stacksolver.tech/servicios/apple-business
 - Biblioteca de recursos: https://www.stacksolver.tech/biblioteca
 - Sobre la empresa: https://www.stacksolver.tech/nosotros
 - Contacto directo: mailto:info@stacksolver.tech

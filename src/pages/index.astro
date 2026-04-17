@@ -130,8 +130,11 @@ body.dark nav{background:rgba(3,3,3,.85)}
 .sec-eyebrow{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
 .sec-h{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.8px;line-height:1.15;margin-bottom:12px}
 .sec-sub{font-size:15px;color:var(--text2);line-height:1.65;max-width:520px;margin-bottom:48px}
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.svc{background:var(--surface);padding:28px 24px;transition:all .2s;cursor:default}
+.services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.svc{background:var(--surface);padding:26px 20px;transition:all .2s;cursor:default;position:relative}
+.svc-link{text-decoration:none;color:inherit;display:block;height:100%}
+.svc-more{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--indigo);margin-top:10px;opacity:0;transition:opacity .2s}
+.svc-link:hover .svc-more{opacity:1}
 .svc:hover{background:var(--accent-sub)}
 .svc-ico{width:40px;height:40px;border-radius:10px;background:var(--accent-sub);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:all .2s}
 .svc:hover .svc-ico{background:var(--indigo-sub);border-color:#c7d2fe}
@@ -194,6 +197,7 @@ footer{border-top:1px solid var(--border);padding:24px 28px;display:flex;align-i
   .hero-inner{grid-template-columns:1fr;gap:40px}
   .preview-wrap{display:none}
   .services-grid{grid-template-columns:1fr 1fr}
+  .svc{padding:24px 20px}
   .map-inner{grid-template-columns:1fr}
   .cta-inner{grid-template-columns:1fr}
   .how-grid{grid-template-columns:1fr 1fr;gap:20px}
@@ -287,6 +291,7 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
   <symbol id="H-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
   <symbol id="H-fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="6" height="5" rx="1"/><rect x="16" y="2" width="6" height="5" rx="1"/><rect x="9" y="17" width="6" height="5" rx="1"/><path d="M5 7v4h14V7M12 11v6"/></symbol>
   <symbol id="H-usr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></symbol>
+  <symbol id="H-dev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M5 18h8"/><path d="M9 14v4"/><rect x="17" y="9" width="5" height="11" rx="1"/><circle cx="19.5" cy="17.5" r=".5" fill="currentColor"/></symbol>
 </svg>
 
 <nav>
@@ -443,7 +448,7 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
 <!-- ═══ SERVICES ═══ -->
 <div class="section fade-in">
   <div class="sec-eyebrow" data-es="Qué hacemos" data-en="What we do">Qué hacemos</div>
-  <h2 class="sec-h" data-es="Una plataforma. Cuatro capacidades." data-en="One platform. Four capabilities.">Una plataforma. Cuatro capacidades.</h2>
+  <h2 class="sec-h" data-es="Una plataforma. Cinco capacidades." data-en="One platform. Five capabilities.">Una plataforma. Cinco capacidades.</h2>
   <p class="sec-sub" data-es="No vendemos software genérico. Diseñamos y configuramos sistemas que reflejan exactamente cómo opera su empresa." data-en="We don't sell generic software. We design and configure systems that reflect exactly how your company operates.">No vendemos software genérico. Diseñamos y configuramos sistemas que reflejan exactamente cómo opera su empresa.</p>
   <div class="services-grid">
     <div class="svc">
@@ -469,6 +474,15 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
       <h3 data-es="Desarrollo Web y Portales" data-en="Web Development & Portals">Desarrollo Web</h3>
       <p data-es="Sitio corporativo de alta velocidad o portal integrado con su sistema ERP. Stack moderno sobre AWS — rápido, seguro y escalable." data-en="High-speed corporate site or portal integrated with your ERP system. Modern stack on AWS — fast, secure and scalable.">Sitio corporativo o portal integrado con su sistema ERP. Stack moderno en AWS — rápido y escalable.</p>
       <div class="svc-tag">Astro · React · AWS</div>
+    </div>
+    <div class="svc">
+      <a href="/servicios/apple-business" class="svc-link">
+        <div class="svc-ico"><svg><use href="#H-dev"/></svg></div>
+        <h3 data-es="Apple Business" data-en="Apple Business">Apple Business</h3>
+        <p data-es="Implementación y soporte de Apple Business Manager para empresas que operan con Mac, iPhone y iPad. Cuentas corporativas, integración MDM, capacitación y soporte continuo." data-en="Apple Business Manager implementation and support for companies operating with Mac, iPhone and iPad. Corporate accounts, MDM integration, training and ongoing support.">Implementación y soporte de Apple Business Manager. Cuentas corporativas, integración MDM, capacitación y soporte continuo.</p>
+        <div class="svc-tag">ABM · MDM · VPP</div>
+        <div class="svc-more" data-es="Ver detalle →" data-en="See details →">Ver detalle →</div>
+      </a>
     </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 ---
+import HeroV2 from '../components/hero/HeroV2';
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -330,8 +331,11 @@ body.dark .mob-menu{box-shadow:0 8px 24px rgba(0,0,0,.35)}
   </div>
 </div>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
+<!-- ═══ HERO v2 (Claude Design handoff 2026-04-23) ═══ -->
+<HeroV2 client:visible />
+
+<!-- Legacy hero kept hidden for rollback reference -->
+<section class="hero" style="display:none">
   <div class="hero-inner">
     <div>
       <div class="hero-badge">

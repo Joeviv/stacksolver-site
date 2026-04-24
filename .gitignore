@@ -26,3 +26,4 @@ pnpm-debug.log*
 # local dev tooling (preview config, agent scratch)
 .claude/
 
+.claude-design-handoffs/

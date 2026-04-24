@@ -36,8 +36,8 @@ export function FadeReveal({ children, restOpacity = 0.28, style }: FadeRevealPr
 }
 
 // ---------- ERP Dashboard Mock ----------
-interface ERPDashboardMockProps { theme?: 'dark' | 'light'; }
-export function ERPDashboardMock({ theme = 'dark' }: ERPDashboardMockProps) {
+interface ERPDashboardMockProps { theme?: 'dark' | 'light'; lang?: 'es' | 'en'; }
+export function ERPDashboardMock({ theme = 'dark', lang = 'es' }: ERPDashboardMockProps) {
   const isDark = theme === 'dark';
   const surface  = isDark ? '#18181b' : '#ffffff';
   const innerBg  = isDark ? '#0f0f11' : '#ffffff';
@@ -49,7 +49,7 @@ export function ERPDashboardMock({ theme = 'dark' }: ERPDashboardMockProps) {
   const iconBg   = isDark ? '#1f1f23' : '#f4f4f5';
   const olive    = '#85a03a';
 
-  const tiles = [
+  const tilesEs = [
     { icon: <IconActivity />, title: 'Finanzas',     desc: 'Cierre diario ✓',     status: 'ok' },
     { icon: <IconShield />,   title: 'GRC',          desc: '0 alertas pendientes', status: 'ok' },
     { icon: <IconUser />,     title: 'Talento',      desc: 'Nómina al día',        status: 'ok' },
@@ -57,6 +57,18 @@ export function ERPDashboardMock({ theme = 'dark' }: ERPDashboardMockProps) {
     { icon: <IconDatabase />, title: 'Supply Chain', desc: 'Stock óptimo',         status: 'ok' },
     { icon: <IconCpu />,      title: 'IA Local',     desc: 'Agentes activos',      status: 'ok' },
   ];
+  const tilesEn = [
+    { icon: <IconActivity />, title: 'Finance',      desc: 'Daily close ✓',       status: 'ok' },
+    { icon: <IconShield />,   title: 'GRC',          desc: '0 pending alerts',    status: 'ok' },
+    { icon: <IconUser />,     title: 'HR',           desc: 'Payroll current',     status: 'ok' },
+    { icon: <IconBranch />,   title: 'Projects',     desc: '3 in progress',       status: 'warn' },
+    { icon: <IconDatabase />, title: 'Supply Chain', desc: 'Optimal stock',       status: 'ok' },
+    { icon: <IconCpu />,      title: 'Local AI',     desc: 'Agents active',       status: 'ok' },
+  ];
+  const tiles = lang === 'en' ? tilesEn : tilesEs;
+  const footer = lang === 'en'
+    ? { procesos: 'processes', tareas: 'tasks today', toast: 'Native GRC', toastSub: 'Every transaction' }
+    : { procesos: 'procesos',  tareas: 'tareas hoy',  toast: 'GRC Nativo', toastSub: 'Cada transacción' };
 
   return (
     <div style={{
@@ -99,11 +111,11 @@ export function ERPDashboardMock({ theme = 'dark' }: ERPDashboardMockProps) {
       <div style={{ borderTop: `1px solid ${border}`, background: innerBg, padding: '8px 12px', display: 'flex', gap: 16, position: 'relative' }}>
         <div>
           <div style={{ fontSize: 13, fontWeight: 700, color: strong, letterSpacing: '-0.02em' }}>247</div>
-          <div style={{ fontSize: 9, color: muted }}>procesos</div>
+          <div style={{ fontSize: 9, color: muted }}>{footer.procesos}</div>
         </div>
         <div>
           <div style={{ fontSize: 13, fontWeight: 700, color: strong, letterSpacing: '-0.02em' }}>38</div>
-          <div style={{ fontSize: 9, color: muted }}>tareas hoy</div>
+          <div style={{ fontSize: 9, color: muted }}>{footer.tareas}</div>
         </div>
         <div style={{
           position: 'absolute', right: -8, bottom: -14,
@@ -116,8 +128,8 @@ export function ERPDashboardMock({ theme = 'dark' }: ERPDashboardMockProps) {
             <SvgIcon size={11}><polyline points="20 6 9 17 4 12"/></SvgIcon>
           </div>
           <div>
-            <div style={{ fontSize: 10, fontWeight: 600, color: strong, letterSpacing: '-0.01em' }}>GRC Nativo</div>
-            <div style={{ fontSize: 9, color: muted }}>Cada transacción</div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: strong, letterSpacing: '-0.01em' }}>{footer.toast}</div>
+            <div style={{ fontSize: 9, color: muted }}>{footer.toastSub}</div>
           </div>
         </div>
       </div>

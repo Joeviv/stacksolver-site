@@ -103,7 +103,7 @@ export default function HeroV2() {
           pointerEvents: 'auto',
         }} className="ss-erp-mock">
           <FadeReveal restOpacity={0.32}>
-            <ERPDashboardMock theme={theme} />
+            <ERPDashboardMock theme={theme} lang={lang} />
           </FadeReveal>
         </div>
 

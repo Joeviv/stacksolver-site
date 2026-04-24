@@ -19,13 +19,13 @@ export default function HeroV2() {
       setTheme(isDark ? 'dark' : 'light');
     };
     const readLang = () => {
-      const bodyClass = body?.className || '';
-      setLang(bodyClass.includes('lang-en') ? 'en' : 'es');
+      const htmlLang = (root.getAttribute('lang') || 'es').toLowerCase();
+      setLang(htmlLang.startsWith('en') ? 'en' : 'es');
     };
     readTheme();
     readLang();
     const obs = new MutationObserver(() => { readTheme(); readLang(); });
-    obs.observe(root, { attributes: true, attributeFilter: ['class'] });
+    obs.observe(root, { attributes: true, attributeFilter: ['class', 'lang'] });
     if (body) obs.observe(body, { attributes: true, attributeFilter: ['class'] });
     return () => obs.disconnect();
   }, []);

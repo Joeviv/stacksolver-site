@@ -1,9 +1,9 @@
 // ARCHIVO: src/components/hero/HeroV2.tsx
-// Hero section v2 — dot-matrix world map + copy + CTAs.
+// Hero section v2 — dot-matrix world map + ERP dashboard mock + capability cards.
 // Adaptado del handoff Claude Design 2026-04-23.
-// Lee el tema del site (.dark class en <html>) y reacciona a cambios.
 import { useEffect, useState } from 'react';
 import HeroDotMap from './HeroDotMap';
+import { ERPDashboardMock, CapabilityStrip, FadeReveal } from './HeroArtifacts';
 
 export default function HeroV2() {
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
@@ -12,16 +12,21 @@ export default function HeroV2() {
   useEffect(() => {
     if (typeof document === 'undefined') return;
     const root = document.documentElement;
-    const readTheme = () => setTheme(root.classList.contains('dark') ? 'dark' : 'light');
+    const body = document.body;
+    // Site legacy script usa body.dark; Astro ThemeToggle usa html.dark; miramos ambos.
+    const readTheme = () => {
+      const isDark = body?.classList.contains('dark') || root.classList.contains('dark');
+      setTheme(isDark ? 'dark' : 'light');
+    };
     const readLang = () => {
-      const bodyClass = document.body?.className || '';
+      const bodyClass = body?.className || '';
       setLang(bodyClass.includes('lang-en') ? 'en' : 'es');
     };
     readTheme();
     readLang();
     const obs = new MutationObserver(() => { readTheme(); readLang(); });
     obs.observe(root, { attributes: true, attributeFilter: ['class'] });
-    if (document.body) obs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    if (body) obs.observe(body, { attributes: true, attributeFilter: ['class'] });
     return () => obs.disconnect();
   }, []);
 
@@ -31,6 +36,7 @@ export default function HeroV2() {
   const strong = isDark ? '#fafafa' : '#18181b';
   const muted = isDark ? '#a1a1aa' : '#52525b';
   const bg = isDark ? '#0a0a0a' : '#ffffff';
+  const border = isDark ? '#27272a' : '#e4e4e7';
 
   const copy = {
     es: {
@@ -56,114 +62,149 @@ export default function HeroV2() {
   return (
     <section style={{
       position: 'relative',
-      minHeight: 'calc(100vh - 52px)',
       background: bg,
       color: strong,
       overflow: 'hidden',
+      paddingBottom: 64,
     }}>
-      {/* Full-bleed map layer */}
-      <div aria-hidden="false" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        <HeroDotMap theme={theme} regionHighlight="both" arcDensity="latameu" arcIntensity="normal" />
+      <div style={{
+        position: 'relative',
+        minHeight: 'calc(100vh - 52px)',
+      }}>
+        {/* Full-bleed map layer */}
+        <div aria-hidden="false" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <HeroDotMap theme={theme} regionHighlight="both" arcDensity="latameu" arcIntensity="normal" />
+        </div>
+
+        {/* Left-side fade so copy stays legible over the map */}
+        <div aria-hidden style={{
+          position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+          background: isDark
+            ? 'linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.70) 30%, rgba(10,10,10,0.20) 55%, rgba(10,10,10,0) 75%)'
+            : 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.78) 30%, rgba(255,255,255,0.28) 55%, rgba(255,255,255,0) 75%)',
+        }} />
+
+        {/* Subtle dot grid on top of fade */}
+        <div aria-hidden style={{
+          position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
+          backgroundImage: isDark
+            ? 'radial-gradient(rgba(250,250,250,0.035) 1px, transparent 1px)'
+            : 'radial-gradient(rgba(24,24,27,0.05) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+          maskImage: 'linear-gradient(90deg, black 0%, black 25%, transparent 55%)',
+          WebkitMaskImage: 'linear-gradient(90deg, black 0%, black 25%, transparent 55%)',
+        }} />
+
+        {/* ERP Dashboard floating top-right */}
+        <div style={{
+          position: 'absolute',
+          top: 72, right: 64,
+          zIndex: 4,
+          pointerEvents: 'auto',
+        }} className="ss-erp-mock">
+          <FadeReveal restOpacity={0.32}>
+            <ERPDashboardMock theme={theme} />
+          </FadeReveal>
+        </div>
+
+        {/* Content grid — copy left, empty right (map owns right side) */}
+        <div className="ss-hero-grid" style={{
+          position: 'relative', zIndex: 3,
+          maxWidth: 1440, margin: '0 auto', padding: '0 32px',
+          minHeight: 'calc(100vh - 52px)',
+          display: 'grid', gridTemplateColumns: 'minmax(0, 560px) 1fr',
+          gap: 48, alignItems: 'center',
+          pointerEvents: 'none',  // allow map to receive hovers under transparent gaps
+        }}>
+          <div style={{ padding: '48px 0', maxWidth: 600 }}>
+            {/* Eyebrow — pointer:none so map dots visible under it are hoverable */}
+            <div style={{
+              fontFamily: 'JetBrains Mono, monospace', fontSize: 12, fontWeight: 600,
+              letterSpacing: '0.12em', textTransform: 'uppercase',
+              color: oliveBright, marginBottom: 24,
+              display: 'inline-flex', alignItems: 'center', gap: 10,
+              pointerEvents: 'none',
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: 9999, background: oliveBright, boxShadow: isDark ? `0 0 10px ${oliveBright}` : 'none' }} />
+              {copy.eyebrow}
+            </div>
+
+            {/* Headline — pointer:none */}
+            <h1 style={{
+              fontFamily: 'Inter, sans-serif',
+              fontSize: 'clamp(40px, 5.2vw, 72px)',
+              lineHeight: 1.02, letterSpacing: '-0.03em', fontWeight: 700,
+              margin: '0 0 20px', color: strong, textWrap: 'balance' as 'balance',
+              pointerEvents: 'none',
+            }}>
+              {copy.headline}
+            </h1>
+
+            {/* Signature quote — pointer:auto so user can select text */}
+            <div style={{
+              margin: '0 0 24px', padding: '12px 16px',
+              borderLeft: `2px solid ${olive}`,
+              background: isDark ? 'rgba(133,160,58,0.08)' : 'rgba(133,160,58,0.06)',
+              borderRadius: '0 10px 10px 0',
+              pointerEvents: 'auto',
+            }}>
+              <p style={{ fontSize: 15, lineHeight: 1.55, color: muted, margin: 0 }}>
+                {copy.quote} <strong style={{ color: oliveBright, fontWeight: 700 }}>{copy.quoteBold}</strong>
+              </p>
+            </div>
+
+            {/* Subtitle */}
+            <p style={{
+              fontSize: 18, lineHeight: 1.55, color: muted,
+              margin: '0 0 32px', maxWidth: 560, pointerEvents: 'none',
+            }}>
+              {copy.sub}
+            </p>
+
+            {/* CTAs — pointer:auto for clicks */}
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', pointerEvents: 'auto' }}>
+              <a href="/diagnostico" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '14px 22px', background: olive, color: '#0a0a0a',
+                borderRadius: 8, fontSize: 15, fontWeight: 600, textDecoration: 'none',
+                border: `1px solid ${olive}`,
+                boxShadow: isDark
+                  ? '0 0 0 1px rgba(133,160,58,0.35) inset, 0 0 32px rgba(133,160,58,0.28), 0 2px 0 rgba(0,0,0,0.2)'
+                  : '0 1px 2px rgba(24,24,27,0.08), 0 0 0 1px rgba(109,133,48,0.2)',
+                transition: 'background 200ms',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#94b043'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = olive; }}>
+                {copy.primary} <span aria-hidden>→</span>
+              </a>
+              <a href="/metodo" style={{
+                display: 'inline-flex', alignItems: 'center',
+                padding: '14px 22px', background: 'transparent', color: strong,
+                borderRadius: 8, fontSize: 15, fontWeight: 500, textDecoration: 'none',
+                border: `1px solid ${olive}`, transition: 'background 200ms',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(133,160,58,0.12)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}>
+                {copy.secondary}
+              </a>
+            </div>
+          </div>
+          <div />
+        </div>
       </div>
 
-      {/* Left-side fade so copy stays legible over the map */}
-      <div aria-hidden style={{
-        position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-        background: isDark
-          ? 'linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 32%, rgba(10,10,10,0.25) 55%, rgba(10,10,10,0) 75%)'
-          : 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.35) 55%, rgba(255,255,255,0) 75%)',
-      }} />
-
-      {/* Subtle dot grid on top of fade */}
-      <div aria-hidden style={{
-        position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
-        backgroundImage: isDark
-          ? 'radial-gradient(rgba(250,250,250,0.035) 1px, transparent 1px)'
-          : 'radial-gradient(rgba(24,24,27,0.05) 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-        maskImage: 'linear-gradient(90deg, black 0%, black 30%, transparent 60%)',
-        WebkitMaskImage: 'linear-gradient(90deg, black 0%, black 30%, transparent 60%)',
-      }} />
-
-      {/* Content grid */}
-      <div className="ss-hero-grid" style={{
-        position: 'relative', zIndex: 3,
-        maxWidth: 1440, margin: '0 auto', padding: '0 32px',
-        minHeight: 'calc(100vh - 52px)',
-        display: 'grid', gridTemplateColumns: 'minmax(0, 560px) 1fr',
-        gap: 48, alignItems: 'center', pointerEvents: 'none',
+      {/* Capability cards strip — below hero, full width */}
+      <div style={{
+        maxWidth: 1440, margin: '-24px auto 0',
+        padding: '0 32px', position: 'relative', zIndex: 5,
       }}>
-        <div style={{ padding: '48px 0', maxWidth: 600, pointerEvents: 'auto' }}>
-          {/* Eyebrow */}
-          <div style={{
-            fontFamily: 'JetBrains Mono, monospace', fontSize: 12, fontWeight: 600,
-            letterSpacing: '0.12em', textTransform: 'uppercase',
-            color: oliveBright, marginBottom: 24,
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-          }}>
-            <span style={{ width: 6, height: 6, borderRadius: 9999, background: oliveBright, boxShadow: isDark ? `0 0 10px ${oliveBright}` : 'none' }} />
-            {copy.eyebrow}
-          </div>
-
-          {/* Headline */}
-          <h1 style={{
-            fontFamily: 'Inter, sans-serif',
-            fontSize: 'clamp(40px, 5.2vw, 72px)',
-            lineHeight: 1.02, letterSpacing: '-0.03em', fontWeight: 700,
-            margin: '0 0 20px', color: strong, textWrap: 'balance' as 'balance',
-          }}>
-            {copy.headline}
-          </h1>
-
-          {/* Johann's signature quote */}
-          <div style={{
-            margin: '0 0 24px', padding: '12px 16px',
-            borderLeft: `2px solid ${olive}`,
-            background: isDark ? 'rgba(133,160,58,0.08)' : 'rgba(133,160,58,0.06)',
-            borderRadius: '0 10px 10px 0',
-          }}>
-            <p style={{ fontSize: 15, lineHeight: 1.55, color: muted, margin: 0 }}>
-              {copy.quote} <strong style={{ color: oliveBright, fontWeight: 700 }}>{copy.quoteBold}</strong>
-            </p>
-          </div>
-
-          {/* Subtitle */}
-          <p style={{ fontSize: 18, lineHeight: 1.55, color: muted, margin: '0 0 32px', maxWidth: 560 }}>
-            {copy.sub}
-          </p>
-
-          {/* CTAs */}
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="/diagnostico" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '14px 22px', background: olive, color: '#0a0a0a',
-              borderRadius: 8, fontSize: 15, fontWeight: 600, textDecoration: 'none',
-              border: `1px solid ${olive}`,
-              boxShadow: isDark
-                ? '0 0 0 1px rgba(133,160,58,0.35) inset, 0 0 32px rgba(133,160,58,0.28), 0 2px 0 rgba(0,0,0,0.2)'
-                : '0 1px 2px rgba(24,24,27,0.08), 0 0 0 1px rgba(109,133,48,0.2)',
-              transition: 'background 200ms',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#94b043'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = olive; }}>
-              {copy.primary} <span aria-hidden>→</span>
-            </a>
-            <a href="/metodo" style={{
-              display: 'inline-flex', alignItems: 'center',
-              padding: '14px 22px', background: 'transparent', color: strong,
-              borderRadius: 8, fontSize: 15, fontWeight: 500, textDecoration: 'none',
-              border: `1px solid ${olive}`, transition: 'background 200ms',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(133,160,58,0.12)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}>
-              {copy.secondary}
-            </a>
-          </div>
-        </div>
-        <div />
+        <CapabilityStrip lang={lang} theme={theme} />
       </div>
 
       <style>{`
+        @media (max-width: 1100px) {
+          .ss-erp-mock { display: none !important; }
+        }
         @media (max-width: 900px) {
           .ss-hero-grid {
             grid-template-columns: 1fr !important;

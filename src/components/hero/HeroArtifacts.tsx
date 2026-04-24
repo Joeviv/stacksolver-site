@@ -141,14 +141,14 @@ export function ERPDashboardMock({ theme = 'dark', lang = 'es' }: ERPDashboardMo
 interface Cap { icon: ReactNode; title: string; desc: string; tag: string; href: string; }
 const CAPS_ES: Cap[] = [
   { icon: <IconDatabase />, title: 'ERP a Medida',  desc: 'Finanzas, RRHH, proyectos, inventario y operaciones en un solo sistema adaptado a su proceso.', tag: 'CLARIS FILEMAKER', href: '/servicios/erp-filemaker' },
-  { icon: <IconShield />,   title: 'GRC Nativo',    desc: 'Auditorías automáticas y cumplimiento normativo integrados en cada transacción.', tag: 'ISO · IFRS · SOX · GDPR', href: '/servicios/grc' },
-  { icon: <IconCpu />,      title: 'IA Local',      desc: 'Agentes especializados que corren en su infraestructura. Sus datos nunca salen de su red.', tag: 'RUST + SURREALDB', href: '/servicios/ai-local' },
+  { icon: <IconShield />,   title: 'GRC Nativo',    desc: 'Auditorías automáticas y cumplimiento normativo integrados en cada transacción. Pensado para industrias reguladas.', tag: 'ISO 27001 · 42001 · EU AI ACT', href: '/servicios/grc' },
+  { icon: <IconCpu />,      title: 'IA Soberana',   desc: 'Agentes especializados que corren en su infraestructura. Cero fuga de datos, logs auditables, compatible con auditoría.', tag: 'ZERO DATA EGRESS', href: '/servicios/ai-local' },
   { icon: <IconApple />,    title: 'Apple Business',desc: 'Implementación y soporte de Apple Business Manager. Cuentas corporativas, MDM, capacitación.', tag: 'ABM · MDM · VPP', href: '/servicios/apple-business' },
 ];
 const CAPS_EN: Cap[] = [
   { icon: <IconDatabase />, title: 'Custom ERP',    desc: 'Finance, HR, projects, inventory and operations in one system tailored to your process.', tag: 'CLARIS FILEMAKER', href: '/servicios/erp-filemaker' },
-  { icon: <IconShield />,   title: 'Native GRC',    desc: 'Automated audits and regulatory compliance embedded in every transaction.', tag: 'ISO · IFRS · SOX · GDPR', href: '/servicios/grc' },
-  { icon: <IconCpu />,      title: 'Local AI',      desc: 'Specialized agents that run in your infrastructure. Your data never leaves your network.', tag: 'RUST + SURREALDB', href: '/servicios/ai-local' },
+  { icon: <IconShield />,   title: 'Native GRC',    desc: 'Automated audits and regulatory compliance embedded in every transaction. Built for regulated industries.', tag: 'ISO 27001 · 42001 · EU AI ACT', href: '/servicios/grc' },
+  { icon: <IconCpu />,      title: 'Sovereign AI',  desc: 'Specialized agents running inside your perimeter. Zero data egress, immutable audit logs, audit-ready.', tag: 'ZERO DATA EGRESS', href: '/servicios/ai-local' },
   { icon: <IconApple />,    title: 'Apple Business',desc: 'Apple Business Manager rollout and support. Corporate accounts, MDM integration, training.', tag: 'ABM · MDM · VPP', href: '/servicios/apple-business' },
 ];
 

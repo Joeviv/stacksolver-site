@@ -40,18 +40,18 @@ export default function HeroV2() {
 
   const copy = {
     es: {
-      eyebrow: 'GRC · IA ÉTICA · IA LOCAL',
+      eyebrow: 'GRC · IA ÉTICA · IA SOBERANA',
       headline: 'Integrar IA en sistemas que ya gobiernan su empresa.',
-      sub: 'GRC nativo, IA local, gobernanza primero. Operamos entre Latinoamérica y Europa.',
+      sub: 'GRC nativo, IA soberana, gobernanza primero. Diseñado para industrias reguladas — operamos entre Bogotá y Londres.',
       quote: 'No confíes solo en los datos que puedes ver. Escucha lo que está ausente —',
       quoteBold: 'nosotros te ayudamos a encontrarlo.',
       primary: 'Iniciar diagnóstico',
       secondary: 'Ver el método',
     },
     en: {
-      eyebrow: 'GRC · ETHICAL AI · LOCAL AI',
+      eyebrow: 'GRC · ETHICAL AI · SOVEREIGN AI',
       headline: 'Integrate AI into the systems that already run your business.',
-      sub: 'GRC-native, local AI, governance-first. We operate between Latin America and Europe.',
+      sub: 'GRC-native, sovereign AI, governance-first. Built for regulated industries — operating between Bogota and London.',
       quote: "Don't trust only the data you can see. Listen to what's missing —",
       quoteBold: "we'll help you find it.",
       primary: 'Start diagnostic',

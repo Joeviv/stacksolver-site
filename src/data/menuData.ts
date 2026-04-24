@@ -61,11 +61,33 @@ export const SERVICES_MENU: Section[] = [
         ],
         features: [
           { title: 'Soberanía de Datos', description: 'Garantizamos que sus datos nunca salgan de su infraestructura, implementando modelos locales que aseguran confidencialidad absoluta y cumplimiento normativo.' },
+          { title: 'Ethical AI Framework', description: 'Principios explícitos en cada despliegue: consentimiento, transparencia, supervisión humana, no discriminación y auditabilidad. Alineado con EU AI Act, NIST AI RMF e ISO/IEC 42001.' },
+          { title: 'Zero Data Egress', description: 'Modelos corriendo al 100% en su perímetro (AWS privado, Azure o on-prem). Logs inmutables. Ninguna conversación, documento ni embedding sale de su infraestructura. Compatible con auditorías ISO 27001:2022 e ISAE 3402.' },
           { title: 'Rust/SurrealDB', description: 'Desplegamos el stack más moderno y seguro del mercado, diseñado para alto rendimiento y tolerancia a fallos, eliminando la deuda técnica de soluciones legadas.' },
           { title: 'Local First', description: 'Priorizamos el procesamiento en el borde (Edge), reduciendo latencia y dependencia de la nube, lo que asegura continuidad operativa incluso sin internet.' },
           { title: 'Consultoría', description: 'Acompañamiento experto paso a paso, desde la evaluación de madurez digital hasta la implementación final, asegurando alineamiento con los objetivos de negocio.' }
         ],
         image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop'
+      },
+      {
+        id: 'ai-ethical-sandbox',
+        title: 'Ethical AI Sandbox',
+        shortDescription: 'Marco de pilotaje para IA auditable en entornos regulados.',
+        fullDescription: 'Marco listo para empresas en industrias fiduciarias, servicios corporativos, fondos, legal y financieras: despliegue de RAG privado sobre sus documentos, auditable, con reporte para auditorías ISO 27001 y EU AI Act, sin que un solo byte salga de su perímetro. Pensado para organizaciones globales que operan en múltiples jurisdicciones.',
+        techBadge: 'Alineado con EU AI Act, ISO 27001:2022 e ISO 42001',
+        implementationPlan: [
+          { step: 1, title: 'Assessment', description: 'Discovery: datos, riesgos y marco regulatorio aplicable.' },
+          { step: 2, title: 'Infra Setup', description: 'Modelo desplegado en su AWS, Azure u on-prem. SSO corporativo.' },
+          { step: 3, title: 'RAG & Audit', description: 'Indexación de documentos clave con logs inmutables y trazabilidad completa.' },
+          { step: 4, title: 'DPIA + Handover', description: 'Reporte de evidencias y risk mapping listo para auditores.' }
+        ],
+        features: [
+          { title: 'Compliance-by-Design', description: 'Desde el día uno entregamos DPIA (Data Protection Impact Assessment) y un risk mapping alineado al EU AI Act, NIST AI RMF e ISO/IEC 42001.' },
+          { title: 'Multi-jurisdiccional', description: 'Diseño pensado para operar bajo GDPR, Ley 1581 de Colombia, LGPD de Brasil y otros marcos — privacy-by-default en todas las fases.' },
+          { title: 'Industrias Reguladas', description: 'Patrón validado para servicios corporativos, fund administration, legal, financial services y cualquier negocio fiduciario donde los datos son el activo crítico.' },
+          { title: 'Escalable', description: 'El patrón escala horizontalmente a múltiples jurisdicciones y países sin rediseño — se replica por fases manteniendo la gobernanza central.' }
+        ],
+        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop'
       },
       {
         id: 'ai-bpm',

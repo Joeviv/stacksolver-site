@@ -920,7 +920,9 @@ function setLang(l) {
   // re-render current page
   const active = document.querySelector('.sb-item.on');
   if (active) showPage(active.dataset.page, active);
+  try{localStorage.setItem('lang',l);}catch(e){}
 }
+try{var __ss_l=localStorage.getItem('lang');if(__ss_l==='en'&&typeof setLang==='function')setLang('en');}catch(e){}
 
 function toggleSb() {
   document.getElementById('sidebar').classList.toggle('open');

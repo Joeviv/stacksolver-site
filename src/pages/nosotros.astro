@@ -369,7 +369,9 @@ function setLang(l){
   document.documentElement.lang=l;
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()));
   document.querySelectorAll('[data-es],[data-en]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});
+  try{localStorage.setItem('lang',l);}catch(e){}
 }
+try{var __ss_l=localStorage.getItem('lang');if(__ss_l==='en'&&typeof setLang==='function')setLang('en');}catch(e){}
 function togFaq(btn){
   const item=btn.parentElement,was=item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));

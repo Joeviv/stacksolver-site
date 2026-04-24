@@ -49,7 +49,7 @@
 :root{
   --bg:#fff;--surface:#fff;--border:#e4e4e7;--border-strong:#18181b;
   --accent:#18181b;--accent-fg:#fff;--accent-sub:#f4f4f5;
-  --indigo:#6366f1;--indigo-sub:#eef2ff;--indigo-strong:#4f46e5;
+  --indigo:#85a03a;--indigo-sub:#f4f7e9;--indigo-strong:#6d8530;
   --green:#16a34a;--green-sub:#f0fdf4;
   --amber:#d97706;--amber-sub:#fffbeb;
   --text:#18181b;--text2:#52525b;--text3:#a1a1aa;
@@ -58,7 +58,7 @@
 body.dark{
   --bg:#030303;--surface:#0f0f0f;--border:#1f1f1f;--border-strong:#fafafa;
   --accent:#fafafa;--accent-fg:#0a0a0a;--accent-sub:#141414;
-  --indigo:#818cf8;--indigo-sub:#1a1a2e;--indigo-strong:#a5b4fc;
+  --indigo:#a6c04d;--indigo-sub:#1a1a2e;--indigo-strong:#b5ca6c;
   --green:#4ade80;--green-sub:#042a12;
   --amber:#f59e0b;--amber-sub:#1c1410;
   --text:#fafafa;--text2:#a1a1aa;--text3:#52525b;
@@ -89,7 +89,7 @@ body.dark nav{background:rgba(3,3,3,.85)}
 /* HERO */
 .hero{padding:120px 28px 60px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.35;pointer-events:none}
-.hero::after{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(99,102,241,.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(133,160,58,.08) 0%,transparent 70%);pointer-events:none}
 .hero-inner{max-width:880px;margin:0 auto;width:100%;position:relative;z-index:1;text-align:center}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--indigo);background:var(--indigo-sub);margin-bottom:24px}
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);animation:pulse 2s infinite}

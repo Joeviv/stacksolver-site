@@ -22,7 +22,7 @@ export default function VideoLightbox({ vimeoId, title, thumbnailUrl }: VideoLig
             {/* Thumbnail Clickeable */}
             <div
                 onClick={openLightbox}
-                className="relative group cursor-pointer rounded-2xl overflow-hidden aspect-video bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 hover:shadow-xl"
+                className="relative group cursor-pointer rounded-2xl overflow-hidden aspect-video bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-olive-500 dark:hover:border-olive-500 transition-all duration-300 hover:shadow-xl"
             >
                 <img
                     src={thumbnailUrl || defaultThumbnail}

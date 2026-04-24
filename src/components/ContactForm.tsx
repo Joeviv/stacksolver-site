@@ -69,7 +69,7 @@ export default function ContactForm() {
             name="nombre"
             id="nombre"
             placeholder="Juan Pérez"
-            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-olive-500 outline-none focus:ring-1 focus:ring-olive-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
           />
         </div>
         <div className="space-y-2">
@@ -79,7 +79,7 @@ export default function ContactForm() {
             name="empresa"
             id="empresa"
             placeholder="Tu Empresa S.A.S"
-            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-olive-500 outline-none focus:ring-1 focus:ring-olive-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
           />
         </div>
       </div>
@@ -93,7 +93,7 @@ export default function ContactForm() {
             name="email"
             id="email"
             placeholder="juan@empresa.com"
-            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-olive-500 outline-none focus:ring-1 focus:ring-olive-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
           />
         </div>
         <div className="space-y-2">
@@ -103,7 +103,7 @@ export default function ContactForm() {
             name="telefono"
             id="telefono"
             placeholder="+57 300 123 4567"
-            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+            className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-olive-500 outline-none focus:ring-1 focus:ring-olive-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
           />
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function ContactForm() {
           id="mensaje"
           rows={5}
           placeholder="Cuéntanos sobre tu proyecto..."
-          className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-blue-500 outline-none resize-none focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
+          className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-zinc-900 dark:text-white focus:border-olive-500 outline-none resize-none focus:ring-1 focus:ring-olive-500/50 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-700"
         ></textarea>
       </div>
 

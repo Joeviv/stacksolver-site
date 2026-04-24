@@ -36,7 +36,7 @@ export default function Sidebar() {
       {/* Header Móvil */}
       <div className="sticky top-0 z-40 md:hidden flex items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-black/80 backdrop-blur-xl">
         <div className="flex items-center gap-2">
-             <div className="w-6 h-6 bg-blue-600 rounded-md flex items-center justify-center">
+             <div className="w-6 h-6 bg-olive-500 rounded-md flex items-center justify-center">
                 <CodeBracketIcon className="w-4 h-4 text-white" />
              </div>
             <span className="font-bold text-zinc-900 dark:text-white">StackSolver</span>
@@ -61,7 +61,7 @@ export default function Sidebar() {
         {/* Logo */}
         <a href="/" className="p-8 flex-shrink-0 cursor-pointer block group">
             <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 bg-olive-500 rounded-lg flex items-center justify-center shadow-lg shadow-olive-500/30 group-hover:scale-110 transition-transform">
                     <CodeBracketIcon className="w-5 h-5 text-white" />
                 </div>
                 <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">StackSolver</h1>
@@ -74,7 +74,7 @@ export default function Sidebar() {
             <div className="pb-4">
                 <a 
                     href="/"
-                    className={`w-full flex items-center space-x-3 px-4 py-3.5 rounded-lg transition-all duration-200 mb-2 ${isActive('/') && currentPath === '/' ? 'bg-blue-50 text-blue-600 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
+                    className={`w-full flex items-center space-x-3 px-4 py-3.5 rounded-lg transition-all duration-200 mb-2 ${isActive('/') && currentPath === '/' ? 'bg-olive-50 text-olive-500 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
                 >
                     <HomeIcon className="w-5 h-5 flex-shrink-0" />
                     <span className="font-medium text-left">Inicio</span>
@@ -97,7 +97,7 @@ export default function Sidebar() {
                                 `}
                             >
                                 <div className="flex items-center gap-3">
-                                    <Icon className={`w-5 h-5 flex-shrink-0 transition-transform ${isSectionActive ? 'text-blue-600' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-600 dark:group-hover:text-zinc-300'}`} />
+                                    <Icon className={`w-5 h-5 flex-shrink-0 transition-transform ${isSectionActive ? 'text-olive-500' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-600 dark:group-hover:text-zinc-300'}`} />
                                     <span className="font-medium tracking-wide leading-tight">{section.title}</span>
                                 </div>
                                 {isExpanded 
@@ -115,7 +115,7 @@ export default function Sidebar() {
                                             className={`
                                                 block w-full text-left px-4 py-2.5 rounded-md text-sm transition-colors leading-tight
                                                 ${isActive(`/servicios/${section.id}/${sub.id}`)
-                                                    ? 'bg-blue-50 text-blue-600 dark:bg-blue-600/20 dark:text-blue-400 border border-blue-200 dark:border-blue-600/20' 
+                                                    ? 'bg-olive-50 text-olive-500 dark:bg-olive-500/20 dark:text-olive-400 border border-olive-200 dark:border-olive-500/20' 
                                                     : 'text-zinc-500 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/50'}
                                             `}
                                         >
@@ -131,14 +131,14 @@ export default function Sidebar() {
                 <p className="px-4 text-xs font-bold text-zinc-500 dark:text-zinc-600 uppercase tracking-wider mb-3 mt-6">Empresa</p>
                  <a 
                     href="/nosotros"
-                    className={`w-full flex items-center space-x-3 px-4 py-3.5 rounded-lg transition-all duration-200 ${isActive('/nosotros') ? 'bg-blue-50 text-blue-600 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
+                    className={`w-full flex items-center space-x-3 px-4 py-3.5 rounded-lg transition-all duration-200 ${isActive('/nosotros') ? 'bg-olive-50 text-olive-500 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
                 >
                     <UserGroupIcon className="w-5 h-5 flex-shrink-0" />
                     <span className="font-medium text-left">Nosotros</span>
                 </a>
                  <a 
                     href="/contacto"
-                    className={`w-full flex items-center space-x-3 px-4 py-3.5 rounded-lg transition-all duration-200 ${isActive('/contacto') ? 'bg-blue-50 text-blue-600 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
+                    className={`w-full flex items-center space-x-3 px-4 py-3.5 rounded-lg transition-all duration-200 ${isActive('/contacto') ? 'bg-olive-50 text-olive-500 dark:bg-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
                 >
                     <ChatBubbleLeftRightIcon className="w-5 h-5 flex-shrink-0" />
                     <span className="font-medium text-left">Contacto</span>

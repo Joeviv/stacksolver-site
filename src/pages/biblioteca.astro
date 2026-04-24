@@ -12,7 +12,7 @@
 :root{
   --bg:#fafafa;--surface:#fff;--border:#e4e4e7;--border-strong:#18181b;
   --accent:#18181b;--accent-fg:#fff;--accent-sub:#f4f4f5;
-  --indigo:#6366f1;--indigo-sub:#eef2ff;
+  --indigo:#85a03a;--indigo-sub:#f4f7e9;
   --green:#16a34a;--green-sub:#f0fdf4;
   --amber:#d97706;--amber-sub:#fffbeb;
   --text:#18181b;--text2:#71717a;--text3:#a1a1aa;
@@ -22,7 +22,7 @@
 body.dark{
   --bg:#0a0a0a;--surface:#111;--border:#27272a;--border-strong:#fafafa;
   --accent:#fafafa;--accent-fg:#18181b;--accent-sub:#27272a;
-  --indigo:#818cf8;--indigo-sub:#1e1b4b;
+  --indigo:#a6c04d;--indigo-sub:#3d4418;
   --green:#4ade80;--green-sub:#052e16;
   --text:#fafafa;--text2:#a1a1aa;--text3:#52525b;
 }
@@ -93,7 +93,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav);display:fl
 .acc-q:hover{background:var(--accent-sub)}
 .acc-item.open .acc-q{background:var(--accent-sub)}
 .acc-q-left{display:flex;align-items:center;gap:10px}
-.acc-q-num{font-size:10px;font-weight:700;color:var(--indigo);background:var(--indigo-sub);border:1px solid #c7d2fe;padding:2px 6px;border-radius:4px;flex-shrink:0;min-width:24px;text-align:center;letter-spacing:.3px}
+.acc-q-num{font-size:10px;font-weight:700;color:var(--indigo);background:var(--indigo-sub);border:1px solid #d0de9f;padding:2px 6px;border-radius:4px;flex-shrink:0;min-width:24px;text-align:center;letter-spacing:.3px}
 body.dark .acc-q-num{border-color:var(--indigo-sub)}
 .acc-toggle{width:20px;height:20px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;color:var(--text3)}
 .acc-item.open .acc-toggle{background:var(--indigo);border-color:var(--indigo);color:#fff;transform:rotate(45deg)}
@@ -111,7 +111,7 @@ body.dark .acc-a li{border-left-color:var(--indigo-sub)}
 /* TAGS */
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
 .tag{font-size:11px;font-weight:500;padding:3px 9px;border-radius:4px;border:1px solid var(--border);color:var(--text2)}
-.tag.ind{border-color:#c7d2fe;background:#eef2ff;color:#4338ca}
+.tag.ind{border-color:#d0de9f;background:#f4f7e9;color:#4338ca}
 .tag.grc{border-color:#fde68a;background:#fffbeb;color:#92400e}
 .tag.ai{border-color:#bbf7d0;background:#f0fdf4;color:#166534}
 body.dark .tag.ind{border-color:var(--indigo-sub);background:var(--indigo-sub);color:var(--indigo)}
@@ -119,7 +119,7 @@ body.dark .tag.grc{border-color:var(--amber-sub);background:var(--amber-sub);col
 body.dark .tag.ai{border-color:var(--green-sub);background:var(--green-sub);color:var(--green)}
 
 /* INFO PILL */
-.info-pill{display:flex;gap:8px;padding:10px 14px;border-radius:var(--r);background:var(--indigo-sub);border:1px solid #c7d2fe;font-size:12px;color:#4338ca;line-height:1.5;margin-bottom:20px}
+.info-pill{display:flex;gap:8px;padding:10px 14px;border-radius:var(--r);background:var(--indigo-sub);border:1px solid #d0de9f;font-size:12px;color:#4338ca;line-height:1.5;margin-bottom:20px}
 body.dark .info-pill{border-color:var(--indigo-sub);color:var(--indigo)}
 .partner-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r);background:var(--green-sub);border:1px solid #bbf7d0;font-size:12px;font-weight:600;color:var(--green);margin-bottom:20px}
 body.dark .partner-badge{border-color:var(--green-sub)}

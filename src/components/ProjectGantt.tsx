@@ -77,7 +77,7 @@ export const ProjectGantt = ({ steps }: { steps: ImplementationStep[] }) => {
         <div className="mt-12 bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 md:p-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 shadow-sm dark:shadow-none">
             <div className="flex flex-col mb-8">
                 <h3 className="text-2xl font-bold text-zinc-900 dark:text-white flex items-center gap-2 mb-2">
-                    <CalendarDaysIcon className="w-6 h-6 text-purple-600 dark:text-purple-500" />
+                    <CalendarDaysIcon className="w-6 h-6 text-olive-600 dark:text-olive-500" />
                     Cronograma Interactivo
                 </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm">Ajusta las fechas de cada fase para personalizar tu plan de implementación.</p>
@@ -122,7 +122,7 @@ export const ProjectGantt = ({ steps }: { steps: ImplementationStep[] }) => {
                                                     type="date"
                                                     value={phase.startDate}
                                                     onChange={(e) => handleDateChange(idx, 'startDate', e.target.value)}
-                                                    className="bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded text-xs text-zinc-900 dark:text-zinc-300 px-2 py-1 w-full focus:border-blue-500 outline-none transition-colors"
+                                                    className="bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded text-xs text-zinc-900 dark:text-zinc-300 px-2 py-1 w-full focus:border-olive-500 outline-none transition-colors"
                                                 />
                                             </div>
                                             <div className="flex items-center gap-2">
@@ -131,7 +131,7 @@ export const ProjectGantt = ({ steps }: { steps: ImplementationStep[] }) => {
                                                     type="date"
                                                     value={phase.endDate}
                                                     onChange={(e) => handleDateChange(idx, 'endDate', e.target.value)}
-                                                    className="bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded text-xs text-zinc-900 dark:text-zinc-300 px-2 py-1 w-full focus:border-blue-500 outline-none transition-colors"
+                                                    className="bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded text-xs text-zinc-900 dark:text-zinc-300 px-2 py-1 w-full focus:border-olive-500 outline-none transition-colors"
                                                 />
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@ export const ProjectGantt = ({ steps }: { steps: ImplementationStep[] }) => {
                                         </div>
 
                                         <div
-                                            className="absolute top-1/2 -translate-y-1/2 h-8 rounded-md bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-900/20 transition-all duration-500 cursor-help group-hover:brightness-110 flex items-center px-3 overflow-hidden"
+                                            className="absolute top-1/2 -translate-y-1/2 h-8 rounded-md bg-gradient-to-r from-olive-500 to-olive-600 shadow-lg shadow-olive-900/20 transition-all duration-500 cursor-help group-hover:brightness-110 flex items-center px-3 overflow-hidden"
                                             style={{
                                                 left: `${leftPercent}%`,
                                                 width: `${widthPercent}%`,

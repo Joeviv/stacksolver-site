@@ -18,11 +18,11 @@ export default function SmartButtons() {
               text-sm font-medium
               transition-all duration-300 ease-out
               hover:scale-105 hover:shadow-lg
-              hover:bg-zinc-50 hover:border-blue-300 hover:text-blue-600 hover:shadow-blue-500/20
+              hover:bg-zinc-50 hover:border-olive-300 hover:text-olive-500 hover:shadow-olive-500/20
               dark:hover:bg-white/10 dark:hover:border-white/20 dark:hover:text-white dark:hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]
             "
                     >
-                        <Icon className="w-4 h-4 text-blue-500 group-hover:text-blue-400 transition-colors" />
+                        <Icon className="w-4 h-4 text-olive-500 group-hover:text-olive-400 transition-colors" />
                         <span>{section.title}</span>
                     </a>
                 );

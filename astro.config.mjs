@@ -7,7 +7,9 @@ export default defineConfig({
   site: 'https://www.stacksolver.tech',
   integrations: [
     react(),
-    sitemap()
+    sitemap({
+      filter: (page) => !page.includes('/p/')
+    })
   ],
   vite: {
     plugins: [

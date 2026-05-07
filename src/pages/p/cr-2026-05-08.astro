@@ -1,0 +1,264 @@
+---
+import EstimateTemplate from "../../components/templates/EstimateTemplate.astro";
+---
+
+<EstimateTemplate
+  clientName="Cromanal SAS"
+  projectName="Plan de Continuidad Operativa Post-Incidente"
+  date="2026-05-08"
+  status="Draft"
+  hideHeader={true}
+>
+  <div class="max-w-4xl mx-auto text-zinc-800 dark:text-zinc-200">
+
+    <!-- HEADER -->
+    <section class="mb-12">
+      <h1 class="text-3xl font-bold mb-2 text-zinc-900 dark:text-white">Propuesta: Plan de Continuidad Operativa</h1>
+      <p class="text-zinc-500 mb-8 border-b pb-4">Para: Ricardo (TI Estrategico SGS) y Maria Angelica (Sistemas) | De: StackSolver</p>
+
+      <div class="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border border-amber-100 dark:border-amber-900/30 mb-8">
+        <h3 class="text-xl font-bold mb-4 text-zinc-900 dark:text-white">Contexto y enfoque</h3>
+        <p class="mb-4 text-zinc-700 dark:text-zinc-300">
+          Tras el bloqueo del servidor el 2026-05-05 y el diagnostico tecnico realizado el 2026-05-07, identificamos un dano estructural en la base de datos central que se viene acumulando desde diciembre de 2025. La operacion de laboratorio fue restablecida temporalmente sobre una copia previa, pero esa base sigue conteniendo el dano de origen.
+        </p>
+        <p class="mb-4 text-zinc-700 dark:text-zinc-300">
+          Esta propuesta esta dividida en <strong>tres frentes coordinados</strong> para resolver el incidente y dejar la operacion sobre una base estable y verificable. Las dos primeras partes deben ejecutarse de manera secuencial: <strong>el plan de choque sin los ajustes de fondo es solo un parche</strong>, y la causa raiz volveria a manifestarse.
+        </p>
+        <p class="text-zinc-700 dark:text-zinc-300 italic">
+          La tercera parte queda referenciada como evolucion natural posterior, sujeta a propuesta separada.
+        </p>
+      </div>
+    </section>
+
+    <!-- PARTE 1 — PLAN DE CHOQUE -->
+    <section class="mb-12 space-y-4">
+      <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Frentes de trabajo</h2>
+
+      <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden" open>
+        <summary class="flex justify-between items-center p-6 cursor-pointer bg-blue-50/50 dark:bg-blue-900/10 hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-colors">
+          <span class="font-bold text-lg text-blue-800 dark:text-blue-300">Parte 1 — Plan de Choque (Recuperacion Operativa)</span>
+          <span class="transform group-open:rotate-180 transition-transform text-blue-500">▼</span>
+        </summary>
+        <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+          <p class="mb-4">
+            Reconstruccion estructural de la base de datos central mediante el procedimiento autoritativo en Claris FileMaker: <strong>Save as Clone + Import selectivo</strong> ejecutado en equipo dedicado (fuera del servidor productivo), con validacion por tabla.
+          </p>
+
+          <div class="mb-4">
+            <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+              <li>Recepcion de copia bit-a-bit de la base de datos actual con hashes documentados antes de iniciar.</li>
+              <li>Generacion de estructura limpia (Save as Clone) en equipo dedicado de StackSolver.</li>
+              <li>Import selectivo de tablas con datos: tablas pre-incidente que se logren conservar + datos cargados durante el periodo de contingencia (mayo).</li>
+              <li>Validacion de integridad por tabla y reporte de porcentaje de datos preservados.</li>
+              <li>Entrega de la base reconstruida y verificacion conjunta con Maria Angelica.</li>
+              <li>Documentacion de cierre: que se hizo, que quedo por hacer, condiciones de operacion posterior.</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50/50 dark:bg-blue-900/10 p-4 rounded mb-4 text-sm">
+            <strong class="text-blue-900 dark:text-blue-200 block mb-2">Ventana operativa propuesta</strong>
+            <ul class="list-disc pl-5 space-y-1 text-zinc-700 dark:text-zinc-300">
+              <li><strong>Stop de operacion:</strong> sabado mediodia (a confirmar con Maria Angelica).</li>
+              <li><strong>Ventana de intervencion:</strong> sabado tarde y domingo, en horario adicional.</li>
+              <li><strong>Arranque limpio:</strong> lunes en la manana sobre la base reconstruida.</li>
+              <li><strong>Tiempo estimado de la ventana:</strong> entre 6 y 12 horas continuas, segun el peso final del archivo.</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+            <span class="mb-2 sm:mb-0">
+              <strong>Modalidad:</strong> Por horas, tarifa de emergencia (sin contrato vigente).<br/>
+              <strong>Cronometro iniciado:</strong> 2026-05-08 con el diagnostico tecnico via AnyDesk.<br/>
+              <strong>Horas iniciales facturables:</strong> aproximadamente 8 horas (diagnostico + escalamiento + planeacion).<br/>
+              <strong>Horas adicionales estimadas:</strong> entre 8 y 16 horas (ventana + validacion + entrega).
+            </span>
+            <span class="font-bold text-lg text-blue-600 dark:text-blue-400 mt-2 sm:mt-0">
+              Inversion: tarifa por hora <span class="text-amber-600">[VALOR_HORA_EMERGENCIA]</span>
+            </span>
+          </div>
+
+          <p class="text-xs text-zinc-500 italic mt-4">
+            *Facturacion formal al cierre de la intervencion con detalle de horas reales trabajadas. Trabajo en horario adicional (noche y fin de semana).
+          </p>
+        </div>
+      </details>
+
+      <!-- PARTE 2 — AJUSTES DE FONDO -->
+      <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+        <summary class="flex justify-between items-center p-6 cursor-pointer bg-emerald-50/50 dark:bg-emerald-900/10 hover:bg-emerald-100 dark:hover:bg-emerald-900/20 transition-colors">
+          <span class="font-bold text-lg text-emerald-800 dark:text-emerald-300">Parte 2 — Ajustes de Fondo (Normalizacion)</span>
+          <span class="transform group-open:rotate-180 transition-transform text-emerald-500">▼</span>
+        </summary>
+        <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+          <p class="mb-4">
+            Una vez restablecida la operacion, esta segunda fase ejecuta los ajustes que evitan que el incidente vuelva a ocurrir. <strong>Esta parte no es opcional</strong>: sin ella, la solucion del plan de choque queda expuesta a la misma causa raiz.
+          </p>
+
+          <div class="mb-4">
+            <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+              <li><strong>Politica correcta de cambio de ano:</strong> establecimiento del procedimiento que evita el dano estructural detectado en el clonado de la base 2025 a la 2026.</li>
+              <li><strong>Configuracion verificada de backups:</strong> rotacion automatizada, copia off-site, validacion periodica de restauracion.</li>
+              <li><strong>Activacion y monitoreo del schedule de copia nocturna</strong> (encontrado deshabilitado durante el diagnostico).</li>
+              <li><strong>Separacion de archivos PDF de la base de datos central:</strong> migracion a estructura de carpetas fijas con referencia, reduciendo el peso del archivo principal y eliminando un punto de fragilidad ya identificado en el grupo SGS.</li>
+              <li><strong>Documentacion de operacion normal:</strong> entrega de procedimiento estandar para el equipo de Maria Angelica.</li>
+            </ul>
+          </div>
+
+          <div class="bg-emerald-50/50 dark:bg-emerald-900/10 p-4 rounded mb-4 text-sm">
+            <strong class="text-emerald-900 dark:text-emerald-200 block mb-2">Por que esta parte es indispensable</strong>
+            <p class="text-zinc-700 dark:text-zinc-300 mb-2">
+              El plan de choque pone la operacion en marcha. Los ajustes de fondo aseguran que la solucion sea estable, trazable y blindada frente a la causa raiz documentada. Sin esta parte, el riesgo de reincidencia se mantiene y el deslinde de responsabilidades futuras queda comprometido.
+            </p>
+            <p class="text-zinc-700 dark:text-zinc-300">
+              Ambas partes estan disenadas para ejecutarse de manera secuencial. La aprobacion conjunta de Parte 1 y Parte 2 es la condicion para que StackSolver garantice estabilidad estructural sostenida.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
+            <span class="mb-2 sm:mb-0">
+              <strong>Modalidad:</strong> Precio fijo por entregable.<br/>
+              <strong>Tiempo de ejecucion:</strong> 1 a 2 semanas posteriores al cierre de la Parte 1.
+            </span>
+            <span class="font-bold text-lg text-emerald-600 dark:text-emerald-400 mt-2 sm:mt-0">
+              Inversion: <span class="text-amber-600">[PRECIO_FIJO_PARTE_2]</span>
+            </span>
+          </div>
+        </div>
+      </details>
+
+      <!-- PARTE 3 — PLAN DE MEJORAS -->
+      <details class="group bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden opacity-75 hover:opacity-100 transition-opacity">
+        <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+          <span class="font-bold text-lg text-zinc-500 dark:text-zinc-400">Parte 3 — Plan de Mejoras Estructurales (Propuesta separada)</span>
+          <span class="flex items-center gap-2">
+            <span class="text-xs bg-zinc-200 dark:bg-zinc-800 px-2 py-1 rounded text-zinc-500">Siguiente fase</span>
+            <span class="transform group-open:rotate-180 transition-transform text-zinc-400">▼</span>
+          </span>
+        </summary>
+        <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
+          <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+            Como continuacion natural posterior a las Partes 1 y 2, StackSolver actualizara y enviara la propuesta integral de evolucion estructural del grupo SGS. Lineas de trabajo previstas:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+            <li>Migracion del servidor FileMaker a version actual (FMS 2025) y hardware Apple Silicon moderno.</li>
+            <li>Esquema de backup unificado para el grupo (Cromanal y AQM) integrado a infraestructura corporativa SGS.</li>
+            <li>Atencion al pendiente historico de referenciacion de PDF en AQM antes de que se materialice el mismo escenario.</li>
+            <li>Modelo de soporte y mantenimiento mensual con SLA y ventanas de mantenimiento programadas.</li>
+            <li>Inventario tecnico vivo del grupo y politicas de cuentas corporativas dedicadas.</li>
+          </ul>
+          <p class="text-xs text-zinc-500 italic mt-3">
+            *Esta parte se cotiza por separado. Valores actualizados al ano vigente sobre la propuesta original previa.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <!-- GARANTIAS Y DESLINDE -->
+    <section class="mb-12 bg-slate-50 dark:bg-slate-900/30 p-8 rounded-lg border border-slate-200 dark:border-slate-800/30 shadow-sm">
+      <h3 class="font-bold text-slate-800 dark:text-slate-300 text-lg mb-4">
+        Garantias, condiciones de intervencion y deslinde de responsabilidades
+      </h3>
+      <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-4">
+        Para garantizar trazabilidad tecnica clara durante y despues de la intervencion, StackSolver opera bajo tres condiciones no negociables:
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-slate-100 dark:border-slate-800">
+          <strong class="text-slate-900 dark:text-white block mb-1">1. Estado documentado pre-intervencion</strong>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs">
+            Copia bit-a-bit del archivo y hashes documentados, con acuerdo de ambas partes, antes de cualquier modificacion.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-slate-100 dark:border-slate-800">
+          <strong class="text-slate-900 dark:text-white block mb-1">2. Unico responsable tecnico</strong>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs">
+            StackSolver opera como unico responsable tecnico del archivo durante la ventana, sin intervenciones paralelas que comprometan la trazabilidad.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-slate-100 dark:border-slate-800">
+          <strong class="text-slate-900 dark:text-white block mb-1">3. Documento formal de cierre</strong>
+          <p class="text-zinc-600 dark:text-zinc-400 text-xs">
+            Entrega final con descripcion de operaciones realizadas, estado entregado y condiciones de operacion posterior. Define el limite de responsabilidad de la intervencion.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded text-xs text-zinc-700 dark:text-zinc-300 mb-2">
+        <strong class="block mb-1">Lo que StackSolver garantiza:</strong>
+        Metodo autoritativo de Claris (Save as Clone + Import), documentacion completa del proceso, esfuerzo profesional para preservar el maximo de informacion, y deslinde claro de responsabilidades en el documento de cierre.
+      </div>
+      <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded text-xs text-zinc-700 dark:text-zinc-300">
+        <strong class="block mb-1">Lo que se confirma durante la intervencion:</strong>
+        El porcentaje exacto de datos rescatados depende del estado de cada tabla en el archivo recibido y se documenta tabla por tabla en el cierre. La estructura entregada queda libre del dano historico identificado en el diagnostico.
+      </div>
+    </section>
+
+    <!-- POR QUE ESTE ENFOQUE -->
+    <section class="mb-12 bg-white dark:bg-zinc-900 p-8 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+      <h3 class="font-bold text-zinc-900 dark:text-white text-lg mb-4">
+        Por que este enfoque y no otro
+      </h3>
+      <div class="space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
+        <p>
+          Sobre archivos FileMaker con dano estructural, no existe un procedimiento de "reparacion en sitio" que preserve la integridad. El metodo autoritativo de Claris es el procedimiento Save as Clone + Import, que reconstruye estructura limpia y migra datos validados.
+        </p>
+        <p>
+          La intervencion se realiza fuera del servidor productivo, en equipo dedicado de StackSolver con la herramienta correcta (Claris FileMaker Pro). Esto evita los riesgos de operar sobre el servidor en produccion y permite validar cada paso antes de la entrega.
+        </p>
+        <p>
+          La aprobacion conjunta de Parte 1 y Parte 2 es la condicion para que el resultado sea estable. La Parte 1 sin la Parte 2 deja la causa raiz vigente y compromete cualquier garantia futura.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMEN ECONOMICO -->
+    <section class="mb-8 bg-zinc-900 py-8 px-6 rounded-xl text-white shadow-xl">
+      <h2 class="text-xl font-bold mb-6 text-center">Resumen de Inversion</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left border-collapse">
+          <thead class="text-zinc-400 border-b border-zinc-700">
+            <tr>
+              <th class="py-3">Frente</th>
+              <th class="py-3">Modalidad</th>
+              <th class="py-3 text-right">Inversion</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-700 font-medium">
+            <tr>
+              <td class="py-4">Parte 1 — Plan de Choque</td>
+              <td class="py-4 text-zinc-400">Por horas, tarifa emergencia</td>
+              <td class="py-4 text-right text-amber-400">[VALOR_HORA_EMERGENCIA] / hora</td>
+            </tr>
+            <tr>
+              <td class="py-4">Parte 2 — Ajustes de Fondo</td>
+              <td class="py-4 text-zinc-400">Precio fijo por entregable</td>
+              <td class="py-4 text-right text-amber-400">[PRECIO_FIJO_PARTE_2]</td>
+            </tr>
+            <tr>
+              <td class="py-4">Parte 3 — Plan de Mejoras</td>
+              <td class="py-4 text-zinc-400">Propuesta separada</td>
+              <td class="py-4 text-right text-zinc-400">A enviar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center text-zinc-400 text-sm mt-6 border-t border-zinc-700 pt-4">
+        Facturacion via StackSolver SAS. Aplica IVA 19% segun normativa colombiana.<br/>
+        Las horas iniciadas hoy con el diagnostico tecnico forman parte de la Parte 1 y se incluyen en la liquidacion final.
+      </p>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="mb-8 text-center bg-zinc-50 dark:bg-zinc-800/30 p-8 rounded-lg">
+      <p class="font-bold text-lg text-zinc-900 dark:text-white mb-2">Quedamos atentos a su confirmacion para iniciar la ventana operativa,</p>
+      <p class="text-zinc-600 dark:text-zinc-400">Johann Vivas y Santiago Aguilar</p>
+      <p class="text-zinc-500 dark:text-zinc-500 text-sm">Equipo StackSolver</p>
+      <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-4 italic">
+        Documento de trabajo en revision. Para cualquier ajuste de alcance o condiciones, escribir a johann@stacksolver.tech.
+      </p>
+    </section>
+
+  </div>
+</EstimateTemplate>

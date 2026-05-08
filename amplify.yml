@@ -12,6 +12,16 @@ frontend:
     build:
       commands:
         - pnpm run build
+        - |
+          cat > dist/deploy-manifest.json <<'JSON'
+          {
+            "version": 1,
+            "routes": [
+              { "path": "/*", "target": { "kind": "Static" } }
+            ],
+            "framework": { "name": "astro", "version": "6.1.4" }
+          }
+          JSON
   artifacts:
     baseDirectory: dist
     files:

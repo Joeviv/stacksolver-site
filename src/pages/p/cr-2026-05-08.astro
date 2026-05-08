@@ -302,6 +302,11 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
                 <div class="text-purple-400">Premium: $5.150.000 / mes</div>
               </td>
             </tr>
+            <tr>
+              <td class="py-4">Hora ad-hoc sin plan activo</td>
+              <td class="py-4 text-zinc-400">Por incidente puntual, sin compromiso mensual</td>
+              <td class="py-4 text-right text-zinc-300">$198.000 / hora</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -310,6 +315,94 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
         Las horas iniciadas el 2026-05-08 con el diagnostico tecnico forman parte de la Parte 1 y se incluyen en la liquidacion final.<br/>
         Valores Parte 3 ajustados al IPC sobre la propuesta historica de marzo 2025 (clausula contractual original).
       </p>
+    </section>
+
+    <!-- COMPARATIVO PLAN VS AD-HOC -->
+    <section class="mb-12 bg-white dark:bg-zinc-900 p-8 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+      <h3 class="font-bold text-zinc-900 dark:text-white text-xl mb-2">
+        Analisis comparativo: plan mensual vs pago por hora
+      </h3>
+      <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-6">
+        Este ejercicio muestra el costo mensual de soporte segun el volumen real de trabajo, comparando el modelo ad-hoc (pago por hora sin plan) contra el plan de bolsa que mejor se ajusta al volumen.
+      </p>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left border-collapse">
+          <thead class="bg-zinc-50 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+            <tr>
+              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Volumen mensual</th>
+              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Sin plan ($198.000/h)</th>
+              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Plan recomendado</th>
+              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700 text-right">Ahorro / mes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
+            <tr>
+              <td class="py-3 px-4">5 horas</td>
+              <td class="py-3 px-4">$990.000</td>
+              <td class="py-3 px-4 text-zinc-500">No aplica plan (uso bajo)</td>
+              <td class="py-3 px-4 text-right text-zinc-500">—</td>
+            </tr>
+            <tr class="bg-emerald-50/30 dark:bg-emerald-900/10">
+              <td class="py-3 px-4 font-semibold">10 horas</td>
+              <td class="py-3 px-4">$1.980.000</td>
+              <td class="py-3 px-4">Plan Core — $1.580.000</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700 dark:text-emerald-400">$400.000</td>
+            </tr>
+            <tr class="bg-emerald-50/40 dark:bg-emerald-900/20">
+              <td class="py-3 px-4 font-semibold">20 horas</td>
+              <td class="py-3 px-4">$3.960.000</td>
+              <td class="py-3 px-4">Plan Intermedio — $2.630.000</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700 dark:text-emerald-400">$1.330.000</td>
+            </tr>
+            <tr class="bg-emerald-50/50 dark:bg-emerald-900/30">
+              <td class="py-3 px-4 font-semibold">40 horas</td>
+              <td class="py-3 px-4">$7.920.000</td>
+              <td class="py-3 px-4">Plan Premium — $5.150.000</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700 dark:text-emerald-400">$2.770.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-lg border border-blue-100 dark:border-blue-900/30 mb-4">
+        <h4 class="font-bold text-blue-900 dark:text-blue-200 text-sm mb-2">
+          Caso especial: la ventana de mantenimiento de este fin de semana
+        </h4>
+        <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">
+          Si se activa un plan mensual en paralelo a la aprobacion de la Parte 1, las horas de la ventana sabado-domingo que caigan dentro del horario del plan se imputan a la bolsa mensual a tarifa de bolsa, en lugar de tarifa de emergencia.
+        </p>
+        <table class="w-full text-xs text-left border-collapse">
+          <thead class="text-zinc-500 dark:text-zinc-400">
+            <tr>
+              <th class="py-2 pr-4">Escenario (~20 h totales: 8 diagnostico + 12 ventana)</th>
+              <th class="py-2 pr-4 text-right">Costo Parte 1</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-blue-100 dark:divide-blue-900/30">
+            <tr>
+              <td class="py-2 pr-4">A) Solo Parte 1 (sin plan): 20 h × $264.000 emergencia</td>
+              <td class="py-2 pr-4 text-right">$5.280.000</td>
+            </tr>
+            <tr>
+              <td class="py-2 pr-4">B) Parte 1 + Plan Premium activado: 8 h diagnostico a $264K + 12 h ventana sabado a tarifa Premium ($116K dentro / $221K fuera)</td>
+              <td class="py-2 pr-4 text-right">~$4.220.000</td>
+            </tr>
+            <tr class="bg-blue-100/50 dark:bg-blue-900/20 font-bold">
+              <td class="py-2 pr-4 text-blue-900 dark:text-blue-200">Ahorro estimado activando plan antes de la ventana</td>
+              <td class="py-2 pr-4 text-right text-blue-900 dark:text-blue-200">~$1.060.000</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-xs text-zinc-500 italic mt-3">
+          *El ahorro real depende de cuantas horas de la ventana caigan dentro del horario del plan elegido. Premium (4:30 AM - 11:00 PM L-V + sab 8 AM - 12 PM) cubre la mayor parte de la ventana esperada. Adicionalmente, la mensualidad de Premium cubre el resto del mes con horas disponibles.
+        </p>
+      </div>
+
+      <div class="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded text-sm text-zinc-700 dark:text-zinc-300">
+        <strong class="block mb-1 text-zinc-900 dark:text-white">Lectura simple</strong>
+        Por encima de 8 horas mensuales de soporte, un plan de bolsa siempre sale mas economico que pagar por hora. Para el grupo SGS, considerando que el servicio cubre Cromanal y AQM bajo un solo responsable tecnico, el plan Intermedio o Premium es el escenario natural.
+      </div>
     </section>
 
     <!-- CIERRE -->

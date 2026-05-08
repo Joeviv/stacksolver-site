@@ -95,39 +95,67 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
             Una vez restablecida la operación, esta segunda fase ejecuta los ajustes que evitan que el incidente vuelva a ocurrir. <strong>Esta parte no es opcional</strong>: sin ella, la solución del plan de choque queda expuesta a la misma causa raíz.
           </p>
 
-          <div class="mb-4">
-            <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
-            <ul class="list-disc pl-5 mt-2 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+          <p class="mb-6 text-sm text-zinc-700 dark:text-zinc-300">
+            La Parte 2 está dividida en dos sub-entregables independientes que pueden aprobarse y ejecutarse por separado, aunque el resultado más sólido se obtiene ejecutando los dos.
+          </p>
+
+          <!-- SUB-PARTE 2A -->
+          <div class="bg-emerald-50/30 dark:bg-emerald-900/10 p-5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 mb-4">
+            <div class="flex justify-between items-start mb-3">
+              <h4 class="font-bold text-emerald-900 dark:text-emerald-200">Sub-parte 2A — Normalización básica</h4>
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap text-sm">COP $2.500.000</span>
+            </div>
+            <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">
+              Cierra los frentes que dejaron a la operación expuesta a la causa raíz documentada en el diagnóstico.
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
               <li><strong>Política correcta de cambio de año:</strong> establecimiento del procedimiento que evita el daño estructural detectado en el clonado de la base 2025 a la 2026.</li>
-              <li><strong>Configuración verificada de backups:</strong> rotación automatizada, copia off-site, validación periódica de restauración. Opcionalmente, StackSolver puede facilitar disco externo dedicado para el esquema off-site (sin costo adicional para esta propuesta, sujeto a disponibilidad).</li>
+              <li><strong>Configuración verificada de backups:</strong> rotación automatizada, copia off-site, validación periódica de restauración. Opcionalmente, StackSolver puede facilitar disco externo dedicado para el esquema off-site (sin costo adicional, sujeto a disponibilidad).</li>
               <li><strong>Activación y monitoreo del schedule de copia nocturna</strong> (encontrado deshabilitado durante el diagnóstico).</li>
               <li><strong>Documentación de operación normal:</strong> entrega de procedimiento estándar para el equipo de María Angélica.</li>
             </ul>
           </div>
 
+          <!-- SUB-PARTE 2B -->
+          <div class="bg-emerald-50/40 dark:bg-emerald-900/15 p-5 rounded-lg border border-emerald-200 dark:border-emerald-900/40 mb-4">
+            <div class="flex justify-between items-start mb-3">
+              <h4 class="font-bold text-emerald-900 dark:text-emerald-200">Sub-parte 2B — Separación de archivos PDF (optimización estructural)</h4>
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap text-sm">COP $2.400.000</span>
+            </div>
+            <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">
+              Migración de los archivos PDF que hoy viven dentro del archivo principal de la base de datos hacia una estructura de carpetas externas con referencia. Resultado: archivo de base de datos significativamente más liviano, backups más rápidos, menos puntos de fragilidad estructural y portabilidad real entre servidores.
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+              <li><strong>Auditoría preliminar de campos contenedor:</strong> inventario de cuántos PDFs existen, en qué tablas, volumen total.</li>
+              <li><strong>Definición de estructura de carpetas externa:</strong> esquema estable y portable (probado con éxito por StackSolver en entornos M1 + FileMaker 2025 / v22).</li>
+              <li><strong>Migración script-driven:</strong> ejecución archivo por archivo con validación de referencias.</li>
+              <li><strong>Verificación post-migración:</strong> apertura del archivo en local y en server, confirmación de que cada registro encuentra su PDF.</li>
+              <li><strong>Documentación operativa:</strong> instrucciones para que el equipo de María Angélica suba PDFs nuevos respetando la estructura.</li>
+            </ul>
+            <p class="text-xs text-zinc-500 italic mt-3">
+              *Precio fijo asume condiciones razonables tras la auditoría preliminar (volumen estándar de PDFs, sin corrupción a nivel de archivo individual). Si el alcance real excede significativamente por volumen extremo o complicaciones detectadas durante la auditoría, se notifica antes de continuar para acordar ajuste o ejecución dentro del plan mensual.
+            </p>
+          </div>
+
           <div class="bg-emerald-50/50 dark:bg-emerald-900/10 p-4 rounded mb-4 text-sm">
-            <strong class="text-emerald-900 dark:text-emerald-200 block mb-2">Por qué esta parte es indispensable</strong>
+            <strong class="text-emerald-900 dark:text-emerald-200 block mb-2">Por qué ambas partes (1 y 2) deben ejecutarse</strong>
             <p class="text-zinc-700 dark:text-zinc-300 mb-2">
               El plan de choque pone la operación en marcha. Los ajustes de fondo aseguran que la solución sea estable, trazable y blindada frente a la causa raíz documentada. Sin esta parte, el riesgo de reincidencia se mantiene y el deslinde de responsabilidades futuras queda comprometido.
             </p>
             <p class="text-zinc-700 dark:text-zinc-300">
-              Ambas partes están diseñadas para ejecutarse de manera secuencial. La aprobación conjunta de Parte 1 y Parte 2 es la condición para que StackSolver garantice estabilidad estructural sostenida.
+              La aprobación conjunta de Parte 1 + Sub-parte 2A es la condición mínima para que StackSolver garantice estabilidad estructural sostenida. La Sub-parte 2B optimiza el resultado y reduce significativamente la huella operativa de la base de datos a futuro.
             </p>
           </div>
 
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
             <span class="mb-2 sm:mb-0">
-              <strong>Modalidad:</strong> Precio fijo por entregable (no por horas).<br/>
-              <strong>Tiempo de ejecución:</strong> 1 a 2 semanas posteriores al cierre de la Parte 1.
+              <strong>Modalidad:</strong> Precio fijo por sub-entregable (no por horas).<br/>
+              <strong>Tiempo de ejecución:</strong> 1 a 2 semanas (Sub-parte 2A) + 1 a 2 semanas adicionales (Sub-parte 2B), posteriores al cierre de la Parte 1.
             </span>
             <span class="font-bold text-lg text-emerald-600 dark:text-emerald-400 mt-2 sm:mt-0 whitespace-nowrap">
-              COP $2.500.000
+              Total Parte 2: COP $4.900.000
             </span>
           </div>
-
-          <p class="text-xs text-zinc-500 italic mt-4">
-            *Ítems adicionales identificados durante el diagnóstico (entre ellos, la separación de archivos PDF de la base de datos central a estructura de carpetas externas con referencia, recomendado para el grupo SGS) requieren auditoría preliminar de campos contenedor y se cotizan puntualmente según volumen real. Pueden ejecutarse en el marco del plan mensual (Parte 3) una vez activado.
-          </p>
         </div>
       </details>
 
@@ -193,7 +221,7 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
               <li><strong>Operación y mantenimiento</strong> de las aplicaciones Claris FileMaker existentes en Cromanal y AQM.</li>
               <li><strong>Entrenamiento</strong> a usuarios finales, desarrolladores, administradores de sistema y equipos de seguridad (ver detalle en propuesta histórica).</li>
               <li><strong>Optimización</strong> de bases de datos, asesoría en ciberseguridad, gestión de accesos.</li>
-              <li><strong>Asesoría estratégica</strong> en evolución de plataforma: migración FMS, hardware moderno, separación de archivos PDF de la base de datos central, revisión preventiva de AQM, etc. Estos ítems se ejecutan dentro del consumo de horas del plan elegido o se cotizan aparte si requieren auditoría profunda.</li>
+              <li><strong>Asesoría estratégica</strong> en evolución de plataforma: migración FMS, hardware moderno, revisión preventiva de AQM (ver Anexo al final), etc. Estos ítems se ejecutan dentro del consumo de horas del plan elegido o se cotizan aparte si requieren auditoría profunda.</li>
               <li>Acumulación de horas no usadas: 0% Core, 20% Intermedio, 15% Premium (límite 3 meses).</li>
             </ul>
           </div>
@@ -300,9 +328,13 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
               <td class="py-4 text-right text-blue-400">$264.000 / hora</td>
             </tr>
             <tr>
-              <td class="py-4">Parte 2 — Ajustes de Fondo</td>
-              <td class="py-4 text-zinc-400">Precio fijo por entregable</td>
-              <td class="py-4 text-right text-emerald-400">$2.500.000</td>
+              <td class="py-4 align-top">Parte 2 — Ajustes de Fondo</td>
+              <td class="py-4 text-zinc-400 align-top">Precio fijo por sub-entregable</td>
+              <td class="py-4 text-right align-top">
+                <div class="text-emerald-400">2A — Normalización básica: $2.500.000</div>
+                <div class="text-emerald-400">2B — Separación PDFs: $2.400.000</div>
+                <div class="text-emerald-300 font-bold border-t border-zinc-700 pt-1 mt-1">Total Parte 2: $4.900.000</div>
+              </td>
             </tr>
             <tr>
               <td class="py-4 align-top">Parte 3 — Bolsa de Horas Mensual</td>
@@ -506,7 +538,7 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
       <div class="bg-amber-50 dark:bg-amber-900/10 p-4 rounded text-sm border border-amber-100 dark:border-amber-900/30">
         <strong class="text-amber-900 dark:text-amber-200 block mb-1">Implicación operativa</strong>
         <p class="text-zinc-700 dark:text-zinc-300">
-          Una vez activado el plan mensual (Parte 3), una de las primeras prioridades es la revisión preventiva de AQM antes de que se materialice una crisis equivalente. La revisión se ejecuta dentro del consumo de horas del plan o se cotiza puntualmente si requiere intervención profunda en hardware (reemplazo del servidor, reestructura completa). La separación de archivos PDF a estructura de carpetas con referencias estables —mencionada en la cobertura de Parte 3— es uno de los entregables naturales de esta revisión, y el método ya fue probado con éxito por StackSolver en entornos M1 con FileMaker 2025 / v22.
+          Una vez activado el plan mensual (Parte 3), una de las primeras prioridades es la revisión preventiva de AQM antes de que se materialice una crisis equivalente. La revisión se ejecuta dentro del consumo de horas del plan o se cotiza puntualmente si requiere intervención profunda en hardware (reemplazo del servidor, reestructura completa). La metodología de separación de archivos PDF que se ejecuta en Cromanal (Sub-parte 2B) es exactamente la misma que aplicaría en AQM en su momento — el método ya fue probado con éxito por StackSolver en entornos M1 con FileMaker 2025 / v22, y el conocimiento generado en Cromanal se reutiliza directamente.
         </p>
       </div>
     </section>

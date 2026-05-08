@@ -68,18 +68,18 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
 
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
             <span class="mb-2 sm:mb-0">
-              <strong>Modalidad:</strong> Por horas, tarifa de emergencia (sin contrato vigente).<br/>
+              <strong>Modalidad:</strong> Por horas, tarifa de emergencia (sin contrato de bolsa de horas vigente).<br/>
               <strong>Cronometro iniciado:</strong> 2026-05-08 con el diagnostico tecnico via AnyDesk.<br/>
               <strong>Horas iniciales facturables:</strong> aproximadamente 8 horas (diagnostico + escalamiento + planeacion).<br/>
               <strong>Horas adicionales estimadas:</strong> entre 8 y 16 horas (ventana + validacion + entrega).
             </span>
-            <span class="font-bold text-lg text-blue-600 dark:text-blue-400 mt-2 sm:mt-0">
-              Inversion: tarifa por hora <span class="text-amber-600">[VALOR_HORA_EMERGENCIA]</span>
+            <span class="font-bold text-lg text-blue-600 dark:text-blue-400 mt-2 sm:mt-0 whitespace-nowrap">
+              COP $300.000 / hora
             </span>
           </div>
 
           <p class="text-xs text-zinc-500 italic mt-4">
-            *Facturacion formal al cierre de la intervencion con detalle de horas reales trabajadas. Trabajo en horario adicional (noche y fin de semana).
+            *Facturacion formal al cierre de la intervencion con detalle de horas reales trabajadas. Trabajo en horario adicional (noche y fin de semana). Tarifa contempla la modalidad de emergencia sin contrato de bolsa de horas vigente; al activar el plan mensual (Parte 3), las horas operan a tarifa de bolsa.
           </p>
         </div>
       </details>
@@ -118,38 +118,95 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
 
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
             <span class="mb-2 sm:mb-0">
-              <strong>Modalidad:</strong> Precio fijo por entregable.<br/>
+              <strong>Modalidad:</strong> Precio fijo por entregable (no por horas).<br/>
               <strong>Tiempo de ejecucion:</strong> 1 a 2 semanas posteriores al cierre de la Parte 1.
             </span>
-            <span class="font-bold text-lg text-emerald-600 dark:text-emerald-400 mt-2 sm:mt-0">
-              Inversion: <span class="text-amber-600">[PRECIO_FIJO_PARTE_2]</span>
+            <span class="font-bold text-lg text-emerald-600 dark:text-emerald-400 mt-2 sm:mt-0 whitespace-nowrap">
+              COP $3.800.000
             </span>
           </div>
         </div>
       </details>
 
-      <!-- PARTE 3 — PLAN DE MEJORAS -->
-      <details class="group bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden opacity-75 hover:opacity-100 transition-opacity">
-        <summary class="flex justify-between items-center p-6 cursor-pointer bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
-          <span class="font-bold text-lg text-zinc-500 dark:text-zinc-400">Parte 3 — Plan de Mejoras Estructurales (Propuesta separada)</span>
+      <!-- PARTE 3 — BOLSA DE HORAS MENSUAL -->
+      <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+        <summary class="flex justify-between items-center p-6 cursor-pointer bg-purple-50/50 dark:bg-purple-900/10 hover:bg-purple-100 dark:hover:bg-purple-900/20 transition-colors">
+          <span class="font-bold text-lg text-purple-800 dark:text-purple-300">Parte 3 — Servicio mensual de Bolsa de Horas</span>
           <span class="flex items-center gap-2">
-            <span class="text-xs bg-zinc-200 dark:bg-zinc-800 px-2 py-1 rounded text-zinc-500">Siguiente fase</span>
-            <span class="transform group-open:rotate-180 transition-transform text-zinc-400">▼</span>
+            <span class="text-xs bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 px-2 py-1 rounded">Siguiente fase</span>
+            <span class="transform group-open:rotate-180 transition-transform text-purple-500">▼</span>
           </span>
         </summary>
         <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
-          <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
-            Como continuacion natural posterior a las Partes 1 y 2, StackSolver actualizara y enviara la propuesta integral de evolucion estructural del grupo SGS. Lineas de trabajo previstas:
+          <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-4">
+            Continuacion natural posterior a las Partes 1 y 2: activacion del modelo mensual de soporte, operacion, entrenamiento y atencion de incidentes en Claris FileMaker, bajo el esquema ya conocido de bolsa de horas. Tres planes disponibles, todos cubren tanto Cromanal como AQM bajo un solo responsable tecnico.
           </p>
-          <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
-            <li>Migracion del servidor FileMaker a version actual (FMS 2025) y hardware Apple Silicon moderno.</li>
-            <li>Esquema de backup unificado para el grupo (Cromanal y AQM) integrado a infraestructura corporativa SGS.</li>
-            <li>Atencion al pendiente historico de referenciacion de PDF en AQM antes de que se materialice el mismo escenario.</li>
-            <li>Modelo de soporte y mantenimiento mensual con SLA y ventanas de mantenimiento programadas.</li>
-            <li>Inventario tecnico vivo del grupo y politicas de cuentas corporativas dedicadas.</li>
-          </ul>
-          <p class="text-xs text-zinc-500 italic mt-3">
-            *Esta parte se cotiza por separado. Valores actualizados al ano vigente sobre la propuesta original previa.
+
+          <!-- Tabla de planes -->
+          <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700 mb-6">
+            <table class="w-full text-sm text-left border-collapse bg-white dark:bg-zinc-900">
+              <thead class="bg-zinc-50 dark:bg-zinc-800 text-zinc-500">
+                <tr>
+                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Plan</th>
+                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Bolsa</th>
+                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Horario de servicio</th>
+                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Hora adicional</th>
+                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700 text-right">Mensualidad</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
+                <tr>
+                  <td class="py-3 px-4 font-bold text-zinc-700 dark:text-zinc-300">Core</td>
+                  <td class="py-3 px-4">10 h/mes</td>
+                  <td class="py-3 px-4 text-xs">L-V 8:00 AM - 12:00 PM <br/><span class="text-zinc-500">(extensible a 8:00 PM coordinado)</span></td>
+                  <td class="py-3 px-4 text-xs">$158.000 dentro<br/>$242.000 fuera</td>
+                  <td class="py-3 px-4 text-right font-bold">$1.580.000</td>
+                </tr>
+                <tr class="bg-purple-50/30 dark:bg-purple-900/10">
+                  <td class="py-3 px-4 font-bold text-zinc-700 dark:text-zinc-300">Intermedio</td>
+                  <td class="py-3 px-4">20 h/mes</td>
+                  <td class="py-3 px-4 text-xs">L-V 8:00 AM - 4:00 PM <br/><span class="text-zinc-500">(extensible a 10:00 PM coordinado)</span></td>
+                  <td class="py-3 px-4 text-xs">$132.000 dentro<br/>$221.000 fuera</td>
+                  <td class="py-3 px-4 text-right font-bold">$2.630.000</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 font-bold text-zinc-700 dark:text-zinc-300">Premium</td>
+                  <td class="py-3 px-4">40 h/mes</td>
+                  <td class="py-3 px-4 text-xs">L-V 4:30 AM - 11:00 PM <br/>Sab 8:00 AM - 12:00 PM</td>
+                  <td class="py-3 px-4 text-xs">$116.000 dentro<br/>$221.000 fuera</td>
+                  <td class="py-3 px-4 text-right font-bold">$5.150.000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-zinc-500 italic mb-6">
+            *Valores en COP, no incluyen IVA 19%. Actualizados sobre la propuesta original (marzo 2025) aplicando IPC 5.2% segun la clausula original "Anualmente se ajustaran estos valores de acuerdo al IPC".
+          </p>
+
+          <div class="bg-purple-50/50 dark:bg-purple-900/10 p-4 rounded mb-4 text-sm">
+            <strong class="text-purple-900 dark:text-purple-200 block mb-2">Cobertura del servicio mensual</strong>
+            <ul class="list-disc pl-5 space-y-1 text-zinc-700 dark:text-zinc-300">
+              <li><strong>Soporte y atencion de incidentes</strong> con SLA segun plan (criticos / mayores / menores).</li>
+              <li><strong>Operacion y mantenimiento</strong> de las aplicaciones Claris FileMaker existentes en Cromanal y AQM.</li>
+              <li><strong>Entrenamiento</strong> a usuarios finales, desarrolladores, administradores de sistema y equipos de seguridad (ver detalle en propuesta historica).</li>
+              <li><strong>Optimizacion</strong> de bases de datos, asesoria en ciberseguridad, gestion de accesos.</li>
+              <li><strong>Asesoria estrategica</strong> en evolucion de plataforma (migracion FMS, separacion de PDFs, hardware moderno).</li>
+              <li>Acumulacion de horas no usadas: 0% Core, 20% Intermedio, 15% Premium (limite 3 meses).</li>
+            </ul>
+          </div>
+
+          <div class="bg-amber-50 dark:bg-amber-900/10 p-4 rounded text-sm border border-amber-100 dark:border-amber-900/30">
+            <strong class="text-amber-900 dark:text-amber-200 block mb-2">Por que activar este plan ahora</strong>
+            <p class="text-zinc-700 dark:text-zinc-300 mb-2">
+              El incidente de esta semana evidencia el costo real de operar sin un esquema de soporte estructurado: backups no verificados, schedules desactivados, mantenimiento postergado. AQM presenta hoy un patron tecnico equivalente al que llevo a Cromanal a esta crisis.
+            </p>
+            <p class="text-zinc-700 dark:text-zinc-300">
+              El plan mensual cubre ambas empresas del grupo bajo un solo responsable tecnico, con SLA claro, ventanas de mantenimiento programadas y monitoreo activo. La inversion mensual se compara directamente con el costo de un incidente de esta naturaleza: dias de operacion detenida, intervenciones de emergencia y datos no recuperables.
+            </p>
+          </div>
+
+          <p class="text-xs text-zinc-500 italic mt-4">
+            *Una vez activado el plan, las horas de la Parte 1 (que esten dentro del horario del plan elegido) se imputan a la bolsa mensual a tarifa de bolsa, no a tarifa de emergencia. Detalle completo del servicio (alcance, fuera de alcance, SLA por plan, formas de pago) en la propuesta original entregada en marzo 2025, que se actualiza con esta nueva version.
           </p>
         </div>
       </details>
@@ -222,31 +279,36 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
             <tr>
               <th class="py-3">Frente</th>
               <th class="py-3">Modalidad</th>
-              <th class="py-3 text-right">Inversion</th>
+              <th class="py-3 text-right">Inversion (COP, sin IVA)</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-700 font-medium">
             <tr>
               <td class="py-4">Parte 1 — Plan de Choque</td>
               <td class="py-4 text-zinc-400">Por horas, tarifa emergencia</td>
-              <td class="py-4 text-right text-amber-400">[VALOR_HORA_EMERGENCIA] / hora</td>
+              <td class="py-4 text-right text-blue-400">$300.000 / hora</td>
             </tr>
             <tr>
               <td class="py-4">Parte 2 — Ajustes de Fondo</td>
               <td class="py-4 text-zinc-400">Precio fijo por entregable</td>
-              <td class="py-4 text-right text-amber-400">[PRECIO_FIJO_PARTE_2]</td>
+              <td class="py-4 text-right text-emerald-400">$3.800.000</td>
             </tr>
             <tr>
-              <td class="py-4">Parte 3 — Plan de Mejoras</td>
-              <td class="py-4 text-zinc-400">Propuesta separada</td>
-              <td class="py-4 text-right text-zinc-400">A enviar</td>
+              <td class="py-4 align-top">Parte 3 — Bolsa de Horas Mensual</td>
+              <td class="py-4 text-zinc-400 align-top">Mensualidad recurrente<br/>(elegir plan)</td>
+              <td class="py-4 text-right align-top">
+                <div class="text-purple-400">Core: $1.580.000 / mes</div>
+                <div class="text-purple-400">Intermedio: $2.630.000 / mes</div>
+                <div class="text-purple-400">Premium: $5.150.000 / mes</div>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
       <p class="text-center text-zinc-400 text-sm mt-6 border-t border-zinc-700 pt-4">
         Facturacion via StackSolver SAS. Aplica IVA 19% segun normativa colombiana.<br/>
-        Las horas iniciadas hoy con el diagnostico tecnico forman parte de la Parte 1 y se incluyen en la liquidacion final.
+        Las horas iniciadas el 2026-05-08 con el diagnostico tecnico forman parte de la Parte 1 y se incluyen en la liquidacion final.<br/>
+        Valores Parte 3 ajustados al IPC sobre la propuesta historica de marzo 2025 (clausula contractual original).
       </p>
     </section>
 

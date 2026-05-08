@@ -416,6 +416,101 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
       </div>
     </section>
 
+    <!-- ANEXO AQM ESTADO -->
+    <section class="mb-12 bg-zinc-50 dark:bg-zinc-800/30 p-8 rounded-lg border border-zinc-200 dark:border-zinc-700">
+      <div class="border-l-4 border-amber-500 pl-4 mb-6">
+        <p class="text-xs uppercase tracking-wider text-amber-700 dark:text-amber-400 font-bold mb-1">Anexo informativo</p>
+        <h3 class="text-xl font-bold text-zinc-900 dark:text-white">AQM FileMaker Server — Estado del entorno</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400">Diagnóstico técnico realizado por StackSolver en julio de 2025</p>
+      </div>
+
+      <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-4">
+        Esta información se incluye para sustentar la recomendación de revisar AQM como parte del plan mensual (Parte 3). El patrón técnico observado en AQM hace 10 meses es estructuralmente equivalente al que materializó la crisis actual en Cromanal. La diferencia: en Cromanal ya se materializó el incidente; en AQM aún no.
+      </p>
+
+      <h4 class="font-bold text-zinc-900 dark:text-white mt-6 mb-3 text-sm">Hallazgos del diagnóstico (julio 2025)</h4>
+
+      <div class="space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
+          <strong class="text-zinc-900 dark:text-white block mb-1">1. Sistema no localiza archivos PDF ("archivo no hallado")</strong>
+          Error recurrente al intentar acceder a registros con archivos adjuntos en AQMSOFT. Las referencias internas a los PDFs estaban corruptas: la base "creía saber" dónde estaban los archivos, pero la dirección guardada estaba rota o ilegible. Aunque los archivos físicamente se movieron a la ubicación correcta, la base no podía leerlos.
+        </div>
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
+          <strong class="text-zinc-900 dark:text-white block mb-1">2. Estructura ineficiente de carpetas</strong>
+          El almacenamiento original creaba una estructura distinta para cada año (AQMSOFT2021, AQMSOFT2022, AQMSOFT2023, AQMSOFT2024, AQMSOFT2025), cada uno con sus subcarpetas RC_Data_FMS / MUESTRAS / PDF. Esto hacía la gestión propensa a errores y rompía las migraciones de un servidor a otro.
+        </div>
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
+          <strong class="text-zinc-900 dark:text-white block mb-1">3. Comportamiento anómalo confirmado</strong>
+          Síntoma clave: al abrir una copia de seguridad funcional de la base de datos de forma local en la máquina, era incapaz de localizar sus propios archivos. La misma copia subida a FileMaker Server sí los encontraba. Indica corrupción a nivel de rutas de acceso que impide reparación estándar y segura.
+        </div>
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
+          <strong class="text-zinc-900 dark:text-white block mb-1">4. Hardware obsoleto e inestable (Mac Pro 2013)</strong>
+          El servidor de producción de AQM tiene historial de apagados inesperados. Cualquier operación intensiva podía provocar fallo del sistema a mitad del proceso, dejando la base de datos en estado aún peor. El equipo ha llegado al final de su vida útil operativa.
+        </div>
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
+          <strong class="text-zinc-900 dark:text-white block mb-1">5. Capacidad de almacenamiento crítica</strong>
+          Tanto el disco principal del servidor como el destinado a respaldos contaban con espacio reducido. Esto limitaba la capacidad de hacer copias completas verificadas antes de cada operación crítica e incrementaba el riesgo de fallo por falta de espacio.
+        </div>
+        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
+          <strong class="text-zinc-900 dark:text-white block mb-1">6. Decisión técnica de no continuar la intervención en julio 2025</strong>
+          StackSolver determinó que continuar con procesos de reparación intensivos en esas condiciones era altamente riesgoso (riesgo de corrupción de datos irreparable). Se entregó la recomendación prioritaria: <strong>actualizar el hardware del servidor</strong>. Una vez las bases se alojen en hardware moderno y estable, el procedimiento de reparación puede ejecutarse de forma rápida y segura.
+        </div>
+      </div>
+
+      <h4 class="font-bold text-zinc-900 dark:text-white mt-6 mb-3 text-sm">Comparativa Cromanal hoy vs AQM julio 2025</h4>
+
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-xs text-left border-collapse bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800">
+          <thead class="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+            <tr>
+              <th class="py-2 px-3">Síntoma estructural</th>
+              <th class="py-2 px-3">AQM (julio 2025)</th>
+              <th class="py-2 px-3">Cromanal (mayo 2026)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
+            <tr>
+              <td class="py-2 px-3">Hardware fuera de soporte / inestable</td>
+              <td class="py-2 px-3">Mac Pro 2013</td>
+              <td class="py-2 px-3">Mac mini server con macOS Catalina + FMS 19</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3">Apagados / bloqueos inesperados</td>
+              <td class="py-2 px-3">Sí (historial documentado)</td>
+              <td class="py-2 px-3">Sí (incidente del 2026-05-05)</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3">Backups no verificados / espacio crítico</td>
+              <td class="py-2 px-3">Sí</td>
+              <td class="py-2 px-3">Sí (schedule "COPIA NOCHE" deshabilitado)</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3">Estructura de archivos ineficiente</td>
+              <td class="py-2 px-3">Carpetas distintas por año</td>
+              <td class="py-2 px-3">Clonado anual con herencia de daño</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3">Recomendación previa de StackSolver</td>
+              <td class="py-2 px-3">Renovar hardware (no atendido)</td>
+              <td class="py-2 px-3">Renovar hardware (no atendido)</td>
+            </tr>
+            <tr class="bg-amber-50 dark:bg-amber-900/10 font-semibold">
+              <td class="py-2 px-3">Crisis materializada</td>
+              <td class="py-2 px-3 text-amber-700 dark:text-amber-400">Aún no</td>
+              <td class="py-2 px-3 text-red-600 dark:text-red-400">Sí — esta semana</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-amber-50 dark:bg-amber-900/10 p-4 rounded text-sm border border-amber-100 dark:border-amber-900/30">
+        <strong class="text-amber-900 dark:text-amber-200 block mb-1">Implicación operativa</strong>
+        <p class="text-zinc-700 dark:text-zinc-300">
+          Una vez activado el plan mensual (Parte 3), una de las primeras prioridades es la revisión preventiva de AQM antes de que se materialice una crisis equivalente. La revisión se ejecuta dentro del consumo de horas del plan o se cotiza puntualmente si requiere intervención profunda en hardware (reemplazo del servidor, reestructura completa). La separación de archivos PDF a estructura de carpetas con referencias estables —mencionada en la cobertura de Parte 3— es uno de los entregables naturales de esta revisión, y el método ya fue probado con éxito por StackSolver en entornos M1 con FileMaker 2025 / v22.
+        </p>
+      </div>
+    </section>
+
     <!-- CIERRE -->
     <section class="mb-8 text-center bg-zinc-50 dark:bg-zinc-800/30 p-8 rounded-lg">
       <p class="font-bold text-lg text-zinc-900 dark:text-white mb-2">Quedamos atentos a su confirmación para iniciar la ventana operativa,</p>

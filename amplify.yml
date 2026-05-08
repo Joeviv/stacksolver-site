@@ -12,6 +12,12 @@ frontend:
     build:
       commands:
         - pnpm run build
+        # Restructure for Amplify WEB_COMPUTE platform:
+        # Amplify exige que los Static routes apunten a dist/static/ (no dist/ raiz).
+        # Movemos el output de Astro a dist/static/ y dejamos el manifest en dist/.
+        - mv dist _astrobuild
+        - mkdir dist
+        - mv _astrobuild dist/static
         - |
           cat > dist/deploy-manifest.json <<'JSON'
           {

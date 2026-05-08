@@ -2,6 +2,13 @@
 import EstimateTemplate from "../../components/templates/EstimateTemplate.astro";
 ---
 
+<script is:inline>
+  // Forzar light mode permanente en esta propuesta (lectura profesional + PDF blanco).
+  document.documentElement.classList.remove('dark');
+  document.documentElement.classList.add('light');
+  document.documentElement.style.colorScheme = 'light';
+</script>
+
 <EstimateTemplate
   clientName="Cromanal SAS"
   projectName="Plan de Continuidad Operativa Post-Incidente"
@@ -9,546 +16,589 @@ import EstimateTemplate from "../../components/templates/EstimateTemplate.astro"
   status="Draft"
   hideHeader={true}
 >
-  <div class="max-w-4xl mx-auto text-zinc-800 dark:text-zinc-200">
+  <div class="max-w-4xl mx-auto text-zinc-800">
 
     <!-- HEADER -->
     <section class="mb-12">
-      <h1 class="text-3xl font-bold mb-2 text-zinc-900 dark:text-white">Propuesta: Plan de Continuidad Operativa</h1>
+      <h1 class="text-3xl font-bold mb-2 text-zinc-900">Propuesta: Plan de Continuidad Operativa</h1>
       <p class="text-zinc-500 mb-8 border-b pb-4">Para: Ricardo (TI Estratégico SGS) y María Angélica (Sistemas) | De: StackSolver</p>
 
-      <div class="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border border-amber-100 dark:border-amber-900/30 mb-8">
-        <h3 class="text-xl font-bold mb-4 text-zinc-900 dark:text-white">Contexto y enfoque</h3>
-        <p class="mb-4 text-zinc-700 dark:text-zinc-300">
+      <div class="bg-amber-50 p-6 rounded-lg border border-amber-100 mb-8">
+        <h3 class="text-xl font-bold mb-4 text-zinc-900">Contexto y enfoque</h3>
+        <p class="mb-4 text-zinc-700">
           Tras el bloqueo del servidor el 2026-05-05 y el diagnóstico técnico realizado el 2026-05-07, identificamos un daño estructural en la base de datos central que se viene acumulando desde diciembre de 2025. La operación de laboratorio fue restablecida temporalmente sobre una copia previa, pero esa base sigue conteniendo el daño de origen.
         </p>
-        <p class="mb-4 text-zinc-700 dark:text-zinc-300">
-          Esta propuesta está dividida en <strong>tres frentes coordinados</strong> para resolver el incidente y dejar la operación sobre una base estable y verificable. Las dos primeras partes deben ejecutarse de manera secuencial: <strong>el plan de choque sin los ajustes de fondo es solo un parche</strong>, y la causa raíz volvería a manifestarse.
+        <p class="mb-4 text-zinc-700">
+          Esta propuesta está organizada en <strong>tres fases secuenciales</strong>:
         </p>
-        <p class="text-zinc-700 dark:text-zinc-300 italic">
-          La tercera parte queda referenciada como evolución natural posterior, sujeta a propuesta separada.
+        <ol class="list-decimal pl-6 space-y-2 text-zinc-700 mb-4">
+          <li><strong>Fase 1 — Resolución inmediata (este fin de semana):</strong> reconstrucción de la base de datos de Cromanal y entrega operativa el lunes 12 de mayo.</li>
+          <li><strong>Fase 2 — Propuesta posterior:</strong> ajustes estructurales, primero para Cromanal (consolidan la solución del fin de semana) y luego para AQM (prevenir crisis equivalente antes de que se materialice).</li>
+          <li><strong>Fase 3 — Modelo de soporte continuo:</strong> plan mensual de bolsa de horas que cubre ambas empresas del grupo bajo un solo responsable técnico.</li>
+        </ol>
+        <p class="text-zinc-700 italic">
+          Cada fase resuelve un problema distinto. Su ejecución conjunta es lo que cierra el ciclo del incidente y blinda al grupo SGS frente a su repetición.
         </p>
       </div>
     </section>
 
-    <!-- PARTE 1 — PLAN DE CHOQUE -->
-    <section class="mb-12 space-y-4">
-      <h2 class="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Frentes de trabajo</h2>
-
-      <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden" open>
-        <summary class="flex justify-between items-center p-6 cursor-pointer bg-blue-50/50 dark:bg-blue-900/10 hover:bg-blue-100 dark:hover:bg-blue-900/20 transition-colors">
-          <span class="font-bold text-lg text-blue-800 dark:text-blue-300">Parte 1 — Plan de Choque (Recuperación Operativa)</span>
-          <span class="transform group-open:rotate-180 transition-transform text-blue-500">▼</span>
-        </summary>
-        <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
-          <p class="mb-4">
-            Reconstrucción estructural de la base de datos central mediante el procedimiento autoritativo en Claris FileMaker: <strong>Save as Clone + Import selectivo</strong> ejecutado en equipo dedicado de StackSolver (fuera del servidor productivo), con validación por tabla.
-          </p>
-
-          <div class="mb-4">
-            <strong class="text-zinc-900 dark:text-white">Alcance:</strong>
-            <ul class="list-disc pl-5 mt-2 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
-              <li>Recepción de copia bit-a-bit de la base de datos actual con hashes documentados antes de iniciar.</li>
-              <li>Generación de estructura limpia (Save as Clone) en equipo dedicado de StackSolver.</li>
-              <li>Import selectivo de tablas con datos: tablas pre-incidente que se logren conservar + datos cargados durante el período de contingencia (mayo).</li>
-              <li>Validación de integridad por tabla y reporte de porcentaje de datos preservados.</li>
-              <li>Entrega de la base reconstruida y verificación conjunta con María Angélica.</li>
-              <li>Documentación de cierre: qué se hizo, qué quedó por hacer, condiciones de operación posterior.</li>
-            </ul>
-          </div>
-
-          <div class="bg-blue-50/50 dark:bg-blue-900/10 p-4 rounded mb-4 text-sm">
-            <strong class="text-blue-900 dark:text-blue-200 block mb-2">Ventana operativa propuesta</strong>
-            <ul class="list-disc pl-5 space-y-1 text-zinc-700 dark:text-zinc-300">
-              <li><strong>Stop de operación:</strong> sábado mediodía (a confirmar con María Angélica).</li>
-              <li><strong>Ventana de intervención:</strong> sábado tarde y domingo, en horario adicional.</li>
-              <li><strong>Arranque limpio:</strong> lunes en la mañana sobre la base reconstruida.</li>
-              <li><strong>Tiempo estimado de la ventana:</strong> entre 6 y 12 horas continuas, según el peso final del archivo.</li>
-            </ul>
-          </div>
-
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
-            <span class="mb-2 sm:mb-0">
-              <strong>Modalidad:</strong> Por horas, tarifa de emergencia (sin contrato de bolsa de horas vigente).<br/>
-              <strong>Cronómetro iniciado:</strong> 2026-05-08 con el diagnóstico técnico vía AnyDesk.<br/>
-              <strong>Horas iniciales facturables:</strong> aproximadamente 4 horas (diagnóstico + escalamiento + planeación).<br/>
-              <strong>Horas adicionales estimadas:</strong> entre 8 y 16 horas (ventana + validación + entrega).
-            </span>
-            <span class="font-bold text-lg text-blue-600 dark:text-blue-400 mt-2 sm:mt-0 whitespace-nowrap">
-              COP $264.000 / hora
-            </span>
-          </div>
-
-          <p class="text-xs text-zinc-500 italic mt-4">
-            *Facturación formal al cierre de la intervención con detalle de horas reales trabajadas. Trabajo en horario adicional (noche y fin de semana). Tarifa contempla la modalidad de emergencia sin contrato de bolsa de horas vigente; al activar el plan mensual (Parte 3), las horas operan a tarifa de bolsa.
-          </p>
-        </div>
-      </details>
-
-      <!-- PARTE 2 — AJUSTES DE FONDO -->
-      <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
-        <summary class="flex justify-between items-center p-6 cursor-pointer bg-emerald-50/50 dark:bg-emerald-900/10 hover:bg-emerald-100 dark:hover:bg-emerald-900/20 transition-colors">
-          <span class="font-bold text-lg text-emerald-800 dark:text-emerald-300">Parte 2 — Ajustes de Fondo (Normalización)</span>
-          <span class="transform group-open:rotate-180 transition-transform text-emerald-500">▼</span>
-        </summary>
-        <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
-          <p class="mb-4">
-            Una vez restablecida la operación, esta segunda fase ejecuta los ajustes que evitan que el incidente vuelva a ocurrir. <strong>Esta parte no es opcional</strong>: sin ella, la solución del plan de choque queda expuesta a la misma causa raíz.
-          </p>
-
-          <p class="mb-6 text-sm text-zinc-700 dark:text-zinc-300">
-            La Parte 2 está dividida en dos sub-entregables independientes que pueden aprobarse y ejecutarse por separado, aunque el resultado más sólido se obtiene ejecutando los dos.
-          </p>
-
-          <!-- SUB-PARTE 2A -->
-          <div class="bg-emerald-50/30 dark:bg-emerald-900/10 p-5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 mb-4">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="font-bold text-emerald-900 dark:text-emerald-200">Sub-parte 2A — Normalización básica</h4>
-              <span class="font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap text-sm">COP $2.500.000</span>
-            </div>
-            <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">
-              Cierra los frentes que dejaron a la operación expuesta a la causa raíz documentada en el diagnóstico.
-            </p>
-            <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
-              <li><strong>Política correcta de cambio de año:</strong> establecimiento del procedimiento que evita el daño estructural detectado en el clonado de la base 2025 a la 2026.</li>
-              <li><strong>Configuración verificada de backups:</strong> rotación automatizada, copia off-site, validación periódica de restauración. Opcionalmente, StackSolver puede facilitar disco externo dedicado para el esquema off-site (sin costo adicional, sujeto a disponibilidad).</li>
-              <li><strong>Activación y monitoreo del schedule de copia nocturna</strong> (encontrado deshabilitado durante el diagnóstico).</li>
-              <li><strong>Documentación de operación normal:</strong> entrega de procedimiento estándar para el equipo de María Angélica.</li>
-            </ul>
-          </div>
-
-          <!-- SUB-PARTE 2B -->
-          <div class="bg-emerald-50/40 dark:bg-emerald-900/15 p-5 rounded-lg border border-emerald-200 dark:border-emerald-900/40 mb-4">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="font-bold text-emerald-900 dark:text-emerald-200">Sub-parte 2B — Separación de archivos PDF (optimización estructural)</h4>
-              <span class="font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap text-sm">COP $2.400.000</span>
-            </div>
-            <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">
-              Migración de los archivos PDF que hoy viven dentro del archivo principal de la base de datos hacia una estructura de carpetas externas con referencia. Resultado: archivo de base de datos significativamente más liviano, backups más rápidos, menos puntos de fragilidad estructural y portabilidad real entre servidores.
-            </p>
-            <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
-              <li><strong>Auditoría preliminar de campos contenedor:</strong> inventario de cuántos PDFs existen, en qué tablas, volumen total.</li>
-              <li><strong>Definición de estructura de carpetas externa:</strong> esquema estable y portable (probado con éxito por StackSolver en entornos M1 + FileMaker 2025 / v22).</li>
-              <li><strong>Migración script-driven:</strong> ejecución archivo por archivo con validación de referencias.</li>
-              <li><strong>Verificación post-migración:</strong> apertura del archivo en local y en server, confirmación de que cada registro encuentra su PDF.</li>
-              <li><strong>Documentación operativa:</strong> instrucciones para que el equipo de María Angélica suba PDFs nuevos respetando la estructura.</li>
-            </ul>
-            <p class="text-xs text-zinc-500 italic mt-3">
-              *Precio fijo asume condiciones razonables tras la auditoría preliminar (volumen estándar de PDFs, sin corrupción a nivel de archivo individual). Si el alcance real excede significativamente por volumen extremo o complicaciones detectadas durante la auditoría, se notifica antes de continuar para acordar ajuste o ejecución dentro del plan mensual.
-            </p>
-          </div>
-
-          <div class="bg-emerald-50/50 dark:bg-emerald-900/10 p-4 rounded mb-4 text-sm">
-            <strong class="text-emerald-900 dark:text-emerald-200 block mb-2">Por qué ambas partes (1 y 2) deben ejecutarse</strong>
-            <p class="text-zinc-700 dark:text-zinc-300 mb-2">
-              El plan de choque pone la operación en marcha. Los ajustes de fondo aseguran que la solución sea estable, trazable y blindada frente a la causa raíz documentada. Sin esta parte, el riesgo de reincidencia se mantiene y el deslinde de responsabilidades futuras queda comprometido.
-            </p>
-            <p class="text-zinc-700 dark:text-zinc-300">
-              La aprobación conjunta de Parte 1 + Sub-parte 2A es la condición mínima para que StackSolver garantice estabilidad estructural sostenida. La Sub-parte 2B optimiza el resultado y reduce significativamente la huella operativa de la base de datos a futuro.
-            </p>
-          </div>
-
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-200">
-            <span class="mb-2 sm:mb-0">
-              <strong>Modalidad:</strong> Precio fijo por sub-entregable (no por horas).<br/>
-              <strong>Tiempo de ejecución:</strong> 1 a 2 semanas (Sub-parte 2A) + 1 a 2 semanas adicionales (Sub-parte 2B), posteriores al cierre de la Parte 1.
-            </span>
-            <span class="font-bold text-lg text-emerald-600 dark:text-emerald-400 mt-2 sm:mt-0 whitespace-nowrap">
-              Total Parte 2: COP $4.900.000
-            </span>
-          </div>
-        </div>
-      </details>
-
-      <!-- PARTE 3 — BOLSA DE HORAS MENSUAL -->
-      <details class="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
-        <summary class="flex justify-between items-center p-6 cursor-pointer bg-purple-50/50 dark:bg-purple-900/10 hover:bg-purple-100 dark:hover:bg-purple-900/20 transition-colors">
-          <span class="font-bold text-lg text-purple-800 dark:text-purple-300">Parte 3 — Servicio mensual de Bolsa de Horas</span>
-          <span class="flex items-center gap-2">
-            <span class="text-xs bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 px-2 py-1 rounded">Siguiente fase</span>
-            <span class="transform group-open:rotate-180 transition-transform text-purple-500">▼</span>
-          </span>
-        </summary>
-        <div class="p-6 border-t border-zinc-200 dark:border-zinc-800">
-          <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-4">
-            Continuación natural posterior a las Partes 1 y 2: activación del modelo mensual de soporte, operación, entrenamiento y atención de incidentes en Claris FileMaker, bajo el esquema ya conocido de bolsa de horas. Tres planes disponibles, todos cubren tanto Cromanal como AQM bajo un solo responsable técnico.
-          </p>
-
-          <!-- Tabla de planes -->
-          <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700 mb-6">
-            <table class="w-full text-sm text-left border-collapse bg-white dark:bg-zinc-900">
-              <thead class="bg-zinc-50 dark:bg-zinc-800 text-zinc-500">
-                <tr>
-                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Plan</th>
-                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Bolsa</th>
-                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Horario de servicio</th>
-                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Hora adicional</th>
-                  <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700 text-right">Mensualidad</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
-                <tr>
-                  <td class="py-3 px-4 font-bold text-zinc-700 dark:text-zinc-300">Core</td>
-                  <td class="py-3 px-4">10 h/mes</td>
-                  <td class="py-3 px-4 text-xs">L-V 8:00 AM - 12:00 PM <br/><span class="text-zinc-500">(extensible a 8:00 PM coordinado)</span></td>
-                  <td class="py-3 px-4 text-xs">$158.000 dentro<br/>$242.000 fuera</td>
-                  <td class="py-3 px-4 text-right font-bold">$1.580.000</td>
-                </tr>
-                <tr class="bg-purple-50/30 dark:bg-purple-900/10">
-                  <td class="py-3 px-4 font-bold text-zinc-700 dark:text-zinc-300">Intermedio</td>
-                  <td class="py-3 px-4">20 h/mes</td>
-                  <td class="py-3 px-4 text-xs">L-V 8:00 AM - 4:00 PM <br/><span class="text-zinc-500">(extensible a 10:00 PM coordinado)</span></td>
-                  <td class="py-3 px-4 text-xs">$132.000 dentro<br/>$221.000 fuera</td>
-                  <td class="py-3 px-4 text-right font-bold">$2.630.000</td>
-                </tr>
-                <tr>
-                  <td class="py-3 px-4 font-bold text-zinc-700 dark:text-zinc-300">Premium</td>
-                  <td class="py-3 px-4">40 h/mes</td>
-                  <td class="py-3 px-4 text-xs">L-V 4:30 AM - 11:00 PM <br/>Sáb 8:00 AM - 12:00 PM</td>
-                  <td class="py-3 px-4 text-xs">$116.000 dentro<br/>$221.000 fuera</td>
-                  <td class="py-3 px-4 text-right font-bold">$5.150.000</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="text-xs text-zinc-500 italic mb-6">
-            *Valores en COP, no incluyen IVA 19%. Actualizados sobre la propuesta original (marzo 2025) aplicando IPC 5.2% según la cláusula original "Anualmente se ajustarán estos valores de acuerdo al IPC".
-          </p>
-
-          <div class="bg-purple-50/50 dark:bg-purple-900/10 p-4 rounded mb-4 text-sm">
-            <strong class="text-purple-900 dark:text-purple-200 block mb-2">Cobertura del servicio mensual</strong>
-            <ul class="list-disc pl-5 space-y-1 text-zinc-700 dark:text-zinc-300">
-              <li><strong>Soporte y atención de incidentes</strong> con SLA según plan (críticos / mayores / menores).</li>
-              <li><strong>Operación y mantenimiento</strong> de las aplicaciones Claris FileMaker existentes en Cromanal y AQM.</li>
-              <li><strong>Entrenamiento</strong> a usuarios finales, desarrolladores, administradores de sistema y equipos de seguridad (ver detalle en propuesta histórica).</li>
-              <li><strong>Optimización</strong> de bases de datos, asesoría en ciberseguridad, gestión de accesos.</li>
-              <li><strong>Asesoría estratégica</strong> en evolución de plataforma: migración FMS, hardware moderno, revisión preventiva de AQM (ver Anexo al final), etc. Estos ítems se ejecutan dentro del consumo de horas del plan elegido o se cotizan aparte si requieren auditoría profunda.</li>
-              <li>Acumulación de horas no usadas: 0% Core, 20% Intermedio, 15% Premium (límite 3 meses).</li>
-            </ul>
-          </div>
-
-          <div class="bg-amber-50 dark:bg-amber-900/10 p-4 rounded text-sm border border-amber-100 dark:border-amber-900/30">
-            <strong class="text-amber-900 dark:text-amber-200 block mb-2">Por qué activar este plan ahora</strong>
-            <p class="text-zinc-700 dark:text-zinc-300 mb-2">
-              El incidente de esta semana evidencia el costo real de operar sin un esquema de soporte estructurado: backups no verificados, schedules desactivados, mantenimiento postergado. AQM presenta hoy un patrón técnico equivalente al que llevó a Cromanal a esta crisis.
-            </p>
-            <p class="text-zinc-700 dark:text-zinc-300">
-              El plan mensual cubre ambas empresas del grupo bajo un solo responsable técnico, con SLA claro, ventanas de mantenimiento programadas y monitoreo activo. La inversión mensual se compara directamente con el costo de un incidente de esta naturaleza: días de operación detenida, intervenciones de emergencia y datos no recuperables.
-            </p>
-          </div>
-
-          <p class="text-xs text-zinc-500 italic mt-4">
-            *Una vez activado el plan, las horas de la Parte 1 (que estén dentro del horario del plan elegido) se imputan a la bolsa mensual a tarifa de bolsa, no a tarifa de emergencia. Detalle completo del servicio (alcance, fuera de alcance, SLA por plan, formas de pago) en la propuesta original entregada en marzo 2025, que se actualiza con esta nueva versión.
-          </p>
-        </div>
-      </details>
-    </section>
-
-    <!-- GARANTIAS Y DESLINDE -->
-    <section class="mb-12 bg-slate-50 dark:bg-slate-900/30 p-8 rounded-lg border border-slate-200 dark:border-slate-800/30 shadow-sm">
-      <h3 class="font-bold text-slate-800 dark:text-slate-300 text-lg mb-4">
-        Garantías, condiciones de intervención y deslinde de responsabilidades
-      </h3>
-      <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-4">
-        Para garantizar trazabilidad técnica clara durante y después de la intervención, StackSolver opera bajo tres condiciones no negociables:
+    <!-- =================== FASE 1 =================== -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Fase 1</span>
+        <span class="text-xs text-zinc-500 uppercase tracking-wider">Esta semana</span>
+      </div>
+      <h2 class="text-2xl font-bold mb-4 text-zinc-900">Resolución inmediata — Cromanal este fin de semana</h2>
+      <p class="text-zinc-700 mb-6">
+        Reconstrucción estructural de la base de datos central de Cromanal mediante el procedimiento autoritativo en Claris FileMaker (<strong>Save as Clone + Import selectivo</strong>) ejecutado en equipo dedicado de StackSolver, fuera del servidor productivo, con validación por tabla. Objetivo: que el lunes 12 de mayo la operación de Cromanal arranque sobre una base limpia, libre del daño heredado desde diciembre de 2025.
       </p>
 
-      <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-slate-100 dark:border-slate-800">
-          <strong class="text-slate-900 dark:text-white block mb-1">1. Estado documentado pre-intervención</strong>
-          <p class="text-zinc-600 dark:text-zinc-400 text-xs">
-            Copia bit-a-bit del archivo y hashes documentados, con acuerdo de ambas partes, antes de cualquier modificación.
+      <!-- Cronograma -->
+      <div class="bg-blue-50 p-5 rounded-lg border border-blue-100 mb-6">
+        <h3 class="font-bold text-blue-900 text-base mb-4">Cronograma — Jueves 8 al Lunes 12 de mayo</h3>
+        <div class="space-y-4 text-sm text-zinc-700">
+
+          <div class="flex gap-4">
+            <div class="font-bold text-blue-700 w-28 flex-shrink-0">Jueves 8</div>
+            <div class="flex-1">
+              <strong class="block mb-1">Recepción y análisis preliminar</strong>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Definición con María Angélica de las dos bases de datos a transferir: la base más reciente íntegra pre-incidente (idealmente la del 30 de abril si el proveedor del disco logró recuperarla; en su defecto, la del 24 de abril) y la base de contingencia que está corriendo con muestras de mayo.</li>
+                <li>María Angélica habilita carpeta compartida en Drive corporativo SGS y la comparte con <code>johann@stacksolver.tech</code>.</li>
+                <li>StackSolver descarga, verifica hashes SHA-256 y realiza análisis preliminar de estructura.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="font-bold text-blue-700 w-28 flex-shrink-0">Viernes 9</div>
+            <div class="flex-1">
+              <strong class="block mb-1">Save as Clone + plan de migración detallado</strong>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Generación de estructura limpia (Save as Clone) sobre la base primaria.</li>
+                <li>Auditoría de tablas, campos, scripts y layouts. Mapeo de dependencias.</li>
+                <li>Plan detallado de import: orden de tablas, scripts auxiliares, criterios de validación.</li>
+                <li>Documento de hashes pre-intervención firmado virtualmente con María Angélica.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="font-bold text-blue-700 w-28 flex-shrink-0">Sábado 10</div>
+            <div class="flex-1">
+              <strong class="block mb-1">Ventana de migración</strong>
+              <ul class="list-disc pl-5 space-y-1">
+                <li><strong>12:00 PM:</strong> stop de operación en Cromanal (María Angélica avisa al laboratorio).</li>
+                <li><strong>1:00 PM:</strong> congelamiento y subida a Drive de la base de contingencia con las muestras de mayo.</li>
+                <li><strong>2:00 PM en adelante:</strong> import de tablas a la base limpia, validación de integridad por tabla y reporte de porcentaje de datos preservados. Ventana estimada: 6 a 12 horas continuas.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="font-bold text-blue-700 w-28 flex-shrink-0">Domingo 11</div>
+            <div class="flex-1">
+              <strong class="block mb-1">Validación y QA</strong>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Validación cruzada por tabla (conteos, integridad referencial).</li>
+                <li>Pruebas de scripts críticos (búsquedas, generación de informes, cálculos).</li>
+                <li>Verificación de la numeración de muestras configurada para arrancar en mayo.</li>
+                <li>Documento de cierre: qué se hizo, porcentaje de datos preservados por tabla, qué quedó por hacer.</li>
+                <li>Empaquetado de la base final en disco externo para entrega presencial el lunes.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="font-bold text-blue-700 w-28 flex-shrink-0">Lunes 12</div>
+            <div class="flex-1">
+              <strong class="block mb-1">Entrega presencial e inicio de operación</strong>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>StackSolver se desplaza a Cromanal con disco externo dedicado.</li>
+                <li>Instalación de la base de datos reconstruida en el servidor productivo. Se preserva la base de contingencia como referencia histórica (no se borra).</li>
+                <li>Configuración del schedule de respaldo automatizado y verificado (primera copia confirmada en sitio).</li>
+                <li>Pruebas finales con María Angélica: login, navegación, registro de prueba, generación de informe.</li>
+                <li>Arranque oficial de la operación sobre la base nueva.</li>
+                <li>Configuración de acceso remoto seguro (OpenVPN del grupo SGS y AnyDesk como fallback) para soporte continuo desde Bogotá sin necesidad de desplazamientos posteriores.</li>
+                <li>Entrega del documento de cierre formal firmado por María Angélica.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div class="bg-zinc-50 p-4 rounded border border-zinc-200">
+          <strong class="block text-zinc-900 mb-1 text-sm">Modalidad de cobro</strong>
+          <p class="text-sm text-zinc-700">
+            Por horas, tarifa de emergencia (sin contrato de bolsa de horas vigente al momento del incidente).
           </p>
         </div>
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-slate-100 dark:border-slate-800">
-          <strong class="text-slate-900 dark:text-white block mb-1">2. Único responsable técnico</strong>
-          <p class="text-zinc-600 dark:text-zinc-400 text-xs">
-            StackSolver opera como único responsable técnico del archivo durante la ventana, sin intervenciones paralelas que comprometan la trazabilidad.
-          </p>
-        </div>
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-slate-100 dark:border-slate-800">
-          <strong class="text-slate-900 dark:text-white block mb-1">3. Documento formal de cierre</strong>
-          <p class="text-zinc-600 dark:text-zinc-400 text-xs">
-            Entrega final con descripción de operaciones realizadas, estado entregado y condiciones de operación posterior. Define el límite de responsabilidad de la intervención.
+        <div class="bg-zinc-50 p-4 rounded border border-zinc-200">
+          <strong class="block text-zinc-900 mb-1 text-sm">Cronómetro</strong>
+          <p class="text-sm text-zinc-700">
+            Iniciado el 2026-05-08 con el diagnóstico técnico vía AnyDesk. Las horas iniciales facturables (~4 horas: diagnóstico + escalamiento + planeación) ya están consumidas y forman parte de la liquidación final.
           </p>
         </div>
       </div>
 
-      <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded text-xs text-zinc-700 dark:text-zinc-300 mb-2">
-        <strong class="block mb-1">Lo que StackSolver garantiza:</strong>
-        Método autoritativo de Claris (Save as Clone + Import), documentación completa del proceso, esfuerzo profesional para preservar el máximo de información, y deslinde claro de responsabilidades en el documento de cierre.
-      </div>
-      <div class="bg-emerald-50 dark:bg-emerald-900/10 p-4 rounded text-xs text-zinc-700 dark:text-zinc-300 mb-2 border border-emerald-100 dark:border-emerald-900/30">
-        <strong class="block mb-1 text-emerald-900 dark:text-emerald-200">Reporte detallado por hora trabajada:</strong>
-        Cada hora facturada se acompaña de un reporte estructurado con (a) descripción de las actividades realizadas, (b) tiempo dedicado a cada actividad, (c) evidencias del trabajo (capturas de pantalla, hashes de archivos, logs relevantes, fragmentos de código o configuración) y (d) resultado verificable. Ningún cobro queda sin trazabilidad documentada.
-      </div>
-      <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded text-xs text-zinc-700 dark:text-zinc-300 mb-2">
-        <strong class="block mb-1">Lo que se confirma durante la intervención:</strong>
-        El porcentaje exacto de datos rescatados depende del estado de cada tabla en el archivo recibido y se documenta tabla por tabla en el cierre. La estructura entregada queda libre del daño histórico identificado en el diagnóstico.
-      </div>
-      <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded text-xs text-zinc-700 dark:text-zinc-300">
-        <strong class="block mb-1">Sobre equipos y recursos:</strong>
-        La intervención se realiza en equipo dedicado de StackSolver y NO incluye prestación de equipos al cliente. En caso de requerirse para el esquema de backup off-site (Parte 2), StackSolver puede facilitar un disco externo dedicado, sujeto a disponibilidad y sin costo adicional dentro del alcance de esta propuesta.
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-zinc-300">
+        <span class="mb-2 sm:mb-0 text-zinc-700">
+          <strong>Horas adicionales estimadas:</strong> entre 8 y 16 horas (ventana sábado-domingo + validación + entrega presencial lunes).<br/>
+          <strong>Tarifa al activar plan mensual (Fase 3):</strong> las horas dentro del horario del plan se imputan a tarifa de bolsa, no de emergencia.
+        </span>
+        <span class="font-bold text-lg text-blue-600 mt-2 sm:mt-0 whitespace-nowrap">
+          COP $264.000 / hora
+        </span>
       </div>
     </section>
 
-    <!-- POR QUE ESTE ENFOQUE -->
-    <section class="mb-12 bg-white dark:bg-zinc-900 p-8 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
-      <h3 class="font-bold text-zinc-900 dark:text-white text-lg mb-4">
-        Por qué este enfoque y no otro
-      </h3>
-      <div class="space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
-        <p>
-          Sobre archivos FileMaker con daño estructural, no existe un procedimiento de "reparación en sitio" que preserve la integridad. El método autoritativo de Claris es el procedimiento Save as Clone + Import, que reconstruye estructura limpia y migra datos validados.
+    <!-- =================== FASE 2 =================== -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Fase 2</span>
+        <span class="text-xs text-zinc-500 uppercase tracking-wider">Próximas 2-4 semanas</span>
+      </div>
+      <h2 class="text-2xl font-bold mb-4 text-zinc-900">Propuesta posterior — primero Cromanal, luego AQM</h2>
+      <p class="text-zinc-700 mb-6">
+        La Fase 1 entrega una base de datos limpia y operativa, pero deja vigentes los frentes que llevaron al incidente: backups no verificados, política de cambio de año incorrecta, archivos PDF dentro del archivo principal de la base, hardware obsoleto. La Fase 2 cierra esos frentes en orden de prioridad: <strong>primero Cromanal</strong> (consolidamos lo que acabamos de salvar) y <strong>luego AQM</strong> (prevenimos la crisis gemela antes de que ocurra).
+      </p>
+
+      <!-- 2.1 CROMANAL -->
+      <div class="bg-emerald-50 p-6 rounded-lg border border-emerald-200 mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="bg-emerald-700 text-white text-xs font-bold px-2 py-1 rounded">2.1</span>
+          <h3 class="text-lg font-bold text-emerald-900">Cromanal — Ajustes de fondo</h3>
+        </div>
+        <p class="text-sm text-zinc-700 mb-5">
+          Posterior al cierre de la Fase 1, ejecutamos los ajustes que evitan que el incidente vuelva a ocurrir. Dividido en dos sub-entregables independientes que pueden aprobarse y ejecutarse por separado.
         </p>
-        <p>
-          La intervención se realiza fuera del servidor productivo, en equipo dedicado de StackSolver con la herramienta correcta (Claris FileMaker Pro). Esto evita los riesgos de operar sobre el servidor en producción y permite validar cada paso antes de la entrega.
+
+        <!-- 2.1.A -->
+        <div class="bg-white p-5 rounded-lg border border-emerald-200 mb-4">
+          <div class="flex justify-between items-start mb-3">
+            <h4 class="font-bold text-emerald-900">Sub-parte 2.1.A — Normalización básica</h4>
+            <span class="font-bold text-emerald-700 whitespace-nowrap text-sm">COP $2.500.000</span>
+          </div>
+          <p class="text-sm text-zinc-700 mb-3">
+            Cierra los frentes que dejaron a la operación expuesta a la causa raíz documentada en el diagnóstico.
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-700">
+            <li><strong>Política correcta de cambio de año:</strong> establecimiento del procedimiento que evita el daño estructural detectado en el clonado de la base 2025 a la 2026.</li>
+            <li><strong>Configuración verificada de backups:</strong> rotación automatizada, copia off-site, validación periódica de restauración. Opcionalmente, StackSolver puede facilitar un disco externo dedicado para el esquema off-site (sin costo adicional, sujeto a disponibilidad).</li>
+            <li><strong>Activación y monitoreo del schedule de copia nocturna</strong> (encontrado deshabilitado durante el diagnóstico).</li>
+            <li><strong>Documentación de operación normal:</strong> entrega de procedimiento estándar para el equipo de María Angélica.</li>
+          </ul>
+        </div>
+
+        <!-- 2.1.B -->
+        <div class="bg-white p-5 rounded-lg border border-emerald-200 mb-4">
+          <div class="flex justify-between items-start mb-3">
+            <h4 class="font-bold text-emerald-900">Sub-parte 2.1.B — Separación de archivos PDF (optimización estructural)</h4>
+            <span class="font-bold text-emerald-700 whitespace-nowrap text-sm">COP $2.400.000</span>
+          </div>
+          <p class="text-sm text-zinc-700 mb-3">
+            Migración de los archivos PDF que hoy viven dentro del archivo principal de la base de datos hacia una estructura de carpetas externas con referencia. Resultado: archivo de base de datos significativamente más liviano, backups más rápidos, menos puntos de fragilidad estructural y portabilidad real entre servidores.
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-zinc-700">
+            <li><strong>Auditoría preliminar de campos contenedor:</strong> inventario de cuántos PDFs existen, en qué tablas, volumen total.</li>
+            <li><strong>Definición de estructura de carpetas externa:</strong> esquema estable y portable (probado con éxito por StackSolver en entornos M1 + FileMaker 2025 / v22).</li>
+            <li><strong>Migración script-driven:</strong> ejecución archivo por archivo con validación de referencias.</li>
+            <li><strong>Verificación post-migración:</strong> apertura del archivo en local y en server, confirmación de que cada registro encuentra su PDF.</li>
+            <li><strong>Documentación operativa:</strong> instrucciones para que el equipo de María Angélica suba PDFs nuevos respetando la estructura.</li>
+          </ul>
+          <p class="text-xs text-zinc-500 italic mt-3">
+            *Precio fijo asume condiciones razonables tras la auditoría preliminar (volumen estándar de PDFs, sin corrupción a nivel de archivo individual). Si el alcance real excede significativamente por volumen extremo o complicaciones detectadas durante la auditoría, se notifica antes de continuar para acordar ajuste o ejecución dentro del plan mensual.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-emerald-200">
+          <span class="mb-2 sm:mb-0 text-zinc-700">
+            <strong>Modalidad:</strong> Precio fijo por sub-entregable (no por horas).<br/>
+            <strong>Tiempo:</strong> 1 a 2 semanas (2.1.A) + 1 a 2 semanas adicionales (2.1.B), posteriores al cierre de la Fase 1.
+          </span>
+          <span class="font-bold text-lg text-emerald-700 mt-2 sm:mt-0 whitespace-nowrap">
+            Total Cromanal: COP $4.900.000
+          </span>
+        </div>
+      </div>
+
+      <!-- 2.2 AQM -->
+      <div class="bg-amber-50 p-6 rounded-lg border border-amber-200 mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="bg-amber-700 text-white text-xs font-bold px-2 py-1 rounded">2.2</span>
+          <h3 class="text-lg font-bold text-amber-900">AQM — Revisión preventiva</h3>
+        </div>
+        <p class="text-sm text-zinc-700 mb-4">
+          AQM presenta hoy el mismo patrón técnico que llevó a Cromanal a la crisis actual. La diferencia es solo de tiempo: en AQM aún no se ha materializado, pero los síntomas ya están documentados desde julio de 2025.
         </p>
-        <p>
-          La aprobación conjunta de Parte 1 y Parte 2 es la condición para que el resultado sea estable. La Parte 1 sin la Parte 2 deja la causa raíz vigente y compromete cualquier garantía futura.
-        </p>
+
+        <!-- Resumen del estado AQM -->
+        <h4 class="font-bold text-amber-900 mb-3 text-sm">Estado de AQM documentado por StackSolver (julio 2025)</h4>
+        <div class="bg-white p-4 rounded border border-amber-200 mb-4 text-sm text-zinc-700 space-y-2">
+          <p>StackSolver intervino en AQM en julio de 2025 con el objetivo de centralizar la estructura de almacenamiento de archivos PDF de las bases AQMSOFT. La intervención reveló problemas más profundos que el alcance inicial:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Sistema no localiza archivos PDF</strong> — error "archivo no hallado". Las referencias internas a los PDFs estaban corruptas: la base "creía saber" dónde estaban los archivos, pero la dirección guardada estaba rota o ilegible.</li>
+            <li><strong>Estructura ineficiente de carpetas</strong> — distinta para cada año (AQMSOFT2021–2025), propensa a romper migraciones de un servidor a otro.</li>
+            <li><strong>Comportamiento anómalo confirmado</strong> — un backup funcional no encontraba sus archivos en local, pero sí los encontraba al subirse a FileMaker Server. Indica corrupción a nivel de rutas de acceso que impide reparación estándar.</li>
+            <li><strong>Hardware obsoleto e inestable</strong> — Mac Pro 2013 con historial de apagados inesperados. Cualquier operación intensiva podría provocar fallo del sistema y dejar la base en estado peor.</li>
+            <li><strong>Capacidad de almacenamiento crítica</strong> — espacio reducido tanto en el disco principal como en el destinado a respaldos.</li>
+            <li><strong>StackSolver detuvo la intervención</strong> y entregó la recomendación prioritaria: <strong>actualizar el hardware del servidor</strong> antes de cualquier reparación intensiva. Esa recomendación no ha sido atendida.</li>
+          </ul>
+        </div>
+
+        <!-- Comparativa -->
+        <h4 class="font-bold text-amber-900 mb-3 text-sm">Comparativa AQM (julio 2025) vs Cromanal (mayo 2026)</h4>
+        <div class="overflow-x-auto mb-4">
+          <table class="w-full text-xs text-left border-collapse bg-white rounded border border-amber-200">
+            <thead class="bg-amber-100 text-amber-900">
+              <tr>
+                <th class="py-2 px-3">Síntoma estructural</th>
+                <th class="py-2 px-3">AQM (julio 2025)</th>
+                <th class="py-2 px-3">Cromanal (mayo 2026)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-amber-100">
+              <tr>
+                <td class="py-2 px-3">Hardware fuera de soporte</td>
+                <td class="py-2 px-3">Mac Pro 2013</td>
+                <td class="py-2 px-3">Mac mini con macOS Catalina + FMS 19</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3">Apagados / bloqueos inesperados</td>
+                <td class="py-2 px-3">Sí (historial documentado)</td>
+                <td class="py-2 px-3">Sí (incidente del 2026-05-05)</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3">Backups no verificados</td>
+                <td class="py-2 px-3">Sí, espacio crítico</td>
+                <td class="py-2 px-3">Sí, schedule "COPIA NOCHE" deshabilitado</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3">Estructura de archivos ineficiente</td>
+                <td class="py-2 px-3">Carpetas distintas por año</td>
+                <td class="py-2 px-3">Clonado anual con herencia de daño</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3">Recomendación previa de StackSolver</td>
+                <td class="py-2 px-3">Renovar hardware (no atendida)</td>
+                <td class="py-2 px-3">Renovar hardware (no atendida)</td>
+              </tr>
+              <tr class="bg-amber-100 font-bold">
+                <td class="py-2 px-3">Crisis materializada</td>
+                <td class="py-2 px-3 text-amber-800">Aún no</td>
+                <td class="py-2 px-3 text-red-700">Sí — esta semana</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Plan de revisión preventiva -->
+        <h4 class="font-bold text-amber-900 mb-3 text-sm">Alcance de la revisión preventiva</h4>
+        <div class="bg-white p-4 rounded border border-amber-200 mb-4 text-sm text-zinc-700">
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Auditoría de estado del servidor Mac Pro 2013:</strong> evaluación de salud del hardware, espacio en disco, integridad SMART, historial de apagados.</li>
+            <li><strong>Revisión de backups y políticas:</strong> verificar que los respaldos efectivamente funcionan y son restaurables (mismo gap que vimos en Cromanal).</li>
+            <li><strong>Aplicación del método de separación de PDFs validado en Cromanal (Sub-parte 2.1.B):</strong> el conocimiento generado en Cromanal se reutiliza directamente en AQM, sin necesidad de re-investigar el método.</li>
+            <li><strong>Plan de migración a hardware moderno:</strong> recomendación de equipo de reemplazo (Mac mini M-series + FMS 21+), cronograma sugerido de migración con ventanas planeadas de mantenimiento.</li>
+            <li><strong>Documento de hallazgos y plan de remediación priorizado.</strong></li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm border-t pt-4 border-dashed border-amber-200">
+          <span class="mb-2 sm:mb-0 text-zinc-700">
+            <strong>Modalidad:</strong> Se ejecuta dentro del consumo de horas del plan mensual (Fase 3) una vez activado, o se cotiza puntualmente como proyecto separado si se prefiere ejecutar antes de activar plan.<br/>
+            <strong>Recomendación de StackSolver:</strong> activar plan mensual y arrancar revisión preventiva en las primeras 2-4 semanas. Lo que cuesta intervenir hoy en AQM es una fracción de lo que costaría en una crisis equivalente a la de Cromanal.
+          </span>
+          <span class="font-bold text-amber-700 mt-2 sm:mt-0 whitespace-nowrap text-sm text-right">
+            Cubierto por horas<br/>del plan mensual
+          </span>
+        </div>
       </div>
     </section>
 
-    <!-- RESUMEN ECONOMICO -->
-    <section class="mb-8 bg-zinc-900 py-8 px-6 rounded-xl text-white shadow-xl">
-      <h2 class="text-xl font-bold mb-6 text-center">Resumen de Inversión</h2>
-      <div class="overflow-x-auto">
+    <!-- =================== FASE 3 =================== -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Fase 3</span>
+        <span class="text-xs text-zinc-500 uppercase tracking-wider">Modelo continuo desde junio</span>
+      </div>
+      <h2 class="text-2xl font-bold mb-4 text-zinc-900">Modelo de soporte continuo — Plan mensual de bolsa de horas</h2>
+      <p class="text-zinc-700 mb-6">
+        Activación del modelo mensual de soporte, operación, entrenamiento y atención de incidentes en Claris FileMaker, bajo el esquema ya conocido de bolsa de horas. Tres planes disponibles, todos cubren tanto Cromanal como AQM bajo un solo responsable técnico.
+      </p>
+
+      <!-- Tabla de planes -->
+      <div class="overflow-hidden rounded-lg border border-zinc-300 mb-4 bg-white">
         <table class="w-full text-sm text-left border-collapse">
-          <thead class="text-zinc-400 border-b border-zinc-700">
+          <thead class="bg-zinc-100 text-zinc-600">
             <tr>
-              <th class="py-3">Frente</th>
-              <th class="py-3">Modalidad</th>
-              <th class="py-3 text-right">Inversión (COP, sin IVA)</th>
+              <th class="py-3 px-4 border-b border-zinc-200">Plan</th>
+              <th class="py-3 px-4 border-b border-zinc-200">Bolsa</th>
+              <th class="py-3 px-4 border-b border-zinc-200">Horario de servicio</th>
+              <th class="py-3 px-4 border-b border-zinc-200">Hora adicional</th>
+              <th class="py-3 px-4 border-b border-zinc-200 text-right">Mensualidad</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-zinc-700 font-medium">
+          <tbody class="divide-y divide-zinc-200">
             <tr>
-              <td class="py-4">Parte 1 — Plan de Choque</td>
-              <td class="py-4 text-zinc-400">Por horas, tarifa emergencia</td>
-              <td class="py-4 text-right text-blue-400">$264.000 / hora</td>
+              <td class="py-3 px-4 font-bold text-zinc-700">Core</td>
+              <td class="py-3 px-4">10 h/mes</td>
+              <td class="py-3 px-4 text-xs">L-V 8:00 AM - 12:00 PM <br/><span class="text-zinc-500">(extensible a 8:00 PM coordinado)</span></td>
+              <td class="py-3 px-4 text-xs">$158.000 dentro<br/>$242.000 fuera</td>
+              <td class="py-3 px-4 text-right font-bold">$1.580.000</td>
+            </tr>
+            <tr class="bg-purple-50">
+              <td class="py-3 px-4 font-bold text-zinc-700">Intermedio</td>
+              <td class="py-3 px-4">20 h/mes</td>
+              <td class="py-3 px-4 text-xs">L-V 8:00 AM - 4:00 PM <br/><span class="text-zinc-500">(extensible a 10:00 PM coordinado)</span></td>
+              <td class="py-3 px-4 text-xs">$132.000 dentro<br/>$221.000 fuera</td>
+              <td class="py-3 px-4 text-right font-bold">$2.630.000</td>
             </tr>
             <tr>
-              <td class="py-4 align-top">Parte 2 — Ajustes de Fondo</td>
-              <td class="py-4 text-zinc-400 align-top">Precio fijo por sub-entregable</td>
-              <td class="py-4 text-right align-top">
-                <div class="text-emerald-400">2A — Normalización básica: $2.500.000</div>
-                <div class="text-emerald-400">2B — Separación PDFs: $2.400.000</div>
-                <div class="text-emerald-300 font-bold border-t border-zinc-700 pt-1 mt-1">Total Parte 2: $4.900.000</div>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-4 align-top">Parte 3 — Bolsa de Horas Mensual</td>
-              <td class="py-4 text-zinc-400 align-top">Mensualidad recurrente<br/>(elegir plan)</td>
-              <td class="py-4 text-right align-top">
-                <div class="text-purple-400">Core: $1.580.000 / mes</div>
-                <div class="text-purple-400">Intermedio: $2.630.000 / mes</div>
-                <div class="text-purple-400">Premium: $5.150.000 / mes</div>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-4">Hora ad-hoc sin plan activo</td>
-              <td class="py-4 text-zinc-400">Por incidente puntual, sin compromiso mensual</td>
-              <td class="py-4 text-right text-zinc-300">$198.000 / hora</td>
+              <td class="py-3 px-4 font-bold text-zinc-700">Premium</td>
+              <td class="py-3 px-4">40 h/mes</td>
+              <td class="py-3 px-4 text-xs">L-V 4:30 AM - 11:00 PM <br/>Sáb 8:00 AM - 12:00 PM</td>
+              <td class="py-3 px-4 text-xs">$116.000 dentro<br/>$221.000 fuera</td>
+              <td class="py-3 px-4 text-right font-bold">$5.150.000</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="text-center text-zinc-400 text-sm mt-6 border-t border-zinc-700 pt-4">
-        Facturación vía StackSolver SAS. Aplica IVA 19% según normativa colombiana.<br/>
-        Las horas iniciadas el 2026-05-08 con el diagnóstico técnico forman parte de la Parte 1 y se incluyen en la liquidación final.<br/>
-        Valores Parte 3 ajustados al IPC sobre la propuesta histórica de marzo 2025 (cláusula contractual original).
+      <p class="text-xs text-zinc-500 italic mb-6">
+        *Valores en COP, no incluyen IVA 19%. Actualizados sobre la propuesta original de marzo 2025 aplicando IPC 5.2% según la cláusula contractual original.
+      </p>
+
+      <div class="bg-purple-50 p-4 rounded mb-4 text-sm border border-purple-100">
+        <strong class="text-purple-900 block mb-2">Cobertura del servicio mensual</strong>
+        <ul class="list-disc pl-5 space-y-1 text-zinc-700">
+          <li><strong>Soporte y atención de incidentes</strong> con SLA según plan (críticos / mayores / menores).</li>
+          <li><strong>Operación y mantenimiento</strong> de las aplicaciones Claris FileMaker existentes en Cromanal y AQM.</li>
+          <li><strong>Entrenamiento</strong> a usuarios finales, desarrolladores, administradores de sistema y equipos de seguridad.</li>
+          <li><strong>Optimización</strong> de bases de datos, asesoría en ciberseguridad, gestión de accesos.</li>
+          <li><strong>Asesoría estratégica</strong> en evolución de plataforma y ejecución de la revisión preventiva de AQM (Fase 2.2).</li>
+          <li>Acumulación de horas no usadas: 0% Core, 20% Intermedio, 15% Premium (límite 3 meses).</li>
+        </ul>
+      </div>
+
+      <p class="text-xs text-zinc-500 italic">
+        *Una vez activado el plan, las horas de la Fase 1 (que estén dentro del horario del plan elegido) se imputan a la bolsa mensual a tarifa de bolsa, no a tarifa de emergencia. Hora ad-hoc sin plan activo: $198.000.
       </p>
     </section>
 
-    <!-- COMPARATIVO PLAN VS AD-HOC -->
-    <section class="mb-12 bg-white dark:bg-zinc-900 p-8 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
-      <h3 class="font-bold text-zinc-900 dark:text-white text-xl mb-2">
+    <!-- =================== POR QUE ESTE ORDEN IMPORTA =================== -->
+    <section class="mb-12 bg-zinc-50 p-8 rounded-lg border border-zinc-300">
+      <h2 class="text-2xl font-bold mb-2 text-zinc-900">Por qué este orden importa</h2>
+      <p class="text-zinc-600 mb-6 text-sm">La secuencia Fase 1 → Fase 2 → Fase 3 no es arbitraria. Cada una resuelve un problema distinto, y omitir cualquiera deja un riesgo abierto.</p>
+
+      <div class="space-y-4">
+        <div class="bg-white p-5 rounded-lg border-l-4 border-blue-500">
+          <h3 class="font-bold text-blue-900 mb-2">Fase 1 sola = parche</h3>
+          <p class="text-sm text-zinc-700">
+            Si solo hacemos la reconstrucción del fin de semana y no atendemos los ajustes de fondo, la causa raíz del incidente sigue presente: backups no verificados, política de cambio de año incorrecta, archivos PDF dentro del archivo principal. El próximo evento (cambio de año 2026 a 2027, falla de hardware, error humano) repite la misma crisis. El plan de choque pone la operación en marcha; los ajustes de fondo aseguran que se quede en marcha.
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg border-l-4 border-emerald-500">
+          <h3 class="font-bold text-emerald-900 mb-2">Fase 2.1 (Cromanal) sin Fase 2.2 (AQM) = oportunidad perdida</h3>
+          <p class="text-sm text-zinc-700">
+            Si consolidamos Cromanal pero dejamos AQM como está, estamos esperando a que se materialice exactamente la misma crisis que acabamos de resolver. El diagnóstico técnico de AQM existe desde julio de 2025 y el patrón es idéntico. La revisión preventiva en AQM hoy cuesta una fracción de lo que costaría una intervención de emergencia equivalente a la de Cromanal. Y el conocimiento generado en Cromanal (método de separación de PDFs ya validado, plan de migración) se reutiliza directamente.
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg border-l-4 border-purple-500">
+          <h3 class="font-bold text-purple-900 mb-2">Fases 2 sin Fase 3 = sin gobernanza técnica</h3>
+          <p class="text-sm text-zinc-700">
+            Los ajustes de fondo blindan la base de datos, pero el sistema necesita gobernanza técnica continua: alguien que monitoree los respaldos, que detecte schedules deshabilitados, que aplique parches preventivos, que atienda incidentes con SLA antes de que escalen a crisis. El plan mensual es ese marco de gobernanza. Sin él, los aprendizajes del incidente se diluyen y el grupo SGS queda otra vez expuesto al riesgo de "ahorrar en mantenimiento hasta que se rompe algo".
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg border-l-4 border-amber-500">
+          <h3 class="font-bold text-amber-900 mb-2">El argumento económico</h3>
+          <p class="text-sm text-zinc-700">
+            La crisis de esta semana ha consumido al menos cinco días de operación parcial o detenida en Cromanal, ha exigido intervención de emergencia con tarifa especial, y aún hay datos que pueden no recuperarse al 100%. Ese costo agregado supera ampliamente la inversión total propuesta en las tres fases. La pregunta económica relevante no es "¿cuánto cuesta hacer Fase 2 y Fase 3?", sino "¿cuánto cuesta NO hacerlas y vivir el siguiente incidente?".
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== GARANTIAS =================== -->
+    <section class="mb-12 bg-slate-50 p-8 rounded-lg border border-slate-200 shadow-sm">
+      <h3 class="font-bold text-slate-800 text-lg mb-4">
+        Garantías, condiciones de intervención y deslinde de responsabilidades
+      </h3>
+      <p class="text-sm text-zinc-700 mb-4">
+        Para garantizar trazabilidad técnica clara durante y después de la intervención, StackSolver opera bajo tres condiciones no negociables:
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
+        <div class="bg-white p-4 rounded border border-slate-200">
+          <strong class="text-slate-900 block mb-1">1. Estado documentado pre-intervención</strong>
+          <p class="text-zinc-600 text-xs">
+            Copia bit-a-bit del archivo y hashes documentados, con acuerdo de ambas partes, antes de cualquier modificación.
+          </p>
+        </div>
+        <div class="bg-white p-4 rounded border border-slate-200">
+          <strong class="text-slate-900 block mb-1">2. Único responsable técnico</strong>
+          <p class="text-zinc-600 text-xs">
+            StackSolver opera como único responsable técnico del archivo durante la ventana, sin intervenciones paralelas que comprometan la trazabilidad.
+          </p>
+        </div>
+        <div class="bg-white p-4 rounded border border-slate-200">
+          <strong class="text-slate-900 block mb-1">3. Documento formal de cierre</strong>
+          <p class="text-zinc-600 text-xs">
+            Entrega final con descripción de operaciones realizadas, estado entregado y condiciones de operación posterior. Define el límite de responsabilidad.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-slate-100 p-4 rounded text-xs text-zinc-700 mb-2">
+        <strong class="block mb-1">Lo que StackSolver garantiza:</strong>
+        Método autoritativo de Claris (Save as Clone + Import), documentación completa del proceso, esfuerzo profesional para preservar el máximo de información, y deslinde claro de responsabilidades en el documento de cierre.
+      </div>
+      <div class="bg-emerald-50 p-4 rounded text-xs text-zinc-700 mb-2 border border-emerald-100">
+        <strong class="block mb-1 text-emerald-900">Reporte detallado por hora trabajada:</strong>
+        Cada hora facturada se acompaña de un reporte estructurado con (a) descripción de las actividades realizadas, (b) tiempo dedicado a cada actividad, (c) evidencias del trabajo (capturas de pantalla, hashes de archivos, logs relevantes, fragmentos de código o configuración) y (d) resultado verificable. Ningún cobro queda sin trazabilidad documentada.
+      </div>
+      <div class="bg-slate-100 p-4 rounded text-xs text-zinc-700 mb-2">
+        <strong class="block mb-1">Lo que se confirma durante la intervención:</strong>
+        El porcentaje exacto de datos rescatados depende del estado de cada tabla en el archivo recibido y se documenta tabla por tabla en el cierre. La estructura entregada queda libre del daño histórico identificado en el diagnóstico.
+      </div>
+      <div class="bg-slate-100 p-4 rounded text-xs text-zinc-700">
+        <strong class="block mb-1">Sobre equipos y recursos:</strong>
+        La intervención se realiza en equipo dedicado de StackSolver y NO incluye prestación de equipos al cliente. En caso de requerirse para el esquema de backup off-site (Sub-parte 2.1.A), StackSolver puede facilitar un disco externo dedicado, sujeto a disponibilidad y sin costo adicional dentro del alcance de esta propuesta.
+      </div>
+    </section>
+
+    <!-- =================== RESUMEN ECONOMICO =================== -->
+    <section class="mb-12 bg-white border-2 border-zinc-300 p-8 rounded-xl shadow-sm">
+      <h2 class="text-xl font-bold mb-6 text-center text-zinc-900">Resumen de Inversión</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left border-collapse">
+          <thead class="text-zinc-600 border-b-2 border-zinc-300">
+            <tr>
+              <th class="py-3 px-2">Fase</th>
+              <th class="py-3 px-2">Modalidad</th>
+              <th class="py-3 px-2 text-right">Inversión (COP, sin IVA)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-200 font-medium">
+            <tr>
+              <td class="py-4 px-2 align-top">
+                <div class="font-bold text-blue-700">Fase 1 — Resolución inmediata</div>
+                <div class="text-xs text-zinc-500 font-normal">Reconstrucción Cromanal este fin de semana</div>
+              </td>
+              <td class="py-4 px-2 text-zinc-600 align-top text-xs">Por horas, tarifa emergencia</td>
+              <td class="py-4 px-2 text-right text-blue-700 align-top">$264.000 / hora</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-2 align-top">
+                <div class="font-bold text-emerald-700">Fase 2.1 — Cromanal ajustes de fondo</div>
+                <div class="text-xs text-zinc-500 font-normal">2.1.A Normalización + 2.1.B Separación PDFs</div>
+              </td>
+              <td class="py-4 px-2 text-zinc-600 align-top text-xs">Precio fijo por sub-entregable</td>
+              <td class="py-4 px-2 text-right align-top">
+                <div class="text-emerald-700">2.1.A: $2.500.000</div>
+                <div class="text-emerald-700">2.1.B: $2.400.000</div>
+                <div class="text-emerald-800 font-bold border-t border-zinc-300 pt-1 mt-1">Subtotal: $4.900.000</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 px-2 align-top">
+                <div class="font-bold text-amber-700">Fase 2.2 — AQM revisión preventiva</div>
+                <div class="text-xs text-zinc-500 font-normal">Cubierto por horas del plan mensual</div>
+              </td>
+              <td class="py-4 px-2 text-zinc-600 align-top text-xs">Dentro del plan o cotización puntual</td>
+              <td class="py-4 px-2 text-right text-amber-700 align-top">Incluido en Fase 3</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-2 align-top">
+                <div class="font-bold text-purple-700">Fase 3 — Plan mensual</div>
+                <div class="text-xs text-zinc-500 font-normal">Soporte continuo grupo SGS</div>
+              </td>
+              <td class="py-4 px-2 text-zinc-600 align-top text-xs">Mensualidad recurrente</td>
+              <td class="py-4 px-2 text-right align-top">
+                <div class="text-purple-700">Core: $1.580.000 / mes</div>
+                <div class="text-purple-700">Intermedio: $2.630.000 / mes</div>
+                <div class="text-purple-700">Premium: $5.150.000 / mes</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 px-2">Hora ad-hoc sin plan activo</td>
+              <td class="py-4 px-2 text-zinc-600 text-xs">Por incidente puntual</td>
+              <td class="py-4 px-2 text-right text-zinc-600">$198.000 / hora</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center text-zinc-600 text-sm mt-6 border-t border-zinc-200 pt-4">
+        Facturación vía StackSolver SAS. Aplica IVA 19% según normativa colombiana.<br/>
+        Las horas iniciadas el 2026-05-08 con el diagnóstico técnico forman parte de la Fase 1 y se incluyen en la liquidación final.<br/>
+        Valores Fase 3 ajustados al IPC sobre la propuesta histórica de marzo 2025 (cláusula contractual original).
+      </p>
+    </section>
+
+    <!-- =================== COMPARATIVO =================== -->
+    <section class="mb-12 bg-white p-8 rounded-lg border border-zinc-200 shadow-sm">
+      <h3 class="font-bold text-zinc-900 text-xl mb-2">
         Análisis comparativo: plan mensual vs pago por hora
       </h3>
-      <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-6">
-        Este ejercicio muestra el costo mensual de soporte según el volumen real de trabajo, comparando el modelo ad-hoc (pago por hora sin plan) contra el plan de bolsa que mejor se ajusta al volumen.
+      <p class="text-sm text-zinc-700 mb-6">
+        Costo mensual de soporte según volumen de trabajo, comparando el modelo ad-hoc (pago por hora sin plan) contra el plan de bolsa más adecuado al volumen.
       </p>
 
       <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left border-collapse">
-          <thead class="bg-zinc-50 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+          <thead class="bg-zinc-100 text-zinc-600">
             <tr>
-              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Volumen mensual</th>
-              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Sin plan ($198.000/h)</th>
-              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700">Plan recomendado</th>
-              <th class="py-3 px-4 border-b border-zinc-200 dark:border-zinc-700 text-right">Ahorro / mes</th>
+              <th class="py-3 px-4 border-b border-zinc-200">Volumen mensual</th>
+              <th class="py-3 px-4 border-b border-zinc-200">Sin plan ($198.000/h)</th>
+              <th class="py-3 px-4 border-b border-zinc-200">Plan recomendado</th>
+              <th class="py-3 px-4 border-b border-zinc-200 text-right">Ahorro / mes</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
+          <tbody class="divide-y divide-zinc-200">
             <tr>
               <td class="py-3 px-4">5 horas</td>
               <td class="py-3 px-4">$990.000</td>
               <td class="py-3 px-4 text-zinc-500">No aplica plan (uso bajo)</td>
               <td class="py-3 px-4 text-right text-zinc-500">—</td>
             </tr>
-            <tr class="bg-emerald-50/30 dark:bg-emerald-900/10">
+            <tr class="bg-emerald-50">
               <td class="py-3 px-4 font-semibold">10 horas</td>
               <td class="py-3 px-4">$1.980.000</td>
               <td class="py-3 px-4">Plan Core — $1.580.000</td>
-              <td class="py-3 px-4 text-right font-bold text-emerald-700 dark:text-emerald-400">$400.000</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700">$400.000</td>
             </tr>
-            <tr class="bg-emerald-50/40 dark:bg-emerald-900/20">
+            <tr class="bg-emerald-50">
               <td class="py-3 px-4 font-semibold">20 horas</td>
               <td class="py-3 px-4">$3.960.000</td>
               <td class="py-3 px-4">Plan Intermedio — $2.630.000</td>
-              <td class="py-3 px-4 text-right font-bold text-emerald-700 dark:text-emerald-400">$1.330.000</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700">$1.330.000</td>
             </tr>
-            <tr class="bg-emerald-50/50 dark:bg-emerald-900/30">
+            <tr class="bg-emerald-100">
               <td class="py-3 px-4 font-semibold">40 horas</td>
               <td class="py-3 px-4">$7.920.000</td>
               <td class="py-3 px-4">Plan Premium — $5.150.000</td>
-              <td class="py-3 px-4 text-right font-bold text-emerald-700 dark:text-emerald-400">$2.770.000</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700">$2.770.000</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-lg border border-blue-100 dark:border-blue-900/30 mb-4">
-        <h4 class="font-bold text-blue-900 dark:text-blue-200 text-sm mb-2">
-          Caso especial: la ventana de mantenimiento de este fin de semana
-        </h4>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">
-          Si se activa un plan mensual en paralelo a la aprobación de la Parte 1, las horas de la Parte 1 que caigan dentro del horario del plan se imputan a la bolsa mensual a tarifa de bolsa, en lugar de tarifa de emergencia.
-        </p>
-        <table class="w-full text-xs text-left border-collapse">
-          <thead class="text-zinc-500 dark:text-zinc-400">
-            <tr>
-              <th class="py-2 pr-4">Escenario (~16 h totales: 4 diagnóstico + 12 ventana fin de semana)</th>
-              <th class="py-2 pr-4 text-right">Costo Parte 1</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-blue-100 dark:divide-blue-900/30">
-            <tr>
-              <td class="py-2 pr-4">A) Solo Parte 1 (sin plan): 16 h × $264.000 emergencia</td>
-              <td class="py-2 pr-4 text-right">$4.224.000</td>
-            </tr>
-            <tr>
-              <td class="py-2 pr-4">B) Parte 1 + Plan Premium activado: 4 h diagnóstico a $264K (ya causadas) + 12 h ventana fuera de horario plan a $221K</td>
-              <td class="py-2 pr-4 text-right">~$3.708.000</td>
-            </tr>
-            <tr class="bg-blue-100/50 dark:bg-blue-900/20 font-bold">
-              <td class="py-2 pr-4 text-blue-900 dark:text-blue-200">Ahorro estimado en Parte 1 activando plan antes de la ventana</td>
-              <td class="py-2 pr-4 text-right text-blue-900 dark:text-blue-200">~$516.000</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="text-xs text-zinc-500 italic mt-3">
-          *Adicionalmente, la mensualidad del plan elegido cubre el resto del mes con horas disponibles para soporte continuo. El ahorro consolidado a 12 meses (intervención + soporte mensual + ventanas programadas) es significativamente mayor que el ahorro puntual de la Parte 1.
-        </p>
-      </div>
-
-      <div class="bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded text-sm text-zinc-700 dark:text-zinc-300">
-        <strong class="block mb-1 text-zinc-900 dark:text-white">Lectura simple</strong>
+      <div class="bg-zinc-100 p-4 rounded text-sm text-zinc-700">
+        <strong class="block mb-1 text-zinc-900">Lectura simple</strong>
         Por encima de 8 horas mensuales de soporte, un plan de bolsa siempre sale más económico que pagar por hora. Para el grupo SGS, considerando que el servicio cubre Cromanal y AQM bajo un solo responsable técnico, el plan Intermedio o Premium es el escenario natural.
       </div>
     </section>
 
-    <!-- ANEXO AQM ESTADO -->
-    <section class="mb-12 bg-zinc-50 dark:bg-zinc-800/30 p-8 rounded-lg border border-zinc-200 dark:border-zinc-700">
-      <div class="border-l-4 border-amber-500 pl-4 mb-6">
-        <p class="text-xs uppercase tracking-wider text-amber-700 dark:text-amber-400 font-bold mb-1">Anexo informativo</p>
-        <h3 class="text-xl font-bold text-zinc-900 dark:text-white">AQM FileMaker Server — Estado del entorno</h3>
-        <p class="text-sm text-zinc-600 dark:text-zinc-400">Diagnóstico técnico realizado por StackSolver en julio de 2025</p>
-      </div>
-
-      <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-4">
-        Esta información se incluye para sustentar la recomendación de revisar AQM como parte del plan mensual (Parte 3). El patrón técnico observado en AQM hace 10 meses es estructuralmente equivalente al que materializó la crisis actual en Cromanal. La diferencia: en Cromanal ya se materializó el incidente; en AQM aún no.
-      </p>
-
-      <h4 class="font-bold text-zinc-900 dark:text-white mt-6 mb-3 text-sm">Hallazgos del diagnóstico (julio 2025)</h4>
-
-      <div class="space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
-          <strong class="text-zinc-900 dark:text-white block mb-1">1. Sistema no localiza archivos PDF ("archivo no hallado")</strong>
-          Error recurrente al intentar acceder a registros con archivos adjuntos en AQMSOFT. Las referencias internas a los PDFs estaban corruptas: la base "creía saber" dónde estaban los archivos, pero la dirección guardada estaba rota o ilegible. Aunque los archivos físicamente se movieron a la ubicación correcta, la base no podía leerlos.
-        </div>
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
-          <strong class="text-zinc-900 dark:text-white block mb-1">2. Estructura ineficiente de carpetas</strong>
-          El almacenamiento original creaba una estructura distinta para cada año (AQMSOFT2021, AQMSOFT2022, AQMSOFT2023, AQMSOFT2024, AQMSOFT2025), cada uno con sus subcarpetas RC_Data_FMS / MUESTRAS / PDF. Esto hacía la gestión propensa a errores y rompía las migraciones de un servidor a otro.
-        </div>
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
-          <strong class="text-zinc-900 dark:text-white block mb-1">3. Comportamiento anómalo confirmado</strong>
-          Síntoma clave: al abrir una copia de seguridad funcional de la base de datos de forma local en la máquina, era incapaz de localizar sus propios archivos. La misma copia subida a FileMaker Server sí los encontraba. Indica corrupción a nivel de rutas de acceso que impide reparación estándar y segura.
-        </div>
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
-          <strong class="text-zinc-900 dark:text-white block mb-1">4. Hardware obsoleto e inestable (Mac Pro 2013)</strong>
-          El servidor de producción de AQM tiene historial de apagados inesperados. Cualquier operación intensiva podía provocar fallo del sistema a mitad del proceso, dejando la base de datos en estado aún peor. El equipo ha llegado al final de su vida útil operativa.
-        </div>
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
-          <strong class="text-zinc-900 dark:text-white block mb-1">5. Capacidad de almacenamiento crítica</strong>
-          Tanto el disco principal del servidor como el destinado a respaldos contaban con espacio reducido. Esto limitaba la capacidad de hacer copias completas verificadas antes de cada operación crítica e incrementaba el riesgo de fallo por falta de espacio.
-        </div>
-        <div class="bg-white dark:bg-zinc-900 p-4 rounded border border-zinc-200 dark:border-zinc-800">
-          <strong class="text-zinc-900 dark:text-white block mb-1">6. Decisión técnica de no continuar la intervención en julio 2025</strong>
-          StackSolver determinó que continuar con procesos de reparación intensivos en esas condiciones era altamente riesgoso (riesgo de corrupción de datos irreparable). Se entregó la recomendación prioritaria: <strong>actualizar el hardware del servidor</strong>. Una vez las bases se alojen en hardware moderno y estable, el procedimiento de reparación puede ejecutarse de forma rápida y segura.
-        </div>
-      </div>
-
-      <h4 class="font-bold text-zinc-900 dark:text-white mt-6 mb-3 text-sm">Comparativa Cromanal hoy vs AQM julio 2025</h4>
-
-      <div class="overflow-x-auto mb-4">
-        <table class="w-full text-xs text-left border-collapse bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800">
-          <thead class="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-            <tr>
-              <th class="py-2 px-3">Síntoma estructural</th>
-              <th class="py-2 px-3">AQM (julio 2025)</th>
-              <th class="py-2 px-3">Cromanal (mayo 2026)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
-            <tr>
-              <td class="py-2 px-3">Hardware fuera de soporte / inestable</td>
-              <td class="py-2 px-3">Mac Pro 2013</td>
-              <td class="py-2 px-3">Mac mini server con macOS Catalina + FMS 19</td>
-            </tr>
-            <tr>
-              <td class="py-2 px-3">Apagados / bloqueos inesperados</td>
-              <td class="py-2 px-3">Sí (historial documentado)</td>
-              <td class="py-2 px-3">Sí (incidente del 2026-05-05)</td>
-            </tr>
-            <tr>
-              <td class="py-2 px-3">Backups no verificados / espacio crítico</td>
-              <td class="py-2 px-3">Sí</td>
-              <td class="py-2 px-3">Sí (schedule "COPIA NOCHE" deshabilitado)</td>
-            </tr>
-            <tr>
-              <td class="py-2 px-3">Estructura de archivos ineficiente</td>
-              <td class="py-2 px-3">Carpetas distintas por año</td>
-              <td class="py-2 px-3">Clonado anual con herencia de daño</td>
-            </tr>
-            <tr>
-              <td class="py-2 px-3">Recomendación previa de StackSolver</td>
-              <td class="py-2 px-3">Renovar hardware (no atendido)</td>
-              <td class="py-2 px-3">Renovar hardware (no atendido)</td>
-            </tr>
-            <tr class="bg-amber-50 dark:bg-amber-900/10 font-semibold">
-              <td class="py-2 px-3">Crisis materializada</td>
-              <td class="py-2 px-3 text-amber-700 dark:text-amber-400">Aún no</td>
-              <td class="py-2 px-3 text-red-600 dark:text-red-400">Sí — esta semana</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="bg-amber-50 dark:bg-amber-900/10 p-4 rounded text-sm border border-amber-100 dark:border-amber-900/30">
-        <strong class="text-amber-900 dark:text-amber-200 block mb-1">Implicación operativa</strong>
-        <p class="text-zinc-700 dark:text-zinc-300">
-          Una vez activado el plan mensual (Parte 3), una de las primeras prioridades es la revisión preventiva de AQM antes de que se materialice una crisis equivalente. La revisión se ejecuta dentro del consumo de horas del plan o se cotiza puntualmente si requiere intervención profunda en hardware (reemplazo del servidor, reestructura completa). La metodología de separación de archivos PDF que se ejecuta en Cromanal (Sub-parte 2B) es exactamente la misma que aplicaría en AQM en su momento — el método ya fue probado con éxito por StackSolver en entornos M1 con FileMaker 2025 / v22, y el conocimiento generado en Cromanal se reutiliza directamente.
-        </p>
-      </div>
-    </section>
-
-    <!-- CIERRE -->
-    <section class="mb-8 text-center bg-zinc-50 dark:bg-zinc-800/30 p-8 rounded-lg">
-      <p class="font-bold text-lg text-zinc-900 dark:text-white mb-2">Quedamos atentos a su confirmación para iniciar la ventana operativa,</p>
-      <p class="text-zinc-600 dark:text-zinc-400">Johann Vivas y Santiago Aguilar</p>
-      <p class="text-zinc-500 dark:text-zinc-500 text-sm">Equipo StackSolver</p>
-      <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-4 italic">
+    <!-- =================== CIERRE =================== -->
+    <section class="mb-8 text-center bg-zinc-50 p-8 rounded-lg border border-zinc-200">
+      <p class="font-bold text-lg text-zinc-900 mb-2">Quedamos atentos a su confirmación para iniciar la ventana operativa,</p>
+      <p class="text-zinc-700">Johann Vivas y Santiago Aguilar</p>
+      <p class="text-zinc-500 text-sm">Equipo StackSolver</p>
+      <p class="text-xs text-zinc-500 mt-4 italic">
         Documento de trabajo en revisión. Para cualquier ajuste de alcance o condiciones, escribir a johann@stacksolver.tech.
       </p>
     </section>

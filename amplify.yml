@@ -25,7 +25,7 @@ frontend:
             "routes": [
               { "path": "/*", "target": { "kind": "Static" } }
             ],
-            "framework": { "name": "astro", "version": "6.1.4" }
+            "framework": { "name": "astro", "version": "6.4.4" }
           }
           JSON
   artifacts:

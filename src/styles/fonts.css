@@ -1,0 +1,32 @@
+/* ARCHIVO: src/styles/fonts.css
+   Fuentes autohospedadas del design system: Inter (UI + headings) y JetBrains Mono (code).
+
+   Vive aparte de global.css porque varias páginas son standalone —definen su propio
+   <html>/<head> y no pasan por Layout.astro—, así que necesitan importar las @font-face
+   por su cuenta. Antes esas páginas traían Inter desde fonts.googleapis.com, lo que
+   exponía la IP del visitante a Google en cada carga.
+*/
+
+/* JetBrains Mono — pesos 400/500/600, los mismos que pedía la URL de Google Fonts.
+   Los @import van primero: el CSS exige que precedan a cualquier otra regla. */
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
+
+/* Inter — variable, 100..900, normal + itálica. Archivos en public/fonts/. */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations'),
+       url('/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype-variations'),
+       url('/fonts/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}

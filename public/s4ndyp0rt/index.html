@@ -198,8 +198,17 @@
       .pricing-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Inter autohospedada: misma fuente que servía Google Fonts, sin exponer la IP del visitante. -->
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations'),
+           url('/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
 </head>
 <body>
 

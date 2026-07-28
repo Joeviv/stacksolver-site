@@ -67,7 +67,7 @@ export const SERVICES_MENU: Section[] = [
           { title: 'Local First', description: 'Priorizamos el procesamiento en el borde (Edge), reduciendo latencia y dependencia de la nube, lo que asegura continuidad operativa incluso sin internet.' },
           { title: 'Consultoría', description: 'Acompañamiento experto paso a paso, desde la evaluación de madurez digital hasta la implementación final, asegurando alineamiento con los objetivos de negocio.' }
         ],
-        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1677442136019-21780ecad995.webp'
       },
       {
         id: 'ai-ethical-sandbox',
@@ -87,7 +87,7 @@ export const SERVICES_MENU: Section[] = [
           { title: 'Industrias Reguladas', description: 'Patrón validado para servicios corporativos, fund administration, legal, financial services y cualquier negocio fiduciario donde los datos son el activo crítico.' },
           { title: 'Escalable', description: 'El patrón escala horizontalmente a múltiples jurisdicciones y países sin rediseño — se replica por fases manteniendo la gobernanza central.' }
         ],
-        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1551434678-e076c223a692.webp'
       },
       {
         id: 'ai-bpm',
@@ -106,7 +106,7 @@ export const SERVICES_MENU: Section[] = [
           { title: 'Mapa de Procesos', description: 'Documentamos y modelamos visualmente cada etapa de su operación, entregando diagramas BPMN claros que sirven como fuente única de verdad para la organización.' },
           { title: 'Auditoría Continua', description: 'Implementamos puntos de control automáticos que monitorean el cumplimiento de normativas en tiempo real, generando alertas ante desviaciones.' }
         ],
-        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1454165804606-c3d57bc86b40.webp'
       },
       {
         id: 'ai-agents',
@@ -125,7 +125,7 @@ export const SERVICES_MENU: Section[] = [
           { title: 'Colaboración', description: 'Habilitamos la comunicación fluida entre agentes humanos y sintéticos, creando equipos híbridos que potencian la productividad organizacional.' },
           { title: 'Reglas de Negocio', description: 'Codificamos sus políticas corporativas directamente en el comportamiento de los agentes, asegurando que cada acción cumpla estrictamente con sus estándares.' }
         ],
-        image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop'
+        image: '/images/servicios/photo-1620712943543-bcc4688e7485.webp'
       },
       {
         id: 'ai-infra',
@@ -144,7 +144,7 @@ export const SERVICES_MENU: Section[] = [
           { title: 'Inventario Activos', description: 'Mantenemos un registro actualizado y automático de todo el hardware y software, facilitando auditorías y gestión de ciclo de vida.' },
           { title: 'Cuellos de Botella', description: 'Detectamos proactivamente saturaciones en la línea de producción o red, sugiriendo optimizaciones antes de que afecten el rendimiento global.' }
         ],
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1518770660439-4636190af475.webp'
       },
       {
         id: 'ai-projects',
@@ -163,7 +163,7 @@ export const SERVICES_MENU: Section[] = [
           { title: 'Copiloto IA', description: 'Asistente inteligente que sugiere asignaciones óptimas de recursos y alerta sobre riesgos potenciales basándose en datos históricos.' },
           { title: 'Integración GRC', description: 'Aseguramos que cada hito del proyecto cumpla con los requisitos de Gobernanza, Riesgo y Cumplimiento desde el diseño.' }
         ],
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop'
+        image: '/images/servicios/photo-1460925895917-afdab827c52f.webp'
       }
     ]
   },
@@ -214,7 +214,7 @@ export const SERVICES_MENU: Section[] = [
           { title: 'Auditoría & Logs', description: 'Trazabilidad total. Sepa quién hizo qué, cuándo y desde qué dispositivo. Seguridad de grado bancario.' },
           { title: 'Movilidad (iPad/iOS)', description: 'Operación real en campo. App nativa para técnicos y comerciales que funciona 100% Offline y sincroniza al volver.' }
         ],
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop'
+        image: '/images/servicios/photo-1460925895917-afdab827c52f.webp'
       },
       {
         id: 'ent-crm',
@@ -229,7 +229,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Movilidad', description: 'FileMaker Go (iOS).' }
         ],
         features: ['Pipeline 360', 'Historial', 'Acceso Móvil (iOS)', 'Email Integrado'],
-        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1552664730-d307ca884978.webp'
       },
       {
         id: 'ent-hr',
@@ -244,7 +244,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Evaluaciones', description: 'Desempeño 360.' }
         ],
         features: ['Expediente único', 'Vacaciones', 'Firma digital', 'Confidencialidad'],
-        image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop'
+        image: '/images/servicios/photo-1521737604893-d14cc237f11d.webp'
       },
       {
         id: 'ent-fin',
@@ -259,7 +259,6 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Auditoría', description: 'Logs de transacciones.' }
         ],
         features: ['Conciliación', 'Presupuestos', 'Alertas', 'Proyecciones'],
-        image: 'https://images.unsplash.com/photo-1554224155-98496fae562c?q=80&w=2072&auto=format&fit=crop'
       },
       {
         id: 'ent-supply',
@@ -274,7 +273,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Logística', description: 'Rutas y flota.' }
         ],
         features: ['Trazabilidad', 'Mermas', 'Códigos de Barra', 'Alertas Stock'],
-        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1586528116311-ad8dd3c8310d.webp'
       }
     ]
   },
@@ -296,7 +295,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Tablero', description: 'Visualización.' }
         ],
         features: ['Políticas', 'Acuerdos', 'Portal Directores', 'Trazabilidad'],
-        image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop'
+        image: '/images/servicios/photo-1507679799987-c73779587ccf.webp'
       },
       {
         id: 'grc-risk',
@@ -311,7 +310,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Planes', description: 'Seguimiento.' }
         ],
         features: ['Matriz Riesgos', 'Mapas Calor', 'KRI', 'Alertas'],
-        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1454165804606-c3d57bc86b40.webp'
       },
       {
         id: 'grc-comp',
@@ -326,7 +325,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Dashboard', description: 'Estado cumplimiento.' }
         ],
         features: ['ISO / GDPR', 'Evidencias', 'Calendario', 'Checklists'],
-        image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2012&auto=format&fit=crop'
+        image: '/images/servicios/photo-1589829085413-56de8ae18c73.webp'
       },
       {
         id: 'grc-audit',
@@ -341,7 +340,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Seguimiento', description: 'Recomendaciones.' }
         ],
         features: ['Planificación', 'Papeles Trabajo', 'Informes', 'Seguimiento'],
-        image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1450101499163-c8848c66ca85.webp'
       },
       {
         id: 'grc-incident',
@@ -356,7 +355,6 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Lecciones', description: 'Prevención.' }
         ],
         features: ['Reporte', 'Causa Raíz', 'SLA', 'Confidencialidad'],
-        image: 'https://images.unsplash.com/photo-1504384308090-c54be3855463?q=80&w=2070&auto=format&fit=crop'
       },
       {
         id: 'grc-vendor',
@@ -371,7 +369,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Auditoría', description: 'Revisiones.' }
         ],
         features: ['Due Diligence', 'Scoring', 'Portal Proveedores', 'Contratos'],
-        image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop'
+        image: '/images/servicios/photo-1556761175-5973dc0f32e7.webp'
       },
       {
         id: 'grc-report',
@@ -386,7 +384,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Envío', description: 'Validación.' }
         ],
         features: ['Reportes 1-clic', 'Formatos', 'Historial', 'Validación'],
-        image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1551836022-d5d88e9218df.webp'
       }
     ]
   },
@@ -407,7 +405,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Capacitación', description: 'Entrenamiento.' }
         ],
         features: ['Open Source', 'Escalable', 'Evaluaciones', 'Videoconferencia'],
-        image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2067&auto=format&fit=crop'
+        image: '/images/servicios/photo-1501504905252-473c47e087f8.webp'
       },
       {
         id: 'lms-gam',
@@ -421,7 +419,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Lanzamiento', description: 'Comunicación.' }
         ],
         features: ['Puntos y Niveles', 'Badges', 'Rankings', 'Retos'],
-        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop'
+        image: '/images/servicios/photo-1511512578047-dfb367046420.webp'
       },
       {
         id: 'lms-analytics',
@@ -435,7 +433,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Alertas', description: 'Avisos automáticos.' }
         ],
         features: ['Seguimiento', 'Predicción Deserción', 'Notas', 'Uso Recursos'],
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1551288049-bebda4e38f71.webp'
       },
       {
         id: 'lms-mobile',
@@ -449,7 +447,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Tiendas', description: 'Publicación.' }
         ],
         features: ['Offline', 'Push', 'Responsive', 'Sincronización'],
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1516321318423-f06f85e504b3.webp'
       },
       {
         id: 'lms-content',
@@ -463,7 +461,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'QA', description: 'Revisión.' }
         ],
         features: ['SCORM', 'Interactivo', 'Diseño Instruccional', 'Descargable'],
-        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop'
+        image: '/images/servicios/photo-1522202176988-66273c2fd55f.webp'
       }
     ]
   },
@@ -484,7 +482,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Prototipado', description: 'Pruebas de usabilidad.' }
         ],
         features: ['User Research', 'Figma', 'Design Systems', 'Usabilidad'],
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop'
+        image: '/images/servicios/photo-1561070791-2526d30994b5.webp'
       },
       {
         id: 'web-dev',
@@ -498,7 +496,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Optimización', description: 'Core Web Vitals.' }
         ],
         features: ['React / Astro', 'Tailwind', 'SEO Técnico', 'Accesibilidad'],
-        image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=2064&auto=format&fit=crop'
+        image: '/images/servicios/photo-1547658719-da2b51169166.webp'
       },
       {
         id: 'web-ecom',
@@ -512,7 +510,6 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Lanzamiento', description: 'Logística e impuestos.' }
         ],
         features: ['Shopify / WooCommerce', 'Pagos Seguros', 'Inventario', 'Carritos'],
-        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2070&auto=format&fit=crop'
       },
       {
         id: 'web-landing',
@@ -526,7 +523,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'A/B Testing', description: 'Optimización.' }
         ],
         features: ['Alta Conversión', 'Copywriting', 'Carga Rápida', 'Analytics'],
-        image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop'
+        image: '/images/servicios/photo-1467232004584-a241de8bcf5d.webp'
       },
       {
         id: 'web-maint',
@@ -540,7 +537,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Monitoreo', description: 'Alertas 24/7.' }
         ],
         features: ['Seguridad', 'Actualizaciones', 'Monitoreo', 'Soporte'],
-        image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop'
+        image: '/images/servicios/photo-1486312338219-ce68d2c6f44d.webp'
       }
     ]
   },
@@ -561,7 +558,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Publicación', description: 'Web / TV.' }
         ],
         features: ['Tiempo real', 'Drill-down', 'Multi-fuente', 'Responsive'],
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'
+        image: '/images/servicios/photo-1551288049-bebda4e38f71.webp'
       },
       {
         id: 'data-bi',
@@ -575,7 +572,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Self-Service', description: 'Capacitación.' }
         ],
         features: ['Power BI / Tableau', 'Histórico', 'ETL', 'Seguridad'],
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop'
+        image: '/images/servicios/photo-1460925895917-afdab827c52f.webp'
       },
       {
         id: 'data-mining',
@@ -589,7 +586,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Insights', description: 'Interpretación.' }
         ],
         features: ['Clustering', 'Fraude', 'Segmentación', 'Python/R'],
-        image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2076&auto=format&fit=crop'
+        image: '/images/servicios/photo-1504868584819-f8e8b4b6d7e3.webp'
       },
       {
         id: 'data-predict',
@@ -603,7 +600,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Uso', description: 'Integración.' }
         ],
         features: ['Forecast', 'Churn', 'Mantenimiento', 'Demanda'],
-        image: 'https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?q=80&w=2073&auto=format&fit=crop'
+        image: '/images/servicios/photo-1666875753105-c63a6f3bdc86.webp'
       },
       {
         id: 'data-maps',
@@ -617,7 +614,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Interactividad', description: 'Filtros.' }
         ],
         features: ['Geomarketing', 'Territorios', 'Mapas', 'Regional'],
-        image: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=2031&auto=format&fit=crop'
+        image: '/images/servicios/photo-1569336415962-a4bd9f69cd83.webp'
       }
     ]
   }

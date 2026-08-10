@@ -259,6 +259,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Auditoría', description: 'Logs de transacciones.' }
         ],
         features: ['Conciliación', 'Presupuestos', 'Alertas', 'Proyecciones'],
+        image: '/images/servicios/photo-1560221328-12fe60f83ab8.webp'
       },
       {
         id: 'ent-supply',
@@ -355,6 +356,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Lecciones', description: 'Prevención.' }
         ],
         features: ['Reporte', 'Causa Raíz', 'SLA', 'Confidencialidad'],
+        image: '/images/servicios/photo-1751448555253-f39c06e29d82.webp'
       },
       {
         id: 'grc-vendor',
@@ -510,6 +512,7 @@ export const SERVICES_MENU: Section[] = [
           { step: 4, title: 'Lanzamiento', description: 'Logística e impuestos.' }
         ],
         features: ['Shopify / WooCommerce', 'Pagos Seguros', 'Inventario', 'Carritos'],
+        image: '/images/servicios/photo-1563013544-824ae1b704d3.webp'
       },
       {
         id: 'web-landing',

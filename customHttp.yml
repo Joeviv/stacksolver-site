@@ -34,6 +34,10 @@ customHeaders:
       #               www.youtube.com  (4 iframes en public/camar4com3rciocasanar3/)
       #   img-src     vumbnail.com     (miniaturas de Vimeo en VideoLightbox)
       #   connect-src formspree.io     (fetch del formulario de contacto)
-      #   fuentes:    autohospedadas desde el PR #34 — no hay font-src externo
+      #   font-src    'self' data: — las fuentes son autohospedadas desde el PR #34, pero el
+      #               bundler las EMBEBE como `url(data:font/woff2;base64,…)` en el CSS.
+      #               Medido en produccion el 2026-08-10 con el CSP ya en Report-Only: sin
+      #               `data:` el navegador reportaba violacion en cada @font-face y, de haber
+      #               sido vinculante, la portada se habria quedado sin tipografia.
       - key: 'Content-Security-Policy-Report-Only'
-        value: "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://vumbnail.com; font-src 'self'; connect-src 'self' https://formspree.io; frame-src https://player.vimeo.com https://www.youtube.com; form-action 'self' https://formspree.io"
+        value: "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://vumbnail.com; font-src 'self' data:; connect-src 'self' https://formspree.io; frame-src https://player.vimeo.com https://www.youtube.com; form-action 'self' https://formspree.io"
